@@ -1,3 +1,23 @@
-/node_modules
 
-#*.psd
+# Created by https://www.gitignore.io/api/node,macos,windows,linux
+
+# Dependency directories
+node_modules
+dist
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+*.psd
+
+# Folder config file
+Desktop.ini
+
+# Windows shortcuts
+*.lnk
