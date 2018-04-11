@@ -1,5 +1,3 @@
-@import "settings";
-
-body {
-    background-color: $color-bg;
-}
+@import "_variables";
+@import "_reset";
+@import "_mixins.scss";

@@ -1,32 +1,14 @@
-# gulp-starter-kit
+# Restaurant site
 
-If you want to know how to build that kind of startet kit you can watch the YouTube videos I created while working on this starter kit: https://goo.gl/sMFmyN (Note: Videos are in Polish).
+- using Sass
+- using Gulp.js
+- using BEM for naming in CSS
+- responsive design
+- using flexbox
 
-## Usage
+## PSD source
 
-### 1. Clone repo
-```
-git clone https://github.com/marcinkrzeminski/gulp-starter-kit.git
-```
-
-### 2. Go inside cloned repo
-```
-cd gulp-starter-kit
-```
-
-### 3. Install all dependencies (make sure nodejs with npm is installed on your machine)
-```
-npm install
-```
-
-### 4. Run default gulp task (will open browser window with live reload)
-```
-gulp
-```
-
-## Build 
-
-In order to build the production version of your project run __gulp build__ from the root of cloned repo.
+- PSD project can be found here: http://www.oxygenna.com/freebies/free-one-page-psd-template
 
 ## List of npm packaged used
 
