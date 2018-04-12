@@ -1,0 +1,8 @@
+.site_navigation{
+  background: red;
+  &__logo{
+    font-family: $decorative-font;
+    color: $white;
+  }
+
+}
