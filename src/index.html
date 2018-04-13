@@ -2,22 +2,81 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Gulp Starter Kit</title>
+    <title>Restaurant site</title>
     <!-- build:css -->
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeseva+One" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
+    <!-- Header starts-->
     <header class="site-header">
       <img src="./images/header.png" alt="background image of wooden spoon between pasta and green herbs">
       <nav class="site-navigation">
-        <h1 class="site-navigation__logo">Resto</h1>
+        <p class="site-navigation__logo">Resto</p>
         <ul class="site-navigation__list">
-          <li></li>
+          <li>Home</li>
+          <li>About</li>
+          <li>Ingredients</li>
+          <li>Menu</li>
+          <li>Reviews</li>
+          <li>Reservations</li>
+          <li>t</li>
+          <li>yt</li>
+          <li>f</li>
         </ul>
+        <div class="site-header__content">
+          <h1 class="site-header__headline heading">
+            the right ingredients for the right food
+          </h1>
+          <button class="site-header__btn">book a table</button>
+          <button class="site-header__btn">see the menu</button>
+        </div>
       </nav>
     </header>
+    <!-- End of header -->
+
+    <article class="section__about">
+      <div class="row">
+
+        <div class="col-md-6">
+          <h1 class="about-section__title heading">Just the right food</h1>
+          <p class="about-section__description">If you’ve been to one of our restaurants, 
+            you’ve seen – and tasted – what keeps our customers coming back for more. 
+            Perfect materials and freshly baked food, delicious Lambda cakes,  
+            muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
+          </p>
+          <img src="./images/cook.png" alt="our chef photo">
+        </div>
+
+        <div class="col-md-6">
+          <img src="./images/dish.png" alt="example dish from our restaurant">
+        </div>
+
+      </div>
+    </article>
+
+    <section class="section__ingredients">
+      <img src="./images/ingredients-bg.png" alt="ingredients section background image">
+      <div class="row">
+
+        <div class="offset-md-6"></div>
+
+        <div class="col-md-6">
+          <h1 class="ingredients-section__title heading">Fine ingredients</h1>
+          <p class="ingredients-section__description">If you’ve been to one of our restaurants, 
+            you’ve seen – and tasted – what keeps our customers coming back for more. 
+            Perfect materials and freshly baked food, delicious Lambda cakes,  
+            muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <article class="section__menu">
+
+    </article>
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script>
     <!-- endbuild  -->

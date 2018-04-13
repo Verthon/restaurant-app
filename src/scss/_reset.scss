@@ -1,7 +1,13 @@
 @import "_variables";
 
-*{
+html {
   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body{
@@ -10,6 +16,11 @@ body{
   padding: 0;
   color: $light-black;
   font-family: $main-font;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
 }
 
 ul{
