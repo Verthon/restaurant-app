@@ -1,3 +1,12 @@
 .site-header{
-  height: 200px;
+  position: relative;
+
+  &__content{
+    position: absolute;
+    top: 100%;
+	  left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+
+  }
 }

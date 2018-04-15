@@ -1,5 +1,8 @@
-.site_navigation{
-  background: red;
+.site-navigation{
+
+  position: absolute;
+  top: 0;
+  width: 100%;
   &__logo{
     font-family: $decorative-font;
     color: $white;
