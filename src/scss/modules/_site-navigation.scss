@@ -3,9 +3,14 @@
   position: absolute;
   top: 0;
   width: 100%;
+
   &__logo{
     font-family: $decorative-font;
     color: $white;
+  }
+
+  &__list{
+    display: flex;
   }
 
 }
