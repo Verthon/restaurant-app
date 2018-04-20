@@ -5,8 +5,24 @@
     position: absolute;
     top: 100%;
 	  left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 50%);
     text-align: center;
+  }
 
+  &__headline{
+    font-size: 4rem;
+    color: $white;
+    font-weight: 400;
+  }
+
+  &__btn{
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    color: $white;
+    background: #252525;
+    border: 0;
+    border-bottom: 2px solid black;
+    font-size: 1rem;
+    margin-right: 1rem;
   }
 }

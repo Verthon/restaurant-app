@@ -28,6 +28,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
+    "node-sass": "^4.8.3",
     "npm": "^5.8.0"
   }
 }

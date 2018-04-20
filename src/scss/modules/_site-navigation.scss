@@ -3,14 +3,26 @@
   position: absolute;
   top: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10rem;
+  align-items: center;
 
   &__logo{
     font-family: $decorative-font;
     color: $white;
+    font-size: 2rem;
   }
 
   &__list{
     display: flex;
+    color: $white;
+
+    li{
+      padding: 0 1.5rem;
+      font-size: 1.1rem;
+      font-family: $decorative-font;
+    }
   }
 
 }
