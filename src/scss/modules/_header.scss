@@ -19,10 +19,21 @@
     padding: 0.75rem 2rem;
     text-transform: uppercase;
     color: $white;
-    background: #252525;
+    background: $light-black;
     border: 0;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid $black;
     font-size: 1rem;
     margin-right: 1rem;
+  }
+
+  &__btn:hover{
+    cursor: pointer;
+  }
+
+  &__btn--reverse{
+    color: $black;
+    background: $light-white;
+    border: 0;
+    border-bottom: 2px solid $white;
   }
 }
