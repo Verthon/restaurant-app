@@ -1,0 +1,14 @@
+.section__about{
+  padding: 4rem;
+  
+  &__description{
+    max-width: 60%;
+    padding-bottom: 2rem;
+    text-align: justify;
+    line-height: 1.7;
+  }
+
+  img{
+    padding-bottom: 1rem;
+  }
+}

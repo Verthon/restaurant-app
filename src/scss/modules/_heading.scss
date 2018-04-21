@@ -3,6 +3,10 @@
   font-size: 2rem;
   font-weight: 400;
 
+  &--large{
+    font-size: 4rem;
+  }
+
   &--gold{
     color: $main-gold;
   }
