@@ -1,0 +1,13 @@
+.ingredients-section{
+  position: relative;
+
+  &__modal{
+    background: rgba($color: $black, $alpha: 0.65);
+    padding: 2rem 3rem;
+    color: $white;
+  }
+
+  &__title{
+    
+  }
+}
