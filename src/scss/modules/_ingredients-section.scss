@@ -3,11 +3,23 @@
 
   &__modal{
     background: rgba($color: $black, $alpha: 0.65);
-    padding: 2rem 3rem;
+    padding: 5rem 4rem;
     color: $white;
+    min-width: 500px;
   }
 
   &__title{
-    
+    font-size: 2.1rem;
+  }
+
+  &__description{
+    font-size: 0.9rem;
+    padding-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  &__images{
+    display: flex;
+    justify-content: space-around;
   }
 }
