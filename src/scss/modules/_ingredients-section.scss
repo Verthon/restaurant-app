@@ -6,6 +6,9 @@
     padding: 5rem 4rem;
     color: $white;
     min-width: 500px;
+    @include mQ($ipad){
+      min-width: auto;
+    }
   }
 
   &__title{

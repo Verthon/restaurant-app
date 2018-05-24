@@ -3,18 +3,28 @@
   background-image: url('../images/header.jpg');
   min-height: 700px;
 
+  @include mQ($mobile){
+    min-height: 500px;
+  }
+
   &__content{
     position: absolute;
     top: 20%;
 	  left: 50%;
     transform: translate(-50%, 50%);
     text-align: center;
+    @include mQ($ipad){
+      top: 0;
+    }
   }
 
   &__headline{
     font-size: 4rem;
     color: $white;
     font-weight: 400;
+    @include mQ($ipad){
+      font-size: 1.5rem;
+    }
   }
 
   &__btn{
@@ -26,6 +36,13 @@
     border-bottom: 2px solid $black;
     font-size: 1rem;
     margin-right: 1rem;
+
+    @include mQ($mobile){
+      padding: 0.5rem 1.25rem;
+      margin-right: 0;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
   }
 
   &__btn:hover{

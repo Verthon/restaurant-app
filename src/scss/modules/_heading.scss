@@ -6,6 +6,13 @@
 
   &--large{
     font-size: 4rem;
+    @include mQ($ipad){
+      font-size: 2rem;
+    }
+
+    @include mQ($mobile){
+      margin-bottom: 1rem;
+    }
   }
 
   &--gold{
