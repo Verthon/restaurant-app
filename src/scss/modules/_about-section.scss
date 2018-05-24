@@ -6,6 +6,10 @@
     padding-bottom: 2rem;
     text-align: justify;
     line-height: 1.7;
+
+    @include mQ($ipad){
+      max-width: 100%;
+    }
   }
 
   img{
