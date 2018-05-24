@@ -1,8 +1,13 @@
 $white: white;
-$light-black: #252525;
 $black: #000000;
+$light-black: #252525;
 $light-white: #eeeeee;
 $main-gold: #D4AF37;
 
 $main-font: 'Open Sans';
 $decorative-font: 'Yeseva One';
+
+// bootstrap customs
+$navbar-dark-color:                 rgba($white, 0.9);
+$font-family-sans-serif: $main-font;
+

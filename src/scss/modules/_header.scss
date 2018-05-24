@@ -1,11 +1,11 @@
 .site-header{
   position: relative;
-  background-image: url('../images/header.png');
+  background-image: url('../images/header.jpg');
   min-height: 700px;
 
   &__content{
     position: absolute;
-    top: 100%;
+    top: 20%;
 	  left: 50%;
     transform: translate(-50%, 50%);
     text-align: center;
