@@ -1,5 +1,7 @@
 .site-header{
   position: relative;
+  background-image: url('../images/header.png');
+  min-height: 700px;
 
   &__content{
     position: absolute;

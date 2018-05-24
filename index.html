@@ -4,27 +4,50 @@
     <meta charset="utf-8">
     <title>Restaurant site</title>
     <!-- build:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dist/css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeseva+One" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
     <!-- Header starts-->
     <header class="site-header">
-      <img src="./images/header.png" alt="background image of wooden spoon between pasta and green herbs">
-      <nav class="site-navigation">
-        <p class="site-navigation__logo">Resto</p>
-        <ul class="site-navigation__list">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#ingredients">Ingredients</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#reservations">Reservations</a></li>
-          <li class="site-navigation__list__social"><a href="https://twitter.com">t</a></li>
-          <li class="site-navigation__list__social"><a href="https://youtube.com">yt</a></li>
-          <li class="site-navigation__list__social"><a href="https://facebook.com">f</a></li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark container">
+        <a class="navbar-brand" href="#">Resto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Ingredients</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-youtube"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
         <div class="site-header__content">
           <h1 class="site-header__headline heading heading--large">
             the right ingredients for the right food
@@ -32,7 +55,6 @@
           <button class="site-header__btn">book a table</button>
           <button class="site-header__btn site-header__btn--reverse">see the menu</button>
         </div>
-      </nav>
     </header>
     <!-- End of header -->
 
@@ -46,18 +68,18 @@
             Perfect materials and freshly baked food, delicious Lambda cakes,  
             muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
           </p>
-          <img src="./images/cook.png" alt="our chef photo">
+          <img src="dist/images/cook.png" alt="our chef photo">
         </div>
 
         <div class="col-md-6">
-          <img src="./images/dish.png" alt="example dish from our restaurant">
+          <img src="dist/images/dish.png" alt="example dish from our restaurant">
         </div>
 
       </div>
     </article>
 
     <section class="ingredients-section">
-      <img src="./images/ingredients-bg.png" alt="ingredients section background image">
+      <img src="dist/images/ingredients-bg.png" alt="ingredients section background image">
       <div class="row row--ingredients">
 
         <div class="offset-md-6"></div>
@@ -71,9 +93,9 @@
               muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
             </p>
             <div class="ingredients-section__images">
-              <img src="images/wheat.png" alt="wheat photo">
-              <img src="images/curry.png" alt="red curry photo">
-              <img src="images/bread.png" alt="white bread photo">
+              <img src="dist/images/wheat.png" alt="wheat photo">
+              <img src="dist/images/curry.png" alt="red curry photo">
+              <img src="dist/images/bread.png" alt="white bread photo">
             </div>
           </article>       
         </div>
@@ -137,8 +159,7 @@
         </div>
       </div>
     </article>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="dist/js/main.min.js"></script>
     <!-- endbuild  -->
   </body>
 </html>

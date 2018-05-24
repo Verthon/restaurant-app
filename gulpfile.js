@@ -1,103 +1,85 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
-var cleanCSS = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var imagemin = require('gulp-imagemin');
-var changed = require('gulp-changed');
-var htmlReplace = require('gulp-html-replace');
-var htmlMin = require('gulp-htmlmin');
-var del = require('del');
-var sequence = require('run-sequence');
+//import { rename } from 'fs';
 
-var config = {
-  dist: 'dist/',
-  src: 'src/',
-  cssin: 'src/css/**/*.css',
-  jsin: 'src/js/**/*.js',
-  imgin: 'src/img/**/*.{jpg,jpeg,png,gif}',
-  htmlin: 'src/*.html',
-  scssin: 'src/scss/**/*.scss',
-  cssout: 'dist/css/',
-  jsout: 'dist/js/',
-  imgout: 'dist/img/',
-  htmlout: 'dist/',
-  scssout: 'src/css/',
-  cssoutname: 'style.css',
-  jsoutname: 'script.js',
-  cssreplaceout: 'css/style.css',
-  jsreplaceout: 'js/script.js'
-};
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('reload', function() {
-  browserSync.reload();
-});
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const uglify = require('gulp-uglify');
+const buffer = require('vinyl-buffer');
+const browsersync = require('browser-sync').create();
+const reload = browsersync.reload;
 
-gulp.task('serve', ['sass'], function() {
-  browserSync({
-    server: config.src
+const htmlWatch = '**/*.html';
+const styleSrc = 'src/scss/style.scss';
+const styleDist = './dist/css/';
+const styleWatch = 'src/scss/**/*.scss';
+
+const jsSrc = 'main.js';
+const jsFolder = 'src/js/';
+const jsDist = './dist/js/';
+const jsWatch = 'src/js/**/*.js';
+const jsFiles = [jsSrc];
+
+
+gulp.task('browser-sync', () => {
+  browsersync.init({
+    server: {
+      injectChanges: true,
+      baseDir: "./"
+    }
   });
-
-  gulp.watch([config.htmlin, config.jsin], ['reload']);
-  gulp.watch(config.scssin, ['sass']);
 });
 
-gulp.task('sass', function() {
-  return gulp.src(config.scssin)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 3 versions']
-    }))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.scssout))
-    .pipe(browserSync.stream());
+
+gulp.task('style', () => {
+  gulp.src(styleSrc)
+      .pipe(sourcemaps.init())
+      //return gulp.src(styleSrc)
+      .pipe(sass()
+      .on('error', sass.logError))     
+      .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+      }))
+      .pipe(rename({suffix: '.min'}))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest(styleDist))
+      .pipe(browsersync.stream());
 });
 
-gulp.task('css', function() {
-  return gulp.src(config.cssin)
-    .pipe(concat(config.cssoutname))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(config.cssout));
+gulp.task('js', () =>{
+ jsFiles.map((entry) => {
+
+  return browserify({
+    entries: [jsFolder + entry]    
+  })
+  .transform(babelify, {presets: ['env']})
+  .bundle()
+  .pipe(source(entry))
+  .pipe(rename({extname: '.min.js'}))
+  .pipe(buffer())
+  .pipe(sourcemaps.init({loadMaps: true}))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('./'))
+  .pipe(gulp.dest(jsDist))
+  .pipe(browsersync.stream());
+ });
 });
 
-gulp.task('js', function() {
-  return gulp.src(config.jsin)
-    .pipe(concat(config.jsoutname))
-    .pipe(uglify())
-    .pipe(gulp.dest(config.jsout));
+gulp.task('html', () =>{
+  gulp.src(htmlSource)
+    .pipe(browsersync.stream());
 });
 
-gulp.task('img', function() {
-  return gulp.src(config.imgin)
-    .pipe(changed(config.imgout))
-    .pipe(imagemin())
-    .pipe(gulp.dest(config.imgout));
-});
+gulp.task('default', ['style', 'js']);
 
-gulp.task('html', function() {
-  return gulp.src(config.htmlin)
-    .pipe(htmlReplace({
-      'css': config.cssreplaceout,
-      'js': config.jsreplaceout
-    }))
-    .pipe(htmlMin({
-      sortAttributes: true,
-      sortClassName: true,
-      collapseWhitespace: true
-    }))
-    .pipe(gulp.dest(config.dist))
+gulp.task('watch', ['default', 'browser-sync'], () => {
+  gulp.watch(styleWatch, ['style', reload]);
+  gulp.watch(jsWatch, ['js', reload]);
+  gulp.watch(htmlWatch, reload);
 });
-
-gulp.task('clean', function() {
-  return del([config.dist]);
-});
-
-gulp.task('build', function() {
-  sequence('clean', ['html', 'js', 'css', 'img']);
-});
-
-gulp.task('default', ['serve']);
