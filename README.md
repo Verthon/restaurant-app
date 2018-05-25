@@ -12,5 +12,5 @@
 
 ## PSD source
 
-- PSD project can be found [here] (http://www.oxygenna.com/freebies/free-one-page-psd-template)
+- PSD project can be found [here](http://www.oxygenna.com/freebies/free-one-page-psd-template)
 
