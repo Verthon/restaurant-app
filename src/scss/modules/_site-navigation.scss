@@ -1,33 +1,8 @@
-.site-navigation{
-
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10rem;
-  align-items: center;
-
-  &__logo{
-    font-family: $decorative-font;
-    color: $white;
-    font-size: 2rem;
-  }
-
-  &__list{
-    display: flex;
-    color: $white;
-
-    li{
-      padding: 0 1.5rem;
-      font-size: 1.1rem;
-      font-family: $decorative-font;
-    }
-
-    &__social{
-      padding: 0 0.5rem;
-      color: $main-gold;
-    } 
-  }
-
+.navbar{
+  font-family: $main-font;
+  font-size: 1.15rem;
+}
+.navbar-brand{
+  font-family: $decorative-font;
+  font-size: 1.7rem;
 }

@@ -25,6 +25,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
+    "aos": "^2.3.0",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "node-sass": "^4.9.0"

@@ -1,8 +1,15 @@
 .heading{
   font-family: $decorative-font;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 400;
   text-align: center;
+
+  @include mQ($ipad){
+    font-size: 2.5rem;
+  }
+  @include mQ($mobile){
+    font-size: 2.25rem;
+  }
 
   &--large{
     font-size: 4rem;
