@@ -53,6 +53,8 @@
   }
 }
 .ingredients-section__images{
+  display: flex;
+  justify-content: center;
   @include mQ($ipad){
     display: none;
   }

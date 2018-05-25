@@ -15,15 +15,12 @@
 
   &__content{
     position: absolute;
-    top: 20%;
+    top: 50%;
 	  left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -50%);
     text-align: center;
-    @include mQ($ipad){
-      top: 0;
-    }
     @include mQ($mobile){
-      top: -10%;
+      top: 50%;
     }
   }
 
