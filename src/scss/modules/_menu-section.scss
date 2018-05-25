@@ -17,10 +17,21 @@
     margin: 2rem 0;
     font-family: $decorative-font;
     color: $main-gold;
+
+    @include mQ($ipad){
+      margin: 1rem 0;
+    }
   }
   &__list{
     -webkit-padding-start: 0;
     padding: 2rem;
+  }
+  &-description{
+    line-height: 1.2;
+
+    @include mQ($ipad){
+      line-height: 1.7;
+    }
   }
 }
 
@@ -40,8 +51,5 @@
     font-size: 1.35rem;
     color: $main-gold;
     border-bottom: 1px solid $main-gold;
-  }
-  p{
-    line-height: 2;
   }
 }
