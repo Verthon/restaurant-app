@@ -1,11 +1,11 @@
 @import "_variables";
 @import "_reset";
+@import "modules/_nav";
 
 // Bootstrap and its default variables
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "_mixins";
 @import "modules/_header";
-@import "modules/_nav";
 @import "modules/_site-navigation";
 @import "modules/_heading";
 @import "modules/_section";
