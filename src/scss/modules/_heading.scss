@@ -13,6 +13,7 @@
 
   &--large{
     font-size: 4rem;
+    margin-bottom: 3rem;
     @include mQ($ipad){
       font-size: 3.25rem;
       margin-bottom: 2rem;
