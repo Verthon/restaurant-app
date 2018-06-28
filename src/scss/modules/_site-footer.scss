@@ -1,6 +1,12 @@
 .site-footer{
-  background: $light-black;
-  color: $white;
+  background: $white;
+  color: $light-black;
   text-align: center;
   padding: 2rem 5rem;
+
+  &__title{
+    color: $main-gold;
+    font-family: $decorative-font;
+    padding: 1rem 0;
+  }
 }

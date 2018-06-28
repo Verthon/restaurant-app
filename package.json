@@ -28,6 +28,8 @@
     "aos": "^2.3.0",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "jquery.easing": "^1.4.1",
     "node-sass": "^4.9.0",
     "popper.js": "^1.14.3"
   },
