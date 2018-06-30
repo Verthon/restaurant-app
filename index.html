@@ -10,7 +10,7 @@
     <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAOQAAAByAAAAAAAAAAAAAAAAAAAAUwAAAOYAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAD/AAAAmQAAAAAAAAAAAAAAAAAAAH0AAAD/AAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAA/wAAAJkAAAAAAAAAAAAAAAAAAAB9AAAA/wAAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAP8AAACZAAAAAAAAAAAAAAAAAAAAfQAAAP8AAAA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAD/AAAAmQAAAAAAAAAAAAAAAAAAAH0AAAD/AAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAA/wAAAJkAAAAAAAAAAAAAAAAAAAB9AAAA/wAAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAP8AAACZAAAAAAAAAAAAAABCAAAA0gAAAP8AAAA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAD/AAAAmQAAAAAAAAAAAAAAZAAAAP8AAAD/AAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAA/wAAAJkAAAAAAAAAAAAAAGQAAAD/AAAA/wAAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwAAAP8AAAC1AAAACgAAAAAAAABkAAAA/wAAAP8AAAA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAPwAAAD/AAAA/wAAAJgAAAAAAAAAZAAAAP8AAAD/AAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYAAAD/AAAA/wAAAP8AAACvAAAAAAAAAGQAAAD/AAAA/wAAADYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2AAAAigAAAIkAAACbAAAAmQAAAAAAAABkAAAA/wAAAP8AAAA2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANgAAAH4AAAB9AAAAkAAAAJcAAAAAAAAAZAAAAP8AAAD/AAAANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYAAAB+AAAAfQAAAJAAAACXAAAAAAAAAGIAAAD/AAAA/wAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAxAAAAdQAAAHYAAACHAAAAjQAAAAAAAAAhAAAA4gAAAMwAAAAJAAAAAAAAAAAAAAAA8ccAAPHHAADxxwAA8ccAAPHHAADxxwAA8YcAAPGHAADxhwAA8IcAAOCHAADghwAA4IcAAOCHAADghwAA4IcAAA==" rel="icon" type="image/x-icon">
     <!-- endbuild -->
   </head>
-  <body id="home">
+  <body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
     <!-- Header starts-->
     <header class="site-header">
       <nav class="navbar navbar-expand-lg navbar-dark container" id="mainNav">
@@ -21,19 +21,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#home" id="home">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about" id="about">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#ingredients" id="ingredients">Ingredients</a>
+              <a class="nav-link" href="#ingredients">Ingredients</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#menu" id="menu">Menu</a>
+              <a class="nav-link" href="#menu">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#reviews" id="reviews">Reviews</a>
+              <a class="nav-link" href="#reviews">Reviews</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fa fa-twitter"></i></a>
@@ -57,7 +57,7 @@
     </header>
     <!-- End of header -->
 
-    <article class="section section__about">
+    <article id="about" class="section section__about">
       <div class="row">
 
         <div class="col-lg-6 col-md-12">
@@ -77,7 +77,7 @@
       </div>
     </article>
 
-    <section class="section section__ingredients">
+    <section id="ingredients" class="section section__ingredients">
       <div class="row">
 
         <div class="offset-md-3 offset-lg-1"></div>
@@ -184,7 +184,7 @@
         </div>
     </section>
 
-    <article class="section section__testimonials">
+    <article id="reviews" class="section section__testimonials">
       <div class="row">
         <div class="offset-sm-2"></div>
         <div class="col-sm-8">
