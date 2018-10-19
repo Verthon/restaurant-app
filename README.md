@@ -1,5 +1,6 @@
 # Restaurant site
 
+- rewriting project with React
 - hosted in https://verthon.github.io/restaurant-site/
 - using Sass
 - using Gulp.js
