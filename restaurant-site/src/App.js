@@ -3,6 +3,7 @@ import './App.css';
 import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
 import NavItem from './NavItem/NavItem';
+import HeaderContent from './HeaderContent/HeaderContent';
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
           <Navbar>
             <NavItem></NavItem>
           </Navbar>
+          <HeaderContent></HeaderContent>
         </Header>
       </div>
     );
