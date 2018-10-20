@@ -16,6 +16,7 @@ class App extends Component {
           </Navbar>
           <HeaderContent></HeaderContent>
         </Header>
+        <img src="/images/brooke-lark_header.jpg"></img>
       </div>
     );
   }
