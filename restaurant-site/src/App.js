@@ -4,6 +4,11 @@ import Header from './Header/Header';
 import Navbar from './Navbar/Navbar';
 import NavItem from './NavItem/NavItem';
 import HeaderContent from './HeaderContent/HeaderContent';
+import About from './About/About';
+import Ingredients from './Ingredients/Ingredients';
+import Menu from './Menu/Menu';
+import Reviews from './Reviews/Reviews';
+import Footer from './Footer/Footer';
 
 
 class App extends Component {
@@ -16,7 +21,11 @@ class App extends Component {
           </Navbar>
           <HeaderContent></HeaderContent>
         </Header>
-        <img src="/images/brooke-lark_header.jpg"></img>
+        <About/>
+        <Ingredients/>
+        <Menu/>
+        <Reviews/>
+        <Footer/>
       </div>
     );
   }
