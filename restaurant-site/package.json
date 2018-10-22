@@ -43,8 +43,9 @@
     "react-app-polyfill": "^0.1.3",
     "react-dev-utils": "^6.0.5",
     "react-dom": "^16.5.2",
+    "react-scripts": "^2.0.5",
+    "react-scroll-to-component": "^1.0.2",
     "resolve": "1.8.1",
-    "sass-loader": "^7.1.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
@@ -68,7 +69,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "bootstrap": "^4.1.3"
+    "bootstrap": "^4.1.3",
+    "sass-loader": "^7.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
