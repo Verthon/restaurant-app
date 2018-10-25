@@ -1,0 +1,26 @@
+$white: white;
+$black: #000000;
+$light-black: #252525;
+$light-white: #eeeeee;
+$main-gold: #D4AF37;
+
+//Media Queries vars
+$ipad: 768px;
+$mobile: 500px;
+$medium: 1250px;
+
+$main-font: 'Open Sans';
+$decorative-font: 'Yeseva One';
+
+// bootstrap customs
+$navbar-dark-color:                 rgba($white, 0.9);
+$navbar-font-size: 1rem;
+$font-family-sans-serif: $main-font;
+
+// mixins
+
+@mixin mQ($arg){
+  @media screen and (max-width: $arg){
+    @content;
+  } 
+}

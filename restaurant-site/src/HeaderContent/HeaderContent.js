@@ -1,6 +1,7 @@
 import React from 'react';
+import './HeaderContent.css';
 
-const headercontent = () => {
+const headercontent = (props) => {
   return (
     <div class="site-header__content">
       <h1 class="site-header__headline heading heading--large">
