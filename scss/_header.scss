@@ -1,0 +1,68 @@
+.site-header{
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0, 0.5)), url('/images/brooke-lark_header.jpg');
+  min-height: 700px;
+
+  @include mQ($ipad){
+    min-height: 700px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('/images/header-tablet.jpg');
+  }
+
+  @include mQ($mobile){
+    min-height: 530px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('/images/header-mobile.jpg');
+  }
+
+  &__content{
+    position: absolute;
+    top: 50%;
+	  left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    @include mQ($mobile){
+      top: 50%;
+    }
+  }
+
+  &__headline{
+    font-size: 4rem;
+    color: $white;
+    font-weight: 400;
+    @include mQ($ipad){
+      font-size: 1.5rem;
+    }
+  }
+
+  &__btn{
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    color: $white;
+    background: $light-black;
+    border: 0;
+    border-bottom: 2px solid $black;
+    font-size: 1rem;
+    margin-right: 1rem;
+
+    @include mQ($ipad){
+      margin-right: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    @include mQ($mobile){
+      padding: 0.70rem 1.20rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  &__btn:hover{
+    cursor: pointer;
+  }
+
+  &__btn--reverse{
+    color: $black;
+    background: $light-white;
+    border: 0;
+    border-bottom: 2px solid $white;
+  }
+}

@@ -1,0 +1,48 @@
+.section__testimonials{
+  background: url('/images/brooke-lark-cookies.jpg');
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include mQ($ipad){
+    min-height: 500px;
+    background-size: cover;
+  }
+
+  @include mQ($mobile){
+    min-height: 400px;
+  }
+  &__modal{
+    background: rgba(0, 0, 0, 0.95);
+    min-height: 100%;
+    padding: 5rem 4rem;
+    min-width: 500px;
+    max-width: 900px;
+    color: $white;
+    @include mQ($ipad){
+      min-width: auto;
+      padding: 1rem 3.5rem;
+    }
+    @include mQ($mobile){
+      padding: 0.5rem 2rem;
+    }
+  }
+}
+.testimonials__modal{
+  &__heading{
+    font-family: $decorative-font;
+    text-align: center;
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+  }
+  &__quote{
+    font-style: italic;
+  }
+
+}
+.quote-writer{
+  font-style: normal;
+  padding-top: 2.5rem;
+  margin: 0 auto;
+  text-align: center;
+}

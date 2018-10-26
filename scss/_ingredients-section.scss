@@ -1,0 +1,67 @@
+.section__ingredients{
+  position: relative;
+  background: url('/images/ingredients-bg.jpg');
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mQ($ipad){
+    min-height: 500px;
+    background-size: cover;
+  }
+
+  @include mQ($mobile){
+    min-height: 400px;
+  }
+
+  &__modal{
+    background: rgba(0, 0, 0, 0.95);
+    padding: 5rem 4rem;
+    color: $white;
+    min-width: 500px;
+    max-width: 900px;
+    @include mQ($ipad){
+      min-width: auto;
+      padding: 1rem 3.5rem;
+    }
+    @include mQ($mobile){
+      padding: 0.5rem 2rem;
+    }
+  }
+
+  &__title{
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__description{
+    font-size: 0.9rem;
+    padding-bottom: 40px;
+    line-height: 1.6;
+    @include mQ($ipad){
+      padding-bottom: 10px;
+    }
+    @include mQ($mobile){
+      padding-bottom: 0;
+    }
+  }
+
+  &__images{
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.ingredients-section__images{
+  display: flex;
+  justify-content: center;
+  @include mQ($ipad){
+    display: none;
+  }
+  img{
+    margin: 0 0.5rem;
+    border: 1px solid $white;
+    border-radius: 50%;
+
+  }
+}

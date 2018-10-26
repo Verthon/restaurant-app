@@ -1,0 +1,25 @@
+.section__about{
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+
+  @include mQ($ipad){
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  &__description{
+    max-width: 60%;
+    text-align: justify;
+    line-height: 1.7;
+    margin: 2rem auto;
+
+    @include mQ($ipad){
+      max-width: 100%;
+    }
+  }
+
+  img{
+    margin: 1rem auto;
+    display: block;
+  }
+}

@@ -1,0 +1,19 @@
+@import "_normalize.scss";
+@import "_variables";
+@import "_reset";
+
+
+// Bootstrap and its default variables
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "scss/_nav.scss";
+@import "_mixins";
+@import "scss/_header";
+@import "scss/_site-navigation";
+@import "scss/_heading";
+@import "scss/_section";
+@import "scss/_menu-section";
+@import "scss/_about-section";
+@import "scss/_ingredients-section";
+@import "scss/_testimonials-section";
+@import "scss/_row";
+@import "scss/_site-footer";

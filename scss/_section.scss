@@ -1,0 +1,6 @@
+.section{
+  padding: 0 5rem;
+  @include mQ($mobile){
+    padding: 0 2.5rem;
+  }
+}

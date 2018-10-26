@@ -1,0 +1,31 @@
+.heading{
+  font-family: $decorative-font;
+  font-size: 3rem;
+  font-weight: 400;
+  text-align: center;
+
+  @include mQ($ipad){
+    font-size: 2.5rem;
+  }
+  @include mQ($mobile){
+    font-size: 2.25rem;
+  }
+
+  &--large{
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    @include mQ($ipad){
+      font-size: 3.25rem;
+      margin-bottom: 2rem;
+    }
+
+    @include mQ($mobile){
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  &--gold{
+    color: $main-gold;
+  }
+}
