@@ -9,6 +9,9 @@ import Ingredients from './Ingredients/Ingredients';
 import Menu from './Menu/Menu';
 import Reviews from './Reviews/Reviews';
 import Footer from './Footer/Footer';
+//import Provider from './Provider';
+
+const context = React.createContext();
 
 
 class App extends Component {
