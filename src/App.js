@@ -9,6 +9,8 @@ import Ingredients from './Ingredients/Ingredients';
 import Menu from './Menu/Menu';
 import Reviews from './Reviews/Reviews';
 import Footer from './Footer/Footer';
+import {BrowserRouter, Route} from 'react-router-dom';
+import Booktable from './Components/BookTable';
 //import Provider from './Provider';
 
 const context = React.createContext();
@@ -24,17 +26,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header>
-          <Navbar>
-            <NavItem></NavItem>
-          </Navbar>
-          <HeaderContent></HeaderContent>
-        </Header>
-        <About/>
-        <Ingredients/>
-        <Menu/>
-        <Reviews/>
-        <Footer/>
+        <BrowserRouter>
+          <Header>
+            <Navbar>
+              <NavItem></NavItem>
+            </Navbar>
+            <Route path='/book-table'/>
+            <HeaderContent></HeaderContent>
+          </Header>
+          <About/>
+          <Ingredients/>
+          <Menu/>
+          <Reviews/>
+          <Footer/>
+        </BrowserRouter>
       </div>
     );
   }
