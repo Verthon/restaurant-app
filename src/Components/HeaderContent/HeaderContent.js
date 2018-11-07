@@ -1,5 +1,4 @@
 import React from 'react';
-import './HeaderContent.css';
 
 const headercontent = (props) => {
   return (
@@ -7,8 +6,8 @@ const headercontent = (props) => {
       <h1 class="site-header__headline heading heading--large">
         the right ingredients for the right food
       </h1>
-      <button class="site-header__btn">book a table</button>
-      <button class="site-header__btn site-header__btn--reverse">see the menu</button>
+      <a href="/book-table"><button class="site-header__btn">book a table</button></a>
+      <a href="#menu"><button class="site-header__btn site-header__btn--reverse">see the menu</button></a>
     </div>
   );
 }

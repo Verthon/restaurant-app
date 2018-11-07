@@ -1,7 +1,9 @@
 import React from 'react';
 const booktable = () => {
   return (
-    <div className=""></div>
+    <div className="">
+      <h1>Book table component</h1>
+    </div>
   );
 }
 
