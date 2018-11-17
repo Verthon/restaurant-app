@@ -12,7 +12,7 @@ const about = () => {
             Perfect materials and freshly baked food, delicious Lambda cakes,  
             muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
           </p>
-          <img class="img-fluid" src="/images/cook.jpg" alt="our chef photo" />
+          <img class="img-fluid" src="/images/cook.jpg" alt="our chef" />
         </div>
 
         <div class="col-lg-6 col-md-12">

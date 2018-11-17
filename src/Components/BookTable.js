@@ -1,35 +1,43 @@
 import React from 'react';
-const booktable = () => {
-  return (
-    <div className="table-booking">
+import BookingContainer from './BookingContainer';
 
-      <h1>Please choose time for reservation</h1>
-      <div className="table-booking__container">
-        <h2 className="table-booking__title">Lunch</h2>
-        <div className="table-booking__hours">
-          <button className="table-booking__btn">12:00 PM</button>
-          <button className="table-booking__btn">12:30 PM</button>
-          <button className="table-booking__btn">13:00 PM</button>
-        </div>
-      </div>
+class BookTable extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      titles: [
+        'Lunch',
+        'Dinner'
+      ],
+      lunchHours: [
+        '12:00 PM',
+        '12:30 PM',
+        '13:00 PM',
+      ],
+      dinnerHours: [
+        '14:00 PM',
+        '15:00 PM',
+        '16:00 PM'
+      ]
+    }
+  }
+  render(){
+    return (
+      <div className="table-booking">
+  
+        <h1>Please choose time for reservation</h1>
+        <BookingContainer title="Lunch" hours={this.state.lunchHours}/>
+        <BookingContainer title="Dinner" hours={this.state.dinnerHours}/>
 
-      <div className="table-booking__container">
-        <h2 className="table-booking__title">Dinner</h2>
-        <div className="table-booking__hours">
-          <button className="table-booking__btn">14:00 PM</button>
-          <button className="table-booking__btn">14:30 PM</button>
-          <button className="table-booking__btn">15:00 PM</button>
-          <button className="table-booking__btn">15:30 PM</button>
-          <button className="table-booking__btn">16:00 PM</button>         
-        </div>
+        <footer className="table-booking_footer">
+          <p>NEXT STEP</p>
+          <p>Review Booking</p>
+          <a href="/review-booking"><button>arrow</button></a>
+        </footer>
       </div>
-      <footer className="table-booking_footer">
-        <p>NEXT STEP</p>
-        <p>Review Booking</p>
-        <button>arrow</button>
-      </footer>
-    </div>
-  );
+    );
+  }
+  
 }
 
-export default booktable;
+export default BookTable;
