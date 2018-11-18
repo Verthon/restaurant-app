@@ -1,38 +1,42 @@
 import React from 'react';
-import BookingContainer from './BookingContainer';
+import {Link} from 'react-router-dom';
+import Calendar from 'rc-calendar';
+import DatePicker from 'rc-calendar/lib/Picker';
+import zhCN from 'rc-calendar/lib/locale/zh_CN';
+import enUS from 'rc-calendar/lib/locale/en_US';
+//import 'rc-time-picker/assets/index.css';
+import TimePickerPanel from 'rc-time-picker/lib/Panel';
+import 'rc-calendar/assets/index.css';
 
 class BookTable extends React.Component {
+
   constructor(){
     super();
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state={
-      titles: [
-        'Lunch',
-        'Dinner'
-      ],
-      lunchHours: [
-        '12:00 PM',
-        '12:30 PM',
-        '13:00 PM',
-      ],
-      dinnerHours: [
-        '14:00 PM',
-        '15:00 PM',
-        '16:00 PM'
-      ]
+      selected: '',
+      time: '',
+      date: ''
     }
+
   }
+
+  handleSubmit(e){
+    e.preventDefault();
+  }
+
   render(){
     return (
       <div className="table-booking">
   
         <h1>Please choose time for reservation</h1>
-        <BookingContainer title="Lunch" hours={this.state.lunchHours}/>
-        <BookingContainer title="Dinner" hours={this.state.dinnerHours}/>
-
+        <form onSubmit={this.handleSubmit}>
+          <Calendar></Calendar>
+        </form>
         <footer className="table-booking_footer">
           <p>NEXT STEP</p>
           <p>Review Booking</p>
-          <a href="/review-booking"><button>arrow</button></a>
+          <Link to="/review-booking"><button type="submit">arrow</button></Link>
         </footer>
       </div>
     );

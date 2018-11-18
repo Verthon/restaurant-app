@@ -8,6 +8,7 @@ import Ingredients from '../Ingredients/Ingredients';
 import Menu from '../Menu/Menu';
 import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
+import '../../App.scss';
 
 class Home extends Component {
   render(){
