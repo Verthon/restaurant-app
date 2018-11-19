@@ -2,8 +2,6 @@
 
 ## Technologies used
 
-https://dribbble.com/shots/3251544-Table-Booking
-
 - React.js
 - React Router 4
 - Sass
