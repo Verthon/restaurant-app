@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const navbar = () => {
+const HomeNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark container" id="mainNav">
       <Link class="navbar-brand" to="/">Resto</Link>
@@ -40,4 +40,4 @@ const navbar = () => {
   );
 }
 
-export default navbar;
+export default HomeNavbar;

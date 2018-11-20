@@ -1,28 +1,45 @@
 import React , {Component} from 'react';
 import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
+import HomeNavbar from '../HomeNavbar';
 import NavItem from '../NavItem/NavItem';
 import HeaderContent from '../HeaderContent/HeaderContent';
 import About from '../About/About';
 import Ingredients from '../Ingredients/Ingredients';
-import Menu from '../Menu/Menu';
+import HomeMenu from '../HomeMenu';
 import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
 import '../../App.scss';
 
+/*
+*TODO 
+  
+
+*/
+
 class Home extends Component {
+  constructor(){
+    super();
+    this.state={
+      menu: {
+        appetisers:{
+          
+        }
+      }
+    };
+  }
+
   render(){
     return(
       <div>
         <Header>
-            <Navbar>
+            <HomeNavbar>
               <NavItem></NavItem>
-            </Navbar>
+            </HomeNavbar>
             <HeaderContent/>
           </Header>
           <About/>
           <Ingredients/>
-          <Menu/>
+          <HomeMenu/>
           <Reviews/>
           <Footer/>
       </div>

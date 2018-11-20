@@ -1,6 +1,8 @@
 import React from 'react';
 
-const menu = () => {
+//TODO restructure menu divs with component
+
+const HomeMenu = (props) => {
   return (
 <section id="menu" class="section section__menu">
       <div class="row">
@@ -87,4 +89,4 @@ const menu = () => {
   );
 }
 
-export default menu;
+export default HomeMenu;
