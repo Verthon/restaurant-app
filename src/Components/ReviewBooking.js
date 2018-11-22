@@ -5,7 +5,7 @@ const ReviewBooking = (props) => {
   console.log(props);
   return (
     <Fragment>
-      <h1>Review Booking</h1>
+      <h1 className="heading">Review Booking</h1>
       <Link to="/book-table">Back to booking</Link>
     </Fragment>  
   );

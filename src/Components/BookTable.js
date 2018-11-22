@@ -32,7 +32,7 @@ class BookTable extends React.Component {
       <Fragment>
         <div className="table-booking">
 
-          <h1>Please choose time for reservation</h1>
+          <h1 className="heading">Please choose time for reservation</h1>
           <form onSubmit={this.handleSubmit}>
             <DatePicker
               selected={this.state.date}
@@ -42,12 +42,13 @@ class BookTable extends React.Component {
               timeIntervals={15}
               dateFormat="MMMM d, yyyy h:mm aa"
               timeCaption="time"
+              placeholderText="Click and choose the date"
             />
           </form>
           <footer className="table-booking_footer">
             <p>NEXT STEP</p>
             <p>Review Booking</p>
-            <Link to="/review-booking"><button type="submit">arrow</button></Link>
+            <Link to="/review-booking"><button className="site-header__btn"type="submit">===></button></Link>
           </footer>
         </div>
       </Fragment> 
