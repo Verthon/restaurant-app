@@ -29,12 +29,16 @@ class BookTable extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <div className="table-booking">
+    <Fragment> 
+      <div className="row container-fluid">
+        <div className="col-md-1"></div>
+        <div className="col-md-10 col-sm-12">
+          <div className="table-booking">
 
-          <h1 className="heading">Please choose time for reservation</h1>
-          <form onSubmit={this.handleSubmit}>
+          <h1 className="heading mb-5">Please choose time for reservation</h1>
+          <form onSubmit={this.handleSubmit} className="form-group mt-5">
             <DatePicker
+              className="form-control mx-auto form-control-lg"
               selected={this.state.date}
               onChange={this.handleChange}
               showTimeSelect
@@ -45,13 +49,19 @@ class BookTable extends React.Component {
               placeholderText="Click and choose the date"
             />
           </form>
-          <footer className="table-booking_footer">
+          <footer className="table-booking_footer mx-auto">
             <p>NEXT STEP</p>
             <p>Review Booking</p>
-            <Link to="/review-booking"><button className="site-header__btn"type="submit">===></button></Link>
+            <Link to="/review-booking"><button className="site-header__btn" type="submit">Review Booking</button></Link>
           </footer>
         </div>
-      </Fragment> 
+        </div>
+        <div className="col-md-1"></div>  
+      </div>
+      <div className="row">
+        
+      </div>
+    </Fragment> 
     );
   }
 
