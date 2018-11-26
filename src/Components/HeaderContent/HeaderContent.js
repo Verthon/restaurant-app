@@ -7,7 +7,7 @@ const headercontent = (props) => {
         the right ingredients for the right food
       </h1>
       <a href="/book-table"><button class="site-header__btn">book a table</button></a>
-      <a href="#menu"><button class="site-header__btn site-header__btn--reverse">see the menu</button></a>
+      <a href="/menu"><button class="site-header__btn site-header__btn--reverse">see the menu</button></a>
     </div>
   );
 }

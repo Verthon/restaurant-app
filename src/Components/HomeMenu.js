@@ -1,30 +1,20 @@
 import React from 'react';
+import HomeMenuItem from './HomeMenuItem';
 import {formatPrice} from '../helpers';
 //TODO restructure menu divs with component
 
 const HomeMenu = (props) => {
+  console.log(props.menu.item1);
   return (
-<section id="menu" class="section section__menu">
-      <div class="row">
-
-        <div class="col-md-6 col-sm-12">
-          <h2 class="menu-section__title">Appetisers</h2>
-          <ul class="menu-section__list">
-            <li class="menu-section__item">
-              <h3>Tzatsiki</h3> <span>$3.99</span>
-              <p class="menu-section-description">Refreshing traditional cucumber and garlic youghurt dip.</p>
-            </li>
-            <li class="menu-section__item">
-              <h3>Aubergine salad</h3> <span>$5.00</span>
-              <p class="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-            </li>
-            <li class="menu-section__item">
-              <h3>Cesar salad</h3> <span>$6.00</span>
-              <p class="menu-section-description">Grilled chicken, garlic, red pepper, youghurt dip</p>
-            </li>
+    
+    <section id="menu" class="section section__menu">
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <h2 className="menu-section__title">App</h2>
+          <ul className="menu-section__list">
+            <HomeMenuItem menu={props.menu.item1}/>
           </ul>
         </div>
-
         <div class="col-md-6 col-sm-12">
           <h2 class="menu-section__title">Starters</h2>
           <ul class="menu-section__list">

@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter, Switch, Link, Route } from 'react-router-dom';
+import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
 import ReviewBooking from './ReviewBooking';
 import "react-datepicker/dist/react-datepicker.css";
@@ -29,9 +28,7 @@ class BookTable extends React.Component {
 
   render() {
     return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/review-booking" component={ReviewBooking}/>
+      <Fragment>
         <div className="row container-fluid">
           <div className="col-md-1"></div>
           <div className="col-md-10 col-sm-12">
@@ -53,18 +50,15 @@ class BookTable extends React.Component {
             </form>
             <footer className="table-booking_footer mx-auto">
               <p>NEXT STEP</p>
-              <p>Review Booking</p>
-              <Link to="/review-booking"><button className="site-header__btn" type="submit">Review Booking</button></Link>
+              <p>Please review Booking information listed below</p>
             </footer>
           </div>
           </div>
           <div className="col-md-1"></div>  
         </div>
         <div className="row">
-          
         </div>
-      </Switch>
-    </BrowserRouter> 
+      </Fragment>  
     );
   }
 

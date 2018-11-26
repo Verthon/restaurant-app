@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 const Menu = () => {
   return(
-    <div></div>
+    <Fragment>
+      <h1 className="heading">Menu</h1>
+    </Fragment>
   )
 }
 
