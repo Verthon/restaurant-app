@@ -1,4 +1,4 @@
-# React Version of reastaurant site
+# Restaurant App
 
 ## Technologies used
 
@@ -7,7 +7,16 @@
 - Sass
 - ES6
 
-## To do
+## Installation
+
+```javascript
+  git clone https://github.com/Verthon/restaurant-app.git
+  npm install
+  npm start
+
+```
+
+## Future improvements
 
 - Progressive Web App in future(offline version etc),
 - React Native implementation

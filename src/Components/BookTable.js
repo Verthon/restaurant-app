@@ -11,6 +11,7 @@ class BookTable extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       date: new Date(),
+      
     }
 
   }
@@ -19,7 +20,6 @@ class BookTable extends React.Component {
     this.setState({
       date: e
     });
-    console.log(this.state.date);
   }
 
   handleSubmit(e) {

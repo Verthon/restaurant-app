@@ -9,7 +9,6 @@ import HomeMenu from '../HomeMenu';
 import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
 import '../../App.scss';
-import menu from '../../menu';
 import base from '../../base';
 
 /*
@@ -27,9 +26,6 @@ class Home extends Component {
   }
 
   componentDidMount(){
-    this.setState({
-      menu: menu
-    });
     this.ref = base.syncState
   }
 
