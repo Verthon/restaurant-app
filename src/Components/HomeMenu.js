@@ -1,33 +1,32 @@
 import React from 'react';
 import HomeMenuItem from './HomeMenuItem';
-import {formatPrice} from '../helpers';
 import menu from '../menu';
 //TODO restructure menu divs with component
 
 const HomeMenu = (props) => {
+
+  const {item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12} = menu;
+
   return (
     
     <section id="menu" className="section section__menu">
       <div className="row">
         <div className="col-md-6 col-sm-12">
-          <h2 className="menu-section__title">Appetizers</h2>
-          <ul className="menu-section__list">
-            <HomeMenuItem menu={menu.item1}/>
-            <HomeMenuItem menu={menu.item2} />
-            <HomeMenuItem menu={menu.item3} />
-          </ul>
+          <article className="menu-section__container">
+            <h2 className="menu-section__title">{item1.category}</h2>
+            <ul className="menu-section__list">
+              <HomeMenuItem menu={item1}/>
+              <HomeMenuItem menu={item2} />
+              <HomeMenuItem menu={item3} />
+            </ul>
+          </article>
         </div>
         <div className="col-md-6 col-sm-12">
-          <h2 className="menu-section__title">Starters</h2>
+          <h2 className="menu-section__title">{item4.category}</h2>
           <ul className="menu-section__list">
-            <li className="menu-section__item">
-              <h3>Haloumi</h3> <span>$3.99</span>
-              <p className="menu-section-description">Refreshing traditional cucumber and garlic youghurt dip.</p>
-            </li>
-            <li className="menu-section__item">
-              <h3>Spinach Pie</h3> <span>$5.00</span>
-              <p className="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-            </li>
+            <HomeMenuItem menu={item4}/>
+            <HomeMenuItem menu={item5} />
+            <HomeMenuItem menu={item6} />
           </ul>
         </div>
 
@@ -35,43 +34,23 @@ const HomeMenu = (props) => {
       <div className="row">
 
           <div className="col-md-6 col-sm-12">
-            <h2 className="menu-section__title">Salads</h2>
-            <ul className="menu-section__list">
-              <li className="menu-section__item">
-                <h3>Olive special</h3> <span>$3.99</span>
-                <p className="menu-section-description">Refreshing traditional cucumber and garlic youghurt dip.</p>
-              </li>
-              <li className="menu-section__item">
-                <h3>Greek salad</h3> <span>$5.00</span>
-                <p className="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-              </li>
-              <li className="menu-section__item">
-                <h3>Gusto salad</h3> <span>$5.00</span>
-                <p className="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-              </li>
-            </ul>
+            <article className="menu-section__container">
+              <h2 className="menu-section__title">{item7.category}</h2>
+              <ul className="menu-section__list">
+                <HomeMenuItem menu={item7}/>
+                <HomeMenuItem menu={item8} />
+              </ul>
+            </article>  
           </div>
   
           <div className="col-md-6 col-sm-12">
             <article className="menu-section__container">
-              <h2 className="menu-section__title">Main Dishes</h2>
+              <h2 className="menu-section__title">{item9.category}</h2>
               <ul className="menu-section__list">
-                <li className="menu-section__item">
-                  <h3>Cornish mackerel</h3> <span>$8.99</span>
-                  <p className="menu-section-description">Refreshing traditional cucumber and garlic youghurt dip.</p>
-                </li>
-                <li className="menu-section__item">
-                  <h3>Roast Lamb</h3> <span>$5.99</span>
-                  <p className="menu-section-description">Refreshing traditional cucumber and garlic youghurt dip.</p>
-                </li>
-                <li className="menu-section__item">
-                  <h3>Fried Chicken</h3> <span>$5.20</span>
-                  <p className="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-                </li>
-                <li className="menu-section__item">
-                  <h3>Pastitsio</h3> <span>$5.70</span>
-                  <p className="menu-section-description">Purred eggplant, garlic, green pepper and tomato dip</p>
-                </li>
+                <HomeMenuItem menu={item9}/>
+                <HomeMenuItem menu={item10} />
+                <HomeMenuItem menu={item11}/>
+                <HomeMenuItem menu={item12} />
               </ul>
             </article>
           </div>

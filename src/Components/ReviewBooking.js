@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 
 const ReviewBooking = (props) => {
+
   return (
     <Fragment>
       <h1 className="heading p-2">Reservation details</h1>

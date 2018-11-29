@@ -1,12 +1,16 @@
 import React, {Fragment} from 'react';
+import {formatPrice} from '../helpers';
 
 const HomeMenuItem = (props) => {
-  console.log(props.menu);
+  //Destructing the object menu
+
+  const {name, price, desc} = props.menu;
+
   return (
           <Fragment>
             <li className="menu-section__item">
-              <h3>{props.menu.name}</h3> <span>{props.menu.price}</span>
-              <p className="menu-section-description">{props.menu.desc}</p>
+              <h3>{name}</h3> <span>{formatPrice(price)}</span>
+              <p className="menu-section-description">{desc}</p>
             </li>
           </Fragment>
   );
