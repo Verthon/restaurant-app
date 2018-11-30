@@ -11,7 +11,6 @@ class BookTable extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       date: new Date(),
-      
     }
 
   }

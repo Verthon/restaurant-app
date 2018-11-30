@@ -57,7 +57,7 @@ const menu = {
     },
     item10:{
       name: 'Roasted Lamb',
-      price: 7990,
+      price: 799,
       desc: 'fresh lamb meat, rosemary, mustard, lemon, garlic, itemt, honey',
       category: 'Main dishes'
     },

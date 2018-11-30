@@ -40,7 +40,7 @@ class Home extends Component {
           </Header>
           <About/>
           <Ingredients/>
-          <HomeMenu menu={this.state.menu} />
+          <HomeMenu/>
           <Reviews/>
           <Footer/>
       </div>

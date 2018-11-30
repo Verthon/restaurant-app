@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {formatPrice} from '../helpers';
 
-const HomeMenuItem = (props) => {
+const MenuItem = (props) => {
   //Destructing the object menu
 
   const {name, price, desc} = props.menu;
@@ -16,4 +16,4 @@ const HomeMenuItem = (props) => {
   );
 }
 
-export default HomeMenuItem;
+export default MenuItem;
