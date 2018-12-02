@@ -17,6 +17,9 @@ const Navbar = () => {
               <NavLink class="nav-link" to="/menu">Menu</NavLink>
             </li>
             <li class="nav-item">
+              <NavLink class="nav-link" to="/order">Order</NavLink>
+            </li>
+            <li class="nav-item">
               <NavLink class="nav-link" to="#"><i class="fa fa-twitter"></i></NavLink>
             </li>
             <li class="nav-item">

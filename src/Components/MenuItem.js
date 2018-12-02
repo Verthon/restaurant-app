@@ -11,6 +11,7 @@ const MenuItem = (props) => {
             <li className="menu-section__item">
               <h3>{name}</h3> <span>{formatPrice(price)}</span>
               <p className="menu-section-description">{desc}</p>
+              <button className="site-header__btn">Add to the order</button>
             </li>
           </Fragment>
   );

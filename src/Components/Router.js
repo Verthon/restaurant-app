@@ -12,10 +12,9 @@ const Router = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/book-table" component={BookTable}/>
       <Route path="/menu" component={Menu}/>
-      <Router path="/order" component={Order}/>
+      <Route path="/order" component={Order}/>
       <Route component={NotFound} />
     </Switch>
-
   </BrowserRouter>
 );
 

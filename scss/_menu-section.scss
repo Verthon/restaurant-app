@@ -37,6 +37,8 @@
 
 .menu-section__item{
   padding: 1rem 0;
+  width: 500px;
+  @include mQ($mobile){width: auto;}
   h3{
     display: inline-flex;
     font-size: 1.5rem;

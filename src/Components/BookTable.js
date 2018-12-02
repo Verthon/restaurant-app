@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
 import ReviewBooking from './ReviewBooking';
+import Navbar from './Navbar';
 import "react-datepicker/dist/react-datepicker.css";
 
 class BookTable extends React.Component {
@@ -28,6 +29,7 @@ class BookTable extends React.Component {
   render() {
     return (
       <Fragment>
+        <Navbar/>
         <div className="row container-fluid">
           <div className="col-md-1"></div>
           <div className="col-md-10 col-sm-12">

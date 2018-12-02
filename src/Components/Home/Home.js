@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {Component, Fragment} from 'react';
 import Header from '../Header/Header';
 import HomeNavbar from '../HomeNavbar';
 import NavItem from '../NavItem/NavItem';
@@ -31,7 +31,7 @@ class Home extends Component {
 
   render(){
     return(
-      <div>
+      <Fragment>
         <Header>
             <HomeNavbar>
               <NavItem></NavItem>
@@ -43,7 +43,7 @@ class Home extends Component {
           <HomeMenu/>
           <Reviews/>
           <Footer/>
-      </div>
+      </Fragment>
     )
   }
 }
