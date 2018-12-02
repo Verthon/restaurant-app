@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
 import ReviewBooking from './ReviewBooking';
+import {formatDate} from '../helpers'
 import Navbar from './Navbar';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -9,16 +10,26 @@ class BookTable extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDate = this.handleDate.bind(this);
+    this.handleSits = this.handleSits.bind(this);
     this.state = {
+      min: '12',
+      max: '8',
       date: new Date(),
+      sits: 1,
     }
 
   }
 
-  handleChange(e){
+  handleDate(e){
     this.setState({
       date: e
+    });
+  }
+
+  handleSits(e){
+    this.setState({
+      sits: e.target.value
     });
   }
 
@@ -40,18 +51,25 @@ class BookTable extends React.Component {
               <DatePicker
                 className="form-control mx-auto form-control-lg p-3"
                 selected={this.state.date}
-                onChange={this.handleChange}
+                onChange={this.handleDate}
                 showTimeSelect
                 timeFormat="HH:mm"
-                timeIntervals={15}
+                timeIntervals={60}
                 dateFormat="MMMM d, yyyy h:mm aa"
                 timeCaption="time"
                 placeholderText="Click and choose the date"
               />
+              <br/>
+              <label htmlFor="sits">Number of sits(1 - 8)</label>
+              <br/>
+              <input name="sits" type="number" placeholder="Number of sits" min="1" max="8" onChange={this.handleSits}/>
+              <p>How many sits?</p>
             </form>
             <footer className="table-booking_footer mx-auto">
               <p>NEXT STEP</p>
-              <p>Please review Booking information listed below</p>
+              <button className="site-header__btn" type="submit">Review</button>
+              <p>Date {formatDate(this.state.date)}</p>
+              <p>sits: {this.state.sits}</p>
             </footer>
           </div>
           </div>

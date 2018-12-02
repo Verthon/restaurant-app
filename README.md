@@ -1,11 +1,18 @@
 # Restaurant App
 
+Simple restaurant app using react, for now trying to implement authorization, adding orders and booking table.
+
 ## Technologies used
 
 - React.js
 - React Router 4
 - Sass
 - ES6
+- Bootstrap 4
+
+## Components used
+
+- https://github.com/Hacker0x01/react-datepicker
 
 ## Installation
 
@@ -16,7 +23,7 @@
 
 ```
 
-## Future improvements
+## Todo
 
-- Progressive Web App in future(offline version etc),
-- React Native implementation
+- finish booking process (Google Calendar maybe?),
+- finish Order component, and whole ordering process

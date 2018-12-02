@@ -15,10 +15,10 @@ const footer = () => {
         <div class="col-md-4">
           <h2 class="site-footer__title">Opening Hours</h2>
           <p class="site-footer__description">
-            Mon-Thu: 8:00am-7:00pm
+            Mon-Fri: 12:00am-10:00pm
           </p>
           <p class="site-footer__description">
-            Fri-Sun: 7:00am-10:00pm
+            Fri-Sun: 9:00am-8:00pm
           </p>
         </div>
         <div class="col-md-4">
