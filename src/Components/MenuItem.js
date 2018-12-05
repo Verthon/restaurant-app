@@ -1,5 +1,8 @@
 import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 import {formatPrice} from '../helpers';
+
+
 
 const MenuItem = (props) => {
   //Destructing the object menu
@@ -16,5 +19,11 @@ const MenuItem = (props) => {
           </Fragment>
   );
 }
+
+MenuItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired
+};
 
 export default MenuItem;

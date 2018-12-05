@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './Home/Home';
 import Menu from './Menu';
-import Order from './Order';
 import BookTable from './BookTable';
 import NotFound from './NotFound';
 
@@ -12,7 +11,6 @@ const Router = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/book-table" component={BookTable}/>
       <Route path="/menu" component={Menu}/>
-      <Route path="/order" component={Order}/>
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
