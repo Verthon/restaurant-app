@@ -1,31 +1,31 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
+import Navbar from './Navbar';
+import {formatDate} from '../helpers'
 
 const ReviewBooking = (props) => {
 
   const query = new URLSearchParams(props.location.search);
   const reservation = {};
   for(let param of query.entries()){
-    console.log(param);
     //Transforming data from array ["queryName", "queryValue"]
-    //To reservation object in format queryName:queryValue
+    // - to reservation object in format queryName:queryValue
     reservation[param[0]] = param[1];
   }
-
-  console.log(reservation);
   
   return (
 
     <Fragment>
+      <Navbar/>
       <h1 className="heading p-2">Reservation details</h1>
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <p>Thank you for making reservation, you can review your information listed below</p>
-          <p>Date is </p>
-          <Link className="site-header__btn" to="/book-table">Back to booking</Link>
-          <Link className="site-header__btn site-header__btn--reverse" to="/">Back to homepage</Link>
-          <Link className="site-header__btn" type="submit" to="/">Confirm reservation</Link>
+          <p>Full reservation date: {reservation.date}</p>
+          <p>Number of sits: {reservation.sits}</p>
+          <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
+          <Link type="submit" to="/"><button className="site-header__btn">Confirm Reservation</button></Link>
         </div>
       </div>
     </Fragment> 

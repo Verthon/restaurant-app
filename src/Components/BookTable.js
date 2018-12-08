@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
-import {formatDate} from '../helpers'
+import {formatDate} from '../helpers';
 import Navbar from './Navbar';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -36,7 +36,7 @@ class BookTable extends React.Component {
     e.preventDefault();
     this.props.history.push({
       pathname: '/review-booking',
-      search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(this.state.date) +
+      search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(this.state.date)) +
       '&' + encodeURIComponent('sits') + '=' + encodeURIComponent(this.state.sits)
     });
   }
@@ -60,8 +60,10 @@ class BookTable extends React.Component {
                 showTimeSelect
                 timeFormat="HH:mm"
                 timeIntervals={60}
-                dateFormat="MMMM d, yyyy h:mm aa"
-                timeCaption="time"
+                minTime={new Date().setHours(new Date().setMinutes(new Date(), 0), 17)}
+                
+                dateFormat="MMMM dd, yyyy h:mm aa"
+                timeCaption="Time"
                 placeholderText="Click and choose the date"
               />
               <br/>
