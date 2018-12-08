@@ -4,7 +4,7 @@ import menu from '../menu';
 import Navbar from './Navbar';
 //TODO restructure menu divs with component
 
-const Menu = (props) => {
+const Menu = () => {
 
   const {item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12} = menu;
 

@@ -21,9 +21,11 @@ const MenuItem = (props) => {
 }
 
 MenuItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  menu: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired
+  })
 };
 
 export default MenuItem;

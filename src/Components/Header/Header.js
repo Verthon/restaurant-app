@@ -1,6 +1,6 @@
 import React from 'react';
 
-const header  = (props) => {
+const Header  = (props) => {
   return (
     <header className="site-header">
       {props.children}
@@ -8,4 +8,4 @@ const header  = (props) => {
   );
 }
 
-export default header;
+export default Header;

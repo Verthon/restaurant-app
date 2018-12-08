@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
-import ReviewBooking from './ReviewBooking';
 import {formatDate} from '../helpers'
 import Navbar from './Navbar';
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,7 +12,7 @@ class BookTable extends React.Component {
     this.handleDate = this.handleDate.bind(this);
     this.handleSits = this.handleSits.bind(this);
     this.state = {
-      min: '12',
+      min: new Date().getHours,
       max: '8',
       date: new Date(),
       sits: 1,
@@ -35,9 +34,15 @@ class BookTable extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.history.push({
+      pathname: '/review-booking',
+      search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(this.state.date) +
+      '&' + encodeURIComponent('sits') + '=' + encodeURIComponent(this.state.sits)
+    });
   }
 
   render() {
+
     return (
       <Fragment>
         <Navbar/>
@@ -64,10 +69,10 @@ class BookTable extends React.Component {
               <br/>
               <input name="sits" type="number" placeholder="Number of sits" min="1" max="8" onChange={this.handleSits}/>
               <p>How many sits?</p>
+              <button className="site-header__btn" type="submit">Review</button>
             </form>
             <footer className="table-booking_footer mx-auto">
               <p>NEXT STEP</p>
-              <button className="site-header__btn" type="submit">Review</button>
               <p>Date {formatDate(this.state.date)}</p>
               <p>sits: {this.state.sits}</p>
             </footer>
