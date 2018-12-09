@@ -14,7 +14,7 @@ const Menu = () => {
       <section id="menu" className="section section__menu">
         <h1 className="heading mb-4">Menu</h1>
         <div className="row">
-          <div className="col-md-6 col-sm-12">
+          <div className="col-lg-6 col-md-12">
             <article className="menu-section__container">
               <h2 className="menu-section__title">{item1.category}</h2>
               <ul className="menu-section__list">
@@ -24,7 +24,7 @@ const Menu = () => {
               </ul>
             </article>
           </div>
-          <div className="col-md-6 col-sm-12">
+          <div className="col-lg-6 col-md-12">
             <h2 className="menu-section__title">{item4.category}</h2>
             <ul className="menu-section__list">
               <MenuItem menu={item4}/>
@@ -36,7 +36,7 @@ const Menu = () => {
         </div>
         <div className="row">
 
-            <div className="col-md-6 col-sm-12">
+            <div className="col-lg-6 col-md-12">
               <article className="menu-section__container">
                 <h2 className="menu-section__title">{item7.category}</h2>
                 <ul className="menu-section__list">
@@ -46,7 +46,7 @@ const Menu = () => {
               </article>  
             </div>
     
-            <div className="col-md-6 col-sm-12">
+            <div className="col-lg-6 col-md-12">
               <article className="menu-section__container">
                 <h2 className="menu-section__title">{item9.category}</h2>
                 <ul className="menu-section__list">

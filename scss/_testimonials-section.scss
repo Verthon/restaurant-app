@@ -15,10 +15,14 @@
   &__modal{
     background: rgba(0, 0, 0, 0.95);
     min-height: 100%;
-    padding: 5rem 4rem;
-    min-width: 500px;
+    padding: 4rem 4rem;
+    min-width: 400px;
     max-width: 900px;
     color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.8;
     @include mQ($ipad){
       min-width: auto;
       padding: 1rem 3.5rem;
@@ -32,15 +36,17 @@
   &__heading{
     font-family: $decorative-font;
     text-align: center;
-    font-size: 2.1rem;
     margin-bottom: 2rem;
   }
   &__quote{
     font-style: italic;
+    max-width: 70%;
+    @include mQ($ipad){max-width: auto;}
   }
 
 }
 .quote-writer{
+  color: $main-gold;
   font-style: normal;
   padding-top: 2.5rem;
   margin: 0 auto;

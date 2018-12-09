@@ -46,14 +46,16 @@ class BookTable extends React.Component {
     return (
       <Fragment>
         <Navbar/>
-        <div className="row container-fluid">
+        <div className="row">
           <div className="col-md-1"></div>
           <div className="col-md-10 col-sm-12">
             <div className="table-booking">
 
             <h1 className="heading mb-5">Please choose time for reservation</h1>
             <form onSubmit={this.handleSubmit} className="form-group mt-5">
+              <label for="Datepicker">Please add date</label>
               <DatePicker
+                name="Datepicker"
                 className="form-control mx-auto form-control-lg p-3"
                 selected={this.state.date}
                 onChange={this.handleDate}
@@ -67,14 +69,12 @@ class BookTable extends React.Component {
                 placeholderText="Click and choose the date"
               />
               <br/>
-              <label htmlFor="sits">Number of sits(1 - 8)</label>
+              <label htmlFor="sits">Number of sits</label>
               <br/>
               <input name="sits" type="number" placeholder="Number of sits" min="1" max="8" onChange={this.handleSits}/>
-              <p>How many sits?</p>
               <button className="site-header__btn" type="submit">Review</button>
             </form>
             <footer className="table-booking_footer mx-auto">
-              <p>NEXT STEP</p>
               <p>Date {formatDate(this.state.date)}</p>
               <p>sits: {this.state.sits}</p>
             </footer>
