@@ -10,12 +10,9 @@ import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
 import '../../App.scss';
 import base from '../../base';
+import contactInfo from '../../contactInfo';
 
-/*
-*TODO 
-  Update state for 
-
-*/
+const {hours, location} = contactInfo.info;
 
 class Home extends Component {
   constructor(){
@@ -42,7 +39,7 @@ class Home extends Component {
           <Ingredients/>
           <HomeMenu/>
           <Reviews/>
-          <Footer/>
+          <Footer hours={hours} location={location}/>
       </Fragment>
     )
   }

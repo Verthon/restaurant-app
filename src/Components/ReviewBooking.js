@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import Navbar from './Navbar';
 import {formatDate} from '../helpers'
 
 const ReviewBooking = (props) => {
@@ -16,14 +15,13 @@ const ReviewBooking = (props) => {
   return (
 
     <Fragment>
-      <Navbar/>
       <h1 className="heading p-2">Reservation details</h1>
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <p>Thank you for making reservation, you can review your information listed below</p>
           <p>Full reservation date: {reservation.date}</p>
-          <p>Number of sits: {reservation.sits}</p>
+          <p>For {reservation.people} people</p>
           <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
           <Link type="submit" to="/"><button className="site-header__btn">Confirm Reservation</button></Link>
         </div>

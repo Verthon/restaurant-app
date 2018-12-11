@@ -1,6 +1,8 @@
 import React from 'react';
 
-const footer = () => {
+const footer = (props) => {
+  const {week, weekend} = props.hours;
+  const {street, number, code, city, province, country} = props.location;
   return (
     <footer className="site-footer">
       <div className="row">
@@ -15,24 +17,26 @@ const footer = () => {
         <div className="col-md-4">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">
-            Mon-Fri: 12:00am-10:00pm
+            {week.name} {week.time}
           </p>
           <p className="site-footer__description">
-            Fri-Sun: 9:00am-8:00pm
+            {weekend.name} {weekend.time}
           </p>
         </div>
         <div className="col-md-4">
           <h2 className="site-footer__title">Our Location</h2>
           <p className="site-footer__description">
-            18th Main Street 
+            {number}th {street} 
           </p>
           <p className="site-footer__description">
-            130-ABC London, Ontario, Canada
+            {code} {city}, {province}, {country}
           </p>
         </div>
       </div>
     </footer>
   );
 }
+
+
 
 export default footer;

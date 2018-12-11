@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import DatePicker from "react-datepicker";
 import {formatDate} from '../helpers';
-import Navbar from './Navbar';
 import "react-datepicker/dist/react-datepicker.css";
 
 class BookTable extends React.Component {
@@ -10,12 +9,12 @@ class BookTable extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this);
-    this.handleSits = this.handleSits.bind(this);
+    this.handlePeople = this.handlePeople.bind(this);
     this.state = {
       min: new Date().getHours,
       max: '8',
       date: new Date(),
-      sits: 1,
+      people: 1,
     }
 
   }
@@ -26,9 +25,9 @@ class BookTable extends React.Component {
     });
   }
 
-  handleSits(e){
+  handlePeople(e){
     this.setState({
-      sits: e.target.value
+      people: e.target.value
     });
   }
 
@@ -37,7 +36,7 @@ class BookTable extends React.Component {
     this.props.history.push({
       pathname: '/review-booking',
       search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(this.state.date)) +
-      '&' + encodeURIComponent('sits') + '=' + encodeURIComponent(this.state.sits)
+      '&' + encodeURIComponent('people') + '=' + encodeURIComponent(this.state.people)
     });
   }
 
@@ -45,13 +44,12 @@ class BookTable extends React.Component {
 
     return (
       <Fragment>
-        <Navbar/>
         <div className="row">
           <div className="col-md-1"></div>
           <div className="col-md-10 col-sm-12">
             <div className="table-booking">
 
-            <h1 className="heading mb-5">Please choose time for reservation</h1>
+            <h1 className="heading table-booking__title">Please choose time for reservation</h1>
             <form onSubmit={this.handleSubmit} className="form-group mt-5">
               <label for="Datepicker">Please add date</label>
               <DatePicker
@@ -69,14 +67,12 @@ class BookTable extends React.Component {
                 placeholderText="Click and choose the date"
               />
               <br/>
-              <label htmlFor="sits">Number of sits</label>
+              <label htmlFor="people">Number of people</label>
               <br/>
-              <input name="sits" type="number" placeholder="Number of sits" min="1" max="8" onChange={this.handleSits}/>
+              <input name="people" type="number" placeholder="Number of people" min="1" max="8" onChange={this.handlePeople}/>
               <button className="site-header__btn" type="submit">Review</button>
             </form>
             <footer className="table-booking_footer mx-auto">
-              <p>Date {formatDate(this.state.date)}</p>
-              <p>sits: {this.state.sits}</p>
             </footer>
           </div>
           </div>
