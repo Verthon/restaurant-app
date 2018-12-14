@@ -1,3 +1,27 @@
-.header-booking{
-  
+.table-booking{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .label{
+    display: block;
+  }
+
+  &__title{
+    margin: 4rem 0;
+  }
+
+  &__btn{
+    display: block;
+    border: 0;
+    border-bottom: 2px solid $black;
+    padding: 0.75rem 2rem;
+    text-transform: uppercase;
+    background: $main-gold;
+    color: $black;
+    margin: 2rem;
+  }
+  &__btn:hover{
+    cursor: pointer;
+  }
 }

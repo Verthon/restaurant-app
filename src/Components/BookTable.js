@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import Navbar from "./Navbar";
 import DatePicker from "react-datepicker";
 import {formatDate} from '../helpers';
 import "react-datepicker/dist/react-datepicker.css";
@@ -44,14 +45,12 @@ class BookTable extends React.Component {
 
     return (
       <Fragment>
-        <div className="row">
-          <div className="col-md-1"></div>
-          <div className="col-md-10 col-sm-12">
+            <Navbar/>
             <div className="table-booking">
 
             <h1 className="heading table-booking__title">Please choose time for reservation</h1>
             <form onSubmit={this.handleSubmit} className="form-group mt-5">
-              <label for="Datepicker">Please add date</label>
+              <label className="label" for="Datepicker">Please add date</label>
               <DatePicker
                 name="Datepicker"
                 className="form-control mx-auto form-control-lg p-3"
@@ -66,20 +65,14 @@ class BookTable extends React.Component {
                 timeCaption="Time"
                 placeholderText="Click and choose the date"
               />
-              <br/>
-              <label htmlFor="people">Number of people</label>
-              <br/>
+              <label className="label" htmlFor="people">Number of people</label>
               <input name="people" type="number" placeholder="Number of people" min="1" max="8" onChange={this.handlePeople}/>
-              <button className="site-header__btn" type="submit">Review</button>
+              <label>Table is kept for 15 minutes after reservation time. We appreciate you being on time.</label>
+              <button className="table-booking__btn" type="submit">Next</button>
             </form>
             <footer className="table-booking_footer mx-auto">
             </footer>
           </div>
-          </div>
-          <div className="col-md-1"></div>  
-        </div>
-        <div className="row">
-        </div>
       </Fragment>  
     );
   }
