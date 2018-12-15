@@ -1,10 +1,13 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Home from './Home/Home';
 
-const HomeNavbar = () => {
+const HomeNavbar = (props) => {
+  console.log(props);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark container" id="mainNav">
-      <NavLink className="navbar-brand" to="/"><h3>Alkinoos Taverna</h3></NavLink>
+      <NavLink className="navbar-brand" to="/"><h3>{props.name}</h3></NavLink>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -39,5 +42,9 @@ const HomeNavbar = () => {
     </nav>
   );
 }
+
+HomeNavbar.PropTypes = {
+  name: PropTypes.string
+};
 
 export default HomeNavbar;

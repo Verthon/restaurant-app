@@ -25,5 +25,4 @@ Simple restaurant app using react, for now trying to implement authorization, ad
 
 ## Todo
 
-- finish booking process (Google Calendar maybe?),
-- finish Order component, and whole ordering process
+- styling for components ['ReviewBooking', 'BookTable']

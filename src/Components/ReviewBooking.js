@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import {formatDate} from '../helpers'
+import PropTypes from 'prop-types';
 
 const ReviewBooking = (props) => {
 
@@ -29,6 +29,10 @@ const ReviewBooking = (props) => {
     </Fragment> 
 
   );
+}
+
+ReviewBooking.PropTypes = {
+  
 }
 
 export default ReviewBooking;

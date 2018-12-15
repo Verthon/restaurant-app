@@ -50,7 +50,7 @@ class BookTable extends React.Component {
 
             <h1 className="heading table-booking__title">Please choose time for reservation</h1>
             <form onSubmit={this.handleSubmit} className="form-group mt-5">
-              <label className="label" for="Datepicker">Please add date</label>
+              <label className="label" htmlFor="Datepicker">Please add date</label>
               <DatePicker
                 name="Datepicker"
                 className="form-control mx-auto form-control-lg p-3"

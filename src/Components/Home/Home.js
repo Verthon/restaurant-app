@@ -30,7 +30,7 @@ class Home extends Component {
     return(
       <Fragment>
         <Header>
-            <HomeNavbar>
+            <HomeNavbar name={contactInfo.name}>
               <NavItem></NavItem>
             </HomeNavbar>
             <HeaderContent/>
