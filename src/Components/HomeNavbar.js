@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Home from './Home/Home';
 
 const HomeNavbar = (props) => {
-  console.log(props);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark container" id="mainNav">
       <NavLink className="navbar-brand" to="/"><h3>{props.name}</h3></NavLink>
