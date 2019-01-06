@@ -1,5 +1,38 @@
 .review-booking{
+  margin: 5rem 0;
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
+  color: $cavernous;
+  max-width: 750px;
+  box-shadow: $default-shadow;
+  padding: 5rem 2rem;
+
+  a, a:hover, a:visited{
+    color: $cavernous;
+  }
+
+  &__address{
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  &__name{
+    font-family: $decorative-font;
+    font-style: italic;
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+
+    span{
+      color: $metallic-gold;
+      margin-right: 0.25rem;
+    }
+  }
+
+  @include mQ($ipad){
+    align-items: center;
+    margin: 2rem;
+  }
 }

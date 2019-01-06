@@ -4,6 +4,8 @@
   font-weight: 400;
   text-align: center;
 
+  &__review-booking{margin: 2rem 0;}
+
   @include mQ($ipad){
     font-size: 2.5rem;
   }
@@ -26,6 +28,6 @@
   }
 
   &--gold{
-    color: $main-gold;
+    color: $metallic-gold;
   }
 }

@@ -16,7 +16,7 @@
     text-align: center;
     margin: 2rem 0;
     font-family: $decorative-font;
-    color: $main-gold;
+    color: $metallic-gold;
 
     @include mQ($ipad){
       margin: 1rem 0;
@@ -61,7 +61,7 @@
     font-size: 2.25rem;
     margin: 1rem 1rem 1rem 0; 
     width: 70%;
-    border-bottom: 1px solid $main-gold;
+    border-bottom: 1px solid $metallic-gold;
     @include mQ($ipad){
       margin: 0 1rem 0 0;
     }
@@ -72,8 +72,8 @@
   }
   span{
     font-size: 1.75rem;
-    color: $main-gold;
-    border-bottom: 1px solid $main-gold;
+    color: $metallic-gold;
+    border-bottom: 1px solid $metallic-gold;
     @include mQ($mobile){font-size: 1.5rem;}
   }
 }

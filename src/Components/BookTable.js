@@ -11,47 +11,56 @@ class BookTable extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this);
-    this.handlePeople = this.handlePeople.bind(this);
+    this.handleGuests = this.handleGuests.bind(this);
     this.handleName = this.handleName.bind(this);
     this.state = {
       min: new Date().getHours,
-      max: '8',
-      date: new Date(),
-      people: 1,
-      name: 'John Doe',
+      max: new Date(),
+      booking: {
+        date: new Date(),
+        people: 1,
+        name: 'John Doe',
+      },
     }
 
   }
 
   handleDate(e){
-    this.setState({
-      date: e
-    });
+    const booking = {...this.state.booking}
+    booking.date = e;
+    this.setState({booking});
   }
 
-  handlePeople(e){
-    this.setState({
-      people: e.target.value
-    });
+  handleGuests(e){
+    const booking = {...this.state.booking}
+    booking.people = e.target.value;
+    this.setState({booking});
   }
 
   handleName(e){
-    this.setState({
-      name: e.target.value
-    });
+    const booking = {...this.state.booking}
+    booking.name = e.target.value;
+    this.setState({booking});
   }
 
   handleSubmit(e) {
+
+    //Destructing this.state.booking...
+
+    const {people, name, date} = this.state.booking;
+
     e.preventDefault();
     this.props.history.push({
       pathname: '/review-booking',
-      search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(this.state.date)) +
-      '&' + encodeURIComponent('people') + '=' + encodeURIComponent(this.state.people)
-      + '&' +encodeURIComponent('name') + '=' + encodeURIComponent(this.state.name)
+      search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(date)) +
+      '&' + encodeURIComponent('people') + '=' + encodeURIComponent(people)
+      + '&' +encodeURIComponent('name') + '=' + encodeURIComponent(name)
     });
   }
 
   render() {
+    // Destructing contact info object
+    const {location, hours} = contactInfo.info;
 
     return (
       <Fragment>
@@ -66,19 +75,17 @@ class BookTable extends React.Component {
               <DatePicker
                 name="Datepicker"
                 className="form-control mx-auto form-control-lg p-3"
-                selected={this.state.date}
+                selected={this.state.booking.date}
                 onChange={this.handleDate}
                 showTimeSelect
                 timeFormat="HH:mm"
-                timeIntervals={60}
-                minTime={new Date().setHours(new Date().setMinutes(new Date(), 0), 17)}
-                
+                timeIntervals={60}               
                 dateFormat="MMMM dd, yyyy h:mm aa"
                 timeCaption="Time"
                 placeholderText="Click and choose the date"
               />
-              <label className="label" htmlFor="people">Number of people</label>
-              <input name="people" type="number" placeholder="Number of people" min="1" max="8" onChange={this.handlePeople}/>
+              <label className="label" htmlFor="people">Number of guests</label>
+              <input name="people" type="number" placeholder="Number of people" min="1" max="8" onChange={this.handleGuests}/>
               <label>Table is kept for 15 minutes after reservation time. We appreciate you being on time.</label>
               <button className="table-booking__btn" type="submit">Next</button>
             </form>

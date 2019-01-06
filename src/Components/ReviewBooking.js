@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import contactInfo from '../contactInfo';
 
 
@@ -18,16 +18,16 @@ const ReviewBooking = (props) => {
   return (
 
     <Fragment>
-      <h1 className="heading p-2">{contactInfo.name}</h1>
+      <Link to="/"><h1 className="heading heading__review-booking">{contactInfo.name}</h1></Link>
       <article className="review-booking">
-        <p>{reservation.name}</p>
-        <p>{street} {number}</p>
-        <p>{city}, {province}, {code} </p>
-          <p>Thank you for making reservation, you can review your information listed below</p>
-          <p>Full reservation date: {reservation.date}</p>
-          <p>For {reservation.people} people</p>
-          <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
-          <Link type="submit" to="/"><button className="site-header__btn">Confirm Reservation</button></Link>
+        <p className="review-booking__address">{street} {number}</p>
+        <p className="review-booking__address">{city}, {province}, {code} </p>
+        <p className="review-booking__name"><span>{reservation.name}</span> reservation</p>
+        <p>{reservation.people}</p>
+        <p>Guests</p>
+        <p>Full reservation date: {reservation.date}</p>
+        <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
+        <Link type="submit" to="/"><button className="site-header__btn">Confirm Reservation</button></Link>
       </article>
     </Fragment> 
 
@@ -35,7 +35,7 @@ const ReviewBooking = (props) => {
 }
 
 ReviewBooking.PropTypes = {
-  location: PropTypes.string
+  location: propTypes.string
 }
 
 export default ReviewBooking;

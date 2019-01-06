@@ -9,6 +9,7 @@ Simple restaurant app using react, for now trying to implement authorization, ad
 - Sass
 - ES6
 - Bootstrap 4
+- Awesome tool for managing color variables https://colornamer.netlify.com/
 
 ## Components used
 
