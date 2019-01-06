@@ -20,6 +20,7 @@ const ReviewBooking = (props) => {
     <Fragment>
       <h1 className="heading p-2">{contactInfo.name}</h1>
       <article className="review-booking">
+        <p>{reservation.name}</p>
         <p>{street} {number}</p>
         <p>{city}, {province}, {code} </p>
           <p>Thank you for making reservation, you can review your information listed below</p>

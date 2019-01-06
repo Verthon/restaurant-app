@@ -1,8 +1,9 @@
 import React, {Fragment} from 'react';
-import Navbar from "./Navbar";
+import {Link} from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import {formatDate} from '../helpers';
 import "react-datepicker/dist/react-datepicker.css";
+import contactInfo from '../contactInfo';
 
 class BookTable extends React.Component {
 
@@ -11,11 +12,13 @@ class BookTable extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.handlePeople = this.handlePeople.bind(this);
+    this.handleName = this.handleName.bind(this);
     this.state = {
       min: new Date().getHours,
       max: '8',
       date: new Date(),
       people: 1,
+      name: 'John Doe',
     }
 
   }
@@ -32,12 +35,19 @@ class BookTable extends React.Component {
     });
   }
 
+  handleName(e){
+    this.setState({
+      name: e.target.value
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.history.push({
       pathname: '/review-booking',
       search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(this.state.date)) +
       '&' + encodeURIComponent('people') + '=' + encodeURIComponent(this.state.people)
+      + '&' +encodeURIComponent('name') + '=' + encodeURIComponent(this.state.name)
     });
   }
 
@@ -45,11 +55,13 @@ class BookTable extends React.Component {
 
     return (
       <Fragment>
-            <Navbar/>
             <div className="table-booking">
 
-            <h1 className="heading table-booking__title">Please choose time for reservation</h1>
+            <Link to="/"><h1 className="heading table-booking__title">{contactInfo.name}</h1></Link>
             <form onSubmit={this.handleSubmit} className="form-group mt-5">
+              <label htmlFor="name">Name</label>
+              <input className="form-control" type="text" 
+              name="name" onChange={this.handleName}/>
               <label className="label" htmlFor="Datepicker">Please add date</label>
               <DatePicker
                 name="Datepicker"
