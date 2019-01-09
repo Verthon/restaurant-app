@@ -4,10 +4,11 @@ const contactInfo = {
     location: {
       street: 'Main Street',
       number: 18,
-      code: '130-ABC',
+      code: 'N32-C6Z',
       city: 'London',
       province: 'Ontario',
-      country: 'Canada'
+      country: 'Canada',
+      phone: '266-555-5559'
     },
     hours:{
       week:{
@@ -16,7 +17,7 @@ const contactInfo = {
       },
       weekend:{
         name: 'Sat-Sun',
-        time: '9:00am - 8:00pm'
+        time: '12:00am - 8:00pm'
       }
     }
   }

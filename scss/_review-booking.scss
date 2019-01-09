@@ -2,14 +2,25 @@
   margin: 5rem 0;
   margin: 2rem auto;
   display: flex;
+  align-items: center;
   flex-direction: column;
   color: $cavernous;
-  max-width: 750px;
+  max-width: 600px;
   box-shadow: $default-shadow;
   padding: 5rem 2rem;
 
+  &__title{
+    margin: 4rem 0;
+  }
+
+  &__title, &__title:hover{
+    color: $cavernous;
+    text-decoration: none;
+  }
+
   a, a:hover, a:visited{
     color: $cavernous;
+    text-decoration: none;
   }
 
   &__address{
@@ -19,16 +30,41 @@
   }
 
   &__name{
-    font-family: $decorative-font;
     font-style: italic;
-    color: #333;
-    font-size: 1.2rem;
-    margin-top: 2rem;
+    font-size: 1.35rem;
+    color: $gravel-fint;
+    margin: 1.25rem 0;
+    
 
     span{
-      color: $metallic-gold;
       margin-right: 0.25rem;
+      color: $cavernous;
     }
+  }
+
+  &__value{
+    margin: 0;
+    min-width: 100px;
+    text-align: center;
+  }
+
+  &__description{
+    min-width: 100px;
+    text-align: center;
+    color: $gravel-fint;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-right: 1px solid $gravel-fint;
+  }
+
+  &__description:last-child{
+    border: 0;
+  }
+
+  &__footer{
+    margin-top: 2rem;
   }
 
   @include mQ($ipad){
