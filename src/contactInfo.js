@@ -17,7 +17,7 @@ const contactInfo = {
       },
       weekend:{
         name: 'Sat-Sun',
-        time: '12:00am - 8:00pm'
+        time: '12:00am - 10:00pm'
       }
     }
   }

@@ -20,6 +20,7 @@ class BookTable extends React.Component {
         date: new Date(),
         people: 1,
         name: 'John Doe',
+        email: ''
       },
     }
 
@@ -43,11 +44,17 @@ class BookTable extends React.Component {
     this.setState({ booking });
   }
 
+  handleEmail(e){
+    const booking = { ...this.state.booking }
+    booking.email = e.target.value;
+    this.setState({ booking });
+  }
+
   handleSubmit(e) {
 
     //Destructing this.state.booking...
 
-    const { people, name, date } = this.state.booking;
+    const { people, name, date, email } = this.state.booking;
 
     e.preventDefault();
     this.props.history.push({
@@ -55,6 +62,7 @@ class BookTable extends React.Component {
       search: '?' + encodeURIComponent('date') + '=' + encodeURIComponent(formatDate(date)) +
         '&' + encodeURIComponent('people') + '=' + encodeURIComponent(people)
         + '&' + encodeURIComponent('name') + '=' + encodeURIComponent(name)
+        + '&' + encodeURIComponent('email') + '=' + encodeURIComponent(email)
     });
   }
 
@@ -71,8 +79,10 @@ class BookTable extends React.Component {
               <h2 className="table-booking__subtitle">Make a reservation</h2>
               <form onSubmit={this.handleSubmit} className="form-group mt-5">
                 <label className="label" htmlFor="name">Name</label>
-                <input className="table-booking__input" type="text"
+                <input className="table-booking__input" type="text" required
                   name="name" onChange={this.handleName} placeholder="Name" />
+                <label htmlFor="email" className="label"></label>
+                <input className="table-booking__input" type="email" name="email" required placeholder="email"/>  
                 <label className="label" htmlFor="Datepicker">Please add date</label>
                 <DatePicker
                   name="Datepicker"
@@ -88,7 +98,7 @@ class BookTable extends React.Component {
                   placeholderText="Click and choose the date"
                 />
                 <label className="label" htmlFor="people">Number of guests</label>
-                <input className="table-booking__input" name="people" type="number" placeholder="Number of guests" min="1" max="8" onChange={this.handleGuests} />
+                <input className="table-booking__input" name="people" type="number" required placeholder="Number of guests" min="1" max="8" onChange={this.handleGuests} />
                 <label>Table is kept for 15 minutes after reservation time. We appreciate you being on time.</label>
                 <button className="table-booking__btn" type="submit">Next step</button>
               </form>

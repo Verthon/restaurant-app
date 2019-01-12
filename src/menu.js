@@ -18,28 +18,28 @@ const menu = {
       category: 'Appetizers'
     },
     item4:{
-      name: 'Haloumi',
+      name: 'Melomakarono',
       price: 500,
-      desc: 'Refreshing traditional cucumber and garlic youghurt dip.',
-      category: 'Starters'
+      desc: 'Egg shaped dessert made from olive oil, honey, cognac, cinnamon, orange',
+      category: 'Desserts'
     },
     item5:{
-      name: 'Spinach Pie',
-      price: 390,
-      desc: 'Purred eggplant, garlic, green pepper and tomato dip',
+      name: 'Galaktoboureko',
+      price: 690,
+      desc: 'Custard pie with cream, honey, vanilla, cinammon, butter',
       category: 'Starters'
     },
 
     item6:{
-      name: 'Olive special',
+      name: 'Pita special',
       price: 399,
-      desc: 'Refreshing traditional cucumber and garlic youghurt dip.',
+      desc: 'iceberg lettuce, pitted Kalamata olives, onion, roasted peppers',
       category: 'Salads'
     },
     item7:{
       name: 'Greek salad',
       price: 500,
-      desc: 'tomato, sliced ​​cucumber, green pepper, sliced red onion, Kalamata olives and of course feta cheese.',
+      desc: 'tomato, sliced ​​cucumber, green pepper, sliced red onion, Kalamata olives and of course feta cheese',
       category: 'Salads'
     },
     item8:{
@@ -50,27 +50,27 @@ const menu = {
     },
 
     item9:{
-      name: 'Cornish mackerel',
+      name: 'Moussaka',
       price: 899,
-      desc: 'Cornish Mackerel fillet, lemon, pepper, horseradish, gnocchi chestnut mushrooms',
+      desc: 'Layers of cooked aubergine slices alternating with a mixture of minced meat, in a tomato sauce, and covered with a thick béchamel sauce.',
       category: 'Main dishes'
     },
     item10:{
       name: 'Roasted Lamb',
       price: 799,
-      desc: 'fresh lamb meat, rosemary, mustard, lemon, garlic, itemt, honey',
+      desc: 'Fresh lamb meat, rosemary, mustard, lemon, garlic, honey',
       category: 'Main dishes'
     },
     item11: {
-      name: 'Fried Chicken',
-      price: 999,
-      desc: 'Delicious fresh roasted chicken',
+      name: 'Chickpea soup',
+      price: 899,
+      desc: 'Chickpeas, lemon, olive, red onions, oregano, olive, bay leafs',
       category: 'Main dishes'
     },
     item12: {
-      name: 'Pastitsio',
-      price: 600,
-      desc: 'Feta cheese, eggs, macaroni, beef, onions, garlic, tomato puree',
+      name: 'Octopus stifado',
+      price: 1600,
+      desc: 'Octopus, wine vinegar, shallots, garlic, red onions, olive oil, red wine, tomatoes',
       category: 'Main dishes'
     }
 }

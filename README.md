@@ -10,6 +10,7 @@ Simple restaurant app using react, for now trying to implement authorization, ad
 - ES6
 - Bootstrap 4
 - Awesome tool for managing color variables https://colornamer.netlify.com/
+- Send an email from JavaScript http://www.emailjs.com/
 
 ## Components used
 
