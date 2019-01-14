@@ -20,15 +20,16 @@ class Menu extends Component {
   componentDidMount(){
     db.collection('menu').get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        console.log(doc.data());
+        this.setState({
+          appetizers: doc.data().Appetizers,
+        });
       });
     }) ;
   }
 
   render(){
-
     const {item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12} = menu;
-
+    console.log(this.state.appetizers.app1); //first log undefined, second is good
     return (
       <Fragment>
         <Navbar/>
@@ -39,7 +40,7 @@ class Menu extends Component {
               <article className="menu-section__container">
                 <h2 className="menu-section__title">{item1.category}</h2>
                 <ul className="menu-section__list">
-                  <MenuItem menu={item1}/>
+                  <MenuItem menu={this.state.appetizers.app1}/>
                   <MenuItem menu={item2} />
                   <MenuItem menu={item3} />
                 </ul>
