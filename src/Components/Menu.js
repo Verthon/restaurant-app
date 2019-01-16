@@ -23,6 +23,8 @@ class Menu extends Component {
         this.setState({
           appetizers: doc.data().Appetizers,
           desserts: doc.data().Desserts,
+          salads: doc.data().Salads,
+          
         });
       });
     }) ;
@@ -64,8 +66,8 @@ class Menu extends Component {
                 <article className="menu-section__container">
                   <h2 className="menu-section__title">{item7.category}</h2>
                   <ul className="menu-section__list">
-                    <MenuItem menu={item7}/>
-                    <MenuItem menu={item8} />
+                  {(this.state.salads.sal1)?<MenuItem menu={this.state.salads.sal1}/>:null}
+                  {(this.state.salads.sal2)?<MenuItem menu={this.state.salads.sal2}/>:null}
                   </ul>
                 </article>  
               </div>
