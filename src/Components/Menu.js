@@ -20,11 +20,12 @@ class Menu extends Component {
   componentDidMount(){
     db.collection('menu').get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
+        console.log(doc.data()["Main-dishes"]);
         this.setState({
           appetizers: doc.data().Appetizers,
           desserts: doc.data().Desserts,
           salads: doc.data().Salads,
-          
+          maindishes: doc.data()["Main-dishes"]
         });
       });
     }) ;
@@ -32,8 +33,6 @@ class Menu extends Component {
 
   render(){
     const {item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12} = menu;
-    console.log(this.state.appetizers.app1);
-    console.log(this.state.desserts); //first log undefined, second is good
     return (
       <Fragment>
         <Navbar/>
@@ -76,10 +75,10 @@ class Menu extends Component {
                 <article className="menu-section__container">
                   <h2 className="menu-section__title">{item9.category}</h2>
                   <ul className="menu-section__list">
-                    <MenuItem menu={item9}/>
-                    <MenuItem menu={item10} />
-                    <MenuItem menu={item11}/>
-                    <MenuItem menu={item12} />
+                  {(this.state.maindishes.main1)?<MenuItem menu={this.state.maindishes.main1}/>:null}
+                  {(this.state.maindishes.main2)?<MenuItem menu={this.state.maindishes.main2}/>:null}
+                  {(this.state.maindishes.main3)?<MenuItem menu={this.state.maindishes.main3}/>:null}
+                  {(this.state.maindishes.main4)?<MenuItem menu={this.state.maindishes.main4}/>:null}
                   </ul>
                 </article>
               </div>
