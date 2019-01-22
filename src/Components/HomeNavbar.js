@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Home from './Home/Home';
 
 const HomeNavbar = (props) => {
   return (
@@ -42,7 +41,7 @@ const HomeNavbar = (props) => {
   );
 }
 
-HomeNavbar.PropTypes = {
+HomeNavbar.propTypes = {
   name: PropTypes.string
 };
 

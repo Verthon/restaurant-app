@@ -1,6 +1,6 @@
 # Restaurant App
 
-Simple restaurant app using react, for now trying to implement authorization, adding orders and booking table.
+Simple restaurant app using React.js, for now trying to implement authorization, adding orders and booking table.
 
 ## Technologies used
 
@@ -12,6 +12,7 @@ Simple restaurant app using react, for now trying to implement authorization, ad
 - Awesome tool for managing color variables https://colornamer.netlify.com/
 - Send an email from JavaScript http://www.emailjs.com/
 - Firebase Firestore
+- Hosted on Netlify
 
 ## Components used
 

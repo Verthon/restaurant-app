@@ -1,6 +1,5 @@
 import React, {Fragment, Component} from 'react';
 import MenuItem from './MenuItem';
-import menu from '../menu';
 import Navbar from './Navbar';
 import db from '../base';
 //TODO restructure menu divs with component
@@ -32,7 +31,6 @@ class Menu extends Component {
   }
 
   render(){
-    const {item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12} = menu;
     return (
       <Fragment>
         <Navbar/>
@@ -41,7 +39,7 @@ class Menu extends Component {
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <article className="menu-section__container">
-                <h2 className="menu-section__title">{item1.category}</h2>
+                <h2 className="menu-section__title">{this.state.appetizers.category}</h2>
                 <ul className="menu-section__list">
                 {(this.state.appetizers.app1)?<MenuItem menu={this.state.appetizers.app1}/>:null}
                 {(this.state.appetizers.app2)?<MenuItem menu={this.state.appetizers.app2}/>:null}
@@ -50,7 +48,7 @@ class Menu extends Component {
               </article>
             </div>
             <div className="col-lg-6 col-md-12">
-              <h2 className="menu-section__title">{item4.category}</h2>
+              <h2 className="menu-section__title">{this.state.desserts.category}</h2>
               <ul className="menu-section__list">
               {(this.state.desserts.des1)?<MenuItem menu={this.state.desserts.des1}/>:null}
               {(this.state.desserts.des2)?<MenuItem menu={this.state.desserts.des2}/>:null}
@@ -63,7 +61,7 @@ class Menu extends Component {
   
               <div className="col-lg-6 col-md-12">
                 <article className="menu-section__container">
-                  <h2 className="menu-section__title">{item7.category}</h2>
+                  <h2 className="menu-section__title">{this.state.salads.category}</h2>
                   <ul className="menu-section__list">
                   {(this.state.salads.sal1)?<MenuItem menu={this.state.salads.sal1}/>:null}
                   {(this.state.salads.sal2)?<MenuItem menu={this.state.salads.sal2}/>:null}
@@ -73,7 +71,7 @@ class Menu extends Component {
       
               <div className="col-lg-6 col-md-12">
                 <article className="menu-section__container">
-                  <h2 className="menu-section__title">{item9.category}</h2>
+                  <h2 className="menu-section__title">{this.state.maindishes.category}</h2>
                   <ul className="menu-section__list">
                   {(this.state.maindishes.main1)?<MenuItem menu={this.state.maindishes.main1}/>:null}
                   {(this.state.maindishes.main2)?<MenuItem menu={this.state.maindishes.main2}/>:null}

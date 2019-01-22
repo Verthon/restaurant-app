@@ -1,8 +1,8 @@
 .site-header{
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0, 0.5)), url('/images/restaurant-min.jpeg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0, 0.5)), url('/images/brooke-lark_header.jpg');
   min-height: 700px;
-  background-position: 40% 80%;
+  background-position: 70% 50%;
 
   @include mQ($ipad){
     min-height: 700px;
