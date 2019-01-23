@@ -9,28 +9,40 @@ import HomeMenu from '../HomeMenu';
 import Reviews from '../Reviews/Reviews';
 import Footer from '../Footer/Footer';
 import '../../App.scss';
-import base from '../../base';
-import contactInfo from '../../contactInfo';
+import db from '../../base';
 
-const {hours, location} = contactInfo.info;
 
 class Home extends Component {
   constructor(){
     super();
     this.state={
-      menu: {}
+      location: {},
+      hours: false
     };
   }
 
   componentDidMount(){
-    this.ref = base.syncState
+    db.collection('location').get().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        this.setState({
+          location: {...doc.data()}
+        })
+      })
+    });
+    db.collection('hours').get().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        this.setState({
+          hours: {...doc.data()}
+        })
+      })
+    });
   }
 
   render(){
     return(
       <Fragment>
         <Header>
-            <HomeNavbar name={contactInfo.name}>
+            <HomeNavbar name={this.state.hours.name}>
               <NavItem></NavItem>
             </HomeNavbar>
             <HeaderContent/>
@@ -39,7 +51,7 @@ class Home extends Component {
           <Ingredients/>
           <HomeMenu/>
           <Reviews/>
-          <Footer hours={hours} location={location}/>
+          {(this.state.hours)? <Footer hours={this.state.hours} location={this.state.location}/> : null }
       </Fragment>
     )
   }

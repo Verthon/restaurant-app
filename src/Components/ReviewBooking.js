@@ -60,8 +60,8 @@ class ReviewBooking extends Component{
             </div>
             <footer className="review-booking__footer">
               <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
-              <button className="site-header__btn" onClick={sendEmail}>
-              Confirm Reservation</button>
+              <Link to="/confirmed"><button className="site-header__btn" onClick={sendEmail}>Confirm Reservation</button></Link>
+              
             </footer>
           </article>
         </Fragment>
