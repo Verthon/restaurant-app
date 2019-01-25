@@ -17,7 +17,8 @@ class Home extends Component {
     super();
     this.state={
       location: {},
-      hours: false
+      hours: false,
+      
     };
   }
 
@@ -42,9 +43,7 @@ class Home extends Component {
     return(
       <Fragment>
         <Header>
-            <HomeNavbar name={this.state.hours.name}>
-              <NavItem></NavItem>
-            </HomeNavbar>
+            <HomeNavbar name={this.state.hours.name}/>
             <HeaderContent/>
           </Header>
           <About/>

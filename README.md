@@ -1,5 +1,5 @@
 # Restaurant App
-
+[Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")
 Simple restaurant app using React.js, for now trying to implement authorization, adding orders and booking table.
 
 ## Technologies used
@@ -16,7 +16,8 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 
 ## Components used
 
-- https://github.com/Hacker0x01/react-datepicker
+- [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
+- [React Scroll To Component](https://github.com/flyingant/react-scroll-to-component)
 
 ## Installation
 
