@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import contactInfo from '../contactInfo';
+import NavItem from './NavItem';
 
 const Navbar = () => {
   return(

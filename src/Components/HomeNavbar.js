@@ -14,27 +14,7 @@ const HomeNavbar = (props) => {
             <li className="nav-item">
               <NavLink className="nav-link" to="/">Home <span className="sr-only">(current)</span></NavLink>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#about">About</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#ingredients">Ingredients</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#menu">Menu</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#reviews">Reviews</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#"><i className="fa fa-twitter"></i></Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#"><i className="fa fa-facebook"></i></Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#"><i className="fa fa-youtube"></i></Link>
-            </li>
+            {props.children}
         </ul>
       </div>
     </nav>

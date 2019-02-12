@@ -30,4 +30,4 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 
 ## Todo
 
-- styling for components ['ReviewBooking', 'BookTable']
+- sending emails to clients, modal after confirming reservation
