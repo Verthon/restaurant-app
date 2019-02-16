@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import contactInfo from '../contactInfo';
 import { splitDate, splitTime } from '../helpers';
 import * as emailjs from 'emailjs-com';
+import Modal from './Modal';
 
 
 class ReviewBooking extends Component{
@@ -11,10 +12,11 @@ class ReviewBooking extends Component{
     super(props);
     this.state = {
       confirmed: false,
+      show: false
     };
   }
 
-    render(props){
+    render(){
       const query = new URLSearchParams(this.props.location.search);
       const { street, number, code, city, province } = contactInfo.info.location;
       const userId = 'user_mLoNx7WniBmdKd2zpNZmF';
@@ -36,9 +38,18 @@ class ReviewBooking extends Component{
         emailjs.send(userId, 'reservation', templateParams )
       }
 
+      const showModal = () => {
+        this.setState({show: true});
+      }
+
+      const closeModal = () => {
+        this.setState({show: false});
+      }
+
       return (
 
         <Fragment>
+          <Modal show={this.state.show}/>
           <Link to="/"><h1 className="heading review-booking__title">{contactInfo.name}</h1></Link>
           <article className="review-booking">
             <p className="review-booking__address">{street} {number}</p>
@@ -60,8 +71,7 @@ class ReviewBooking extends Component{
             </div>
             <footer className="review-booking__footer">
               <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
-              <Link to="/confirmed"><button className="site-header__btn" onClick={sendEmail}>Confirm Reservation</button></Link>
-              
+              <button className="site-header__btn" onClick={showModal}>Confirm Reservation</button>
             </footer>
           </article>
         </Fragment>

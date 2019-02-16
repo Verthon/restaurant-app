@@ -1,0 +1,30 @@
+.modal-book{
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+
+  &--active{
+    display: block;
+  }
+
+  &--disabled{
+    display: none;
+  }
+
+  &__content{
+    width: 40%;
+    background: $white;
+    position: fixed;
+    height: 40%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+
+  &__text{
+    font-size: 1.1rem;
+  }
+}
