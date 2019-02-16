@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Modal = (props) => {
   console.log(props.show);
@@ -11,7 +12,7 @@ const Modal = (props) => {
           Thank you for booking reservation. Detailed information will be send to your email address.
         </p>
         <p className="modal-book__text"></p>
-        <button className="site-header__btn">Continue</button>
+        <Link to="/"><button className="site-header__btn">Continue</button></Link>
       </article>
     </div>
   );

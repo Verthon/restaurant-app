@@ -92,7 +92,9 @@ class BookTable extends React.Component {
                   showTimeSelect
                   timeFormat="HH"
                   timeIntervals={60}
-                  
+                  minTime={this.state.min.setHours(11)}
+                  maxTime={this.state.max.setHours(22)}
+
                   dateFormat="MMMM dd, yyyy h aa"
                   timeCaption="Time"
                   placeholderText="Click and choose the date"
@@ -100,7 +102,7 @@ class BookTable extends React.Component {
                 <label className="label" htmlFor="people">Number of guests</label>
                 <input className="table-booking__input" name="people" type="number" required placeholder="Number of guests" min="1" max="8" onChange={this.handleGuests} />
                 <label>Table is kept for 15 minutes after reservation time. We appreciate you being on time.</label>
-                <button className="table-booking__btn" type="submit">Next step</button>
+                <button className="site-header__btn" type="submit">Next step</button>
               </form>
             </div>
             <article className="col-md-6 col-sm-12">

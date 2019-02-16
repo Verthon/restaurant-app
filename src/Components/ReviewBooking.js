@@ -31,11 +31,10 @@ class ReviewBooking extends Component{
       const templateParams = {
         name: reservation.name,
         email: reservation.email,
-
       };
 
       const sendEmail = () => {
-        emailjs.send(userId, 'reservation', templateParams )
+        emailjs.send(userId, 'reservation', templateParams );
       }
 
       const showModal = () => {

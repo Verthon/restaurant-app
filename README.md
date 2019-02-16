@@ -17,7 +17,6 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 ## Components used
 
 - [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
-- [React Scroll To Component](https://github.com/flyingant/react-scroll-to-component)
 
 ## Installation
 
@@ -30,4 +29,4 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 
 ## Todo
 
-- sending emails to clients, modal after confirming reservation
+- sending emails to clients(emailjs), modal after confirming reservation
