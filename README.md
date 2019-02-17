@@ -1,6 +1,9 @@
 # Restaurant App
-[Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")
-Simple restaurant app using React.js, for now trying to implement authorization, adding orders and booking table.
+[Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
+Simple restaurant app using React.js, so far user can:
+- add email, name, numer of guest and data to booking,
+- check menu and booking components on different urls (menu, booking)
+
 
 ## Technologies used
 
@@ -9,14 +12,8 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 - Sass
 - ES6
 - Bootstrap 4
-- Awesome tool for managing color variables https://colornamer.netlify.com/
-- Send an email from JavaScript http://www.emailjs.com/
 - Firebase Firestore
 - Hosted on Netlify
-
-## Components used
-
-- [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
 
 ## Installation
 
@@ -27,6 +24,19 @@ Simple restaurant app using React.js, for now trying to implement authorization,
 
 ```
 
+## Components used
+
+- Datepicker for React [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
+- Awesome tool for managing color variables [ColorNamer](https://colornamer.netlify.com/)
+- Send an email from JavaScript [emailjs](http://www.emailjs.com/)
+
+
+
 ## Todo
 
-- sending emails to clients(emailjs), modal after confirming reservation
+- [] Sending emails to clients(emailjs)
+- [x] Modal after confirming reservation
+- [] Send all data to firebase
+- [] Firebase authorization
+- [] Unit testing
+- [] Refactor CSS BEM classes

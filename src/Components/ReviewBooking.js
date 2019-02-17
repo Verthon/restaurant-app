@@ -38,11 +38,8 @@ class ReviewBooking extends Component{
       }
 
       const showModal = () => {
+        console.log('Close from modal component');
         this.setState({show: true});
-      }
-
-      const closeModal = () => {
-        this.setState({show: false});
       }
 
       return (
