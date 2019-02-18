@@ -5,7 +5,6 @@ import Menu from './Menu';
 import BookTable from './BookTable';
 import NotFound from './NotFound';
 import ReviewBooking from './ReviewBooking';
-import Confirmed from './Confirmed';
 
 const Router = () => (
   <BrowserRouter>
@@ -13,7 +12,6 @@ const Router = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/book-table" component={BookTable}/>
       <Route path="/review-booking" component={ReviewBooking}/>
-      <Route path="/confirmed" component={Confirmed} />
       <Route path="/menu" component={Menu}/>
       <Route component={NotFound} />
     </Switch>

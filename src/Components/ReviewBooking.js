@@ -26,6 +26,7 @@ class ReviewBooking extends Component{
         //Transforming data from array ["queryName", "queryValue"]
         // - to reservation object in format queryName:queryValue
         reservation[param[0]] = param[1];
+        console.log(param);
       }
 
       const templateParams = {

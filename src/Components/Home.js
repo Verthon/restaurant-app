@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import Header from './Header';
 import HomeNavbar from './HomeNavbar';
 import NavItem from './NavItem';
-import HeaderContent from './HeaderContent';
 import Footer from './Footer';
 import '../App.scss';
 import db from '../base';
@@ -51,7 +50,6 @@ class Home extends Component {
             <NavItem name={this.state.links[2]}/>
             <NavItem name={this.state.links[3]}/>
           </HomeNavbar>
-          <HeaderContent/>
         </Header>
         <article id="About" className="section section__about">
           <div className="row">

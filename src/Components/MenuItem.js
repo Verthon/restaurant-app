@@ -6,7 +6,6 @@ import {formatPrice} from '../helpers';
 
 const MenuItem = (props) => {
   //Destructing the object menu
-  //console.log(props.menu);
   const {name, price, desc} = props.menu;
 
   return (
