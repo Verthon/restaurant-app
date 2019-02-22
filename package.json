@@ -56,7 +56,6 @@
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
     "react-scripts": "^2.1.5",
-    "react-scroll-to-component": "^1.0.2",
     "react-test-renderer": "^16.8.1",
     "redux": "^4.0.1",
     "resolve": "1.8.1",

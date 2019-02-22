@@ -1,6 +1,26 @@
 .section{
-  padding: 0 5rem;
+  padding: 3.5rem 5rem;
   @include mQ($mobile){
-    padding: 0 2.5rem;
+    padding: 2rem;
+  }
+
+  &__fluid{
+    padding: 0 5rem;
+  }
+
+  &__description{
+    max-width: 60%;
+    text-align: justify;
+    line-height: 1.7;
+    margin: 2rem auto;
+
+    @include mQ($ipad){
+      max-width: 100%;
+    }
+  }
+
+  &__image{
+    margin: 0 auto;
+    display: block;
   }
 }

@@ -12,21 +12,24 @@ class ReviewBooking extends Component{
     super(props);
     this.state = {
       confirmed: false,
-      show: false
+      show: false,
+      location: {},
+      hours: {}
     };
   }
 
     render(){
       const query = new URLSearchParams(this.props.location.search);
       const { street, number, code, city, province } = contactInfo.info.location;
-      const userId = 'user_mLoNx7WniBmdKd2zpNZmF';
+      const emailjs = {
+
+      };
 
       const reservation = {};
       for (let param of query.entries()) {
         //Transforming data from array ["queryName", "queryValue"]
         // - to reservation object in format queryName:queryValue
         reservation[param[0]] = param[1];
-        console.log(param);
       }
 
       const templateParams = {
@@ -35,17 +38,21 @@ class ReviewBooking extends Component{
       };
 
       const sendEmail = () => {
-        emailjs.send(userId, 'reservation', templateParams );
+        emailjs.sendForm('<YOUR SERVICE ID>','reservation', '#myForm', 'user_mLoNx7WniBmdKd2zpNZmF')
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+        }, (err) => {
+          console.log('FAILED...', err);
+        });
       }
 
+
       const showModal = () => {
-        console.log('Close from modal component');
         this.setState({show: true});
       }
 
       return (
-
-        <Fragment>
+        <Fragment onLoad={sendEmail}>
           <Modal show={this.state.show}/>
           <Link to="/"><h1 className="heading review-booking__title">{contactInfo.name}</h1></Link>
           <article className="review-booking">

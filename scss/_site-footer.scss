@@ -4,6 +4,10 @@
   text-align: center;
   padding: 2rem 5rem;
 
+  @include mQ($mobile){
+    padding: 2rem;
+  }
+
   &__title{
     color: $metallic-gold;
     font-family: $decorative-font;

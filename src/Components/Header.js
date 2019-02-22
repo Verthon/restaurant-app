@@ -3,6 +3,7 @@ import React from 'react';
 const Header  = (props) => {
   return (
     <header className="site-header">
+      {props.children}
       <div className="site-header__content">
         <h1 className="site-header__headline heading heading--large">
           the right ingredients for the right food

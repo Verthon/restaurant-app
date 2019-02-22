@@ -56,7 +56,7 @@ class Home extends Component {
 
             <div className="col-lg-6 col-md-12">
               <h2 className="section__about__title heading heading--gold">Just the right food</h2>
-              <p className="section__about__description">If you’ve been to one of our restaurants, 
+              <p className="section__description">If you’ve been to one of our restaurants, 
                 you’ve seen – and tasted – what keeps our customers coming back for more. 
                 Perfect materials and freshly baked food, delicious Lambda cakes,  
                 muffins, and gourmet coffees make us hard to resist! Stop in today and check us out!
@@ -93,15 +93,17 @@ class Home extends Component {
 
           </div>
         </section>
-        <div id="Menu" className="row p-5">
-          <div className="col-md-6">
-            <img className="img-fluid" src="/images/reviews.jpg" alt="example dish from our restaurant"></img>
-          </div>
-          <div className="col-md-6">
-            <h2 className="heading">Discover our menu!</h2>
-            <p>For those with pure food indulgence in mind, come next door and sate your desires with our ever changing internationally and seasonally inspired small plates. We love food, lots of different food, just like you. </p>
-            <div className="col-md-12 text-center">
-              <a href="/menu"><button className="site-header__btn m-5">see the menu</button></a>
+        <div id="Menu" className="section">
+          <div className="row">
+            <div className="col-md-6">
+              <img className="img-fluid section__image" src="/images/louis-hansel-plate.jpeg" alt="example dish from our restaurant"></img>
+            </div>
+            <div className="col-md-6">
+              <h2 className="heading">Discover our menu!</h2>
+              <p className="section__description">For those with pure food indulgence in mind, come next door and sate your desires with our ever changing internationally and seasonally inspired small plates. We love food, lots of different food, just like you. </p>
+              <div className="col-md-12 text-center">
+                <a href="/menu"><button className="site-header__btn m-5">see the menu</button></a>
+              </div>
             </div>
           </div>
         </div>

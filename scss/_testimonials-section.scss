@@ -1,5 +1,6 @@
 .section__testimonials{
-  background: url('/images/brooke-lark-cookies.jpg');
+  background: url('/images/brooke-lark-plate.jpg');
+  background-position: center;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,7 @@
 
   @include mQ($mobile){
     min-height: 400px;
+    background: 0;
   }
   &__modal{
     background: rgba(0, 0, 0, 0.95);
@@ -29,7 +31,7 @@
       padding: 1rem 3.5rem;
     }
     @include mQ($mobile){
-      padding: 0.5rem 2rem;
+      padding: 1rem 0;
     }
   }
 }

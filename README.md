@@ -34,9 +34,9 @@ Simple restaurant app using React.js, so far user can:
 
 ## Todo
 
-[] Sending emails to clients(emailjs)
-[x] Modal after confirming reservation
-[] Send all data to firebase
-[] Firebase authorization
-[] Jest Unit testing
-[] Refactor CSS BEM classes
+- [] Sending emails to clients(emailjs)
+- [x] Modal after confirming reservation
+- [] Send all data(order) to firebase
+- [] Firebase authorization
+- [] Jest Unit testing
+- [] Refactor CSS BEM classes

@@ -19,7 +19,6 @@ class Menu extends Component {
   componentDidMount(){
     db.collection('menu').get().then(snapshot => {
       snapshot.docs.forEach(doc => {
-        console.log(doc.data()["Main-dishes"]);
         this.setState({
           appetizers: doc.data().Appetizers,
           desserts: doc.data().Desserts,
