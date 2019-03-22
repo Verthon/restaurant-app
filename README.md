@@ -32,11 +32,11 @@ Simple restaurant app using React.js, so far user can:
 
 
 
-## Todo
+## Work in progress
 
-- [] Sending emails to clients(emailjs)
+- [ ] Sending emails to clients(emailjs)
 - [x] Modal after confirming reservation
-- [] Send all data(order) to firebase
-- [] Firebase authorization
-- [] Jest Unit testing
-- [] Refactor CSS BEM classes
+- [ ] Send all data(order) to firebase
+- [ ] Firebase authorization
+- [ ] Jest Unit testing
+- [ ] Refactor CSS BEM classes
