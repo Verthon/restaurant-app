@@ -1,20 +1,22 @@
 .site-header{
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0,0,0, 0.35)), url('/images/brooke-lark_header.jpg');
-  min-height: 700px;
-  background-position: 50% 50%;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0,0,0, 0.35)), url('./images/brooke-lark_header.jpg');
+  background-color: $nero;
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   @include mQ($ipad){
-    min-height: 700px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('/images/header-tablet.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('./images/header-tablet.jpg');
   }
 
   @include mQ($mobile){
-    min-height: 530px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('/images/header-mobile.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0, 0.7)), url('./images/header-mobile.jpg');
   }
 
   &__content{
+    color: $white;
     position: absolute;
     top: 50%;
 	  left: 50%;
@@ -26,12 +28,18 @@
   }
 
   &__headline{
+    font-family: $decorative-font;
     font-size: 4rem;
-    color: $white;
     font-weight: 400;
+    margin: 4rem auto 2rem auto;
     @include mQ($ipad){
       font-size: 1.5rem;
     }
+  }
+
+  &__text{
+    font-size: 1.6rem;
+    margin: 2rem 0;
   }
 
   &__btn{
