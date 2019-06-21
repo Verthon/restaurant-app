@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import './App.scss';
 import Home from './Components/Home/Home';
 
-const context = React.createContext();
-
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super();
-    this.state = {
-      
-    };
+    this.state = {};
   }
   render() {
-    return (
-      <Home/>
-    );
+    return <Home />;
   }
 }
 

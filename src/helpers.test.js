@@ -1,4 +1,4 @@
-import {formatPrice, splitDate, splitTime, formatDate} from './helpers';
+import { formatPrice, splitDate, splitTime, formatDate } from './helpers';
 
 test('formatPrice', () => {
   expect(formatPrice(290)).toBe('$2.90');
@@ -13,5 +13,7 @@ test('splitTime', () => {
 });
 
 test('formatDate', () => {
-  expect(formatDate(new Date('February 17, 2019'))).toBe('Sunday, February 17, 2019, 12:00 AM');
+  expect(formatDate(new Date('February 17, 2019'))).toBe(
+    'Sunday, February 17, 2019, 12:00 AM'
+  );
 });

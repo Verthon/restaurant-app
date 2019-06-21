@@ -8,19 +8,19 @@ const contactInfo = {
       city: 'London',
       province: 'Ontario',
       country: 'Canada',
-      phone: '266-555-5559'
+      phone: '266-555-5559',
     },
-    hours:{
-      week:{
+    hours: {
+      week: {
         name: 'Mon-Fri',
-        time: '12:00am - 10:00pm'
+        time: '12:00am - 10:00pm',
       },
-      weekend:{
+      weekend: {
         name: 'Sat-Sun',
-        time: '12:00am - 10:00pm'
-      }
-    }
-  }
-}
+        time: '12:00am - 10:00pm',
+      },
+    },
+  },
+};
 
 export default contactInfo;

@@ -6,89 +6,110 @@ import { splitDate, splitTime } from '../helpers';
 import * as emailjs from 'emailjs-com';
 import Modal from './Modal';
 
-
-class ReviewBooking extends Component{
-  constructor(props){
+class ReviewBooking extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       confirmed: false,
       show: false,
       location: {},
-      hours: {}
+      hours: {},
     };
   }
 
-    render(){
-      const query = new URLSearchParams(this.props.location.search);
-      const { street, number, code, city, province } = contactInfo.info.location;
-      const emailjs = {
-
-      };
-
-      const reservation = {};
-      for (let param of query.entries()) {
-        //Transforming data from array ["queryName", "queryValue"]
-        // - to reservation object in format queryName:queryValue
-        reservation[param[0]] = param[1];
-      }
-
-      const templateParams = {
-        name: reservation.name,
-        email: reservation.email,
-      };
-
-      const sendEmail = () => {
-        emailjs.sendForm('<YOUR SERVICE ID>','reservation', '#myForm', 'user_mLoNx7WniBmdKd2zpNZmF')
-        .then((response) => {
-          console.log('SUCCESS!', response.status, response.text);
-        }, (err) => {
-          console.log('FAILED...', err);
-        });
-      }
 
 
-      const showModal = () => {
-        this.setState({show: true});
-      }
-
-      return (
-        <Fragment onLoad={sendEmail}>
-          <Modal show={this.state.show}/>
-          <Link to="/"><h1 className="heading review-booking__title">{contactInfo.name}</h1></Link>
-          <article className="review-booking">
-            <p className="review-booking__address">{street} {number}</p>
-            <p className="review-booking__address">{city}, {province}, {code} </p>
-            <p className="review-booking__name"><span>{reservation.name}</span> reservation</p>
-            <div className="row">
-              <div className="col-sm-4">
-                <p className="review-booking__value">{reservation.people}</p>
-                <p className="review-booking__description">Guests</p>
-              </div>
-              <div className="col-sm-4">
-                <p className="review-booking__value">{splitDate(reservation.date)}</p>
-                <p className="review-booking__description">Date</p>
-              </div>
-              <div className="col-sm-4">
-                <p className="review-booking__value">{splitTime(reservation.date)}</p>
-                <p className="review-booking__description">Time</p>
-              </div>
-            </div>
-            <footer className="review-booking__footer">
-              <Link to="/book-table"><button className="site-header__btn site-header__btn--reverse">Back to booking</button></Link>
-              <button className="site-header__btn" onClick={showModal}>Confirm Reservation</button>
-            </footer>
-          </article>
-        </Fragment>
-    
-      );
+  render() {
+    const query = new URLSearchParams(this.props.location.search);
+    const { street, number, code, city, province } = contactInfo.info.location;
+    const reservation = {};
+    for (let param of query.entries()) {
+      //Transforming data from array ["queryName", "queryValue"]
+      // - to reservation object in format queryName:queryValue
+      reservation[param[0]] = param[1];
     }
+
+    const templateParams = {
+      name: reservation.name,
+      email: reservation.email,
+    };
+
+    const sendEmail = () => {
+      emailjs
+        .send(
+          'gmail',
+          'reservation',
+          templateParams
+        )
+        .then(
+          response => {
+            console.log('SUCCESS!', response.status, response.text);
+          },
+          err => {
+            console.log('FAILED...', err);
+          }
+        );
+    };
+
+    const showModal = () => {
+      this.setState({ show: true });
+    };
+
+    return (
+      <Fragment>
+        <Modal show={this.state.show} />
+        <Link to="/">
+          <h1 className="heading review-booking__title">{contactInfo.name}</h1>
+        </Link>
+        <article className="review-booking" onLoad={sendEmail}>
+          <p className="review-booking__address">
+            {street} {number}
+          </p>
+          <p className="review-booking__address">
+            {city}, {province}, {code}{' '}
+          </p>
+          <p className="review-booking__name">
+            <span>{reservation.name}</span> reservation
+          </p>
+          <div className="row">
+            <div className="col-sm-4">
+              <p className="review-booking__value">{reservation.people}</p>
+              <p className="review-booking__description">Guests</p>
+            </div>
+            <div className="col-sm-4">
+              <p className="review-booking__value">
+                {splitDate(reservation.date)}
+              </p>
+              <p className="review-booking__description">Date</p>
+            </div>
+            <div className="col-sm-4">
+              <p className="review-booking__value">
+                {splitTime(reservation.date)}
+              </p>
+              <p className="review-booking__description">Time</p>
+            </div>
+          </div>
+          <footer className="review-booking__footer">
+            <Link to="/book-table">
+              <button className="site-header__btn site-header__btn--reverse">
+                Back to booking
+              </button>
+            </Link>
+            <button className="site-header__btn" onClick={showModal}>
+              Confirm Reservation
+            </button>
+          </footer>
+        </article>
+      </Fragment>
+    );
   }
+}
 
 ReviewBooking.propTypes = {
   location: propTypes.shape({
     pathname: propTypes.string,
-    search: propTypes.string
-  })
-}
+    search: propTypes.string,
+  }),
+};
 
 export default ReviewBooking;
