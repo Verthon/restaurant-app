@@ -10,3 +10,14 @@
   background: $nero;
 }
 
+.navbar{
+  &__brand{
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: $main-font;
+
+    &--decorative{
+      font-family: $decorative-font;
+    }
+  }
+}

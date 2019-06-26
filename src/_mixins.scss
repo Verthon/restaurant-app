@@ -4,6 +4,11 @@
   } 
 }
 
+@mixin flexColumn(){
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin fadeIn($arg){
   
 }

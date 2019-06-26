@@ -9,7 +9,7 @@ const Navbar = () => {
       id="mainNav"
     >
       <Link className="navbar-brand" to="/">
-        <h3>{contactInfo.name}</h3>
+        <h3 className="navbar__brand navbar__brand--decorative">{contactInfo.name}</h3>
       </Link>
       <button
         className="navbar-toggler"

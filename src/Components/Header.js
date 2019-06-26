@@ -7,7 +7,8 @@ const Header = props => {
       <div className="site-header__content">
         <h1 className="site-header__headline">Alkinoos Taverna</h1>
         <p className="site-header__text">
-          The right ingredients for the right food
+          The right ingredients for the right food.
+          Mediterranean Cuisine with long tradition.
         </p>
         <a href="/book-table">
           <button className="site-header__btn">book a table</button>
