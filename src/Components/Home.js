@@ -102,7 +102,7 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <div id="Menu" className="section">
+        <div id="Menu" className="section m-4">
           <div className="row">
             <div className="col-md-6">
               <img
@@ -121,7 +121,7 @@ class Home extends Component {
               </p>
               <div className="col-md-12 text-center">
                 <a href="/menu">
-                  <button className="site-header__btn m-5">see the menu</button>
+                  <button className="site-header__btn">see the menu</button>
                 </a>
               </div>
             </div>
@@ -130,8 +130,8 @@ class Home extends Component {
 
         <article id="Reviews" className="section section__testimonials">
           <div className="row">
-            <div className="offset-sm-2"></div>
-            <div className="col-sm-8">
+            <div className="offset-sm-1"></div>
+            <div className="col-sm-10">
               <div className="section__testimonials__modal">
                 <h2 className="heading testimonials__modal__heading">
                   Guest reviews

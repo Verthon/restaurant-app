@@ -5,8 +5,9 @@
 
 // Bootstrap and its default variables
 @import "node_modules/bootstrap/scss/bootstrap";
-@import "scss/_nav.scss";
 @import "_mixins";
+@import "scss/_grid.scss";
+@import "scss/_nav.scss";
 @import "scss/_modal.scss";
 @import "scss/_header";
 @import "scss/_book-table";

@@ -86,7 +86,7 @@ class BookTable extends React.Component {
           <Link to="/">
             <h1 className="heading table-booking__title">{contactInfo.name}</h1>
           </Link>
-          <div className="row">
+          <div className="row container">
             <div className="col-md-6 col-sm-12">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
               <form onSubmit={this.handleSubmit} className="form-group mt-5">

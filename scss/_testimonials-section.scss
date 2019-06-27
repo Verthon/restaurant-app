@@ -43,7 +43,7 @@
   }
   &__quote{
     font-style: italic;
-    max-width: 70%;
+    max-width: 85%;
     @include mQ($ipad){max-width: auto;}
   }
 

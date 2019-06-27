@@ -6,7 +6,7 @@ const footer = props => {
   return (
     <footer className="site-footer">
       <div className="row">
-        <div className="col col--center">
+        <div className="col-xs-12 col-md-4 col--center">
           <h2 className="site-footer__title">About us</h2>
           <p className="site-footer__description">
             Resto's new and expanded London location represents a truly
@@ -14,7 +14,7 @@ const footer = props => {
             and steaming bowls of cafe. Resto the best restaurant in town.
           </p>
         </div>
-        <div className="col col--center">
+        <div className="col-xs-12 col-md-4 col--center">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">
             {week.name} {week.time}
@@ -23,7 +23,7 @@ const footer = props => {
             {weekend.name} {weekend.time}
           </p>
         </div>
-        <div className="col col--center">
+        <div className="col-xs-12 col-md-4 col--center">
           <h2 className="site-footer__title">Our Location</h2>
           <p className="site-footer__description">
             {number}th {street}

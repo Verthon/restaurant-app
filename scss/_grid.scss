@@ -4,13 +4,16 @@
 }
 
 .col{
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
+  @include flexColumn;
   flex: 1;
   
   &--center{
+    @include flexColumn;
     align-items: center;
     justify-items: center;
+    @include mQ($mobile){
+      flex-basis: 100%;
+      @include flexColumn
+    }
   }
 }

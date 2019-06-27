@@ -16,6 +16,10 @@
     margin: 0;
     font-family: $main-font;
 
+    @include mQ($mobile){
+      font-size: 1.35rem;
+    }
+
     &--decorative{
       font-family: $decorative-font;
     }

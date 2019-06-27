@@ -8,9 +8,7 @@
   }
   @include mQ($mobile){
     padding: 2rem 0;
-  }
-
-           
+  }        
 }
 
 
@@ -20,8 +18,9 @@
   &__title{
     text-align: center;
     margin: 2rem 0;
-    font-family: $decorative-font;
+    font-family: $main-font;
     color: $metallic-gold;
+    font-weight: bold;
 
     @include mQ($ipad){
       margin: 1rem 0;
@@ -34,6 +33,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @include mQ($mobile){
+      padding: 1.5rem;
+    }
   }
   &-description{
     line-height: 1.2;
@@ -63,7 +65,7 @@
   }
   @include mQ($mobile){
     width: auto;
-    margin: 1rem;
+    padding: 1rem;
     margin: 1rem 0;
   }
 
