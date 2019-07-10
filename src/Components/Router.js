@@ -5,8 +5,8 @@ import Menu from './Menu';
 import BookTable from './BookTable';
 import NotFound from './NotFound';
 import ReviewBooking from './ReviewBooking';
-import { store } from "../store/store";
-import { Provider } from "react-redux";
+import { store } from '../store/store';
+import { Provider } from 'react-redux';
 
 const Router = () => (
   <Provider store={store}>
@@ -20,7 +20,6 @@ const Router = () => (
       </Switch>
     </BrowserRouter>
   </Provider>
-  
 );
 
 export default Router;

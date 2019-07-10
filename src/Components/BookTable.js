@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import { formatDate } from '../helpers';
 import 'react-datepicker/dist/react-datepicker.css';
 import contactInfo from '../contactInfo';
+import {sendBookingInfo} from '../actions/index';
+import { connect, dispatch } from 'react-redux';
 
 class BookTable extends React.Component {
   constructor() {
@@ -172,4 +174,11 @@ class BookTable extends React.Component {
   }
 }
 
-export default BookTable;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    sendBookingInfo: booking => dispatch(sendBookingInfo(this.state.booking))
+  }
+};
+
+export default connect(null, mapDispatchToProps)(BookTable);

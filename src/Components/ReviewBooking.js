@@ -5,6 +5,7 @@ import contactInfo from '../contactInfo';
 import { splitDate, splitTime } from '../helpers';
 import * as emailjs from 'emailjs-com';
 import Modal from './Modal';
+import { connect } from 'react-redux';
 
 class ReviewBooking extends Component {
   constructor(props) {
@@ -16,8 +17,6 @@ class ReviewBooking extends Component {
       hours: {},
     };
   }
-
-
 
   render() {
     const query = new URLSearchParams(this.props.location.search);
@@ -35,20 +34,14 @@ class ReviewBooking extends Component {
     };
 
     const sendEmail = () => {
-      emailjs
-        .send(
-          'gmail',
-          'reservation',
-          templateParams
-        )
-        .then(
-          response => {
-            console.log('SUCCESS!', response.status, response.text);
-          },
-          err => {
-            console.log('FAILED...', err);
-          }
-        );
+      emailjs.send('gmail', 'reservation', templateParams).then(
+        response => {
+          console.log('SUCCESS!', response.status, response.text);
+        },
+        err => {
+          console.log('FAILED...', err);
+        }
+      );
     };
 
     const showModal = () => {
@@ -105,6 +98,11 @@ class ReviewBooking extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  console.log(state);
+  return { booking: state.booking };
+};
+
 ReviewBooking.propTypes = {
   location: propTypes.shape({
     pathname: propTypes.string,
@@ -112,4 +110,4 @@ ReviewBooking.propTypes = {
   }),
 };
 
-export default ReviewBooking;
+export default connect(mapStateToProps)(ReviewBooking);
