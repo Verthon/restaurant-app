@@ -8,7 +8,7 @@
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
-    "babel-jest": "23.6.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.2.2",
     "babel-preset-react-app": "^5.0.4",
@@ -55,7 +55,7 @@
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.8.1",
     "redux": "^4.0.1",
     "resolve": "1.8.1",
@@ -83,7 +83,7 @@
   ],
   "devDependencies": {
     "bootstrap": "^4.3.1",
-    "jest": "^23.6.0",
+    "jest": "^24.8.0",
     "prettier": "1.18.2",
     "sass-loader": "^7.1.0"
   },
