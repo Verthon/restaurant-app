@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import contactInfo from '../contactInfo';
-import { splitDate, splitTime } from '../helpers';
+import { splitDate, splitTime, formatDate } from '../helpers';
 import * as emailjs from 'emailjs-com';
 import Modal from './Modal';
 import { connect } from 'react-redux';
@@ -15,10 +15,12 @@ class ReviewBooking extends Component {
       show: false,
       location: {},
       hours: {},
+      booking: {},
     };
   }
 
   render() {
+    console.log(this.props);
     const query = new URLSearchParams(this.props.location.search);
     const { street, number, code, city, province } = contactInfo.info.location;
     const reservation = {};
@@ -62,7 +64,7 @@ class ReviewBooking extends Component {
             {city}, {province}, {code}{' '}
           </p>
           <p className="review-booking__name">
-            <span>{reservation.name}</span> reservation
+            <span>{this.props.booking.name}</span> reservation
           </p>
           <div className="row">
             <div className="col-sm-4">
@@ -71,13 +73,13 @@ class ReviewBooking extends Component {
             </div>
             <div className="col-sm-4">
               <p className="review-booking__value">
-                {splitDate(reservation.date)}
+                {splitDate(formatDate(this.props.booking.date))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="col-sm-4">
               <p className="review-booking__value">
-                {splitTime(reservation.date)}
+                {splitTime(formatDate(this.props.booking.date))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
@@ -99,7 +101,6 @@ class ReviewBooking extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return { booking: state.booking };
 };
 

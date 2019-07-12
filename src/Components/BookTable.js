@@ -4,8 +4,8 @@ import DatePicker from 'react-datepicker';
 import { formatDate } from '../helpers';
 import 'react-datepicker/dist/react-datepicker.css';
 import contactInfo from '../contactInfo';
-import {sendBookingInfo} from '../actions/index';
-import { connect, dispatch } from 'react-redux';
+import { sendBookingInfo } from '../actions/index';
+import { connect } from 'react-redux';
 
 class BookTable extends React.Component {
   constructor() {
@@ -14,6 +14,7 @@ class BookTable extends React.Component {
     this.handleDate = this.handleDate.bind(this);
     this.handleGuests = this.handleGuests.bind(this);
     this.handleName = this.handleName.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
     this.state = {
       min: new Date(),
       max: new Date(),
@@ -45,6 +46,7 @@ class BookTable extends React.Component {
   }
 
   handleEmail(e) {
+    if (this === undefined){return console.log(e)}
     const booking = { ...this.state.booking };
     booking.email = e.target.value;
     this.setState({ booking });
@@ -58,23 +60,23 @@ class BookTable extends React.Component {
     e.preventDefault();
     this.props.history.push({
       pathname: '/review-booking',
-      search:
-        '?' +
-        encodeURIComponent('date') +
-        '=' +
-        encodeURIComponent(formatDate(date)) +
-        '&' +
-        encodeURIComponent('people') +
-        '=' +
-        encodeURIComponent(people) +
-        '&' +
-        encodeURIComponent('name') +
-        '=' +
-        encodeURIComponent(name) +
-        '&' +
-        encodeURIComponent('email') +
-        '=' +
-        encodeURIComponent(email),
+      // search:
+      //   '?' +
+      //   encodeURIComponent('date') +
+      //   '=' +
+      //   encodeURIComponent(formatDate(date)) +
+      //   '&' +
+      //   encodeURIComponent('people') +
+      //   '=' +
+      //   encodeURIComponent(people) +
+      //   '&' +
+      //   encodeURIComponent('name') +
+      //   '=' +
+      //   encodeURIComponent(name) +
+      //   '&' +
+      //   encodeURIComponent('email') +
+      //   '=' +
+      //   encodeURIComponent(email),
     });
   }
 
@@ -103,12 +105,13 @@ class BookTable extends React.Component {
                   onChange={this.handleName}
                   placeholder="Name"
                 />
-                <label htmlFor="email" className="label"></label>
+                <label htmlFor="email" className="label">Email</label>
                 <input
                   className="table-booking__input"
                   type="email"
                   name="email"
                   required
+                  onChange={this.handleEmail}
                   placeholder="email"
                 />
                 <label className="label" htmlFor="Datepicker">
@@ -145,7 +148,11 @@ class BookTable extends React.Component {
                   Table is kept for 15 minutes after reservation time. We
                   appreciate you being on time.
                 </label>
-                <button className="site-header__btn" type="submit">
+                <button
+                  className="site-header__btn"
+                  type="submit"
+                  onClick={() => this.props.sendData(this.state.booking)}
+                >
                   Next step
                 </button>
               </form>
@@ -174,11 +181,13 @@ class BookTable extends React.Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
-    sendBookingInfo: booking => dispatch(sendBookingInfo(this.state.booking))
-  }
+    sendData: payload => dispatch(sendBookingInfo(payload)),
+  };
 };
 
-export default connect(null, mapDispatchToProps)(BookTable);
+export default connect(
+  null,
+  mapDispatchToProps
+)(BookTable);

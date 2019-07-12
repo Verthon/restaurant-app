@@ -1,12 +1,19 @@
-import {sendBookingInfo, SEND_BOOKING_INFO, } from '../actions';
+import { sendBookingInfo, SEND_BOOKING_INFO } from '../actions';
 
-export const booking = (state = {}, action) => {
-  switch(action.type){
+const initialState = {
+  date: new Date(),
+  people: 1,
+  name: 'John Doe',
+  email: 'johndoe@xx.ox',
+};
+
+export const booking = (state = initialState, action) => {
+  switch (action.type) {
     case SEND_BOOKING_INFO:
       return Object.assign({}, state, {
-        booking: action.payload
-      })
-    default: 
-      return state;  
+        ...action.payload,
+      });
+    default:
+      return state;
   }
-}
+};
