@@ -1,4 +1,4 @@
-import { sendBookingInfo, SEND_BOOKING_INFO } from '../actions';
+import { SEND_BOOKING_INFO } from '../actions';
 
 const initialState = {
   date: new Date(),

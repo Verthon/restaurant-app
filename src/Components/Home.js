@@ -5,6 +5,8 @@ import NavItem from './NavItem';
 import Footer from './Footer';
 import '../App.scss';
 import db from '../base';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 class Home extends Component {
   constructor() {
@@ -17,6 +19,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    AOS.init({
+      duration: 2000,
+    });
     db.collection('location')
       .get()
       .then(snapshot => {
@@ -40,7 +45,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Header>
+        <Header animation={["fade-up"]}>
           <HomeNavbar name={this.state.hours.name}>
             <NavItem name={this.state.links[0]} />
             <NavItem name={this.state.links[1]} />
@@ -50,7 +55,7 @@ class Home extends Component {
         </Header>
         <article id="About" className="section section__about">
           <div className="row">
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-6 col-md-12" data-aos="fade-up" data-delay="700">
               <h2 className="section__about__title heading heading--gold">
                 Just the right food
               </h2>
@@ -68,7 +73,7 @@ class Home extends Component {
               />
             </div>
 
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-6 col-md-12" data-aos="fade-down" data-delay="1500">
               <img
                 className="img-fluid"
                 src="/images/brooke-lark_shakes.jpg"
@@ -82,7 +87,7 @@ class Home extends Component {
             <div className="offset-md-3 offset-lg-1"></div>
 
             <div className="col-lg-10 col-sm-12">
-              <article className="section__ingredients__modal">
+              <article className="section__ingredients__modal" data-aos="fade">
                 <h2 className="section__ingredients__title heading">
                   Fine ingredients
                 </h2>
@@ -93,9 +98,9 @@ class Home extends Component {
                   cakes, muffins, and gourmet coffees make us hard to resist!
                   Stop in today and check us out!
                 </p>
-                <div className="ingredients-section__images">
+                <div className="ingredients-section__images" data-aos="slide-up" data-delay="500">
                   <img src="/images/wheat.jpg" alt="wheat" />
-                  <img src="/images/curry.jpg" alt="red curry" />
+                  <img src="/images/curry.jpg" alt="red curry"/>
                   <img src="/images/bread.jpg" alt="white bread" />
                 </div>
               </article>
@@ -121,7 +126,7 @@ class Home extends Component {
               </p>
               <div className="col-md-12 text-center">
                 <a href="/menu">
-                  <button className="site-header__btn">see the menu</button>
+                  <button className="site-header__btn" data-aos="flip-up">see the menu</button>
                 </a>
               </div>
             </div>
@@ -142,7 +147,7 @@ class Home extends Component {
                   Perfect materials and freshly baked food, delicious Resto
                   cakes, muffins, and gourmet coffees make us hard to resist!
                   Stop in today and check out us
-                  <p className="quote-writer">food magazine, Mark Blue</p>
+                  <p className="quote-writer" data-aos="fade" data-delay="500">food magazine, Mark Blue</p>
                 </blockquote>
               </div>
             </div>

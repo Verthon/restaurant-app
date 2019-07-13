@@ -46,42 +46,21 @@ class BookTable extends React.Component {
   }
 
   handleEmail(e) {
-    if (this === undefined){return console.log(e)}
     const booking = { ...this.state.booking };
     booking.email = e.target.value;
     this.setState({ booking });
   }
 
   handleSubmit(e) {
-    //Destructing this.state.booking...
-
-    const { people, name, date, email } = this.state.booking;
-
     e.preventDefault();
     this.props.history.push({
-      pathname: '/review-booking',
-      // search:
-      //   '?' +
-      //   encodeURIComponent('date') +
-      //   '=' +
-      //   encodeURIComponent(formatDate(date)) +
-      //   '&' +
-      //   encodeURIComponent('people') +
-      //   '=' +
-      //   encodeURIComponent(people) +
-      //   '&' +
-      //   encodeURIComponent('name') +
-      //   '=' +
-      //   encodeURIComponent(name) +
-      //   '&' +
-      //   encodeURIComponent('email') +
-      //   '=' +
-      //   encodeURIComponent(email),
+      pathname: '/review-booking'
     });
   }
 
   render() {
     // Destructing contact info object
+    const {booking, min, max} = this.state;
     const { location, hours } = contactInfo.info;
 
     return (
@@ -120,13 +99,13 @@ class BookTable extends React.Component {
                 <DatePicker
                   name="Datepicker"
                   className="table-booking__input"
-                  selected={this.state.booking.date}
+                  selected={booking.date}
                   onChange={this.handleDate}
                   showTimeSelect
                   timeFormat="HH"
                   timeIntervals={60}
-                  minTime={this.state.min.setHours(11)}
-                  maxTime={this.state.max.setHours(22)}
+                  minTime={min.setHours(11)}
+                  maxTime={max.setHours(22)}
                   dateFormat="MMMM dd, yyyy h aa"
                   timeCaption="Time"
                   placeholderText="Click and choose the date"
@@ -151,7 +130,7 @@ class BookTable extends React.Component {
                 <button
                   className="site-header__btn"
                   type="submit"
-                  onClick={() => this.props.sendData(this.state.booking)}
+                  onClick={() => this.props.sendData(booking)}
                 >
                   Next step
                 </button>

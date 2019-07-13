@@ -5,8 +5,8 @@ const Header = props => {
     <header className="site-header">
       {props.children}
       <div className="site-header__content">
-        <h1 className="site-header__headline">Alkinoos Taverna</h1>
-        <p className="site-header__text">
+        <h1 className="site-header__headline" data-aos="fade">Alkinoos Taverna</h1>
+        <p className="site-header__text" data-aos="fade-up" data-delay="500">
           The right ingredients for the right food.
           Mediterranean Cuisine with long tradition.
         </p>

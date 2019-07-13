@@ -21,30 +21,8 @@ class ReviewBooking extends Component {
 
   render() {
     console.log(this.props);
-    const query = new URLSearchParams(this.props.location.search);
     const { street, number, code, city, province } = contactInfo.info.location;
-    const reservation = {};
-    for (let param of query.entries()) {
-      //Transforming data from array ["queryName", "queryValue"]
-      // - to reservation object in format queryName:queryValue
-      reservation[param[0]] = param[1];
-    }
-
-    const templateParams = {
-      name: reservation.name,
-      email: reservation.email,
-    };
-
-    const sendEmail = () => {
-      emailjs.send('gmail', 'reservation', templateParams).then(
-        response => {
-          console.log('SUCCESS!', response.status, response.text);
-        },
-        err => {
-          console.log('FAILED...', err);
-        }
-      );
-    };
+    const { name, people, date } = this.props.booking;
 
     const showModal = () => {
       this.setState({ show: true });
@@ -56,7 +34,7 @@ class ReviewBooking extends Component {
         <Link to="/">
           <h1 className="heading review-booking__title">{contactInfo.name}</h1>
         </Link>
-        <article className="review-booking" onLoad={sendEmail}>
+        <article className="review-booking">
           <p className="review-booking__address">
             {street} {number}
           </p>
@@ -64,22 +42,22 @@ class ReviewBooking extends Component {
             {city}, {province}, {code}{' '}
           </p>
           <p className="review-booking__name">
-            <span>{this.props.booking.name}</span> reservation
+            <span>{name}</span> reservation
           </p>
           <div className="row">
             <div className="col-sm-4">
-              <p className="review-booking__value">{reservation.people}</p>
+              <p className="review-booking__value">{people}</p>
               <p className="review-booking__description">Guests</p>
             </div>
             <div className="col-sm-4">
               <p className="review-booking__value">
-                {splitDate(formatDate(this.props.booking.date))}
+                {splitDate(formatDate(date))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="col-sm-4">
               <p className="review-booking__value">
-                {splitTime(formatDate(this.props.booking.date))}
+                {splitTime(formatDate(date))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
