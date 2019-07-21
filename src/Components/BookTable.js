@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import contactInfo from '../contactInfo';
 import { sendBookingInfo } from '../actions/index';
 import { connect } from 'react-redux';
+import { Formik, Field, Form } from 'formik';
 
 class BookTable extends React.Component {
   constructor() {

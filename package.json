@@ -31,6 +31,7 @@
     "eslint-plugin-react": "7.11.1",
     "file-loader": "2.0.0",
     "firebase": "^5.5.9",
+    "formik": "^1.5.8",
     "fs-extra": "7.0.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
@@ -66,7 +67,8 @@
     "webpack": "4.19.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.2"
+    "workbox-webpack-plugin": "3.6.2",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "node scripts/start.js",

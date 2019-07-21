@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import contactInfo from '../contactInfo';
 import { splitDate, splitTime, formatDate } from '../helpers';
-import * as emailjs from 'emailjs-com';
 import Modal from './Modal';
 import { connect } from 'react-redux';
 
