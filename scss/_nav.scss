@@ -1,27 +1,54 @@
-.show{
+.show {
   z-index: 1;
   background: $nero;
   padding: 2rem;
 }
-.navbar-dark .navbar-toggler{
-  border: 0;
-}
-.navbar-fixed-top.scrolled{
-  background: $nero;
-}
 
-.navbar{
-  &__brand{
-    font-size: 1.5rem;
+.nav {
+  display: flex;
+  width: 100%;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: center;
+  align-items: center;
+  &__brand {
+    font-size: 1.25rem;
+    font-weight: bold;
     margin: 0;
     font-family: $main-font;
+    color: $nero;
 
-    @include mQ($mobile){
+    @include mQ($mobile) {
       font-size: 1.35rem;
     }
 
-    &--decorative{
+    &--decorative {
       font-family: $decorative-font;
     }
   }
+
+  &__btn {
+    padding: 0px;
+    width: 1.5em;
+    height: 1.1em;
+    border: 0px none;
+    display: flex;
+    flex-direction: column;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  &__list{
+    display: none;
+  }
+}
+
+.btn__line {
+  width: 20px;
+  border-radius: 2px;
+  display: flex;
+  height: 0.2rem;
+  background-color: $nero;
 }

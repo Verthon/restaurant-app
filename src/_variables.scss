@@ -1,7 +1,7 @@
 $white: white;
 $lynx-white: #f7f7f7;
 $black: #000000;
-$nero: #252525;
+$nero: #212121;
 $super-silver: #eeeeee;
 $dhusar-grey: #aaaaaa;
 $metallic-gold: #d4af37;
@@ -12,15 +12,11 @@ $gravel-fint: #bbbbbb;
 $default-shadow: 1px 1px 3px $silver-lake;
 
 //Media Queries vars
+$tablet: 1024px;
 $ipad: 768px;
 $mobile: 500px;
 $medium: 1250px;
 
 $main-font: 'Open Sans';
 $decorative-font: 'Yeseva One';
-
-// bootstrap customs
-$navbar-dark-color: rgba($white, 0.9);
-$navbar-font-size: 1rem;
-$font-family-sans-serif: $main-font;
 

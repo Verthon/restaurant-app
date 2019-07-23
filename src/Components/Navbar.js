@@ -4,15 +4,14 @@ import contactInfo from '../contactInfo';
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-light container"
-      id="mainNav"
-    >
-      <Link className="navbar-brand" to="/">
-        <h3 className="navbar__brand navbar__brand--decorative">{contactInfo.name}</h3>
+    <nav className="nav" id="mainNav">
+      <Link className="nav__link" to="/">
+        <h3 className="nav__brand nav__brand--decorative">
+          {contactInfo.name}
+        </h3>
       </Link>
       <button
-        className="navbar-toggler"
+        className="navbar__btn"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -20,27 +19,27 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="btn__line"></span>
+        <span className="btn__line"></span>
+        <span className="btn__line"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Home <span className="sr-only">(current)</span>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/menu">
-              Menu
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/book-table">
-              Reservation
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/menu">
+            Menu
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/book-table">
+            Reservation
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };
