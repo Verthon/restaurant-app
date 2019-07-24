@@ -6,11 +6,11 @@
   padding: 0.6rem 0.85rem;
   font-size: 0.9rem;
 
-  &__light{
+  &--light{
     background-color: $super-silver;
   }
 
-  &__dark{
+  &--dark{
     background-color: $nero;
     a{
       color: $white;

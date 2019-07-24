@@ -1,8 +1,7 @@
 .site-header{
-  min-height: 85vh;
   display: flex;
   @include flexColumn();
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 3rem 1.5rem;
 
   @include mQ($ipad){
     

@@ -1,20 +1,19 @@
 .site-footer{
   background: $white;
   color: $nero;
-  text-align: center;
-  padding: 2rem 5rem;
 
   @include mQ($mobile){
     padding: 2rem;
   }
 
   &__title{
-    color: $metallic-gold;
+    color: $nero;
     font-family: $decorative-font;
-    padding: 1rem 0;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
   }
 
   &__description{
-    text-align: left;
+    
   }
 }

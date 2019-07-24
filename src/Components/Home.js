@@ -7,6 +7,9 @@ import '../App.scss';
 import db from '../base';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import aboutImg from '../images/brooke-lark-about.jpg';
+import about1Img from '../images/brooke-lark-about1.jpg';
+import menuImg from '../images/brooke-lark-menu.jpg';
 
 class Home extends Component {
   constructor() {
@@ -14,7 +17,7 @@ class Home extends Component {
     this.state = {
       location: {},
       hours: false,
-      links: ['About', 'Ingredients', 'Menu', 'Reviews'],
+      links: ['About', 'Menu', 'Reviews', 'Contact'],
     };
   }
 
@@ -45,7 +48,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Header animation={["fade-up"]}>
+        <Header animation={['fade-up']}>
           <HomeNavbar name={this.state.hours.name}>
             <NavItem name={this.state.links[0]} />
             <NavItem name={this.state.links[1]} />
@@ -55,15 +58,41 @@ class Home extends Component {
         </Header>
         <article id="About" className="section section__about">
           <div className="row">
-            <div className="col-lg-6 col-md-12" data-aos="fade-up" data-delay="700">
+            <div
+              className="col-lg-6 col-md-12"
+              data-aos="fade-down"
+              data-delay="1500"
+            >
+              <picture>
+                <source />
+                <img
+                  className="img-fluid"
+                  src={aboutImg}
+                  alt="example dish from our restaurant"
+                />
+              </picture>
+              <picture>
+                <source />
+                <img
+                  className="img-fluid"
+                  src={about1Img}
+                  alt="example dish from our restaurant"
+                />
+              </picture>
+            </div>
+            <article
+              className="col-lg-6 col-md-12 section__about__description"
+              data-aos="fade-up"
+              data-delay="700"
+            >
               <h2 className="section__about__title heading heading--gold">
                 Just the right food
               </h2>
               <p className="section__description">
                 If you’ve been to one of our restaurants, you’ve seen – and
                 tasted – what keeps our customers coming back for more. Perfect
-                materials and freshly baked food, delicious Lambda cakes,
-                muffins, and gourmet coffees make us hard to resist! Stop in
+                materials and freshly baked food, delicious Baklava,
+                Koulourakia, and gourmet coffees make us hard to resist! Stop in
                 today and check us out!
               </p>
               <img
@@ -71,48 +100,15 @@ class Home extends Component {
                 src="/images/cook.jpg"
                 alt="our chef"
               />
-            </div>
-
-            <div className="col-lg-6 col-md-12" data-aos="fade-down" data-delay="1500">
-              <img
-                className="img-fluid"
-                src="/images/brooke-lark_shakes.jpg"
-                alt="example dish from our restaurant"
-              />
-            </div>
+            </article>
           </div>
         </article>
-        <section id="Ingredients" className="section section__ingredients">
-          <div className="row">
-            <div className="offset-md-3 offset-lg-1"></div>
-
-            <div className="col-lg-10 col-sm-12">
-              <article className="section__ingredients__modal" data-aos="fade">
-                <h2 className="section__ingredients__title heading">
-                  Fine ingredients
-                </h2>
-                <p className="section__ingredients__description">
-                  If you’ve been to one of our restaurants, you’ve seen – and
-                  tasted – what keeps our customers coming back for more.
-                  Perfect materials and freshly baked food, delicious Lambda
-                  cakes, muffins, and gourmet coffees make us hard to resist!
-                  Stop in today and check us out!
-                </p>
-                <div className="ingredients-section__images" data-aos="slide-up" data-delay="500">
-                  <img src="/images/wheat.jpg" alt="wheat" />
-                  <img src="/images/curry.jpg" alt="red curry"/>
-                  <img src="/images/bread.jpg" alt="white bread" />
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-        <div id="Menu" className="section m-4">
+        <div id="Menu" className="section">
           <div className="row">
             <div className="col-md-6">
               <img
                 className="img-fluid section__image"
-                src="/images/louis-hansel-plate.jpeg"
+                src={menuImg}
                 alt="example dish from our restaurant"
               ></img>
             </div>
@@ -125,9 +121,9 @@ class Home extends Component {
                 different food, just like you.{' '}
               </p>
               <div className="col-md-12 text-center">
-                <a href="/menu">
-                  <button className="site-header__btn" data-aos="flip-up">see the menu</button>
-                </a>
+                <button className="btn btn--dark" data-aos="flip-up">
+                  <a href="/menu">see the menu</a>
+                </button>
               </div>
             </div>
           </div>
@@ -135,19 +131,20 @@ class Home extends Component {
 
         <article id="Reviews" className="section section__testimonials">
           <div className="row">
-            <div className="offset-sm-1"></div>
-            <div className="col-sm-10">
-              <div className="section__testimonials__modal">
+            <div className="testimonials">
+              <div className="testimonials__modal">
                 <h2 className="heading testimonials__modal__heading">
                   Guest reviews
                 </h2>
                 <blockquote className="testimonials__modal__quote">
                   If you've been to one of our restaurants, you've seen - and
                   tasted - what keeps our customers coming back for more.
-                  Perfect materials and freshly baked food, delicious Resto
-                  cakes, muffins, and gourmet coffees make us hard to resist!
-                  Stop in today and check out us
-                  <p className="quote-writer" data-aos="fade" data-delay="500">food magazine, Mark Blue</p>
+                  Perfect materials and freshly baked food, delicious Baklavas ,
+                  Koulourakia, and gourmet coffees make us hard to resist! Stop
+                  in today and check out us
+                  <p className="quote-writer" data-aos="fade" data-delay="500">
+                    food magazine, Mark Blue
+                  </p>
                 </blockquote>
               </div>
             </div>

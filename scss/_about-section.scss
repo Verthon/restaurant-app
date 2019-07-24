@@ -1,6 +1,7 @@
 .section__about{
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: $super-silver;
 
   @include mQ($ipad){
     padding-top: 2.5rem;
@@ -10,5 +11,10 @@
   img{
     margin: 1rem auto;
     display: block;
+  }
+
+  &__description{
+    padding: 1rem;
+    background: $white;
   }
 }

@@ -4,32 +4,39 @@ const footer = props => {
   const { week, weekend } = props.hours;
   const { street, number, code, city, province, country } = props.location;
   return (
-    <footer className="site-footer">
+    <footer id="Contact" className="site-footer section">
       <div className="row">
-        <div className="col-xs-12 col-md-4 col--center">
-          <h2 className="site-footer__title">About us</h2>
-          <p className="site-footer__description">
-            Resto's new and expanded London location represents a truly
-            authentic Greek patisserie, featuring breakfasts of fresh croissants
-            and steaming bowls of cafe. Resto the best restaurant in town.
-          </p>
-        </div>
-        <div className="col-xs-12 col-md-4 col--center">
+        <div className="col-xs-12 col-md-4">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">
-            {week.name} {week.time}
+            {week.name}
           </p>
           <p className="site-footer__description">
-            {weekend.name} {weekend.time}
+            {week.time}
+          </p>
+          <p className="site-footer__description">
+            {weekend.name}
+          </p>
+          <p className="site-footer__description">
+            {weekend.time}
           </p>
         </div>
-        <div className="col-xs-12 col-md-4 col--center">
+        <div className="col-xs-12 col-md-4">
           <h2 className="site-footer__title">Our Location</h2>
           <p className="site-footer__description">
             {number}th {street}
           </p>
           <p className="site-footer__description">
             {code} {city}, {province}, {country}
+          </p>
+        </div>
+        <div className="col-xs-12 col-md-4">
+          <h2 className="site-footer__title">Contact</h2>
+          <p className="site-footer__description">
+            Email: info@alkinoos.ca
+          </p>
+          <p className="site-footer__description">
+            Phone: +1 555-555-555
           </p>
         </div>
       </div>

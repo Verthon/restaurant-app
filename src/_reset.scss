@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 html {
   box-sizing: border-box;
@@ -10,7 +10,7 @@ html {
   box-sizing: inherit;
 }
 
-body{
+body {
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -18,20 +18,24 @@ body{
   font-family: $main-font;
 }
 
-img{
+img {
   max-width: 100%;
   height: auto;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
-a{
+a {
   color: $nero;
   text-decoration: none;
 }
 
-button:focus{
+button:focus {
   outline: none;
+}
+
+picture {
+  margin: 0;
 }

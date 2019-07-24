@@ -20,11 +20,11 @@ const Header = props => {
           long tradition.
         </p>
 
-        <button className="btn btn__dark">
+        <button className="btn btn--dark">
           <a href="/book-table">book a table</a>
         </button>
 
-        <button className="btn btn__light">
+        <button className="btn btn--light">
           <a href="/menu">see the menu</a>
         </button>
       </div>

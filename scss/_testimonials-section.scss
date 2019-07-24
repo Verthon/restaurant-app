@@ -1,7 +1,6 @@
 .section__testimonials{
-  background: url('/images/brooke-lark-plate.jpg');
-  background-position: center;
-  min-height: 700px;
+  background: url('../src/images/ingredients-bg.jpg');
+  background-position: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,49 +8,30 @@
     min-height: 500px;
     background-size: cover;
   }
+}
 
-  @include mQ($mobile){
-    min-height: 400px;
-    background: 0;
-  }
+.testimonials{
   &__modal{
-    background: rgba(0, 0, 0, 0.95);
-    min-height: 100%;
-    padding: 4rem 4rem;
-    margin: 0 auto;
-    //min-width: 400px;
-    max-width: 700px;
+    padding: 1.5rem 0;
+    background: $nero;
     color: $white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.8;
-    @include mQ($ipad){
-      min-width: auto;
-      padding: 1rem 3.5rem;
+    &__heading{
+      font-family: $decorative-font;
+      text-align: center;
+      margin: 0 0 1rem 0;
     }
-    @include mQ($mobile){
-      padding: 1rem 0;
+    &__quote{
+      font-style: italic;
+      margin: 0;
+      padding: 1rem 1.5rem;
+      @include mQ($ipad){max-width: auto;}
     }
   }
 }
-.testimonials__modal{
-  &__heading{
-    font-family: $decorative-font;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  &__quote{
-    font-style: italic;
-    max-width: 85%;
-    @include mQ($ipad){max-width: auto;}
-  }
 
-}
 .quote-writer{
   color: $metallic-gold;
   font-style: normal;
-  padding-top: 2.5rem;
-  margin: 0 auto;
+  margin: 2rem auto 0 auto;
   text-align: center;
 }

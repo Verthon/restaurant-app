@@ -1,21 +1,19 @@
 .section{
-  padding: 3.5rem 5rem;
-  @include mQ($mobile){
-    padding: 2rem;
-  }
+
+  padding: 3rem 1.5rem;
 
   &__fluid{
     padding: 0 5rem;
   }
 
   &__description{
-    max-width: 60%;
     text-align: justify;
-    line-height: 1.7;
+    line-height: 1.5;
     margin: 2rem auto;
+    font-size: 0.9rem;
 
-    @include mQ($ipad){
-      max-width: 100%;
+    @include mQ($mobile){
+      font-size: 1rem;
     }
   }
 
