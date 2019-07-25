@@ -6,14 +6,25 @@
     padding: 2rem;
   }
 
+  &__column{
+    @include flexColumn();
+    flex: 100%;
+    margin: 1rem 0;
+  }
+
   &__title{
     color: $nero;
     font-family: $decorative-font;
     font-weight: 400;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+
+    @include mQ($mobile){
+      font-size: 1.75rem;
+    }
   }
 
   &__description{
-    
+    margin: 0.5rem 0;
   }
 }

@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import MenuItem from './MenuItem';
 import Navbar from './Navbar';
+import NavItem from './NavItem';
 import db from '../base';
 //TODO restructure menu divs with component
 
@@ -12,6 +13,7 @@ class Menu extends Component {
       desserts: {},
       salads: {},
       maindishes: {},
+      links: ['menu', 'book-table']
     };
   }
 
@@ -33,16 +35,19 @@ class Menu extends Component {
   render() {
     return (
       <Fragment>
-        <Navbar />
-        <section id="menu" className="section section__menu">
-          <h1 className="heading mb-4">Menu</h1>
+        <Navbar name="Alkinoos Taverna">
+            <NavItem name={this.state.links[0]} />
+            <NavItem name={this.state.links[1]} />
+        </Navbar>
+        <section id="menu" className="section menu">
+          <h1 className="heading heading--center">Menu</h1>
           <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <article className="menu-section__container">
-                <h2 className="menu-section__title">
+            <div className="section__col">
+              <article className="menu__container">
+                <h2 className="menu__title">
                   {this.state.appetizers.category}
                 </h2>
-                <ul className="menu-section__list">
+                <ul className="menu__list">
                   {this.state.appetizers.app1 ? (
                     <MenuItem menu={this.state.appetizers.app1} />
                   ) : null}
@@ -56,10 +61,10 @@ class Menu extends Component {
               </article>
             </div>
             <div className="col-lg-6 col-md-12">
-              <h2 className="menu-section__title">
+              <h2 className="menu__title">
                 {this.state.desserts.category}
               </h2>
-              <ul className="menu-section__list">
+              <ul className="menu__list">
                 {this.state.desserts.des1 ? (
                   <MenuItem menu={this.state.desserts.des1} />
                 ) : null}
@@ -74,11 +79,11 @@ class Menu extends Component {
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <article className="menu-section__container">
-                <h2 className="menu-section__title">
+              <article className="menu__container">
+                <h2 className="menu__title">
                   {this.state.salads.category}
                 </h2>
-                <ul className="menu-section__list">
+                <ul className="menu__list">
                   {this.state.salads.sal1 ? (
                     <MenuItem menu={this.state.salads.sal1} />
                   ) : null}
@@ -90,11 +95,11 @@ class Menu extends Component {
             </div>
 
             <div className="col-lg-6 col-md-12">
-              <article className="menu-section__container">
-                <h2 className="menu-section__title">
+              <article className="menu__container">
+                <h2 className="menu__title">
                   {this.state.maindishes.category}
                 </h2>
-                <ul className="menu-section__list">
+                <ul className="menu__list">
                   {this.state.maindishes.main1 ? (
                     <MenuItem menu={this.state.maindishes.main1} />
                   ) : null}

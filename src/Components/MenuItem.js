@@ -8,9 +8,12 @@ const MenuItem = props => {
 
   return (
     <Fragment>
-      <li className="menu-section__item">
-        <h3>{name}</h3> <span>{formatPrice(price)}</span>
-        <p className="menu-section-description">{desc}</p>
+      <li className="menu__item">
+        <header className="menu__header">
+          <h3 className="menu__item__name">{name}</h3>{' '}
+          <span className="menu__item__price">{formatPrice(price)}</span>
+        </header>
+        <p className="menu__description">{desc}</p>
       </li>
     </Fragment>
   );

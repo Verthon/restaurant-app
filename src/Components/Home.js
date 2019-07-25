@@ -59,7 +59,7 @@ class Home extends Component {
         <article id="About" className="section section__about">
           <div className="row">
             <div
-              className="col-lg-6 col-md-12"
+              className="section__col"
               data-aos="fade-down"
               data-delay="1500"
             >
@@ -81,7 +81,7 @@ class Home extends Component {
               </picture>
             </div>
             <article
-              className="col-lg-6 col-md-12 section__about__description"
+              className="section__col section__col--white section__col__description"
               data-aos="fade-up"
               data-delay="700"
             >
@@ -96,23 +96,23 @@ class Home extends Component {
                 today and check us out!
               </p>
               <img
-                className="img-fluid"
+                className="section__about__chef"
                 src="/images/cook.jpg"
                 alt="our chef"
               />
             </article>
           </div>
         </article>
-        <div id="Menu" className="section">
+        <div id="Menu" className="section section__menu">
           <div className="row">
-            <div className="col-md-6">
+            <div className="section__col">
               <img
                 className="img-fluid section__image"
                 src={menuImg}
                 alt="example dish from our restaurant"
               ></img>
             </div>
-            <div className="col-md-6">
+            <div className="section__col section__col--white section__col__description">
               <h2 className="heading">Discover our menu!</h2>
               <p className="section__description">
                 For those with pure food indulgence in mind, come next door and

@@ -1,33 +1,40 @@
-.heading{
+.heading {
   font-family: $decorative-font;
   font-size: 1.5rem;
   font-weight: 400;
+  margin: 0;
 
-  @include mQ($mobile){
+  @include mQ($mobile) {
     font-size: 1.75rem;
   }
 
-  &__review-booking{margin: 2rem 0;}
+  &__review-booking {
+    margin: 2rem 0;
+  }
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     font-size: 2.5rem;
   }
 
-  &--large{
+  &--center {
+    text-align: center;
+  }
+
+  &--large {
     font-size: 4rem;
     margin-bottom: 3rem;
-    @include mQ($ipad){
+    @include mQ($ipad) {
       font-size: 3.25rem;
       margin-bottom: 2rem;
     }
 
-    @include mQ($mobile){
+    @include mQ($mobile) {
       margin-bottom: 1rem;
       font-size: 2.5rem;
     }
   }
 
-  &--gold{
+  &--gold {
     color: $metallic-gold;
   }
 }

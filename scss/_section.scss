@@ -1,6 +1,5 @@
 .section{
-
-  padding: 3rem 1.5rem;
+  padding: 3rem 1.5rem 0 1.5rem;
 
   &__fluid{
     padding: 0 5rem;
@@ -20,5 +19,18 @@
   &__image{
     margin: 0 auto;
     display: block;
+  }
+
+  &__col{
+    flex: 100%;
+
+    &--white{
+      background-color: $white;
+    }
+
+    &__description{
+      margin: 2rem 0 0 0;
+      padding: 2rem 1rem 2rem 1rem;
+    }
   }
 }

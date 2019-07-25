@@ -1,17 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import contactInfo from '../contactInfo';
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Navbar = () => {
+const Navbar = props => {
   return (
     <nav className="nav" id="mainNav">
-      <Link className="nav__link" to="/">
-        <h3 className="nav__brand nav__brand--decorative">
-          {contactInfo.name}
-        </h3>
-      </Link>
+      <NavLink className="nav__link" to="/">
+        <h3 className="navbar__brand">{props.name}</h3>
+      </NavLink>
       <button
-        className="navbar__btn"
+        className="nav__btn"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -23,25 +21,20 @@ const Navbar = () => {
         <span className="btn__line"></span>
         <span className="btn__line"></span>
       </button>
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/">
+      <ul className="nav__list">
+        <li className="nav__item">
+          <NavLink className="nav__link" to="/">
             Home
-          </Link>
+          </NavLink>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/menu">
-            Menu
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/book-table">
-            Reservation
-          </Link>
-        </li>
+        {props.children}
       </ul>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  name: PropTypes.string,
 };
 
 export default Navbar;

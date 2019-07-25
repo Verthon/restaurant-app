@@ -6,7 +6,7 @@ const footer = props => {
   return (
     <footer id="Contact" className="site-footer section">
       <div className="row">
-        <div className="col-xs-12 col-md-4">
+        <div className="site-footer__column">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">
             {week.name}
@@ -21,7 +21,7 @@ const footer = props => {
             {weekend.time}
           </p>
         </div>
-        <div className="col-xs-12 col-md-4">
+        <div className="site-footer__column">
           <h2 className="site-footer__title">Our Location</h2>
           <p className="site-footer__description">
             {number}th {street}
@@ -30,7 +30,7 @@ const footer = props => {
             {code} {city}, {province}, {country}
           </p>
         </div>
-        <div className="col-xs-12 col-md-4">
+        <div className="site-footer__column">
           <h2 className="site-footer__title">Contact</h2>
           <p className="site-footer__description">
             Email: info@alkinoos.ca
