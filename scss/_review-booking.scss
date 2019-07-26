@@ -1,4 +1,4 @@
-.review-booking{
+.review-booking {
   margin: 5rem 0;
   margin: 2rem auto;
   display: flex;
@@ -7,49 +7,47 @@
   color: $cavernous;
   max-width: 600px;
   box-shadow: $default-shadow;
-  padding: 5rem 2rem;
 
-  &__title{
+  &__title {
     margin: 4rem 0;
   }
 
-  &__title, &__title:hover{
+  &__title,
+  &__title:hover {
     color: $cavernous;
     text-decoration: none;
   }
 
-  a, a:hover, a:visited{
+  a,
+  a:hover,
+  a:visited {
     color: $cavernous;
     text-decoration: none;
   }
 
-  &__address{
+  &__address {
     text-transform: uppercase;
     line-height: 1.2;
     margin-bottom: 0.5rem;
   }
 
-  &__name{
+  &__client {
     font-style: italic;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     color: $gravel-fint;
     margin: 1.25rem 0;
-    
-
-    span{
-      margin-right: 0.25rem;
-      color: $cavernous;
-    }
+  }
+  &__name {
+    margin-right: 0.25rem;
+    color: $cavernous;
   }
 
-  &__value{
+  &__value {
     margin: 0;
-    min-width: 100px;
     text-align: center;
   }
 
-  &__description{
-    min-width: 100px;
+  &__description {
     text-align: center;
     color: $gravel-fint;
     text-transform: uppercase;
@@ -59,15 +57,15 @@
     border-right: 1px solid $gravel-fint;
   }
 
-  &__description:last-child{
+  &__description:last-child {
     border: 0;
   }
 
-  &__footer{
+  &__footer {
     margin-top: 2rem;
   }
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     align-items: center;
     margin: 2rem auto;
   }

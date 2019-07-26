@@ -8,7 +8,7 @@
     margin: 2rem 0;
     font-family: $main-font;
     color: $metallic-gold;
-    font-weight: bold;
+    font-weight: 400;
 
     @include mQ($ipad) {
       margin: 1rem 0;
@@ -22,7 +22,6 @@
   }
   &__description {
     line-height: 1.2;
-    padding-top: 0.75rem;
 
     @include mQ($ipad) {
       line-height: 1.7;
@@ -38,6 +37,10 @@
 
   &__item {
     margin: 1rem 0;
+
+    @include mQ($mobile){
+      margin: 1rem;
+    }
 
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 3s; /* Firefox < 16 */

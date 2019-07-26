@@ -14,7 +14,7 @@ const Modal = props => {
           to your email address.
         </p>
         <Link to="/">
-          <button className="site-header__btn">Continue</button>
+          <button className="btn btn--dark">Continue</button>
         </Link>
       </article>
     </div>

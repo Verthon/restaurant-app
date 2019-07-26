@@ -71,9 +71,9 @@ class BookTable extends React.Component {
             <h1 className="heading table-booking__title">{contactInfo.name}</h1>
           </Link>
           <div className="row container">
-            <div className="col-md-6 col-sm-12">
+            <div className="section section__col">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
-              <form onSubmit={this.handleSubmit} className="form-group mt-5">
+              <form onSubmit={this.handleSubmit} className="form-group">
                 <label className="label" htmlFor="name">
                   Name
                 </label>
@@ -124,12 +124,12 @@ class BookTable extends React.Component {
                   max="8"
                   onChange={this.handleGuests}
                 />
-                <label>
+                <p className="table-booking__reminder">
                   Table is kept for 15 minutes after reservation time. We
                   appreciate you being on time.
-                </label>
+                </p>
                 <button
-                  className="site-header__btn"
+                  className="btn btn--dark"
                   type="submit"
                   onClick={() => this.props.sendData(booking)}
                 >
@@ -137,7 +137,7 @@ class BookTable extends React.Component {
                 </button>
               </form>
             </div>
-            <article className="col-md-6 col-sm-12">
+            <article className="section section__col">
               <h2 className="table-booking__subtitle">Located in London</h2>
               <p>
                 {location.street} {location.number}
@@ -154,7 +154,7 @@ class BookTable extends React.Component {
               <p>{hours.weekend.time}</p>
             </article>
           </div>
-          <footer className="table-booking_footer mx-auto"></footer>
+          <footer className="table-booking__footer"></footer>
         </div>
       </Fragment>
     );

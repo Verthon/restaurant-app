@@ -5,13 +5,16 @@
   margin: 0 0.5rem 0 0;
   padding: 0.6rem 0.85rem;
   font-size: 0.9rem;
+  cursor: pointer;
 
   &--light{
     background-color: $super-silver;
+    color: $nero;
   }
 
   &--dark{
     background-color: $nero;
+    color: $white;
     a{
       color: $white;
     }

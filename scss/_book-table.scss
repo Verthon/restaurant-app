@@ -1,12 +1,6 @@
 .table-booking{
-  display: flex;
-  flex-direction: column;
+  @include flexColumn();
   align-items: center;
-
-  a, a:hover, a:visited{
-    color: $cavernous;
-    text-decoration: none;
-  }
 
   .label{
     display: none;
@@ -17,10 +11,11 @@
   }
 
   &__subtitle{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-family: $decorative-font;
     color: $metallic-gold;
-    margin: 2rem 0; 
+    margin: 2rem 0;
+    font-weight: 400; 
   }
 
   &__input{
@@ -32,17 +27,7 @@
     width: 250px;
   }
 
-  &__btn{
-    display: block;
-    border: 0;
-    border-bottom: 2px solid $black;
-    padding: 0.75rem 3rem;
-    text-transform: uppercase;
-    background: $metallic-gold;
-    color: $black;
+  &__reminder {
     margin: 2rem 0;
-  }
-  &__btn:hover{
-    cursor: pointer;
   }
 }

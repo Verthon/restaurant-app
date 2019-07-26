@@ -40,35 +40,37 @@ class ReviewBooking extends Component {
           <p className="review-booking__address">
             {city}, {province}, {code}{' '}
           </p>
-          <p className="review-booking__name">
-            <span>{name}</span> reservation
+          <p className="review-booking__client">
+            <strong className="review-booking__name">{name}</strong> reservation
           </p>
           <div className="row">
-            <div className="col-sm-4">
+            <div className="section__col section__col--flexible">
               <p className="review-booking__value">{people}</p>
               <p className="review-booking__description">Guests</p>
             </div>
-            <div className="col-sm-4">
+            <div className="section__col section__col--flexible">
               <p className="review-booking__value">
                 {splitDate(formatDate(date))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
-            <div className="col-sm-4">
-              <p className="review-booking__value">
+            <div className="section__col">
+              <p className="review-booking__value section__col--flexible">
                 {splitTime(formatDate(date))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
           </div>
           <footer className="review-booking__footer">
-            <Link to="/book-table">
-              <button className="site-header__btn site-header__btn--reverse">
-                Back to booking
+            
+              <button className="btn btn--light">
+              <Link to="/book-table">
+                Edit booking
+                </Link>
               </button>
-            </Link>
-            <button className="site-header__btn" onClick={showModal}>
-              Confirm Reservation
+            
+            <button className="btn btn--dark" onClick={showModal}>
+              Confirm Booking
             </button>
           </footer>
         </article>

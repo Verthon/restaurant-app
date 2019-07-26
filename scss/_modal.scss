@@ -15,31 +15,21 @@
   }
 
   &__content{
-    width: 40%;
-    padding: 4rem 2rem;
+    @include flexColumn();
+    width: 90%;
+    padding: 1rem 1.5rem;
     background: $white;
     position: fixed;
     height: auto;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    display: flex;
-    flex-direction: column;
     align-items: center;
-
-    @include mQ($ipad){
-      width: 60%;
-    }
-
-    @include mQ($mobile){
-      width: 90%;
-      padding: 1rem 0;
-    }
   }
 
   &__text{
     margin: 2rem 0;
-    font-size: 1.1rem;
-    width: 70%;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
   }
 }
