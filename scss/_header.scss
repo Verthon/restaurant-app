@@ -1,63 +1,55 @@
-.site-header{
+.site-header {
   display: flex;
   @include flexColumn();
   padding: 0 1.5rem 3rem 1.5rem;
 
-  @include mQ($ipad){
-    
+  @include mQ($tablet) {
+    padding: 0 2.5rem 3rem 2.5rem;
   }
 
-
-  &__content{
-
+  @include mQ($ipad) {
+    flex-direction: row;
   }
 
-  &__headline{
+  &__content {
+    @include mQ($ipad){
+      @include flexColumn();
+      justify-content: center;
+      align-items: flex-start;
+      order: 1;
+    }
+  }
+
+  &__image {
+    @include mQ($ipad) {
+      order: 2;
+    }
+  }
+
+  &__headline {
     font-family: $decorative-font;
     font-size: 1.75rem;
     font-weight: 400;
     margin: 2rem auto;
-    @include mQ($ipad){
-      //font-size: 2.75rem;
+    @include mQ($ipad) {
+      display: inline;
+      margin: 0;
+      font-size: 2rem;
     }
-    
   }
 
-  &__text{
+  &__text {
     font-size: 0.9rem;
     margin: 2rem 0;
-  }
-
-  &__btn{
-    padding: 0.75rem 2rem;
-    text-transform: uppercase;
-    color: $white;
-    background: $nero;
-    border: 0;
-    border-bottom: 2px solid $metallic-gold;
-    font-size: 1rem;
-    margin-right: 1rem;
-
-    @include mQ($ipad){
-      margin-right: 0.75rem;
-      margin-top: 2rem;
-    }
-
-    @include mQ($mobile){
-      padding: 0.5rem 1rem;
-      margin-top: 1rem;
+    @include mQ($mobile) {
       font-size: 1rem;
     }
+    @include mQ($tablet){
+      margin: 1.5rem 0 4rem 0;
+    }
   }
 
-  &__btn:hover{
-    cursor: pointer;
-  }
-
-  &__btn--reverse{
-    color: $black;
-    background: $super-silver;
-    border: 0;
-    border-bottom: 2px solid $metallic-gold;
+  &__btn {
+    padding: 0.75rem 2rem;
   }
 }

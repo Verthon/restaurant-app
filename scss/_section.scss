@@ -1,6 +1,10 @@
 .section{
   padding: 3rem 1.5rem 0 1.5rem;
 
+  @include mQ($tablet) {
+    padding: 3rem 2.5rem 0 2.5rem;
+  }
+
   &__fluid{
     padding: 0 5rem;
   }
@@ -8,7 +12,7 @@
   &__description{
     text-align: justify;
     line-height: 1.5;
-    margin: 2rem auto;
+    margin: 2rem 0;
     font-size: 0.9rem;
 
     @include mQ($mobile){
@@ -31,6 +35,10 @@
     &__description{
       margin: 2rem 0 0 0;
       padding: 2rem 1rem 2rem 1rem;
+
+      @include mQ($tablet) {
+        padding: 2rem 2rem 2rem 2rem;
+      }
     }
 
     &--flexible {

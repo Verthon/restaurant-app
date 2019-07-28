@@ -1,4 +1,4 @@
-.modal-book{
+.modal-book {
   padding: 0;
   margin: 0;
   background: rgba(0, 0, 0, 0.6);
@@ -6,28 +6,32 @@
   height: 100vh;
   position: fixed;
 
-  &--active{
+  &--active {
     display: block;
   }
 
-  &--disabled{
+  &--disabled {
     display: none;
   }
 
-  &__content{
+  &__content {
     @include flexColumn();
     width: 90%;
     padding: 1rem 1.5rem;
     background: $white;
     position: fixed;
     height: auto;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
+
+    @include mQ($tablet) {
+      padding: 2rem 2.5rem;
+    }
   }
 
-  &__text{
+  &__text {
     margin: 2rem 0;
     font-size: 1rem;
     letter-spacing: 0.1rem;

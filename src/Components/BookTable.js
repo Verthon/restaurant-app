@@ -7,6 +7,8 @@ import contactInfo from '../contactInfo';
 import { sendBookingInfo } from '../actions/index';
 import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
+import Navbar from '../Components/Navbar';
+import NavItem from '../Components/NavItem';
 
 class BookTable extends React.Component {
   constructor() {
@@ -25,6 +27,7 @@ class BookTable extends React.Component {
         name: 'John Doe',
         email: '',
       },
+      links: ['menu', 'book-table'],
     };
   }
 
@@ -55,21 +58,23 @@ class BookTable extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.history.push({
-      pathname: '/review-booking'
+      pathname: '/review-booking',
     });
   }
 
   render() {
     // Destructing contact info object
-    const {booking, min, max} = this.state;
+    const { booking, min, max } = this.state;
     const { location, hours } = contactInfo.info;
 
     return (
       <Fragment>
         <div className="table-booking">
-          <Link to="/">
-            <h1 className="heading table-booking__title">{contactInfo.name}</h1>
-          </Link>
+          <Navbar>
+            {this.state.links.map((link, index) => (
+              <NavItem key={index} name={link} hashlink={true} />
+            ))}
+          </Navbar>
           <div className="row container">
             <div className="section section__col">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
@@ -85,7 +90,9 @@ class BookTable extends React.Component {
                   onChange={this.handleName}
                   placeholder="Name"
                 />
-                <label htmlFor="email" className="label">Email</label>
+                <label htmlFor="email" className="label">
+                  Email
+                </label>
                 <input
                   className="table-booking__input"
                   type="email"
@@ -124,7 +131,7 @@ class BookTable extends React.Component {
                   max="8"
                   onChange={this.handleGuests}
                 />
-                <p className="table-booking__reminder">
+                <p className="text table-booking__reminder">
                   Table is kept for 15 minutes after reservation time. We
                   appreciate you being on time.
                 </p>

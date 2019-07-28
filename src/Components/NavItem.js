@@ -1,12 +1,19 @@
 import React from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
+import { HashLink} from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const navitem = props => {
   return (
-    <li className="nav-item">
-      <Link className="nav-link" to={`/#${props.name}`}>
+    props.hashlink ? 
+    <li className="nav__item">
+      <HashLink className="nav__link" to={`/#${props.name}`}>
         {props.name}
-      </Link>
+      </HashLink>
+    </li> :
+    <li className="nav__item">
+    <Link className="nav__link" to={`/${props.name}`}>
+      {props.name}
+    </Link>
     </li>
   );
 };

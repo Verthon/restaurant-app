@@ -1,30 +1,35 @@
-.site-footer{
+.site-footer {
   background: $white;
   color: $nero;
+  padding: 1.5rem;
 
-  @include mQ($mobile){
+  @include mQ($mobile) {
     padding: 2rem;
   }
 
-  &__column{
+  @include mQ($tablet) {
+    padding: 2.5rem;
+  }
+
+  &__column {
     @include flexColumn();
     flex: 100%;
     margin: 1rem 0;
   }
 
-  &__title{
+  &__title {
     color: $nero;
     font-family: $decorative-font;
     font-weight: 400;
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
 
-    @include mQ($mobile){
+    @include mQ($mobile) {
       font-size: 1.75rem;
     }
   }
 
-  &__description{
+  &__description {
     margin: 0.5rem 0;
   }
 }

@@ -5,6 +5,7 @@ import contactInfo from '../contactInfo';
 import { splitDate, splitTime, formatDate } from '../helpers';
 import Modal from './Modal';
 import { connect } from 'react-redux';
+import about from '../images/brooke-lark-about.jpg';
 
 class ReviewBooking extends Component {
   constructor(props) {
@@ -30,20 +31,15 @@ class ReviewBooking extends Component {
     return (
       <Fragment>
         <Modal show={this.state.show} />
-        <Link to="/">
-          <h1 className="heading review-booking__title">{contactInfo.name}</h1>
-        </Link>
+        <h1 className="heading review-booking__title">
+          <Link to="/">{contactInfo.name}</Link>
+        </h1>
         <article className="review-booking">
-          <p className="review-booking__address">
-            {street} {number}
-          </p>
-          <p className="review-booking__address">
-            {city}, {province}, {code}{' '}
-          </p>
+          <img src={about} alt="" />
           <p className="review-booking__client">
             <strong className="review-booking__name">{name}</strong> reservation
           </p>
-          <div className="row">
+          <div className="row review-booking__container">
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">{people}</p>
               <p className="review-booking__description">Guests</p>
@@ -54,21 +50,24 @@ class ReviewBooking extends Component {
               </p>
               <p className="review-booking__description">Date</p>
             </div>
-            <div className="section__col">
-              <p className="review-booking__value section__col--flexible">
+            <div className="section__col section__col--flexible">
+              <p className="review-booking__value">
                 {splitTime(formatDate(date))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
           </div>
+          <p className="review-booking__address">
+            {street} {number}
+          </p>
+          <p className="review-booking__address">
+            {city}, {province}, {code}{' '}
+          </p>
           <footer className="review-booking__footer">
-            
-              <button className="btn btn--light">
-              <Link to="/book-table">
-                Edit booking
-                </Link>
-              </button>
-            
+            <button className="btn btn--light">
+              <Link to="/book-table">Edit booking</Link>
+            </button>
+
             <button className="btn btn--dark" onClick={showModal}>
               Confirm Booking
             </button>

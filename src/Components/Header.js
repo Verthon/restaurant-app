@@ -1,14 +1,14 @@
 import React from 'react';
-import headerImg from '../images/header-xs.jpg';
+import headerImgXs from '../images/header-xs.jpg';
+import headerImgSm from '../images/header-sm.jpg';
 
 const Header = props => {
   return (
     <header className="site-header">
-      {props.children}
-      <div className="site_header__image">
+      <div className="site-header__image">
         <picture>
-          <source media="(min-width: )" srcSet="" sizes="" />
-          <img src={headerImg} alt="" />
+          <source media="(min-width: 758px)" srcSet={headerImgSm} sizes="" />
+          <img src={headerImgXs} alt="" />
         </picture>
       </div>
       <div className="site-header__content">
@@ -19,14 +19,14 @@ const Header = props => {
           The right ingredients for the right food. Mediterranean Cuisine with
           long tradition.
         </p>
-
-        <button className="btn btn--dark">
-          <a href="/book-table">book a table</a>
-        </button>
-
-        <button className="btn btn--light">
-          <a href="/menu">see the menu</a>
-        </button>
+        <div className="site-header__buttons">
+          <button className="btn btn--dark">
+            <a href="/book-table">book a table</a>
+          </button>
+          <button className="btn btn--light">
+            <a href="/menu">see the menu</a>
+          </button>
+        </div>
       </div>
     </header>
   );

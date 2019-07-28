@@ -1,45 +1,46 @@
 .review-booking {
-  margin: 5rem 0;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: $cavernous;
   max-width: 600px;
   box-shadow: $default-shadow;
 
   &__title {
-    margin: 4rem 0;
+    margin: 1rem 0;
+    text-align: center;
   }
 
   &__title,
   &__title:hover {
-    color: $cavernous;
     text-decoration: none;
   }
 
   a,
   a:hover,
   a:visited {
-    color: $cavernous;
     text-decoration: none;
   }
 
   &__address {
     text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
+    line-height: 1;
+    margin: 0.15rem;
   }
 
   &__client {
-    font-style: italic;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: $gravel-fint;
-    margin: 1.25rem 0;
+    margin: 2.5rem 0;
   }
   &__name {
-    margin-right: 0.25rem;
+    margin: 0 0.25rem 0 0;
     color: $cavernous;
+  }
+
+  &__container{
+    width: 100%;
   }
 
   &__value {
@@ -62,7 +63,7 @@
   }
 
   &__footer {
-    margin-top: 2rem;
+    margin: 2rem 0 0 0;
   }
 
   @include mQ($ipad) {

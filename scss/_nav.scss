@@ -11,6 +11,13 @@
   justify-content: space-between;
   -moz-box-align: center;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 0 1.5rem;
+
+  @include mQ($tablet) {
+    padding: 0 2.5rem;
+  }
+
   &__brand {
     font-size: 1.25rem;
     font-weight: bold;
@@ -40,8 +47,19 @@
     background-color: transparent;
   }
 
-  &__list{
+  &__list {
     display: none;
+    &--active {
+      display: flex;
+      padding: 0;
+      justify-content: space-between;
+      flex: 100%;
+      @include keyframes(fadeIn);
+    }
+  }
+
+  &__link {
+    text-transform: capitalize;
   }
 }
 

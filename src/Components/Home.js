@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Header from './Header';
-import HomeNavbar from './HomeNavbar';
+import Navbar from './Navbar';
 import NavItem from './NavItem';
 import Footer from './Footer';
 import '../App.scss';
@@ -10,6 +10,7 @@ import 'aos/dist/aos.css';
 import aboutImg from '../images/brooke-lark-about.jpg';
 import about1Img from '../images/brooke-lark-about1.jpg';
 import menuImg from '../images/brooke-lark-menu.jpg';
+
 
 class Home extends Component {
   constructor() {
@@ -48,14 +49,12 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Header animation={['fade-up']}>
-          <HomeNavbar name={this.state.hours.name}>
-            <NavItem name={this.state.links[0]} />
-            <NavItem name={this.state.links[1]} />
-            <NavItem name={this.state.links[2]} />
-            <NavItem name={this.state.links[3]} />
-          </HomeNavbar>
-        </Header>
+        <Navbar name={this.state.hours.name}>
+            {this.state.links.map((link, index) => (
+              <NavItem key={index} name={link} hashlink={true}/>
+            ))}
+        </Navbar>
+        <Header animation={['fade-up']}/>
         <article id="About" className="section section__about">
           <div className="row">
             <div
@@ -88,7 +87,7 @@ class Home extends Component {
               <h2 className="section__about__title heading heading--gold">
                 Just the right food
               </h2>
-              <p className="section__description">
+              <p className="text section__description">
                 If you’ve been to one of our restaurants, you’ve seen – and
                 tasted – what keeps our customers coming back for more. Perfect
                 materials and freshly baked food, delicious Baklava,
@@ -114,7 +113,7 @@ class Home extends Component {
             </div>
             <div className="section__col section__col--white section__col__description">
               <h2 className="heading">Discover our menu!</h2>
-              <p className="section__description">
+              <p className="text section__description">
                 For those with pure food indulgence in mind, come next door and
                 sate your desires with our ever changing internationally and
                 seasonally inspired small plates. We love food, lots of
@@ -136,7 +135,7 @@ class Home extends Component {
                 <h2 className="heading testimonials__modal__heading">
                   Guest reviews
                 </h2>
-                <blockquote className="testimonials__modal__quote">
+                <blockquote className="text testimonials__modal__quote">
                   If you've been to one of our restaurants, you've seen - and
                   tasted - what keeps our customers coming back for more.
                   Perfect materials and freshly baked food, delicious Baklavas ,
