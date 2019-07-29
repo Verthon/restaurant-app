@@ -29,6 +29,10 @@
     @include mQ($tablet) {
       padding: 2rem 2.5rem;
     }
+
+    @include mQ($ipad) {
+      width: 60%;
+    }
   }
 
   &__text {

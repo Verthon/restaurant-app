@@ -34,9 +34,9 @@ Simple restaurant app using React.js, so far user can:
 
 ## Work in progress
 
-- [ ] Sending emails to clients(emailjs)
+- [ ] Integrated backend
 - [x] Modal after confirming reservation
 - [ ] Send all data(order) to firebase
 - [ ] Firebase authorization
 - [ ] Jest Unit testing
-- [ ] Refactor CSS BEM classes
+- [x] Refactor CSS BEM classes

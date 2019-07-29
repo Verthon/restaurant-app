@@ -1,17 +1,27 @@
 .section__menu {
-  background-color: $super-silver;
+  background-color: $lighthouse;
+  @include mQ($ipad) {
+    padding-bottom: 6rem;
+  }
 }
 
 .menu {
+  @include flexColumn();
+  align-items: center;
+  &__heading {
+    @include mQ($tablet) {
+      margin: 0 0 3rem 0;
+    }
+  }
   &__title {
     text-align: center;
-    margin: 2rem 0;
+    margin: 2rem 0 2rem 0;
     font-family: $main-font;
     color: $metallic-gold;
     font-weight: 400;
 
     @include mQ($ipad) {
-      margin: 1rem 0;
+      margin: 1rem 0 1rem 0;
     }
   }
   &__list {
@@ -19,6 +29,9 @@
     @include flexColumn();
     align-items: center;
     padding: 0;
+    @include mQ($ipad) {
+      padding: 1rem 1rem 1rem 1rem;
+    }
   }
   &__description {
     line-height: 1.2;
@@ -38,8 +51,12 @@
   &__item {
     margin: 1rem 0;
 
-    @include mQ($mobile){
+    @include mQ($mobile) {
       margin: 1rem;
+    }
+
+    @include mQ($tablet) {
+      width: 90%;
     }
 
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
@@ -104,7 +121,6 @@
     }
 
     &__price {
-      
     }
   }
 }

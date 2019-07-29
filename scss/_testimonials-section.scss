@@ -1,6 +1,11 @@
 .section__testimonials {
-  background: url('../src/images/ingredients-bg.jpg');
-  background-position: 20%;
+  background: url('../src/images/ingredients-bg-xs.jpg');
+  background-repeat: no-repeat;
+  background-position: left;
+  @include mQ($ipadPro){
+    background: url('../src/images/ingredients-bg.jpg');
+    background-position: 20%;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,13 +16,17 @@
 }
 
 .testimonials {
+  margin: auto;
   &__modal {
     padding: 1.5rem 0;
     background: $nero;
     color: $white;
     margin: auto;
+    @include mQ($tablet) {
+      max-width: 70%;
+    }
     @include mQ($ipad) {
-      max-width: 60%;
+      max-width: 80%;
       margin: auto;
     }
     &__heading {
@@ -32,6 +41,9 @@
       font-style: italic;
       margin: 0;
       padding: 1rem 1.5rem;
+      @include mQ($tablet) {
+        padding: 1rem 2.5rem;
+      }
       @include mQ($ipad) {
         padding: 2rem 3rem;
       }

@@ -13,7 +13,7 @@ class Menu extends Component {
       desserts: {},
       salads: {},
       maindishes: {},
-      links: ['menu', 'book-table']
+      links: ['menu', 'book-table'],
     };
   }
 
@@ -36,11 +36,11 @@ class Menu extends Component {
     return (
       <Fragment>
         <Navbar name="Alkinoos Taverna">
-            <NavItem name={this.state.links[0]} />
-            <NavItem name={this.state.links[1]} />
+          <NavItem name={this.state.links[0]} />
+          <NavItem name={this.state.links[1]} />
         </Navbar>
-        <section id="menu" className="section menu">
-          <h1 className="heading heading--center">Menu</h1>
+        <section id="menu" className="section menu container">
+          <h1 className="heading heading--center menu__heading">Menu</h1>
           <div className="row">
             <div className="section__col">
               <article className="menu__container">
@@ -60,10 +60,8 @@ class Menu extends Component {
                 </ul>
               </article>
             </div>
-            <div className="col-lg-6 col-md-12">
-              <h2 className="menu__title">
-                {this.state.desserts.category}
-              </h2>
+            <div className="section__col">
+              <h2 className="menu__title">{this.state.desserts.category}</h2>
               <ul className="menu__list">
                 {this.state.desserts.des1 ? (
                   <MenuItem menu={this.state.desserts.des1} />
@@ -78,11 +76,9 @@ class Menu extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-md-12">
+            <div className="section__col">
               <article className="menu__container">
-                <h2 className="menu__title">
-                  {this.state.salads.category}
-                </h2>
+                <h2 className="menu__title">{this.state.salads.category}</h2>
                 <ul className="menu__list">
                   {this.state.salads.sal1 ? (
                     <MenuItem menu={this.state.salads.sal1} />
@@ -94,7 +90,7 @@ class Menu extends Component {
               </article>
             </div>
 
-            <div className="col-lg-6 col-md-12">
+            <div className="section__col">
               <article className="menu__container">
                 <h2 className="menu__title">
                   {this.state.maindishes.category}

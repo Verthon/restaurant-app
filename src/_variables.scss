@@ -3,6 +3,7 @@ $lynx-white: #f7f7f7;
 $black: #000000;
 $nero: #212121;
 $super-silver: #eeeeee;
+$lighthouse: #f4f4f4;
 $dhusar-grey: #aaaaaa;
 $metallic-gold: #d4af37;
 $cavernous: #525252;
@@ -12,10 +13,11 @@ $gravel-fint: #bbbbbb;
 $default-shadow: 1px 1px 3px $silver-lake;
 
 //Media Queries vars
+$mobile: 350px;
+$nexus: 500px;
 $tablet: 450px;
 $ipad: 768px;
-$nexus: 500px;
-$mobile: 350px;
+$ipadPro: 1024px;
 $medium: 1250px;
 
 $main-font: 'Open Sans';

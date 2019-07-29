@@ -10,7 +10,9 @@ import 'aos/dist/aos.css';
 import aboutImg from '../images/brooke-lark-about.jpg';
 import about1Img from '../images/brooke-lark-about1.jpg';
 import menuImg from '../images/brooke-lark-menu.jpg';
-
+import menuImgXs from '../images/brooke-lark-menu-xs.jpg';
+import aboutImgXs from '../images/brooke-lark-about-xs.jpg';
+import about1ImgXs from '../images/brooke-lark-about1-xs.jpg';
 
 class Home extends Component {
   constructor() {
@@ -50,31 +52,31 @@ class Home extends Component {
     return (
       <Fragment>
         <Navbar name={this.state.hours.name}>
-            {this.state.links.map((link, index) => (
-              <NavItem key={index} name={link} hashlink={true}/>
-            ))}
+          {this.state.links.map((link, index) => (
+            <NavItem key={index} name={link} hashlink={true} />
+          ))}
         </Navbar>
-        <Header animation={['fade-up']}/>
+        <Header animation={['fade-up']} />
         <article id="About" className="section section__about">
-          <div className="row">
+          <div className="row container">
             <div
               className="section__col"
               data-aos="fade-down"
               data-delay="1500"
             >
               <picture>
-                <source />
+                <source media="(min-width: 475px)" srcSet={aboutImg} />
                 <img
                   className="img-fluid"
-                  src={aboutImg}
+                  src={aboutImgXs}
                   alt="example dish from our restaurant"
                 />
               </picture>
               <picture>
-                <source />
+                <source media="(min-width: 475px)" srcSet={about1Img} />
                 <img
                   className="img-fluid"
-                  src={about1Img}
+                  src={about1ImgXs}
                   alt="example dish from our restaurant"
                 />
               </picture>
@@ -103,13 +105,16 @@ class Home extends Component {
           </div>
         </article>
         <div id="Menu" className="section section__menu">
-          <div className="row">
+          <div className="row container">
             <div className="section__col">
-              <img
-                className="img-fluid section__image"
-                src={menuImg}
-                alt="example dish from our restaurant"
-              ></img>
+              <picture>
+                <source media="(min-width: 475px)" srcSet={menuImg} />
+                <img
+                  className="img-fluid section__image"
+                  src={menuImgXs}
+                  alt="example dish from our restaurant"
+                ></img>
+              </picture>
             </div>
             <div className="section__col section__col--white section__col__description">
               <h2 className="heading">Discover our menu!</h2>
@@ -129,7 +134,7 @@ class Home extends Component {
         </div>
 
         <article id="Reviews" className="section section__testimonials">
-          <div className="row">
+          <div className="row container">
             <div className="testimonials">
               <div className="testimonials__modal">
                 <h2 className="heading testimonials__modal__heading">

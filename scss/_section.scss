@@ -1,48 +1,61 @@
-.section{
+.section {
   padding: 3rem 1.5rem 0 1.5rem;
 
   @include mQ($tablet) {
     padding: 3rem 2.5rem 0 2.5rem;
   }
 
-  &__fluid{
+  &__fluid {
     padding: 0 5rem;
   }
 
-  &__description{
+  &__description {
     text-align: justify;
     line-height: 1.5;
     margin: 2rem 0;
     font-size: 0.9rem;
 
-    @include mQ($mobile){
+    @include mQ($mobile) {
       font-size: 1rem;
     }
   }
 
-  &__image{
+  &__image {
     margin: 0 auto;
     display: block;
   }
 
-  &__col{
+  &__col {
     flex: 100%;
 
-    &--white{
+    @include mQ($ipad) {
+      flex: 1;
+    }
+
+    &--white {
       background-color: $white;
     }
 
-    &__description{
+    &__description {
       margin: 2rem 0 0 0;
       padding: 2rem 1rem 2rem 1rem;
 
       @include mQ($tablet) {
         padding: 2rem 2rem 2rem 2rem;
       }
+
+      @include mQ($ipad) {
+        margin: 0;
+      }
+
+      @include mQ($ipadPro) {
+        @include flexColumn();
+        justify-content: center;
+      }
     }
 
     &--flexible {
-      flex: 1
+      flex: 1;
     }
   }
 }

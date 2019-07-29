@@ -17,12 +17,14 @@
       justify-content: center;
       align-items: flex-start;
       order: 1;
+      flex: 50%;
     }
   }
 
   &__image {
     @include mQ($ipad) {
       order: 2;
+      flex: 50%;
     }
   }
 

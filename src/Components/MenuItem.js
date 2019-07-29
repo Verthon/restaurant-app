@@ -13,7 +13,7 @@ const MenuItem = props => {
           <h3 className="menu__item__name">{name}</h3>{' '}
           <span className="menu__item__price">{formatPrice(price)}</span>
         </header>
-        <p className="menu__description">{desc}</p>
+        <p className="text menu__description">{desc}</p>
       </li>
     </Fragment>
   );

@@ -39,8 +39,14 @@
     color: $cavernous;
   }
 
-  &__container{
+  &__container {
     width: 100%;
+    @include mQ($tablet) {
+      width: 75%;
+    }
+    @include mQ($ipad) {
+      width: 50%;
+    }
   }
 
   &__value {

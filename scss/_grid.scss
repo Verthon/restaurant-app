@@ -3,6 +3,13 @@
   flex-wrap: wrap;
 }
 
+.container {
+  @include mQ($ipadPro){
+    max-width: 800px;
+    margin: auto;
+  }
+}
+
 .col{
   @include flexColumn;
   flex: 1;
@@ -17,3 +24,4 @@
     }
   }
 }
+
