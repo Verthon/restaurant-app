@@ -46,6 +46,10 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
+
+    @include mQ($desktopXs) {
+      font-size: 1.5rem;
+    }
   }
 
   &__item {

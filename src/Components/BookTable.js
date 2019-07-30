@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 import Navbar from '../Components/Navbar';
 import NavItem from '../Components/NavItem';
+import bookTableImg from '../images/brooke-lark-book-table.jpg';
 
 class BookTable extends React.Component {
   constructor() {
@@ -160,6 +161,12 @@ class BookTable extends React.Component {
               <p>{hours.weekend.name}</p>
               <p>{hours.weekend.time}</p>
             </article>
+            <div className="section section__col">
+              <picture>
+                <img src={bookTableImg} alt="" className="table-booking__image"/>
+              </picture>
+              
+            </div>
           </div>
           <footer className="table-booking__footer"></footer>
         </div>

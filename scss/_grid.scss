@@ -1,27 +1,32 @@
-.row{
+.row {
   display: flex;
   flex-wrap: wrap;
 }
 
 .container {
-  @include mQ($ipadPro){
+  @include mQ($ipadPro) {
     max-width: 800px;
     margin: auto;
   }
-}
-
-.col{
-  @include flexColumn;
-  flex: 1;
-  
-  &--center{
-    @include flexColumn;
-    align-items: center;
-    justify-items: center;
-    @include mQ($mobile){
-      flex-basis: 100%;
-      @include flexColumn
-    }
+  @include mQ($desktopXs) {
+    max-width: 1000px;
+  }
+  @include mQ($desktopSm) {
+    max-width: 1200px;
   }
 }
 
+.col {
+  @include flexColumn;
+  flex: 1;
+
+  &--center {
+    @include flexColumn;
+    align-items: center;
+    justify-items: center;
+    @include mQ($mobile) {
+      flex-basis: 100%;
+      @include flexColumn;
+    }
+  }
+}

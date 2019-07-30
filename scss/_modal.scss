@@ -33,6 +33,9 @@
     @include mQ($ipad) {
       width: 60%;
     }
+    @include mQ($desktopXs){
+      width: auto;
+    }
   }
 
   &__text {
