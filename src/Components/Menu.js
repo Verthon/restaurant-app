@@ -36,8 +36,9 @@ class Menu extends Component {
     return (
       <Fragment>
         <Navbar name="Alkinoos Taverna">
-          <NavItem name={this.state.links[0]} />
-          <NavItem name={this.state.links[1]} />
+          {this.state.links.map((link, index) => (
+            <NavItem key={index} name={link} hashlink={false}/>
+          ))}
         </Navbar>
         <section id="menu" className="section menu container">
           <h1 className="heading heading--center menu__heading">Menu</h1>

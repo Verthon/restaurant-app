@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { formatDate } from '../helpers';
 import 'react-datepicker/dist/react-datepicker.css';
 import contactInfo from '../contactInfo';
 import { sendBookingInfo } from '../actions/index';
@@ -73,7 +71,7 @@ class BookTable extends React.Component {
         <div className="table-booking">
           <Navbar>
             {this.state.links.map((link, index) => (
-              <NavItem key={index} name={link} hashlink={true} />
+              <NavItem key={index} name={link} hashlink={false} />
             ))}
           </Navbar>
           <div className="row container">

@@ -5,7 +5,7 @@ const footer = props => {
   const { street, number, code, city, province, country } = props.location;
   return (
     <footer id="Contact" className="site-footer section">
-      <div className="row">
+      <div className="row container">
         <div className="site-footer__column">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">
