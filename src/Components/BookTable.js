@@ -159,7 +159,7 @@ class BookTable extends React.Component {
               <p>{hours.weekend.name}</p>
               <p>{hours.weekend.time}</p>
             </article>
-            <div className="section section__col">
+            <div className="section section__col table-booking__image">
               <picture>
                 <img src={bookTableImg} alt="" className="table-booking__image"/>
               </picture>

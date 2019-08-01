@@ -30,4 +30,10 @@
   &__reminder {
     margin: 2rem 0;
   }
+  &__image {
+    display: none;
+    @include mQ($desktopXs) {
+      display: block;
+    }
+  }
 }

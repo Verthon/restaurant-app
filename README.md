@@ -1,42 +1,44 @@
-# Restaurant App
+![Alkinoos Taverna desktop homescreen](src/images/screenshot.jpg)
+
+# Alkinoos Taverna
 [Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
-Simple restaurant app using React.js, so far user can:
-- add email, name, numer of guest and data to booking,
-- check menu and booking components on different urls (menu, booking)
+Fully responsive, simple restaurant app using React.js, where user can easily create a booking.
+
+## Table of contents
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Used packages and tools](#used-packages-and-tools)
+* [Work in progress](#work-in-progress)
 
 
-## Technologies used
+## Technologies
 
-- React.js
-- React Router 4
-- Sass
-- ES6
-- Bootstrap 4
+- React.js 16.5.2
+- Redux
+- Scss
+- JavaScript ES6
 - Firebase Firestore
-- Hosted on Netlify
+- Netlify
 
-## Installation
+
+## Setup
 
 ```javascript
   git clone https://github.com/Verthon/restaurant-app.git
   npm install
   npm start
-
 ```
 
-## Components used
+## Used packages and tools
 
 - Datepicker for React [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
 - Awesome tool for managing color variables [ColorNamer](https://colornamer.netlify.com/)
-- Send an email from JavaScript [emailjs](http://www.emailjs.com/)
-
 
 
 ## Work in progress
 
-- [ ] Integrated backend
+- [ ] Add advanced backend
 - [x] Modal after confirming reservation
 - [ ] Send all data(order) to firebase
-- [ ] Firebase authorization
 - [ ] Jest Unit testing
 - [x] Refactor CSS BEM classes
