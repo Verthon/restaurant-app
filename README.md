@@ -19,6 +19,7 @@ Fully responsive, simple restaurant app using React.js, where user can easily cr
 - JavaScript ES6
 - Firebase Firestore
 - Netlify
+- Jest - [Delightful JavaScript Testing Framework](https://jestjs.io/)
 - Photos from [Brooke Lark](http://brookelark.com/) on [Unsplash](https://unsplash.com/@brookelark)
 
 

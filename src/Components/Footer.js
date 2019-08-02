@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const footer = props => {
+const Footer = props => {
   const { week, weekend } = props.hours;
   const { street, number, code, city, province, country } = props.location;
   return (
@@ -44,4 +45,8 @@ const footer = props => {
   );
 };
 
-export default footer;
+Footer.propTypes = {
+  name: PropTypes.string,
+};
+
+export default Footer;
