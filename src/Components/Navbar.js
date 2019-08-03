@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Navbar = props => {
+const Navbar = ({ children }) => {
   const navRef = React.createRef();
   const handleNavbarToggle = () => {
     navRef.current.classList.toggle('nav__list--active');
-  }
+  };
   return (
     <nav className="nav container" id="mainNav">
       <NavLink className="nav__link" to="/">
@@ -22,24 +22,25 @@ const Navbar = props => {
         aria-label="Toggle navigation"
         onClick={handleNavbarToggle}
       >
-        <span className="btn__line"></span>
-        <span className="btn__line"></span>
-        <span className="btn__line"></span>
+        <span className="btn__line" />
+        <span className="btn__line" />
+        <span className="btn__line" />
       </button>
       <ul className="nav__list" ref={navRef}>
         <li className="nav__item">
-          <NavLink className="nav__link" to="/">
-            Home
-          </NavLink>
+          <NavLink className="nav__link" to="/">Home</NavLink>
         </li>
-        {props.children}
+        {children}
       </ul>
     </nav>
   );
 };
 
 Navbar.propTypes = {
-  name: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Navbar;

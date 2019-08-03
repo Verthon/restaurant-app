@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import AOS from 'aos';
 import Header from './Header';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
 import Footer from './Footer';
 import '../App.scss';
 import db from '../base';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
 import aboutImg from '../images/brooke-lark-about.jpg';
 import about1Img from '../images/brooke-lark-about1.jpg';
@@ -25,34 +25,29 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    AOS.init({
-      duration: 2000,
-    });
+    AOS.init({ duration: 2000 });
     db.collection('location')
       .get()
-      .then(snapshot => {
+      .then((snapshot) => {
         snapshot.docs.forEach(doc => {
-          this.setState({
-            location: { ...doc.data() },
-          });
+          this.setState({ location: { ...doc.data() } });
         });
       });
     db.collection('hours')
       .get()
-      .then(snapshot => {
-        snapshot.docs.forEach(doc => {
-          this.setState({
-            hours: { ...doc.data() },
-          });
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.setState({ hours: { ...doc.data() } });
         });
       });
   }
 
   render() {
+    const { hours, location, links } = this.state;
     return (
       <Fragment>
-        <Navbar name={this.state.hours.name}>
-          {this.state.links.map((link, index) => (
+        <Navbar name={hours.name}>
+          {links.map((link, index) => (
             <NavItem key={index} name={link} hashlink={true} />
           ))}
         </Navbar>
@@ -155,9 +150,7 @@ class Home extends Component {
           </div>
         </article>
 
-        {this.state.hours ? (
-          <Footer hours={this.state.hours} location={this.state.location} />
-        ) : null}
+        {hours ? <Footer hours={hours} location={location} /> : null}
       </Fragment>
     );
   }

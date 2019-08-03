@@ -3,7 +3,6 @@ import MenuItem from './MenuItem';
 import Navbar from './Navbar';
 import NavItem from './NavItem';
 import db from '../base';
-//TODO restructure menu divs with component
 
 class Menu extends Component {
   constructor() {
@@ -20,8 +19,8 @@ class Menu extends Component {
   componentDidMount() {
     db.collection('menu')
       .get()
-      .then(snapshot => {
-        snapshot.docs.forEach(doc => {
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
           this.setState({
             appetizers: doc.data().Appetizers,
             desserts: doc.data().Desserts,
@@ -33,11 +32,12 @@ class Menu extends Component {
   }
 
   render() {
+    const { appetizers, desserts, salads, maindishes, links } = this.state;
     return (
       <Fragment>
         <Navbar name="Alkinoos Taverna">
-          {this.state.links.map((link, index) => (
-            <NavItem key={index} name={link} hashlink={false}/>
+          {links.map((link, id) => (
+            <NavItem key={id} name={link} hashlink={false} />
           ))}
         </Navbar>
         <section id="menu" className="section menu container">
@@ -45,69 +45,49 @@ class Menu extends Component {
           <div className="row">
             <div className="section__col">
               <article className="menu__container">
-                <h2 className="menu__title">
-                  {this.state.appetizers.category}
-                </h2>
+                <h2 className="menu__title">{appetizers.category}</h2>
                 <ul className="menu__list">
-                  {this.state.appetizers.app1 ? (
-                    <MenuItem menu={this.state.appetizers.app1} />
-                  ) : null}
-                  {this.state.appetizers.app2 ? (
-                    <MenuItem menu={this.state.appetizers.app2} />
-                  ) : null}
-                  {this.state.appetizers.app3 ? (
-                    <MenuItem menu={this.state.appetizers.app3} />
-                  ) : null}
+                  {appetizers.app1 ? <MenuItem menu={appetizers.app1} /> : null}
+                  {appetizers.app2 ? <MenuItem menu={appetizers.app2} /> : null}
+                  {appetizers.app3 ? <MenuItem menu={appetizers.app3} /> : null}
                 </ul>
               </article>
             </div>
             <div className="section__col">
-              <h2 className="menu__title">{this.state.desserts.category}</h2>
+              <h2 className="menu__title">{desserts.category}</h2>
               <ul className="menu__list">
-                {this.state.desserts.des1 ? (
-                  <MenuItem menu={this.state.desserts.des1} />
-                ) : null}
-                {this.state.desserts.des2 ? (
-                  <MenuItem menu={this.state.desserts.des2} />
-                ) : null}
-                {this.state.desserts.des3 ? (
-                  <MenuItem menu={this.state.desserts.des3} />
-                ) : null}
+                {desserts.des1 ? <MenuItem menu={desserts.des1} /> : null}
+                {desserts.des2 ? <MenuItem menu={desserts.des2} /> : null}
+                {desserts.des3 ? <MenuItem menu={desserts.des3} /> : null}
               </ul>
             </div>
           </div>
           <div className="row">
             <div className="section__col">
               <article className="menu__container">
-                <h2 className="menu__title">{this.state.salads.category}</h2>
+                <h2 className="menu__title">{salads.category}</h2>
                 <ul className="menu__list">
-                  {this.state.salads.sal1 ? (
-                    <MenuItem menu={this.state.salads.sal1} />
-                  ) : null}
-                  {this.state.salads.sal2 ? (
-                    <MenuItem menu={this.state.salads.sal2} />
-                  ) : null}
+                  {salads.sal1 ? <MenuItem menu={salads.sal1} /> : null}
+                  {salads.sal2 ? <MenuItem menu={salads.sal2} /> : null}
                 </ul>
               </article>
             </div>
 
             <div className="section__col">
               <article className="menu__container">
-                <h2 className="menu__title">
-                  {this.state.maindishes.category}
-                </h2>
+                <h2 className="menu__title">{maindishes.category}</h2>
                 <ul className="menu__list">
-                  {this.state.maindishes.main1 ? (
-                    <MenuItem menu={this.state.maindishes.main1} />
+                  {maindishes.main1 ? (
+                    <MenuItem menu={maindishes.main1} />
                   ) : null}
-                  {this.state.maindishes.main2 ? (
-                    <MenuItem menu={this.state.maindishes.main2} />
+                  {maindishes.main2 ? (
+                    <MenuItem menu={maindishes.main2} />
                   ) : null}
-                  {this.state.maindishes.main3 ? (
-                    <MenuItem menu={this.state.maindishes.main3} />
+                  {maindishes.main3 ? (
+                    <MenuItem menu={maindishes.main3} />
                   ) : null}
-                  {this.state.maindishes.main4 ? (
-                    <MenuItem menu={this.state.maindishes.main4} />
+                  {maindishes.main4 ? (
+                    <MenuItem menu={maindishes.main4} />
                   ) : null}
                 </ul>
               </article>
