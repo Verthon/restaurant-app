@@ -2,7 +2,7 @@
   background: url('../src/images/ingredients-bg-xs.jpg');
   background-repeat: no-repeat;
   background-position: left;
-  @include mQ($ipadPro){
+  @include mQ($ipadPro) {
     background: url('../src/images/ingredients-bg.jpg');
     background-position: 20%;
   }

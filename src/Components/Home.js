@@ -29,7 +29,7 @@ class Home extends Component {
     db.collection('location')
       .get()
       .then((snapshot) => {
-        snapshot.docs.forEach(doc => {
+        snapshot.docs.forEach((doc) => {
           this.setState({ location: { ...doc.data() } });
         });
       });
@@ -48,7 +48,7 @@ class Home extends Component {
       <Fragment>
         <Navbar name={hours.name}>
           {links.map((link, index) => (
-            <NavItem key={index} name={link} hashlink={true} />
+            <NavItem key={index} name={link} hashlink />
           ))}
         </Navbar>
         <Header animation={['fade-up']} />
@@ -81,11 +81,8 @@ class Home extends Component {
               data-aos="fade-up"
               data-delay="700"
             >
-              <h2 className="section__about__title heading heading--gold">
-                Just the right food
-              </h2>
-              <p className="text section__description">
-                If you’ve been to one of our restaurants, you’ve seen – and
+              <h2 className="section__about__title heading heading--gold">Just the right food</h2>
+              <p className="text section__description">If you’ve been to one of our restaurants, you’ve seen – and
                 tasted – what keeps our customers coming back for more. Perfect
                 materials and freshly baked food, delicious Baklava,
                 Koulourakia, and gourmet coffees make us hard to resist! Stop in
@@ -108,7 +105,7 @@ class Home extends Component {
                   className="img-fluid section__image"
                   src={menuImgXs}
                   alt="example dish from our restaurant"
-                ></img>
+                />
               </picture>
             </div>
             <div className="section__col section__col--white section__col__description">
@@ -120,9 +117,7 @@ class Home extends Component {
                 different food, just like you.{' '}
               </p>
               <div className="col-md-12 text-center">
-                <button className="btn btn--dark" data-aos="flip-up">
-                  <a href="/menu">see the menu</a>
-                </button>
+                <button className="btn btn--dark" data-aos="flip-up" type="button"><a href="/menu">see the menu</a></button>
               </div>
             </div>
           </div>
@@ -132,11 +127,9 @@ class Home extends Component {
           <div className="row container">
             <div className="testimonials">
               <div className="testimonials__modal">
-                <h2 className="heading testimonials__modal__heading">
-                  Guest reviews
-                </h2>
+                <h2 className="heading testimonials__modal__heading">Guest reviews</h2>
                 <blockquote className="text testimonials__modal__quote">
-                  If you've been to one of our restaurants, you've seen - and
+                  If you`ve been to one of our restaurants, you`ve seen - and
                   tasted - what keeps our customers coming back for more.
                   Perfect materials and freshly baked food, delicious Baklavas ,
                   Koulourakia, and gourmet coffees make us hard to resist! Stop

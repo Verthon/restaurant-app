@@ -8,9 +8,14 @@ const Modal = ({ show }) => {
     <div className={`modal-book ${activeClassName}`}>
       <article className="modal-book__content">
         <h2 className="heading">Thank you</h2>
-        <p className="text modal-book__text">Thank you for booking reservation. Detailed information will be send to your email address.</p>
+        <p className="text modal-book__text">
+          Thank you for booking reservation. Detailed information will be send
+          to your email address.
+        </p>
         <Link to="/">
-          <button className="btn btn--dark" type="button">Continue</button>
+          <button className="btn btn--dark" type="button">
+            Continue
+          </button>
         </Link>
       </article>
     </div>

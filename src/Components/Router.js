@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Home from './Home';
 import Menu from './Menu';
 import BookTable from './BookTable';
 import NotFound from './NotFound';
 import ReviewBooking from './ReviewBooking';
 import { store } from '../store/store';
-import { Provider } from 'react-redux';
+
 
 const Router = () => (
   <Provider store={store}>
