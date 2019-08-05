@@ -37,7 +37,7 @@ class Menu extends Component {
       <Fragment>
         <Navbar name="Alkinoos Taverna">
           {links.map((link, id) => (
-            <NavItem key={id} name={link} hashlink />
+            <NavItem key={id} name={link} hashlink={false} />
           ))}
         </Navbar>
         <section id="menu" className="section menu container">

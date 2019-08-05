@@ -21,6 +21,7 @@
     "arrow-body-style": ["error", "as-needed"],
     "react/jsx-one-expression-per-line": "off",
     "import/prefer-default-export": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "react/no-array-index-key": "off",
   }
 }

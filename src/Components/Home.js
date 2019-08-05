@@ -81,8 +81,11 @@ class Home extends Component {
               data-aos="fade-up"
               data-delay="700"
             >
-              <h2 className="section__about__title heading heading--gold">Just the right food</h2>
-              <p className="text section__description">If you’ve been to one of our restaurants, you’ve seen – and
+              <h2 className="section__about__title heading heading--gold">
+                Just the right food
+              </h2>
+              <p className="text section__description">
+                If you’ve been to one of our restaurants, you’ve seen – and
                 tasted – what keeps our customers coming back for more. Perfect
                 materials and freshly baked food, delicious Baklava,
                 Koulourakia, and gourmet coffees make us hard to resist! Stop in
@@ -117,7 +120,9 @@ class Home extends Component {
                 different food, just like you.{' '}
               </p>
               <div className="col-md-12 text-center">
-                <button className="btn btn--dark" data-aos="flip-up" type="button"><a href="/menu">see the menu</a></button>
+                <a href="/menu" className="btn btn--dark" data-aos="flip-up">
+                  see the menu
+                </a>
               </div>
             </div>
           </div>
@@ -127,7 +132,9 @@ class Home extends Component {
           <div className="row container">
             <div className="testimonials">
               <div className="testimonials__modal">
-                <h2 className="heading testimonials__modal__heading">Guest reviews</h2>
+                <h2 className="heading testimonials__modal__heading">
+                  Guest reviews
+                </h2>
                 <blockquote className="text testimonials__modal__quote">
                   If you`ve been to one of our restaurants, you`ve seen - and
                   tasted - what keeps our customers coming back for more.

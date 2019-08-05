@@ -1,15 +1,31 @@
+/* eslint-disable no-unused-labels */
+/* eslint-disable no-labels */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Form } from 'formik';
+import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import contactInfo from '../contactInfo';
 import { sendBookingInfo } from '../actions/index';
-import { connect } from 'react-redux';
-import { Formik, Field, Form } from 'formik';
-import Navbar from '../Components/Navbar';
-import NavItem from '../Components/NavItem';
+import Navbar from './Navbar';
+import NavItem from './NavItem';
 import bookTableImg from '../images/brooke-lark-book-table.jpg';
 
 class BookTable extends React.Component {
+  static propTypes = {
+    sendData: PropTypes.func,
+    history: PropTypes.shape({ push: PropTypes.func }),
+  };
+
+  static defaultProps = {
+    sendData: sendBookingInfo,
+    history: {},
+  };
+
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,38 +47,39 @@ class BookTable extends React.Component {
   }
 
   handleDate(e) {
+    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.date = e;
-    this.setState({ booking });
+    setState({ booking });
   }
 
   handleGuests(e) {
+    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.people = e.target.value;
-    this.setState({ booking });
+    setState({ booking });
   }
 
   handleName(e) {
+    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.name = e.target.value;
-    this.setState({ booking });
+    setState({ booking });
   }
 
   handleEmail(e) {
+    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.email = e.target.value;
-    this.setState({ booking });
+    setState({ booking });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.history.push({
-      pathname: '/review-booking',
-    });
+    this.props.history.push({ pathname: '/review-booking' });
   }
 
   render() {
-    // Destructing contact info object
     const { booking, min, max } = this.state;
     const { location, hours } = contactInfo.info;
 
@@ -77,59 +94,61 @@ class BookTable extends React.Component {
           <div className="row container">
             <div className="section section__col">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
-              <form onSubmit={this.handleSubmit} className="form-group">
+              <Form onSubmit={this.handleSubmit} className="form-group">
                 <label className="label" htmlFor="name">
                   Name
+                  <input
+                    className="table-booking__input"
+                    type="text"
+                    required
+                    name="name"
+                    onChange={this.handleName}
+                    placeholder="Name"
+                  />
                 </label>
-                <input
-                  className="table-booking__input"
-                  type="text"
-                  required
-                  name="name"
-                  onChange={this.handleName}
-                  placeholder="Name"
-                />
                 <label htmlFor="email" className="label">
                   Email
+                  <input
+                    className="table-booking__input"
+                    type="email"
+                    name="email"
+                    required
+                    onChange={this.handleEmail}
+                    placeholder="email"
+                  />
                 </label>
-                <input
-                  className="table-booking__input"
-                  type="email"
-                  name="email"
-                  required
-                  onChange={this.handleEmail}
-                  placeholder="email"
-                />
-                <label className="label" htmlFor="Datepicker">
+                <label htmlFor="Datepicker" className="label">
                   Please add date
+                  <DatePicker
+                    name="Datepicker"
+                    className="table-booking__input"
+                    selected={booking.date}
+                    onChange={this.handleDate}
+                    showTimeSelect
+                    timeFormat="HH"
+                    timeIntervals={60}
+                    minTime={min.setHours(11)}
+                    maxTime={max.setHours(22)}
+                    dateFormat="MMMM dd, yyyy h aa"
+                    timeCaption="Time"
+                    placeholderText="Click and choose the date"
+                  />
                 </label>
-                <DatePicker
-                  name="Datepicker"
-                  className="table-booking__input"
-                  selected={booking.date}
-                  onChange={this.handleDate}
-                  showTimeSelect
-                  timeFormat="HH"
-                  timeIntervals={60}
-                  minTime={min.setHours(11)}
-                  maxTime={max.setHours(22)}
-                  dateFormat="MMMM dd, yyyy h aa"
-                  timeCaption="Time"
-                  placeholderText="Click and choose the date"
-                />
+
                 <label className="label" htmlFor="people">
                   Number of guests
+                  <input
+                    className="table-booking__input"
+                    name="people"
+                    type="number"
+                    required
+                    placeholder="Number of guests"
+                    min="1"
+                    max="8"
+                    onChange={this.handleGuests}
+                  />
                 </label>
-                <input
-                  className="table-booking__input"
-                  name="people"
-                  type="number"
-                  required
-                  placeholder="Number of guests"
-                  min="1"
-                  max="8"
-                  onChange={this.handleGuests}
-                />
+
                 <p className="text table-booking__reminder">
                   Table is kept for 15 minutes after reservation time. We
                   appreciate you being on time.
@@ -141,7 +160,7 @@ class BookTable extends React.Component {
                 >
                   Next step
                 </button>
-              </form>
+              </Form>
             </div>
             <article className="section section__col">
               <h2 className="table-booking__subtitle">Located in London</h2>
@@ -161,25 +180,25 @@ class BookTable extends React.Component {
             </article>
             <div className="section section__col table-booking__image">
               <picture>
-                <img src={bookTableImg} alt="" className="table-booking__image"/>
+                <img
+                  src={bookTableImg}
+                  alt=""
+                  className="table-booking__image"
+                />
               </picture>
-              
             </div>
           </div>
-          <footer className="table-booking__footer"></footer>
+          <footer className="table-booking__footer" />
         </div>
       </Fragment>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    sendData: payload => dispatch(sendBookingInfo(payload)),
-  };
-};
+// eslint-disable-next-line max-len
+const mapDispatchToProps = dispatch => ({ sendData: payload => dispatch(sendBookingInfo(payload)) });
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(BookTable);

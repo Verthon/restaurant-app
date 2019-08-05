@@ -43,7 +43,7 @@ Footer.propTypes = {
     province: PropTypes.string,
     country: PropTypes.string,
   }),
-  hours: PropTypes({
+  hours: PropTypes.shape({
     week: PropTypes.shape({
       name: PropTypes.string,
       time: PropTypes.string,
@@ -64,7 +64,7 @@ Footer.defaultProps = {
     province: 'Ontario',
     country: 'Canada',
   }),
-  hours: PropTypes({
+  hours: PropTypes.shape({
     week: PropTypes.shape({
       name: 'Monday - Friday',
       time: '12:00am - 10:00pm',

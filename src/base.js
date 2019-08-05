@@ -8,7 +8,7 @@ const firebaseApp = firebase.initializeApp({
   databaseURL: 'https://restaurant-app-d4b51.firebaseio.com',
 });
 
-const settings = { timestampsInSnapshots: true };
+const settings = { };
 const db = firebase.firestore(firebaseApp);
 db.settings(settings);
 

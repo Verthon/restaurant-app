@@ -63,6 +63,10 @@
       width: 90%;
     }
 
+    @include mQ($desktopXs) {
+      width: 80%;
+    }
+
     -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 3s; /* Firefox < 16 */
     -ms-animation: fadein 3s; /* Internet Explorer */

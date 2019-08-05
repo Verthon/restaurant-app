@@ -24,7 +24,7 @@ NavItem.propTypes = {
 
 NavItem.defaultProps = {
   name: 'Home',
-  hashlink: false,
+  hashlink: true,
 };
 
 export default NavItem;

@@ -21,13 +21,15 @@ export const formatDate = (date) => {
 export const splitDate = (date) => {
   let formatedDate = '';
   const temp = date.split(',');
-  formatedDate = temp[1];
+  const [fullDate] = temp;
+  formatedDate = fullDate;
   return formatedDate;
 };
 
 export const splitTime = (date) => {
   let formatedTime = '';
   const temp = date.split(',');
-  formatedTime = temp[3];
+  const [time] = temp;
+  formatedTime = time;
   return formatedTime;
 };
