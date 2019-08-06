@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 export const formatPrice = (cents) => {
   const options = {
     style: 'currency',
@@ -21,15 +22,13 @@ export const formatDate = (date) => {
 export const splitDate = (date) => {
   let formatedDate = '';
   const temp = date.split(',');
-  const [fullDate] = temp;
-  formatedDate = fullDate;
+  formatedDate = temp[1];
   return formatedDate;
 };
 
 export const splitTime = (date) => {
   let formatedTime = '';
   const temp = date.split(',');
-  const [time] = temp;
-  formatedTime = time;
+  formatedTime = temp[3];
   return formatedTime;
 };

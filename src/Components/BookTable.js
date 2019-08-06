@@ -1,3 +1,4 @@
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-unused-labels */
 /* eslint-disable no-labels */
 /* eslint-disable no-restricted-syntax */
@@ -5,7 +6,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Form } from 'formik';
+import { Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -47,31 +48,27 @@ class BookTable extends React.Component {
   }
 
   handleDate(e) {
-    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.date = e;
-    setState({ booking });
+    this.setState({ booking });
   }
 
   handleGuests(e) {
-    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.people = e.target.value;
-    setState({ booking });
+    this.setState({ booking });
   }
 
   handleName(e) {
-    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.name = e.target.value;
-    setState({ booking });
+    this.setState({ booking });
   }
 
   handleEmail(e) {
-    const { setState } = this;
     const booking = { ...this.state.booking };
     booking.email = e.target.value;
-    setState({ booking });
+    this.setState({ booking });
   }
 
   handleSubmit(e) {
@@ -94,9 +91,11 @@ class BookTable extends React.Component {
           <div className="row container">
             <div className="section section__col">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
-              <Form onSubmit={this.handleSubmit} className="form-group">
-                <label className="label" htmlFor="name">
-                  Name
+              <Formik>
+                <Form onSubmit={this.handleSubmit} className="form-group">
+                  <label className="label" htmlFor="name">
+                    Name
+                  </label>
                   <input
                     className="table-booking__input"
                     type="text"
@@ -105,9 +104,9 @@ class BookTable extends React.Component {
                     onChange={this.handleName}
                     placeholder="Name"
                   />
-                </label>
-                <label htmlFor="email" className="label">
-                  Email
+                  <label htmlFor="email" className="label">
+                    Email
+                  </label>
                   <input
                     className="table-booking__input"
                     type="email"
@@ -116,9 +115,9 @@ class BookTable extends React.Component {
                     onChange={this.handleEmail}
                     placeholder="email"
                   />
-                </label>
-                <label htmlFor="Datepicker" className="label">
-                  Please add date
+                  <label htmlFor="Datepicker" className="label">
+                    Please add date
+                  </label>
                   <DatePicker
                     name="Datepicker"
                     className="table-booking__input"
@@ -133,10 +132,9 @@ class BookTable extends React.Component {
                     timeCaption="Time"
                     placeholderText="Click and choose the date"
                   />
-                </label>
-
-                <label className="label" htmlFor="people">
-                  Number of guests
+                  <label className="label" htmlFor="people">
+                    Number of guests
+                  </label>
                   <input
                     className="table-booking__input"
                     name="people"
@@ -147,20 +145,19 @@ class BookTable extends React.Component {
                     max="8"
                     onChange={this.handleGuests}
                   />
-                </label>
-
-                <p className="text table-booking__reminder">
-                  Table is kept for 15 minutes after reservation time. We
-                  appreciate you being on time.
-                </p>
-                <button
-                  className="btn btn--dark"
-                  type="submit"
-                  onClick={() => this.props.sendData(booking)}
-                >
-                  Next step
-                </button>
-              </Form>
+                  <p className="text table-booking__reminder">
+                    Table is kept for 15 minutes after reservation time. We
+                    appreciate you being on time.
+                  </p>
+                  <button
+                    className="btn btn--dark"
+                    type="submit"
+                    onClick={() => this.props.sendData(booking)}
+                  >
+                    Next step
+                  </button>
+                </Form>
+              </Formik>
             </div>
             <article className="section section__col">
               <h2 className="table-booking__subtitle">Located in London</h2>
@@ -173,10 +170,12 @@ class BookTable extends React.Component {
               <p>{location.phone}</p>
 
               <h2 className="table-booking__subtitle">Hours of operation</h2>
-              <p>{hours.week.name}</p>
-              <p>{hours.week.time}</p>
-              <p>{hours.weekend.name}</p>
-              <p>{hours.weekend.time}</p>
+              <p>
+                {hours.week.name} {hours.week.time}
+              </p>
+              <p>
+                {hours.weekend.name} {hours.weekend.time}
+              </p>
             </article>
             <div className="section section__col table-booking__image">
               <picture>

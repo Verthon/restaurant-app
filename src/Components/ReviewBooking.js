@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
@@ -10,13 +11,13 @@ import about from '../images/brooke-lark-about.jpg';
 class ReviewBooking extends Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+    this.state = { show: false, booking: {} };
   }
 
   render() {
     console.log(this.props);
     const { street, number, code, city, province } = contactInfo.info.location;
-    const { name, people, date } = this.props.booking;
+    const { name, people, date } = this.props;
     const { show } = this.state;
 
     const showModal = () => {
@@ -73,18 +74,19 @@ class ReviewBooking extends Component {
   }
 }
 
-const mapStateToProps = ({ booking }) => booking;
+const mapStateToProps = (state) => {
+  const { booking } = state;
+  return booking;
+};
 
 ReviewBooking.propTypes = {
   location: propTypes.shape({
     pathname: propTypes.string,
     search: propTypes.string,
   }),
-  booking: propTypes.shape({
-    name: propTypes.string,
-    people: propTypes.string,
-    date: propTypes.string,
-  }),
+  name: propTypes.string,
+  people: propTypes.string,
+  date: propTypes.string,
 };
 
 ReviewBooking.defaultProps = {
@@ -92,11 +94,9 @@ ReviewBooking.defaultProps = {
     pathname: propTypes.string,
     search: propTypes.string,
   }),
-  booking: propTypes.shape({
-    name: propTypes.string,
-    people: propTypes.string,
-    date: propTypes.string,
-  }),
+  name: propTypes.string,
+  people: propTypes.string,
+  date: propTypes.string,
 };
 
 export default connect(mapStateToProps)(ReviewBooking);
