@@ -10,6 +10,6 @@ describe('<Modal/>', () => {
   it('Should change modal-book class based on show prop', () => {
     const wrapper = shallow(<Modal show={false} />);
     expect(wrapper.find('.modal-book').hasClass('modal-book--active')).toEqual(false);
-    expect(wrapper.find('.modal-book').hasClass('modal-book-disabled')).toEqual(true);
+    expect(wrapper.find('.modal-book').hasClass('modal-book--disabled')).toEqual(true);
   });
 });
