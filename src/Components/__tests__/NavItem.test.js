@@ -20,7 +20,7 @@ describe('<NavItem/>', () => {
     expect(wrapper.find('.nav__link').text()).toBe('<HashLink />');
   });
 
-  it('Prop name should set NavItem text', () => {
+  it('Prop name should set NavItem text and link', () => {
     const wrapper = shallow(<NavItem />);
     wrapper.setProps({ name: 'Home', hashlink: false });
     expect(wrapper.contains(<Link className="nav__link" to="/Home">Home</Link>)).toEqual(true);

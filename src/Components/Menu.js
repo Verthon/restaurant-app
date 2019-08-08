@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import MenuItem from './MenuItem';
 import Navbar from './Navbar';
-import NavItem from './NavItem';
 import db from '../base';
 
 class Menu extends Component {
@@ -35,11 +34,7 @@ class Menu extends Component {
     const { appetizers, desserts, salads, maindishes, links } = this.state;
     return (
       <Fragment>
-        <Navbar name="Alkinoos Taverna">
-          {links.map((link, id) => (
-            <NavItem key={id} name={link} hashlink={false} />
-          ))}
-        </Navbar>
+        <Navbar name="Alkinoos Taverna" hashlink={false} links={links} />
         <section id="menu" className="section menu container">
           <h1 className="heading heading--center menu__heading">Menu</h1>
           <div className="row">

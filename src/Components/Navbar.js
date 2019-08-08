@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NavItem from './NavItem';
 
-const Navbar = ({ children }) => {
+
+const Navbar = ({ links, hashlink }) => {
   const navRef = React.createRef();
   const handleNavbarToggle = () => {
     navRef.current.classList.toggle('nav__list--active');
@@ -30,17 +32,22 @@ const Navbar = ({ children }) => {
         <li className="nav__item">
           <NavLink className="nav__link" to="/">Home</NavLink>
         </li>
-        {children}
+        {links.map((link, index) => (
+          <NavItem key={index} name={link} hashlink={hashlink} />
+        ))}
       </ul>
     </nav>
   );
 };
 
 Navbar.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  links: PropTypes.arrayOf(PropTypes.string),
+  hashlink: PropTypes.bool,
+};
+
+Navbar.defaultProps = {
+  links: ['Menu', 'Book-Table'],
+  hashlink: false,
 };
 
 export default Navbar;

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import AOS from 'aos';
 import Header from './Header';
 import Navbar from './Navbar';
-import NavItem from './NavItem';
 import Footer from './Footer';
 import '../App.scss';
 import db from '../base';
@@ -46,11 +45,7 @@ class Home extends Component {
     const { hours, location, links } = this.state;
     return (
       <Fragment>
-        <Navbar name={hours.name}>
-          {links.map((link, index) => (
-            <NavItem key={index} name={link} hashlink />
-          ))}
-        </Navbar>
+        <Navbar name={hours.name} links={links} hashlink />
         <Header animation={['fade-up']} />
         <article id="About" className="section section__about">
           <div className="row container">
