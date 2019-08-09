@@ -124,6 +124,7 @@ class BookTable extends React.Component {
                     selected={booking.date}
                     onChange={this.handleDate}
                     showTimeSelect
+                    minDate={new Date()}
                     timeFormat="HH"
                     timeIntervals={60}
                     minTime={min.setHours(11)}
