@@ -85,8 +85,8 @@ ReviewBooking.propTypes = {
     search: propTypes.string,
   }),
   name: propTypes.string,
-  people: propTypes.string,
-  date: propTypes.string,
+  people: propTypes.number,
+  date: propTypes.instanceOf(Date),
 };
 
 ReviewBooking.defaultProps = {
@@ -94,9 +94,9 @@ ReviewBooking.defaultProps = {
     pathname: propTypes.string,
     search: propTypes.string,
   }),
-  name: propTypes.string,
-  people: propTypes.string,
-  date: propTypes.string,
+  name: 'John Doe',
+  people: 1,
+  date: new Date(),
 };
 
 export default connect(mapStateToProps)(ReviewBooking);

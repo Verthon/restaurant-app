@@ -50,6 +50,7 @@ class BookTable extends React.Component {
   handleDate(e) {
     const booking = { ...this.state.booking };
     booking.date = e;
+    console.log(e);
     this.setState({ booking });
   }
 
