@@ -30,7 +30,7 @@ class ReviewBooking extends Component {
         <h1 className="heading review-booking__title">
           <Link to="/">{contactInfo.name}</Link>
         </h1>
-        <article className="review-booking">
+        <article className="review-booking fade-in">
           <img src={about} alt="" />
           <p className="review-booking__client">
             <strong className="review-booking__name">{name}</strong> reservation

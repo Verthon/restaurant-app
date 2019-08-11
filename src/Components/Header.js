@@ -4,7 +4,7 @@ import headerImgSm from '../images/header-sm.jpg';
 import headerImg from '../images/header.jpg';
 
 const Header = () => (
-  <header className="site-header container">
+  <header className="site-header container fade-in">
     <div className="site-header__image">
       <picture>
         <source media="(min-width: 767px)" srcSet={headerImg} />

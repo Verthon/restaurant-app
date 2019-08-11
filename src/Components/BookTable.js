@@ -83,7 +83,7 @@ class BookTable extends React.Component {
 
     return (
       <Fragment>
-        <div className="table-booking">
+        <div className="table-booking fade-in">
           <Navbar>
             {this.state.links.map((link, index) => (
               <NavItem key={index} name={link} hashlink={false} />

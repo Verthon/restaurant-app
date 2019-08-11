@@ -67,15 +67,6 @@
       width: 80%;
     }
 
-    @include keyframe (fadein) {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
     &__name {
       font-family: $decorative-font;
       margin: 0.5rem 0;

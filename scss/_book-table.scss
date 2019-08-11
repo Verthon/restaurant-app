@@ -16,6 +16,11 @@
     color: $metallic-gold;
     margin: 0 0 2rem 0;
     font-weight: 400; 
+
+    @include mQ($desktopXs) {
+      font-size: 1.75rem;
+      margin: 3rem 0 3rem 0;
+    }
   }
 
   &__input{

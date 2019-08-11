@@ -35,7 +35,7 @@ class Menu extends Component {
     return (
       <Fragment>
         <Navbar name="Alkinoos Taverna" hashlink={false} links={links} />
-        <section id="menu" className="section menu container">
+        <section id="menu" className="section menu container fade-in">
           <h1 className="heading heading--center menu__heading">Menu</h1>
           <div className="row">
             <div className="section__col">
