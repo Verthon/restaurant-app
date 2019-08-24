@@ -6,7 +6,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -97,7 +97,7 @@ class BookTable extends React.Component {
                   <label className="label" htmlFor="name">
                     Name
                   </label>
-                  <input
+                  <Field
                     className="table-booking__input"
                     type="text"
                     required
@@ -105,10 +105,11 @@ class BookTable extends React.Component {
                     onChange={this.handleName}
                     placeholder="Name"
                   />
+                  <ErrorMessage>{<div className="error">{}</div>}</ErrorMessage>
                   <label htmlFor="email" className="label">
                     Email
                   </label>
-                  <input
+                  <Field
                     className="table-booking__input"
                     type="email"
                     name="email"
@@ -137,7 +138,7 @@ class BookTable extends React.Component {
                   <label className="label" htmlFor="people">
                     Number of guests
                   </label>
-                  <input
+                  <Field
                     className="table-booking__input"
                     name="people"
                     type="number"

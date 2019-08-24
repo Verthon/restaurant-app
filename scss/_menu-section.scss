@@ -19,6 +19,7 @@
     font-family: $main-font;
     color: $metallic-gold;
     font-weight: 400;
+    text-decoration: underline;
 
     @include mQ($ipad) {
       margin: 1rem 0 1rem 0;
