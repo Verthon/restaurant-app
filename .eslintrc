@@ -15,13 +15,13 @@
     "no-console": "off",
     "strict": ["error", "global"],
     "curly": "warn",
-    "linebreak-style": ["error", "windows"],
+    "linebreak-style": ["error", "unix"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "object-curly-newline": ["error", { "multiline": true }],
     "arrow-body-style": ["error", "as-needed"],
     "react/jsx-one-expression-per-line": "off",
     "import/prefer-default-export": "off",
     "react/destructuring-assignment": "off",
-    "react/no-array-index-key": "off",
+    "react/no-array-index-key": "off"
   }
 }
