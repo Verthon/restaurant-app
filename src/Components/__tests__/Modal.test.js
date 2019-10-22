@@ -1,20 +1,20 @@
-import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import React from 'react'
+import { configure, shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 
-import Modal from '../Modal';
+import Modal from '../Modal'
 
-configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() })
 
 describe('<Modal/>', () => {
   it('Should change modal-book class based on show prop', () => {
-    const wrapper = shallow(<Modal show={false} />);
-    expect(wrapper.find('.modal-book').hasClass('modal-book--active')).toEqual(false);
-    expect(wrapper.find('.modal-book').hasClass('modal-book--disabled')).toEqual(true);
-  });
+    const wrapper = shallow(<Modal show={false} />)
+    expect(wrapper.find('.modal-book').hasClass('modal-book--active')).toEqual(false)
+    expect(wrapper.find('.modal-book').hasClass('modal-book--disabled')).toEqual(true)
+  })
   it('Should change modal-book class based on show prop', () => {
-    const wrapper = shallow(<Modal show />);
-    expect(wrapper.find('.modal-book').hasClass('modal-book--active')).toEqual(true);
-    expect(wrapper.find('.modal-book').hasClass('modal-book--disabled')).toEqual(false);
-  });
-});
+    const wrapper = shallow(<Modal show />)
+    expect(wrapper.find('.modal-book').hasClass('modal-book--active')).toEqual(true)
+    expect(wrapper.find('.modal-book').hasClass('modal-book--disabled')).toEqual(false)
+  })
+})
