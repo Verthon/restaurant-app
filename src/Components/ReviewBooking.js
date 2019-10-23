@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import contactInfo from '../contactInfo'
-import { splitDate, splitTime, formatDate } from '../helpers'
+import { splitDate, splitTime, formatDate, convertToDate } from '../helpers'
 import Modal from './Modal'
 import about from '../images/brooke-lark-about.jpg'
 
@@ -15,7 +15,6 @@ class ReviewBooking extends Component {
   }
 
   render () {
-    console.log(this.props)
     const { street, number, code, city, province } = contactInfo.info.location
     const { name, people, date } = this.props
     const { show } = this.state
@@ -42,13 +41,13 @@ class ReviewBooking extends Component {
             </div>
             <div className='section__col section__col--flexible'>
               <p className='review-booking__value'>
-                {splitDate(formatDate(date))}
+                {splitDate(formatDate(convertToDate(date)))}
               </p>
               <p className='review-booking__description'>Date</p>
             </div>
             <div className='section__col section__col--flexible'>
               <p className='review-booking__value'>
-                {splitTime(formatDate(date))}
+                {splitTime(formatDate(convertToDate(date)))}
               </p>
               <p className='review-booking__description'>Time</p>
             </div>

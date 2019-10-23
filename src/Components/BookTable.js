@@ -9,6 +9,7 @@ import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
+import { tomorrow, convertToDate, saveLocalStorageState } from '../helpers'
 
 class BookTable extends React.Component {
   static propTypes = {
@@ -24,49 +25,45 @@ class BookTable extends React.Component {
   constructor () {
     super()
     this.state = {
-      min: new Date(),
-      max: new Date(),
+      startDate: tomorrow(),
       booking: {
-        date: new Date(),
+        date: tomorrow(),
         people: 1,
-        name: 'John Doe',
+        name: '',
         email: ''
       },
       links: ['menu', 'book-table']
     }
   }
 
-  handleDate = (e) => {
+  componentDidMount () {
+    const data = JSON.parse(window.localStorage.getItem('booking'))
+    if (data) {
+      data.booking.date = convertToDate(data.booking.date)
+      this.setState({ booking: data.booking })
+    }
+  }
+
+  handleChange = e => {
+    const booking = { ...this.state.booking }
+    booking[e.target.name] = e.target.value
+    this.setState({ booking })
+  }
+
+  handleDate = e => {
     const booking = { ...this.state.booking }
     booking.date = e
     this.setState({ booking })
   }
 
-  handleGuests = (e) => {
-    const booking = { ...this.state.booking }
-    booking.people = e.target.value
-    this.setState({ booking })
-  }
-
-  handleName = (e) => {
-    const booking = { ...this.state.booking }
-    booking.name = e.target.value
-    this.setState({ booking })
-  }
-
-  handleEmail = (e) => {
-    const booking = { ...this.state.booking }
-    booking.email = e.target.value
-    this.setState({ booking })
-  }
-
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
+    saveLocalStorageState({ booking: this.state.booking })
     this.props.history.push({ pathname: '/review-booking' })
   }
 
   render () {
-    const { booking, min, max } = this.state
+    const { booking, startDate } = this.state
     const { location, hours } = contactInfo.info
 
     return (
@@ -88,12 +85,15 @@ class BookTable extends React.Component {
                   <Field
                     className='table-booking__input'
                     type='text'
-                    required
                     name='name'
-                    onChange={this.handleName}
                     placeholder='Name'
+                    required
+                    value={booking.name}
+                    onChange={this.handleChange}
                   />
-                  <ErrorMessage><div className='error'>{}</div></ErrorMessage>
+                  <ErrorMessage>
+                    <div className='error'>{}</div>
+                  </ErrorMessage>
                   <label htmlFor='email' className='label'>
                     Email
                   </label>
@@ -101,9 +101,10 @@ class BookTable extends React.Component {
                     className='table-booking__input'
                     type='email'
                     name='email'
+                    placeholder='Email address'
                     required
-                    onChange={this.handleEmail}
-                    placeholder='email'
+                    onChange={this.handleChange}
+                    value={booking.email}
                   />
                   <label htmlFor='Datepicker' className='label'>
                     Please add date
@@ -112,13 +113,13 @@ class BookTable extends React.Component {
                     name='Datepicker'
                     className='table-booking__input'
                     selected={booking.date}
-                    onChange={this.handleDate}
+                    onChange={this.handleChange}
                     showTimeSelect
-                    minDate={new Date()}
+                    minDate={startDate}
                     timeFormat='HH'
                     timeIntervals={60}
-                    minTime={min.setHours(11)}
-                    maxTime={max.setHours(22)}
+                    minTime={startDate.setHours(11)}
+                    maxTime={startDate.setHours(22)}
                     dateFormat='MMMM dd, yyyy h aa'
                     timeCaption='Time'
                     placeholderText='Click and choose the date'
@@ -130,11 +131,12 @@ class BookTable extends React.Component {
                     className='table-booking__input'
                     name='people'
                     type='number'
-                    required
                     placeholder='Number of guests'
                     min='1'
-                    max='8'
-                    onChange={this.handleGuests}
+                    max='4'
+                    required
+                    onChange={this.handleDate}
+                    value={booking.people}
                   />
                   <p className='text table-booking__reminder'>
                     Table is kept for 15 minutes after reservation time. We
