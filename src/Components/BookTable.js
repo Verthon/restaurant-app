@@ -113,7 +113,7 @@ class BookTable extends React.Component {
                     name='Datepicker'
                     className='table-booking__input'
                     selected={booking.date}
-                    onChange={this.handleChange}
+                    onChange={this.handleDate}
                     showTimeSelect
                     minDate={startDate}
                     timeFormat='HH'
@@ -135,7 +135,7 @@ class BookTable extends React.Component {
                     min='1'
                     max='4'
                     required
-                    onChange={this.handleDate}
+                    onChange={this.handleChange}
                     value={booking.people}
                   />
                   <p className='text table-booking__reminder'>
