@@ -21,6 +21,7 @@ class ReviewBooking extends Component {
 
     const showModal = () => {
       this.setState({ show: true })
+      window.localStorage.removeItem('booking')
     }
 
     return (
@@ -59,7 +60,9 @@ class ReviewBooking extends Component {
             {city}, {province}, {code}{' '}
           </p>
           <footer className='review-booking__footer'>
-            <Link className='btn btn--light' to='/book-table'>Edit booking</Link>
+            <Link className='btn btn--light' to='/book-table'>
+              Edit booking
+            </Link>
             <button className='btn btn--dark' onClick={showModal} type='button'>
               Confirm Booking
             </button>
@@ -70,7 +73,7 @@ class ReviewBooking extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { booking } = state
   return booking
 }

@@ -10,6 +10,7 @@ import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 import { tomorrow, convertToDate, saveLocalStorageState } from '../helpers'
+import db from '../base'
 
 class BookTable extends React.Component {
   static propTypes = {
@@ -40,12 +41,19 @@ class BookTable extends React.Component {
     const data = JSON.parse(window.localStorage.getItem('booking'))
     if (data) {
       data.booking.date = convertToDate(data.booking.date)
+      data.booking.people = parseInt(data.booking.people)
       this.setState({ booking: data.booking })
     }
   }
 
   handleChange = e => {
     const booking = { ...this.state.booking }
+    if (e.target.name === 'people') {
+      console.log('handling guests value')
+      booking[e.target.name] = parseInt(e.target.value)
+      this.setState({ booking })
+      return
+    }
     booking[e.target.name] = e.target.value
     this.setState({ booking })
   }
@@ -57,9 +65,23 @@ class BookTable extends React.Component {
   }
 
   handleSubmit = e => {
+    const { booking } = this.state
     e.preventDefault()
-    saveLocalStorageState({ booking: this.state.booking })
-    this.props.history.push({ pathname: '/review-booking' })
+    saveLocalStorageState({ booking: booking })
+    db.collection('bookings')
+      .add({
+        email: booking.email,
+        name: booking.name,
+        date: booking.date,
+        guests: booking.people
+      })
+      .then(docRef => {
+        console.log('Document created with: ', docRef)
+      })
+      .then(this.props.history.push({ pathname: '/review-booking' }))
+      .catch(err => {
+        console.log('Error occured while trying to saving to database: ', err)
+      })
   }
 
   render () {
