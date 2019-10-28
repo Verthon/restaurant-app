@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
-import { booking } from './booking';
+import { combineReducers } from 'redux'
+import { booking } from './booking'
 
-export default combineReducers({ booking });
+export default combineReducers({ booking })

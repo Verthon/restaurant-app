@@ -6,6 +6,7 @@
   padding: 0.6rem 0.85rem;
   font-size: 0.9rem;
   cursor: pointer;
+  display: inline-flex;
 
   @include mQ($desktopXs) {
     font-size: 1rem;
