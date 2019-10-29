@@ -1,4 +1,5 @@
 /* eslint-disable prefer-destructuring */
+import dayjs from 'dayjs'
 export const formatPrice = cents => {
   const options = {
     style: 'currency',
@@ -53,12 +54,23 @@ export const saveLocalStorageState = state => {
 }
 
 export const tomorrow = () => {
-  const today = new Date()
-  const tomorrow = new Date()
-  tomorrow.setDate(today.getDate() + 1)
-  return tomorrow
+  const tomorrow = dayjs()
+    .add(1, 'day')
+    .set('hour', 15)
+    .set('minute', 0)
+  return tomorrow.$d
 }
 
 export const convertToDate = date => {
   return new Date(date)
+}
+
+export const transformLocalStorageData = booking => {
+  // Immutable set booking.date to correct date object and booking.guests to be a number
+  return booking
+}
+
+export const isDateCurrent = date => {
+  // Check if given date is greater than tomorrow()
+  return date
 }

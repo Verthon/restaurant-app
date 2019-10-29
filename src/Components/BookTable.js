@@ -27,6 +27,8 @@ class BookTable extends React.Component {
     super()
     this.state = {
       startDate: tomorrow(),
+      minTime: 12,
+      maxTime: 22,
       booking: {
         date: tomorrow(),
         people: 1,
@@ -38,8 +40,10 @@ class BookTable extends React.Component {
   }
 
   componentDidMount () {
+    console.log(tomorrow())
     const data = JSON.parse(window.localStorage.getItem('booking'))
     if (data) {
+      // Finish pure function transformLocalStorageData
       data.booking.date = convertToDate(data.booking.date)
       data.booking.people = parseInt(data.booking.people)
       this.setState({ booking: data.booking })
@@ -49,7 +53,6 @@ class BookTable extends React.Component {
   handleChange = e => {
     const booking = { ...this.state.booking }
     if (e.target.name === 'people') {
-      console.log('handling guests value')
       booking[e.target.name] = parseInt(e.target.value)
       this.setState({ booking })
       return
@@ -85,7 +88,7 @@ class BookTable extends React.Component {
   }
 
   render () {
-    const { booking, startDate } = this.state
+    const { booking, startDate, minTime, maxTime } = this.state
     const { location, hours } = contactInfo.info
 
     return (
@@ -140,8 +143,8 @@ class BookTable extends React.Component {
                     minDate={startDate}
                     timeFormat='HH'
                     timeIntervals={60}
-                    minTime={startDate.setHours(11)}
-                    maxTime={startDate.setHours(22)}
+                    minTime={startDate.setHours(minTime)}
+                    maxTime={startDate.setHours(maxTime)}
                     dateFormat='MMMM dd, yyyy h aa'
                     timeCaption='Time'
                     placeholderText='Click and choose the date'

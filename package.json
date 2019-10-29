@@ -16,6 +16,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
     "css-loader": "1.0.0",
+    "dayjs": "^1.8.16",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "enzyme": "^3.8.0",
@@ -65,8 +66,9 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "jest"
+    "build": "node scripts/build.js && echo '/*    /index.html   200' > build/_redirects",
+    "test": "jest",
+    "deploy": "npm run build && netlify deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
