@@ -65,12 +65,15 @@ export const convertToDate = date => {
   return new Date(date)
 }
 
-export const transformLocalStorageData = booking => {
-  // Immutable set booking.date to correct date object and booking.guests to be a number
+export const transformLocalStorageData = data => {
+  const booking = {
+    ...data,
+    date: convertToDate(data.date),
+    people: parseInt(data.people)
+  }
   return booking
 }
 
-export const isDateCurrent = date => {
-  // Check if given date is greater than tomorrow()
-  return date
-}
+export const isDateCurrent = date =>
+  dayjs(tomorrow()).isBefore(dayjs(date)) ||
+  dayjs(date).isSame(dayjs(tomorrow()), 'day')

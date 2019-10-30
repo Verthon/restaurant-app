@@ -9,7 +9,12 @@ import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
-import { tomorrow, convertToDate, saveLocalStorageState } from '../helpers'
+import {
+  tomorrow,
+  transformLocalStorageData,
+  saveLocalStorageState,
+  isDateCurrent
+} from '../helpers'
 import db from '../base'
 
 class BookTable extends React.Component {
@@ -40,14 +45,14 @@ class BookTable extends React.Component {
   }
 
   componentDidMount () {
-    console.log(tomorrow())
     const data = JSON.parse(window.localStorage.getItem('booking'))
-    if (data) {
-      // Finish pure function transformLocalStorageData
-      data.booking.date = convertToDate(data.booking.date)
-      data.booking.people = parseInt(data.booking.people)
-      this.setState({ booking: data.booking })
+    if (data && isDateCurrent(data.booking.date)) {
+      this.handleLocalStorageRead(data)
     }
+  }
+
+  handleLocalStorageRead = (data) => {
+    this.setState({ booking: transformLocalStorageData(data.booking) })
   }
 
   handleChange = e => {

@@ -39,8 +39,8 @@ Fully responsive, simple restaurant app using React.js, where user can easily cr
 
 ## Work in progress
 
-- [ ] Add advanced backend
+- [ ] Add backend MERN stack
 - [x] Modal after confirming reservation
-- [ ] Send all data(order) to firebase
+- [x] Send all data(order) to firebase
 - [ ] Jest Unit testing
 - [x] Refactor CSS BEM classes
