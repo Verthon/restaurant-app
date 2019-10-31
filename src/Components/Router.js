@@ -6,6 +6,8 @@ import Menu from './Menu'
 import BookTable from './BookTable'
 import NotFound from './NotFound'
 import ReviewBooking from './ReviewBooking'
+import Admin from './Admin'
+import Login from './Login'
 import { store } from '../store/store'
 
 const Router = () => (
@@ -16,6 +18,8 @@ const Router = () => (
         <Route path='/book-table' component={BookTable} />
         <Route path='/review-booking' component={ReviewBooking} />
         <Route path='/menu' component={Menu} />
+        <Route path='/login' component={Login} />
+        <Route path='/admin' component={Admin} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

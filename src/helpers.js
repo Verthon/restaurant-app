@@ -53,7 +53,7 @@ export const saveLocalStorageState = state => {
   } catch (err) {}
 }
 
-export const tomorrow = () => {
+export const getTomorrowsDate = () => {
   const tomorrow = dayjs()
     .add(1, 'day')
     .set('hour', 15)
@@ -75,5 +75,5 @@ export const transformLocalStorageData = data => {
 }
 
 export const isDateCurrent = date =>
-  dayjs(tomorrow()).isBefore(dayjs(date)) ||
-  dayjs(date).isSame(dayjs(tomorrow()), 'day')
+  dayjs(getTomorrowsDate()).isBefore(dayjs(date)) ||
+  dayjs(date).isSame(dayjs(getTomorrowsDate()), 'day')

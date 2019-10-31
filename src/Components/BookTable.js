@@ -10,7 +10,7 @@ import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 import {
-  tomorrow,
+  getTomorrowsDate,
   transformLocalStorageData,
   saveLocalStorageState,
   isDateCurrent
@@ -31,11 +31,11 @@ class BookTable extends React.Component {
   constructor () {
     super()
     this.state = {
-      startDate: tomorrow(),
+      startDate: getTomorrowsDate(),
       minTime: 12,
       maxTime: 22,
       booking: {
-        date: tomorrow(),
+        date: getTomorrowsDate(),
         people: 1,
         name: '',
         email: ''

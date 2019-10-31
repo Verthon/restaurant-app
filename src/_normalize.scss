@@ -172,7 +172,7 @@ input { /* 1 */
   overflow: visible;
 }
 
-/** Remove mozilla ugly box-shadows on required input fields**/
+/** Remove Firefox ugly box-shadows on required input fields**/
 
 input:required {
   box-shadow:none;
