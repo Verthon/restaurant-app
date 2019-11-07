@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MenuItem from './MenuItem'
 import Navbar from './Navbar'
-import db from '../base'
+import db from '../firebase'
 
 class Menu extends Component {
   constructor () {

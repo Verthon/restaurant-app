@@ -1,9 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Navbar from './Navbar'
-import { auth } from '../base'
+import { ADMIN } from '../constants/routes'
+import { firebase } from '../firebase'
+import PropTypes from 'prop-types'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 
 class Login extends React.Component {
+  static propTypes = {
+    history: PropTypes.shape({ push: PropTypes.func })
+  }
+
+  static defaultProps = {
+    history: {}
+  }
+
   constructor () {
     super()
     this.state = {
@@ -13,14 +23,21 @@ class Login extends React.Component {
     }
   }
 
+  componentDidMount () {
+    console.log('auth: ', firebase.auth)
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    auth.signInWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
-      console.log(error)
-      this.setState({ ...this.state, error: error })
-      const errorCode = error.code
-      const errorMessage = error.message
-    })
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(setTimeout(() => {
+        this.props.history.push(ADMIN)
+      }, 1000))
+      .catch((error) => {
+        this.setState({ ...this.state, error: error })
+      })
   }
 
   handleChange = (e) => {
@@ -44,6 +61,7 @@ class Login extends React.Component {
                 className='input'
                 placeholder='email'
                 name='email'
+                required
                 onChange={this.handleChange}
               />
               <input
@@ -51,8 +69,10 @@ class Login extends React.Component {
                 className='input'
                 placeholder='password'
                 name='password'
+                required
                 onChange={this.handleChange}
               />
+              <p className='login__error fade-in'>{this.state.error ? this.state.error.message : null}</p>
               <button type='submit' className='btn btn--dark login__btn'>
                 Login
               </button>

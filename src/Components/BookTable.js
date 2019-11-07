@@ -15,7 +15,7 @@ import {
   saveLocalStorageState,
   isDateCurrent
 } from '../helpers'
-import db from '../base'
+import db from '../firebase'
 
 class BookTable extends React.Component {
   static propTypes = {

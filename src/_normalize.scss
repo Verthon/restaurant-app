@@ -177,9 +177,7 @@ input { /* 1 */
 input:required {
   box-shadow:none;
 }
-input:invalid {
-  box-shadow:0 0 3px red;
-}
+
 
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
