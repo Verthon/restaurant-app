@@ -19,6 +19,7 @@ class Menu extends Component {
     db.collection('menu')
       .get()
       .then((snapshot) => {
+        console.log(snapshot.metadata)
         snapshot.docs.forEach((doc) => {
           this.setState({
             appetizers: doc.data().Appetizers,

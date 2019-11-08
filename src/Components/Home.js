@@ -26,6 +26,10 @@ class Home extends Component {
   componentDidMount () {
     AOS.init({ duration: 2000 })
     db.collection('location')
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
+        console.log(snapshot.metadata.fromCache)
+      })
+    db.collection('location')
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {

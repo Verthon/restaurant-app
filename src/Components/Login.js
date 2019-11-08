@@ -23,10 +23,6 @@ class Login extends React.Component {
     }
   }
 
-  componentDidMount () {
-    console.log('auth: ', firebase.auth)
-  }
-
   handleSubmit = (e) => {
     e.preventDefault()
     firebase
