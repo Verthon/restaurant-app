@@ -12,6 +12,7 @@ import menuImg from '../images/brooke-lark-menu.jpg'
 import menuImgXs from '../images/brooke-lark-menu-xs.jpg'
 import aboutImgXs from '../images/brooke-lark-about-xs.jpg'
 import about1ImgXs from '../images/brooke-lark-about1-xs.jpg'
+import chef from '../images/cook.jpg'
 
 class Home extends Component {
   constructor () {
@@ -26,9 +27,9 @@ class Home extends Component {
   componentDidMount () {
     AOS.init({ duration: 2000 })
     db.collection('location')
-      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
-        console.log(snapshot.metadata.fromCache)
-      })
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => snapshot)
+    db.collection('hours')
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => snapshot)
     db.collection('location')
       .get()
       .then((snapshot) => {
@@ -92,7 +93,7 @@ class Home extends Component {
               </p>
               <img
                 className='section__about__chef'
-                src='/images/cook.jpg'
+                src={chef}
                 alt='our chef'
               />
             </article>

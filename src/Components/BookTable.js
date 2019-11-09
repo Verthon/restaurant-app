@@ -38,7 +38,9 @@ class BookTable extends React.Component {
         date: getTomorrowsDate(),
         people: 1,
         name: '',
-        email: ''
+        email: '',
+        confirmed: false,
+        doc: ''
       },
       links: ['menu', 'book-table']
     }
@@ -77,16 +79,27 @@ class BookTable extends React.Component {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
     db.collection('bookings')
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
+        console.log(snapshot.metadata.fromCache)
+      })
+    db.collection('bookings')
       .add({
         email: booking.email,
         name: booking.name,
         date: booking.date,
-        guests: booking.people
+        guests: booking.people,
+        confirmed: booking.confirmed
       })
       .then(docRef => {
-        console.log('Document created with: ', docRef)
+        const booking = { ...this.state.booking }
+        booking.doc = docRef.id
+        this.setState({ booking })
       })
-      .then(this.props.history.push({ pathname: '/review-booking' }))
+      .then(() => {
+        console.log('State in then before redux', this.state.booking)
+        this.props.sendData(this.state.booking)
+      })
+      .then(setTimeout(() => this.props.history.push({ pathname: '/review-booking' }), 1000))
       .catch(err => {
         console.log('Error occured while trying to saving to database: ', err)
       })
@@ -107,6 +120,7 @@ class BookTable extends React.Component {
           <div className='row container'>
             <div className='section section__col'>
               <h2 className='table-booking__subtitle'>Make a reservation</h2>
+              <p className='text table-booking__reminder'>Please, remember that you can book table with maximum of 4 guests.</p>
               <Formik>
                 <Form onSubmit={this.handleSubmit} className='form-group'>
                   <label className='label' htmlFor='name'>
@@ -169,13 +183,12 @@ class BookTable extends React.Component {
                     value={booking.people}
                   />
                   <p className='text table-booking__reminder'>
-                    Table is kept for 15 minutes after reservation time. We
-                    appreciate you being on time.
+                    Table is kept for 15 minutes after reservation time.
+                    We appreciate you being on time.
                   </p>
                   <button
                     className='btn btn--dark'
                     type='submit'
-                    onClick={() => this.props.sendData(booking)}
                   >
                     Next step
                   </button>

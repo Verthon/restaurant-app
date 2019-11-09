@@ -6,23 +6,39 @@ import { connect } from 'react-redux'
 import contactInfo from '../contactInfo'
 import { splitDate, splitTime, formatDate, convertToDate } from '../helpers'
 import Modal from './Modal'
+import db from '../firebase'
 import about from '../images/brooke-lark-about.jpg'
 
 class ReviewBooking extends Component {
   constructor (props) {
     super(props)
-    this.state = { show: false, booking: {} }
+    this.state = {
+      show: false,
+      booking: {},
+      error: false
+    }
+  }
+
+  handleModal = () => {
+    this.setState({ show: true })
+    window.localStorage.removeItem('booking')
+  }
+
+  handleSendEmail = () => {
+    db.collection('bookings')
+      .doc(this.props.doc)
+      .update({
+        confirmed: true
+      })
+      .then((doc) => console.log('Document updated', doc))
+      .catch((err) => this.setState({ error: err }))
+    this.handleModal()
   }
 
   render () {
     const { street, number, code, city, province } = contactInfo.info.location
     const { name, people, date } = this.props
     const { show } = this.state
-
-    const showModal = () => {
-      this.setState({ show: true })
-      window.localStorage.removeItem('booking')
-    }
 
     return (
       <>
@@ -63,7 +79,7 @@ class ReviewBooking extends Component {
             <Link className='btn btn--light' to='/book-table'>
               Edit booking
             </Link>
-            <button className='btn btn--dark' onClick={showModal} type='button'>
+            <button className='btn btn--dark' onClick={this.handleSendEmail} type='button'>
               Confirm Booking
             </button>
           </footer>
@@ -85,7 +101,8 @@ ReviewBooking.propTypes = {
   }),
   name: propTypes.string,
   people: propTypes.number,
-  date: propTypes.instanceOf(Date)
+  date: propTypes.instanceOf(Date),
+  doc: propTypes.string
 }
 
 ReviewBooking.defaultProps = {
@@ -95,7 +112,10 @@ ReviewBooking.defaultProps = {
   }),
   name: 'John Doe',
   people: 1,
-  date: new Date()
+  date: new Date(),
+  email: 'john.doe@gmail.uu',
+  confirmed: false,
+  doc: ''
 }
 
 export default connect(mapStateToProps)(ReviewBooking)

@@ -53,11 +53,7 @@ class Admin extends React.Component {
     let list = null
     if (this.state.bookings) {
       list = (
-        this.state.bookings.map(item => {
-          return (
-            <li key={item}>{item}</li>
-          )
-        })
+        this.state.bookings.map(item => item)
       )
     }
     console.log(list)
@@ -66,6 +62,11 @@ class Admin extends React.Component {
         <Navbar />
         <main className='container'>
           <h1 className='title'>Admin</h1>
+          <ul>
+            {list ? list.map(item => {
+              return <li key={item.email}>Name: {item.name} | email: {item.email}</li>
+            }) : null}
+          </ul>
           <button className='btn' onClick={this.handleSignOut}>Sign out</button>
         </main>
       </>

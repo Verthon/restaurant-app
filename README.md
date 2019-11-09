@@ -2,7 +2,7 @@
 
 # Alkinoos Taverna
 [Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
-Fully responsive, simple restaurant app using React.js, where user can easily create a booking.
+Fully responsive, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating option for restaurant staff.
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -25,7 +25,7 @@ Fully responsive, simple restaurant app using React.js, where user can easily cr
 
 ## Setup
 
-```javascript
+```bash
   git clone https://github.com/Verthon/restaurant-app.git
   npm install
   npm start
@@ -43,6 +43,6 @@ Fully responsive, simple restaurant app using React.js, where user can easily cr
 - [x] Show modal after confirming reservation
 - [x] Send all data(order) to Firebase
 - [x] Jest Unit testing
+- [x] Add PWA support
 - [ ] Add backend MERN stack
-- [ ] Add PWA support
-- [ ] Serve images in nex-gen formats
+- [ ] Serve images in next-gen formats

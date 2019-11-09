@@ -17,6 +17,10 @@ class Menu extends Component {
 
   componentDidMount () {
     db.collection('menu')
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
+        console.log(snapshot.metadata.fromCache)
+      })
+    db.collection('menu')
       .get()
       .then((snapshot) => {
         console.log(snapshot.metadata)
