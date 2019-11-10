@@ -1,5 +1,7 @@
 import React from 'react'
+import dayjs from 'dayjs'
 import Navbar from './Navbar'
+import Spinner from './Spinner'
 import { LOGIN } from '../constants/routes'
 import db, { firebase } from '../firebase'
 import PropTypes from 'prop-types'
@@ -32,12 +34,17 @@ class Admin extends React.Component {
       if (authUser) {
         db.collection('bookings')
           .get()
-          .then((snapshot) => {
-            const bookings = []
-            snapshot.docs.forEach((doc) => {
-              bookings.push(doc.data())
-              this.setState({ bookings })
+          .then(snapshot => {
+            const data = []
+            snapshot.docs.forEach(doc => {
+              data.push(doc.data())
             })
+            const bookings = data.map(booking => {
+              booking.date = booking.date.toDate()
+              return booking
+            })
+            this.setState({ bookings })
+            console.log(dayjs(this.state.bookings[0].date).format('DD/MM/YYYY'))
           })
       } else {
         this.props.history.push({ pathname: LOGIN })
@@ -52,22 +59,24 @@ class Admin extends React.Component {
   render () {
     let list = null
     if (this.state.bookings) {
-      list = (
-        this.state.bookings.map(item => item)
-      )
+      list = this.state.bookings.map(item => item)
     }
-    console.log(list)
     return (
       <>
         <Navbar />
         <main className='container'>
-          <h1 className='title'>Admin</h1>
+          <h1 className='title'>Bookings</h1>
           <ul>
-            {list ? list.map(item => {
-              return <li key={item.email}>Name: {item.name} | email: {item.email}</li>
-            }) : null}
+            {list ? this.state.bookings.map(item => {
+              return (
+                <li key={item.email}> Name: {item.name} | email: {item.email} | guests: {item.guests} | date: {dayjs(item.date).format('DD/MM/YYYY')} </li>
+              )
+            })
+              : <Spinner />}
           </ul>
-          <button className='btn' onClick={this.handleSignOut}>Sign out</button>
+          <button className='btn' onClick={this.handleSignOut}>
+            Sign out
+          </button>
         </main>
       </>
     )
