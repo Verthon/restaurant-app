@@ -1,0 +1,10 @@
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__logo {
+    max-width: 100px;
+    height: 50vh;
+  }
+}

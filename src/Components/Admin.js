@@ -1,6 +1,7 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import Navbar from './Navbar'
+import Booking from './Booking'
 import Spinner from './Spinner'
 import { LOGIN } from '../constants/routes'
 import db, { firebase } from '../firebase'
@@ -44,7 +45,6 @@ class Admin extends React.Component {
               return booking
             })
             this.setState({ bookings })
-            console.log(dayjs(this.state.bookings[0].date).format('DD/MM/YYYY'))
           })
       } else {
         this.props.history.push({ pathname: LOGIN })
@@ -57,29 +57,60 @@ class Admin extends React.Component {
   }
 
   render () {
-    let list = null
     if (this.state.bookings) {
-      list = this.state.bookings.map(item => item)
+      return (
+        <>
+          <Navbar />
+          <main className='container'>
+            <h1 className='title'>Bookings</h1>
+            <table className='table'>
+              <thead>
+                <tr className='table__row'>
+                  <th className='table__header'>Name</th>
+                  <th className='table__header'>Date</th>
+                  <th className='table__header'>Time</th>
+                  <th className='table__header'>Email</th>
+                  <th className='table__header'>Guests</th>
+                  <th className='table__header'>Confirmed by user</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.bookings
+                  ? this.state.bookings.map(item => {
+                    return (
+                      <Booking
+                        key={item.email}
+                        name={item.name}
+                        email={item.email}
+                        guests={item.guests}
+                        date={item.date}
+                        confirmed={item.confirmed}
+                      />
+                    )
+                  })
+                  : null}
+              </tbody>
+            </table>
+            <button className='btn' onClick={this.handleSignOut}>
+              Sign out
+            </button>
+          </main>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Navbar />
+          <main className='container'>
+            <h1 className='title'>Bookings</h1>
+            <Spinner />
+            <button className='btn' onClick={this.handleSignOut}>
+              Sign out
+            </button>
+          </main>
+        </>
+      )
     }
-    return (
-      <>
-        <Navbar />
-        <main className='container'>
-          <h1 className='title'>Bookings</h1>
-          <ul>
-            {list ? this.state.bookings.map(item => {
-              return (
-                <li key={item.email}> Name: {item.name} | email: {item.email} | guests: {item.guests} | date: {dayjs(item.date).format('DD/MM/YYYY')} </li>
-              )
-            })
-              : <Spinner />}
-          </ul>
-          <button className='btn' onClick={this.handleSignOut}>
-            Sign out
-          </button>
-        </main>
-      </>
-    )
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Formik, Field, ErrorMessage } from 'formik'
 import PropTypes from 'prop-types'
@@ -9,6 +9,7 @@ import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
 import NavItem from './NavItem'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
+import { REVIEW_BOOKING } from '../constants/routes'
 import {
   getTomorrowsDate,
   transformLocalStorageData,
@@ -99,7 +100,7 @@ class BookTable extends React.Component {
         console.log('State in then before redux', this.state.booking)
         this.props.sendData(this.state.booking)
       })
-      .then(setTimeout(() => this.props.history.push({ pathname: '/review-booking' }), 1000))
+      .then(setTimeout(() => this.props.history.push({ pathname: REVIEW_BOOKING }), 1000))
       .catch(err => {
         console.log('Error occured while trying to saving to database: ', err)
       })

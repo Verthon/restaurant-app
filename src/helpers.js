@@ -56,8 +56,8 @@ export const saveLocalStorageState = state => {
 export const getTomorrowsDate = () => {
   const tomorrow = dayjs()
     .add(1, 'day')
-    .set('hour', 15)
-    .set('minute', 0)
+    .set('hour', 12)
+    .set('minutes', 0)
   return tomorrow.$d
 }
 

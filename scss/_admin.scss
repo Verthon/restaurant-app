@@ -1,0 +1,16 @@
+
+
+.table {
+  display: block;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  &__header {
+    padding: 1rem 2rem;
+  }
+  &__row {
+    border: 1px solid $silver-lake;
+  }
+  &__cell{
+    padding: 2rem;
+  }
+}
