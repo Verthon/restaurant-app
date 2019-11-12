@@ -97,12 +97,11 @@ class BookTable extends React.Component {
         this.setState({ booking })
       })
       .then(() => {
-        console.log('State in then before redux', this.state.booking)
         this.props.sendData(this.state.booking)
       })
       .then(setTimeout(() => this.props.history.push({ pathname: REVIEW_BOOKING }), 1000))
       .catch(err => {
-        console.log('Error occured while trying to saving to database: ', err)
+        console.log('Error occured while saving to database: ', err)
       })
   }
 

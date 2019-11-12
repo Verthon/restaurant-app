@@ -15,6 +15,7 @@ Fully responsive, serverless, restaurant progressive web app using React.js, whe
 
 - React.js 16.5.2
 - Redux
+- Redux Thunk
 - Scss
 - JavaScript ES6
 - Firebase Firestore
