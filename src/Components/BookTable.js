@@ -4,6 +4,7 @@ import { Form, Formik, Field, ErrorMessage } from 'formik'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { ToastContainer, toast } from 'react-toastify'
 import contactInfo from '../contactInfo'
 import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
@@ -81,7 +82,7 @@ class BookTable extends React.Component {
     saveLocalStorageState({ booking: booking })
     db.collection('bookings')
       .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
-        console.log(snapshot.metadata.fromCache)
+        console.log('Snpashot offline: ', snapshot.metadata.fromCache)
       })
     db.collection('bookings')
       .add({
@@ -92,18 +93,26 @@ class BookTable extends React.Component {
         confirmed: booking.confirmed
       })
       .then(docRef => {
+        console.log('1')
         const booking = { ...this.state.booking }
         booking.doc = docRef.id
         this.setState({ booking })
       })
       .then(() => {
+        console.log('2')
         this.props.sendData(this.state.booking)
       })
-      .then(setTimeout(() => this.props.history.push({ pathname: REVIEW_BOOKING }), 1000))
+      .then(() => {
+        console.log('3')
+        this.props.history.push({ pathname: REVIEW_BOOKING })
+      })
       .catch(err => {
         console.log('Error occured while saving to database: ', err)
+        this.notify()
       })
   }
+
+  notify = () => toast('Offline mode detected. Application is working on cached version')
 
   render () {
     const { booking, startDate, minTime, maxTime } = this.state
@@ -111,6 +120,7 @@ class BookTable extends React.Component {
 
     return (
       <>
+        <ToastContainer />
         <div className='table-booking fade-in'>
           <Navbar>
             {this.state.links.map((link, index) => (

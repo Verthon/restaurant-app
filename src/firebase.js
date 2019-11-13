@@ -10,21 +10,30 @@ const config = {
   databaseURL: process.env.FIRESTORE_DATABASE_URL
 }
 
+const handleError = error => {
+  if (error.code === 'failed-precondition') {
+    return {
+      message: 'Error',
+      description:
+        'Multiple tabs open, persistence can only be enabled in one tab at a a time.'
+    }
+  } else if (error.code === 'unimplemented') {
+    return {
+      message: 'Error',
+      description:
+        'The current browser does not support all of the features required to enable persistenc'
+    }
+  }
+}
+
 firebase.initializeApp(config)
 firebase
   .firestore()
   .enablePersistence()
-  .catch(function (err) {
-    if (err.code === 'failed-precondition') {
-      // Multiple tabs open, persistence can only be enabled
-      // in one tab at a a time.
-      console.log('Offline data only works in one tab')
-    } else if (err.code === 'unimplemented') {
-      // The current browser does not support all of the
-      // features required to enable persistence
-      // ...
-      console.log('Current browser is not supported by your browser')
-    }
+  .then(() => firebase.firestore())
+  .catch((err) => {
+    handleError(err)
+    firebase.firestore()
   })
 const db = firebase.firestore()
 

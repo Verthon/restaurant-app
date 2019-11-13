@@ -35,6 +35,7 @@ Fully responsive, serverless, restaurant progressive web app using React.js, whe
 ## Used packages and tools
 
 - Datepicker for React [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
+- React notifications [React Toastify](https://github.com/fkhadra/react-toastify)
 - Awesome tool for managing color variables [ColorNamer](https://colornamer.netlify.com/)
 
 

@@ -1,5 +1,8 @@
-import React, { Component, Fragment } from 'react'
+/* eslint-disable no-unused-expressions */
+import React, { Component } from 'react'
 import AOS from 'aos'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Header from './Header'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -20,14 +23,17 @@ class Home extends Component {
     this.state = {
       location: {},
       hours: false,
-      links: ['About', 'Menu', 'Reviews', 'Contact']
+      links: ['About', 'Menu', 'Reviews', 'Contact'],
+      fromCache: false
     }
   }
 
   componentDidMount () {
     AOS.init({ duration: 2000 })
     db.collection('location')
-      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => snapshot)
+      .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
+        snapshot.metadata.fromCache ? this.setState({ fromCache: true }) : this.setState({ fromCache: false })
+      })
     db.collection('hours')
       .onSnapshot({ includeMetadataChanges: true }, (snapshot) => snapshot)
     db.collection('location')
@@ -40,16 +46,20 @@ class Home extends Component {
     db.collection('hours')
       .get()
       .then((snapshot) => {
+        snapshot.metadata.fromCache ? this.setState({ fromCache: true }, this.notify) : null
         snapshot.docs.forEach((doc) => {
           this.setState({ hours: { ...doc.data() } })
         })
       })
   }
 
+  notify = () => toast('Offline mode detected. Application is working on cached version')
+
   render () {
     const { hours, location, links } = this.state
     return (
       <>
+        <ToastContainer className='toast__container' toastClassName='toast' progressClassName='toast__progress' autoClose={4000} />
         <Navbar name={hours.name} links={links} hashlink />
         <Header animation={['fade-up']} />
         <article id='About' className='section section__about'>
