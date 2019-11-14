@@ -5,8 +5,7 @@ const initialState = {
   people: 1,
   name: 'John Doe',
   email: 'johndoe@xx.ox',
-  confirmed: false,
-  doc: ''
+  confirmed: false
 }
 
 export const booking = (state = initialState, action) => {

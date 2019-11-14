@@ -15,8 +15,13 @@ class ReviewBooking extends Component {
     this.state = {
       show: false,
       booking: {},
-      error: false
+      error: false,
+      editable: false
     }
+  }
+
+  componentDidMount () {
+    console.log(this.props.booking)
   }
 
   handleModal = () => {
@@ -24,20 +29,21 @@ class ReviewBooking extends Component {
     window.localStorage.removeItem('booking')
   }
 
+  handleSubmit = () => {
+    console.log(';')
+  }
+
   handleSendEmail = () => {
-    db.collection('bookings')
-      .doc(this.props.doc)
-      .update({
-        confirmed: true
-      })
-      .then((doc) => console.log('Document updated', doc))
-      .catch((err) => this.setState({ error: err }))
     this.handleModal()
+  }
+
+  handleEdit = () => {
+    this.setState({ editable: true })
   }
 
   render () {
     const { street, number, code, city, province } = contactInfo.info.location
-    const { name, people, date } = this.props
+    const { name, people, date } = this.props.booking
     const { show } = this.state
 
     return (
@@ -76,9 +82,9 @@ class ReviewBooking extends Component {
             {city}, {province}, {code}{' '}
           </p>
           <footer className='review-booking__footer'>
-            <Link className='btn btn--light' to='/book-table'>
+            <button className='btn btn--light' onClick={this.handleEdit}>
               Edit booking
-            </Link>
+            </button>
             <button className='btn btn--dark' onClick={this.handleSendEmail} type='button'>
               Confirm Booking
             </button>
@@ -90,19 +96,21 @@ class ReviewBooking extends Component {
 }
 
 const mapStateToProps = state => {
-  const { booking } = state
-  return booking
+  return state
 }
 
 ReviewBooking.propTypes = {
+  // sendData: propTypes.func,
   location: propTypes.shape({
     pathname: propTypes.string,
     search: propTypes.string
   }),
-  name: propTypes.string,
-  people: propTypes.number,
-  date: propTypes.instanceOf(Date),
-  doc: propTypes.string
+  booking: propTypes.shape({
+    name: propTypes.string,
+    people: propTypes.number,
+    date: propTypes.instanceOf(Date),
+    confirmed: propTypes.bool
+  })
 }
 
 ReviewBooking.defaultProps = {
@@ -114,8 +122,7 @@ ReviewBooking.defaultProps = {
   people: 1,
   date: new Date(),
   email: 'john.doe@gmail.uu',
-  confirmed: false,
-  doc: ''
+  confirmed: false
 }
 
 export default connect(mapStateToProps)(ReviewBooking)

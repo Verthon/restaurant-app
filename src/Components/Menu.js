@@ -23,7 +23,6 @@ class Menu extends Component {
     db.collection('menu')
       .get()
       .then((snapshot) => {
-        console.log(snapshot.metadata)
         snapshot.docs.forEach((doc) => {
           this.setState({
             appetizers: doc.data().Appetizers,
@@ -47,7 +46,7 @@ class Menu extends Component {
     }
     return (
       <>
-        <Navbar name='Alkinoos Taverna' hashlink={false} links={links} />
+        <Navbar />
         <section id='menu' className='section menu container fade-in'>
           <h1 className='heading heading--center menu__heading'>Menu</h1>
           <div className='row'>
@@ -61,6 +60,7 @@ class Menu extends Component {
                 </ul>
               </article>
             </div>
+
             <div className='section__col'>
               <h2 className='menu__title'>Desserts</h2>
               <ul className='menu__list'>
@@ -70,6 +70,7 @@ class Menu extends Component {
               </ul>
             </div>
           </div>
+
           <div className='row'>
             <div className='section__col'>
               <article className='menu__container'>
