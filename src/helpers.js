@@ -34,9 +34,9 @@ export const splitTime = date => {
   return formatedTime
 }
 
-export const loadLocalStorageState = () => {
+export const loadLocalStorageState = (name) => {
   try {
-    const serializedState = window.localStorage.getItem('booking')
+    const serializedState = window.localStorage.getItem(name)
     if (serializedState === null) {
       return undefined
     }

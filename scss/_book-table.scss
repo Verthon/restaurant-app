@@ -2,6 +2,11 @@
   @include flexColumn();
   align-items: center;
 
+  .react-datepicker-wrapper, .react-datepicker__input-container {
+    display: block;
+    width: 100%;
+  }
+
   .label{
     display: none;
   }
@@ -29,7 +34,7 @@
     padding: 0.5rem 0;
     display: block;
     margin: 1rem 0;
-    width: 250px;
+    width: 100%;
 
     &:invalid {
       outline: none;
@@ -41,6 +46,7 @@
   &__reminder {
     margin: 2rem 0;
   }
+
   &__image {
     display: none;
     @include mQ($desktopXs) {

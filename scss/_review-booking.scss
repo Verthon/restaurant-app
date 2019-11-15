@@ -7,6 +7,11 @@
   max-width: 600px;
   box-shadow: $default-shadow;
 
+  .react-datepicker-wrapper, .react-datepicker__input-container {
+    display: block;
+    width: 100%;
+  }
+
   @include mQ($tablet) {
     padding: 0 0 3rem 0;
   }
@@ -76,6 +81,13 @@
     margin: 2rem 0 0 0;
     @include mQ($tablet) {
       margin: 3rem 0 0 0;
+    }
+
+    &--edit {
+      margin: 0 0 0 0;
+      @include mQ($ipad) {
+        margin: 1rem 0 0 0;
+      }
     }
   }
 

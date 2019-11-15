@@ -12,8 +12,7 @@ class Menu extends Component {
       desserts: false,
       salads: false,
       maindishes: false,
-      loading: true,
-      links: ['menu', 'book-table']
+      loading: true
     }
   }
 
@@ -38,7 +37,7 @@ class Menu extends Component {
   }
 
   render () {
-    const { appetizers, desserts, salads, maindishes, links, loading } = this.state
+    const { appetizers, desserts, salads, maindishes, loading } = this.state
     if (loading) {
       return (
         <Spinner />

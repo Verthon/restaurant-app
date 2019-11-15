@@ -1,23 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import 'react-datepicker/dist/react-datepicker.css'
 import { ToastContainer, toast } from 'react-toastify'
 import contactInfo from '../contactInfo'
 import { sendBookingInfo } from '../actions/index'
 import Navbar from './Navbar'
-import NavItem from './NavItem'
 import Form from './Form'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 import { REVIEW_BOOKING } from '../constants/routes'
 import {
   getTomorrowsDate,
   transformLocalStorageData,
+  loadLocalStorageState,
   saveLocalStorageState,
   isDateCurrent
 } from '../helpers'
 
-class BookTable extends React.Component {
+class BookTable extends React.PureComponent {
   static propTypes = {
     sendData: PropTypes.func,
     history: PropTypes.shape({ push: PropTypes.func })
@@ -42,19 +41,18 @@ class BookTable extends React.Component {
         name: '',
         email: '',
         confirmed: false
-      },
-      links: ['menu', 'book-table']
+      }
     }
   }
 
   componentDidMount () {
-    const data = JSON.parse(window.localStorage.getItem('booking'))
+    const data = loadLocalStorageState('booking')
     if (data && isDateCurrent(data.booking.date)) {
       this.handleLocalStorageRead(data)
     }
   }
 
-  handleLocalStorageRead = (data) => {
+  handleLocalStorageRead = data => {
     this.setState({ booking: transformLocalStorageData(data.booking) })
   }
 
@@ -83,7 +81,8 @@ class BookTable extends React.Component {
     this.props.history.push({ pathname: REVIEW_BOOKING })
   }
 
-  notify = () => toast('Offline mode detected. Application is working on cached version')
+  notify = () =>
+    toast('Offline mode detected. Application is working on cached version')
 
   render () {
     const { booking, config } = this.state
@@ -97,8 +96,14 @@ class BookTable extends React.Component {
           <div className='row container'>
             <div className='section section__col'>
               <h2 className='table-booking__subtitle'>Make a reservation</h2>
-              <p className='text table-booking__reminder'>Please, remember that you can book table with maximum of 4 guests.</p>
-              <Form handleSubmit={this.onHandleSubmit} handleChange={this.onHandleChange} handleDate={this.onHandleDate} booking={booking} config={config} />
+              <Form
+                handleSubmit={this.onHandleSubmit}
+                handleChange={this.onHandleChange}
+                handleDate={this.onHandleDate}
+                booking={booking}
+                config={config}
+                submitBtn
+              />
             </div>
             <article className='section section__col'>
               <h2 className='table-booking__subtitle'>Located in London</h2>

@@ -3,9 +3,23 @@ import propTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const Form = ({ handleChange, handleDate, handleSubmit, booking, config }) => {
+const Form = ({
+  handleChange,
+  handleDate,
+  handleSubmit,
+  booking,
+  config,
+  submitBtn,
+  cssClass
+}) => {
   return (
-    <form onSubmit={handleSubmit} className='form-group'>
+    <form
+      onSubmit={handleSubmit}
+      className={cssClass ? `form ${cssClass}` : 'form'}
+    >
+      <p className='text'>
+        Please remember that, you can book a table with maximum of 4 guests.
+      </p>
       <label className='label' htmlFor='name'>
         Name
       </label>
@@ -66,9 +80,11 @@ const Form = ({ handleChange, handleDate, handleSubmit, booking, config }) => {
         Table is kept for 15 minutes after reservation time. We appreciate you
         being on time.
       </p>
-      <button className='btn btn--dark' type='submit'>
-        Next step
-      </button>
+      {submitBtn ? (
+        <button className='btn btn--dark' type='submit'>
+          Next step
+        </button>
+      ) : null}
     </form>
   )
 }
@@ -88,7 +104,9 @@ Form.propTypes = {
     startDate: propTypes.instanceOf(Date),
     minTime: propTypes.number,
     maxTime: propTypes.number
-  })
+  }),
+  submitBtn: propTypes.bool,
+  cssClass: propTypes.string
 }
 
 export default Form

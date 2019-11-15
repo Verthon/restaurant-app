@@ -46,5 +46,6 @@ Fully responsive, serverless, restaurant progressive web app using React.js, whe
 - [x] Send all data(order) to Firebase
 - [x] Jest Unit testing
 - [x] Add PWA support
+- [ ] Add Sending email support
 - [ ] Add backend MERN stack
 - [ ] Serve images in next-gen formats

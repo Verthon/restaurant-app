@@ -1,5 +1,4 @@
 import React from 'react'
-import dayjs from 'dayjs'
 import Navbar from './Navbar'
 import Booking from './Booking'
 import Spinner from './Spinner'

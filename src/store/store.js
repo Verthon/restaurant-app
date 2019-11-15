@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import reducers from '../reducers'
 import { loadLocalStorageState } from '../helpers'
 
-const persistedState = loadLocalStorageState()
+const persistedState = loadLocalStorageState('booking')
 
 export const store = createStore(
   reducers,

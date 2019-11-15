@@ -1,12 +1,23 @@
 /* eslint-disable react/no-unused-state */
+// eslint-disable react/jsx-boolean-value
+/* eslint-disable react/jsx-handler-names */
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify'
 import contactInfo from '../contactInfo'
-import { splitDate, splitTime, formatDate, convertToDate } from '../helpers'
+import {
+  splitDate,
+  splitTime,
+  formatDate,
+  convertToDate,
+  getTomorrowsDate
+} from '../helpers'
 import Modal from './Modal'
 import db from '../firebase'
+import Form from './Form'
 import about from '../images/brooke-lark-about.jpg'
 
 class ReviewBooking extends Component {
@@ -16,21 +27,24 @@ class ReviewBooking extends Component {
       show: false,
       booking: {},
       error: false,
-      editable: false
+      editable: false,
+      config: {
+        startDate: getTomorrowsDate(),
+        minTime: 12,
+        maxTime: 22
+      }
     }
   }
 
   componentDidMount () {
-    console.log(this.props.booking)
+    const booking = { ...this.props.booking }
+    booking.date = convertToDate(booking.date)
+    this.setState({ booking: booking })
   }
 
   handleModal = () => {
     this.setState({ show: true })
     window.localStorage.removeItem('booking')
-  }
-
-  handleSubmit = () => {
-    console.log(';')
   }
 
   handleSendEmail = () => {
@@ -41,10 +55,89 @@ class ReviewBooking extends Component {
     this.setState({ editable: true })
   }
 
+  onHandleChange = e => {
+    const booking = { ...this.state.booking }
+    if (e.target.name === 'people') {
+      booking[e.target.name] = parseInt(e.target.value)
+      this.setState({ booking })
+      return
+    }
+    booking[e.target.name] = e.target.value
+    this.setState({ booking })
+  }
+
+  onHandleDate = e => {
+    const booking = { ...this.state.booking }
+    booking.date = e
+    this.setState({ booking })
+  }
+
+  notify = () =>
+    toast('Offline mode detected. Application is working on cached version')
+
+  onHandleSubmit = e => {
+    const { booking } = this.state
+    e.preventDefault()
+    db.collection('bookings')
+      .add({
+        email: booking.email,
+        name: booking.name,
+        date: booking.date,
+        guests: booking.people,
+        confirmed: true
+      })
+      .then(docRef => {
+        const booking = { ...this.state.booking }
+        booking.doc = docRef.id
+        this.setState({ booking })
+      })
+      .catch(err => {
+        console.log('Error occured while saving to database: ', err)
+        this.notify()
+      })
+
+    this.handleModal()
+  }
+
   render () {
     const { street, number, code, city, province } = contactInfo.info.location
     const { name, people, date } = this.props.booking
-    const { show } = this.state
+    const { show, editable, booking, config } = this.state
+
+    if (editable) {
+      return (
+        <>
+          <h1 className='heading review-booking__title'>
+            <Link to='/'>{contactInfo.name}</Link>
+          </h1>
+          <Modal show={show} />
+          <article className='review-booking fade-in'>
+            <img src={about} alt='' />
+            <h2 className='heading review-booking__title'>Edit booking</h2>
+            <div className='review-booking__container'>
+              <Form
+                booking={booking}
+                config={config}
+                handleChange={this.onHandleChange}
+                handleDate={this.onHandleDate}
+                handleSubmit={this.onHandleSubmit}
+                submitBtn={false}
+                cssClass='form--edit'
+              />
+            </div>
+            <footer className='review-booking__footer review-booking__footer--edit'>
+              <button
+                className='btn btn--dark'
+                onClick={this.handleBooking}
+                type='button'
+              >
+                Confirm Booking
+              </button>
+            </footer>
+          </article>
+        </>
+      )
+    }
 
     return (
       <>
@@ -85,7 +178,11 @@ class ReviewBooking extends Component {
             <button className='btn btn--light' onClick={this.handleEdit}>
               Edit booking
             </button>
-            <button className='btn btn--dark' onClick={this.handleSendEmail} type='button'>
+            <button
+              className='btn btn--dark'
+              onClick={this.onHandleSubmit}
+              type='button'
+            >
               Confirm Booking
             </button>
           </footer>
@@ -100,7 +197,6 @@ const mapStateToProps = state => {
 }
 
 ReviewBooking.propTypes = {
-  // sendData: propTypes.func,
   location: propTypes.shape({
     pathname: propTypes.string,
     search: propTypes.string

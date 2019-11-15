@@ -7,7 +7,7 @@
   padding: 0.5rem 0;
   display: block;
   margin: 1rem 0;
-  width: 250px;
+  width: 100%;
 
   // &:invalid {
   //   outline: none;
@@ -16,8 +16,23 @@
   // }
 }
 
+.form {
+  @include flexColumn;
+  align-items: flex-start;
 
+  &--edit {
+    align-items: center;
+    margin: 1rem 2rem;
+    @include mQ($nexus) {
+      margin: 0;
+    }
+  }
+}
 
 .label {
   display: none;
+}
+
+.react-datepicker-wrapper, .react-datepicker__input-container {
+  display: block;
 }
