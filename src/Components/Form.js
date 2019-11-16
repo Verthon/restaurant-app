@@ -10,12 +10,15 @@ const Form = ({
   booking,
   config,
   submitBtn,
-  cssClass
+  cssClass,
+  action
 }) => {
   return (
     <form
       onSubmit={handleSubmit}
       className={cssClass ? `form ${cssClass}` : 'form'}
+      action={action || null}
+      method='POST'
     >
       <p className='text'>
         Please remember that, you can book a table with maximum of 4 guests.
@@ -106,7 +109,8 @@ Form.propTypes = {
     maxTime: propTypes.number
   }),
   submitBtn: propTypes.bool,
-  cssClass: propTypes.string
+  cssClass: propTypes.string,
+  action: propTypes.string
 }
 
 export default Form

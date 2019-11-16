@@ -13,7 +13,8 @@ import {
   splitTime,
   formatDate,
   convertToDate,
-  getTomorrowsDate
+  getTomorrowsDate,
+  getEmailActionUrl
 } from '../helpers'
 import Modal from './Modal'
 import db from '../firebase'
@@ -47,8 +48,25 @@ class ReviewBooking extends Component {
     window.localStorage.removeItem('booking')
   }
 
-  handleSendEmail = () => {
-    this.handleModal()
+  handleSendingEmail = () => {
+    const booking = { ...this.state.booking }
+    booking.confirmed = true
+    console.log('Inside of handleSendingEmail()')
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(booking),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    window
+      .fetch(`https://formspree.io/${booking.email}`, options)
+      .catch(error => console.log(error))
+      .then(res => res.json())
+      .then(res => {
+        this.handleModal()
+      })
   }
 
   handleEdit = () => {
@@ -86,17 +104,11 @@ class ReviewBooking extends Component {
         guests: booking.people,
         confirmed: true
       })
-      .then(docRef => {
-        const booking = { ...this.state.booking }
-        booking.doc = docRef.id
-        this.setState({ booking })
-      })
+      .then(() => this.handleSendingEmail())
       .catch(err => {
         console.log('Error occured while saving to database: ', err)
         this.notify()
       })
-
-    this.handleModal()
   }
 
   render () {
@@ -107,6 +119,7 @@ class ReviewBooking extends Component {
     if (editable) {
       return (
         <>
+          <ToastContainer />
           <h1 className='heading review-booking__title'>
             <Link to='/'>{contactInfo.name}</Link>
           </h1>
@@ -123,16 +136,19 @@ class ReviewBooking extends Component {
                 handleSubmit={this.onHandleSubmit}
                 submitBtn={false}
                 cssClass='form--edit'
+                action={getEmailActionUrl(booking.email)}
               />
             </div>
             <footer className='review-booking__footer review-booking__footer--edit'>
-              <button
-                className='btn btn--dark'
-                onClick={this.handleBooking}
-                type='button'
+              <form
+                action={getEmailActionUrl(booking.email)}
+                method='POST'
+                onSubmit={this.onHandleSubmit}
               >
-                Confirm Booking
-              </button>
+                <button className='btn btn--dark' type='submit'>
+                  Confirm Booking
+                </button>
+              </form>
             </footer>
           </article>
         </>
@@ -175,16 +191,18 @@ class ReviewBooking extends Component {
             {city}, {province}, {code}{' '}
           </p>
           <footer className='review-booking__footer'>
-            <button className='btn btn--light' onClick={this.handleEdit}>
-              Edit booking
-            </button>
-            <button
-              className='btn btn--dark'
-              onClick={this.onHandleSubmit}
-              type='button'
+            <form
+              action='https://formspree.io/mjvvpvwe'
+              method='POST'
+              onSubmit={this.onHandleSubmit}
             >
-              Confirm Booking
-            </button>
+              <button className='btn btn--light' onClick={this.handleEdit}>
+                Edit booking
+              </button>
+              <button className='btn btn--dark' type='submit'>
+                Confirm Booking
+              </button>
+            </form>
           </footer>
         </article>
       </>

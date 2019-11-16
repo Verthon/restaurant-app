@@ -34,7 +34,7 @@ export const splitTime = date => {
   return formatedTime
 }
 
-export const loadLocalStorageState = (name) => {
+export const loadLocalStorageState = name => {
   try {
     const serializedState = window.localStorage.getItem(name)
     if (serializedState === null) {
@@ -77,3 +77,5 @@ export const transformLocalStorageData = data => {
 export const isDateCurrent = date =>
   dayjs(getTomorrowsDate()).isBefore(dayjs(date)) ||
   dayjs(date).isSame(dayjs(getTomorrowsDate()), 'day')
+
+export const getEmailActionUrl = email => `https://formspree.io/${email}`
