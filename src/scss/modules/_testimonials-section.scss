@@ -1,9 +1,9 @@
 .section__testimonials {
-  background: url('../src/images/ingredients-bg-xs.jpg');
+  background: url('../images/ingredients-bg-xs.jpg');
   background-repeat: no-repeat;
   background-position: left;
   @include mQ($ipadPro) {
-    background: url('../src/images/ingredients-bg.jpg');
+    background: url('../images/ingredients-bg.jpg');
     background-position: 20%;
   }
   display: flex;

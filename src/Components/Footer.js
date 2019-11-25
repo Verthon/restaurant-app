@@ -21,7 +21,7 @@ const Footer = ({ hours, location }) => {
           </p>
           <p className='site-footer__description'>
             {code}
-            {city},{province},{country}
+            {city}, {province}, {country}
           </p>
         </div>
         <div className='site-footer__column'>

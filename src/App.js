@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.scss'
+import '../scss/App.scss'
 import Home from './Components/Home/Home'
 
 class App extends Component {
