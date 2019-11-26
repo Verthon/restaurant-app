@@ -12,7 +12,8 @@ class Menu extends Component {
       desserts: false,
       salads: false,
       maindishes: false,
-      loading: true
+      loading: true,
+      error: null
     }
   }
 
@@ -33,6 +34,9 @@ class Menu extends Component {
       })
       .then(() => {
         this.setState({ loading: false })
+      })
+      .catch((err) => {
+        this.setState({ error: err })
       })
   }
 

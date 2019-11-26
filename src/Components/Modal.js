@@ -9,8 +9,7 @@ const Modal = ({ show }) => {
       <article className='modal-book__content fade-in'>
         <h2 className='heading'>Thank you</h2>
         <p className='text modal-book__text'>
-          Thank you for booking reservation. Detailed information will be send
-          to your email address.
+          Thank you for booking reservation. We will contact you shortly.
         </p>
         <Link to='/'>
           <button className='btn btn--dark' type='button'>

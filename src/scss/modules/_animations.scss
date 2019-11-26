@@ -16,5 +16,5 @@
 
 
 .fade-in {
-  @include animation(0, 2.5s, fade-in, ease-in)
+  @include animation(0, 1.5s, fade-in, ease-in)
 }
