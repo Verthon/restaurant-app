@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import MenuItem from './MenuItem'
 import Navbar from './Navbar'
 import Spinner from './Spinner'
 import db from '../firebase'
 
-class Menu extends Component {
+class Menu extends PureComponent {
   constructor () {
     super()
     this.state = {

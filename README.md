@@ -2,7 +2,12 @@
 
 # Alkinoos Taverna
 [Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
-Fully responsive, serverless, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating option for restaurant staff.
+Fully responsive, serverless, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating panel for restaurant staff.
+Available routes:
+- `/menu`
+- `/login`
+- `/admin`
+- `/book-table`
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -15,7 +20,7 @@ Fully responsive, serverless, restaurant progressive web app using React.js, whe
 
 - React.js 16.5.2
 - Redux
-- Redux Thunk
+- React hooks
 - Scss
 - JavaScript ES6
 - Firebase Firestore

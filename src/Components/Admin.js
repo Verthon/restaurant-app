@@ -62,6 +62,9 @@ class Admin extends React.Component {
           <Navbar />
           <main className='container'>
             <h1 className='title'>Bookings</h1>
+            <button className='btn' onClick={this.handleSignOut}>
+              Sign out
+            </button>
             <table className='table'>
               <thead>
                 <tr className='table__row'>
@@ -70,7 +73,6 @@ class Admin extends React.Component {
                   <th className='table__header'>Time</th>
                   <th className='table__header'>Email</th>
                   <th className='table__header'>Guests</th>
-                  <th className='table__header'>Confirmed by user</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,16 +85,12 @@ class Admin extends React.Component {
                         email={item.email}
                         guests={item.guests}
                         date={item.date}
-                        confirmed={item.confirmed}
                       />
                     )
                   })
                   : null}
               </tbody>
             </table>
-            <button className='btn' onClick={this.handleSignOut}>
-              Sign out
-            </button>
           </main>
         </>
       )

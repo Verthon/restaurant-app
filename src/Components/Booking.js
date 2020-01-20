@@ -11,7 +11,6 @@ const Booking = ({ name, email, confirmed, date, guests }) => {
       <td className='table__cell'>{dayjs(date).set('minutes', 0).format('HH:mm')}</td>
       <td className='table__cell'>{email}</td>
       <td className='table__cell'>{guests}</td>
-      <td className='table__cell'>{confirmed ? 'Yes' : 'No'}</td>
     </tr>
   )
 }
