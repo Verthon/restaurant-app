@@ -6,15 +6,18 @@ import PropTypes from 'prop-types'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
-  const [email, setEmail] = useState({ email: '' })
-  const [password, setPassword] = useState({ password: '' })
   const [error, setError] = useState({ error: false })
+
+  const [form, setInputs] = useState({
+    email: '',
+    password: ''
+  })
 
   const handleSubmit = e => {
     e.preventDefault()
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(form.email, form.password)
       .then(
         setTimeout(() => {
           history.push(ADMIN)
@@ -25,14 +28,11 @@ const Login = ({ history }) => {
       })
   }
 
-  const handleEmail = e => {
-    const value = e.target.value
-    setEmail(value)
-  }
-
-  const handlePassword = e => {
-    const value = e.target.value
-    setPassword(value)
+  const handleInput = e => {
+    setInputs({
+      ...form,
+      [e.target.name]: e.target.value
+    })
   }
 
   const handleError = error => {
@@ -55,7 +55,7 @@ const Login = ({ history }) => {
               placeholder='email'
               name='email'
               required
-              onChange={handleEmail}
+              onChange={handleInput}
             />
             <input
               type='password'
@@ -63,7 +63,7 @@ const Login = ({ history }) => {
               placeholder='password'
               name='password'
               required
-              onChange={handlePassword}
+              onChange={handleInput}
             />
             <p className='login__error fade-in'>
               {error ? error.message : null}

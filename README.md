@@ -1,6 +1,7 @@
 ![Alkinoos Taverna desktop homescreen](src/images/screenshot.jpg)
 
 # Alkinoos Taverna
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
 Fully responsive, serverless, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating panel for restaurant staff.
 Available routes:
