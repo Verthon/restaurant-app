@@ -2,7 +2,7 @@
 // eslint-disable react/jsx-boolean-value
 /* eslint-disable react/jsx-handler-names */
 
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -20,6 +20,117 @@ import Modal from './Modal'
 import db from '../firebase'
 import Form from './Form'
 import about from '../images/brooke-lark-about.jpg'
+
+// const ReviewBooking2 = () => {
+//   const [show, toggleModal] = useState(false)
+//   const [booking, setBooking] = useState({
+
+//   })
+//   const [editable, setEditable] = useState(false)
+//   const [config, setConfig] = useState({
+//     startDate: getTomorrowsDate(),
+//     minTime: 12,
+//     maxTime: 22
+//   })
+
+//   useEffect(() => {
+//     const localBooking = { ...this.props.booking }
+//     localBooking.date = convertToDate(booking.date)
+//     setBooking({ booking: localBooking })
+//   })
+
+//   if (editable) {
+//     return (
+//       <>
+//         <ToastContainer />
+//         <h1 className='heading review-booking__title'>
+//           <Link to='/'>{contactInfo.name}</Link>
+//         </h1>
+//         <Modal show={show} />
+//         <article className='review-booking fade-in'>
+//           <img src={about} alt='' />
+//           <h2 className='heading review-booking__title'>Edit booking</h2>
+//           <div className='review-booking__container'>
+//             <Form
+//               booking={booking}
+//               config={config}
+//               handleChange={this.onHandleChange}
+//               handleDate={this.onHandleDate}
+//               handleSubmit={this.onHandleSubmit}
+//               submitBtn={false}
+//               cssClass='form--edit'
+//               action={getEmailActionUrl(booking.email)}
+//             />
+//           </div>
+//           <footer className='review-booking__footer review-booking__footer--edit'>
+//             <form
+//               action={getEmailActionUrl(booking.email)}
+//               method='POST'
+//               onSubmit={this.onHandleSubmit}
+//             >
+//               <button className='btn btn--dark' type='submit'>
+//                 Confirm Booking
+//               </button>
+//             </form>
+//           </footer>
+//         </article>
+//       </>
+//     )
+//   }
+
+//   return (
+//     <>
+//       <Modal show={show} />
+//       <h1 className='heading review-booking__title'>
+//         <Link to='/'>{contactInfo.name}</Link>
+//       </h1>
+//       <article className='review-booking fade-in'>
+//         <img src={about} alt='' />
+//         <p className='review-booking__client'>
+//           <strong className='review-booking__name'>{name}</strong> reservation
+//         </p>
+//         <div className='row review-booking__container'>
+//           <div className='section__col section__col--flexible'>
+//             <p className='review-booking__value'>{people}</p>
+//             <p className='review-booking__description'>Guests</p>
+//           </div>
+//           <div className='section__col section__col--flexible'>
+//             <p className='review-booking__value'>
+//               {splitDate(formatDate(convertToDate(date)))}
+//             </p>
+//             <p className='review-booking__description'>Date</p>
+//           </div>
+//           <div className='section__col section__col--flexible'>
+//             <p className='review-booking__value'>
+//               {splitTime(formatDate(convertToDate(date)))}
+//             </p>
+//             <p className='review-booking__description'>Time</p>
+//           </div>
+//         </div>
+//         <p className='review-booking__address'>
+//           {street} {number}
+//         </p>
+//         <p className='review-booking__address'>
+//           {city}, {province}, {code}{' '}
+//         </p>
+//         <footer className='review-booking__footer'>
+//           <form
+//             action='https://formspree.io/mjvvpvwe'
+//             method='POST'
+//             onSubmit={this.onHandleSubmit}
+//           >
+//             <button className='btn btn--light' onClick={this.handleEdit}>
+//               Edit booking
+//             </button>
+//             <button className='btn btn--dark' type='submit'>
+//               Confirm Booking
+//             </button>
+//           </form>
+//         </footer>
+//       </article>
+//     </>
+//   )
+// }
 
 class ReviewBooking extends Component {
   constructor (props) {
@@ -62,11 +173,11 @@ class ReviewBooking extends Component {
 
     window
       .fetch(`https://formspree.io/${booking.email}`, options)
-      .catch(error => console.log(error))
       .then(res => res.json())
       .then(res => {
         this.handleModal()
       })
+      .catch(error => console.log(error))
   }
 
   handleEdit = () => {

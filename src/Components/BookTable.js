@@ -43,12 +43,12 @@ import {
 //   }
 
 //   const onHandleChange = e => {
-//     if (e.target.name === 'people') {
-//       const value = parseInt(e.target.value)
-//       setBooking({ ...booking, [e.target.name]: value })
-//       return
-//     }
-//     setBooking({ ...booking, [e.target.name]: e.target.value })
+//     // if (e.target.name === 'people') {
+//     //   const value = parseInt(e.target.value)
+//     //   setBooking({ ...booking, [e.target.name]: value })
+//     //   return
+//     // }
+//     // setBooking({ ...booking, [e.target.name]: e.target.value })
 //   }
 
 //   const onHandleDate = e => {
