@@ -11,18 +11,19 @@ import ReviewBooking from '../pages/ReviewBooking'
 import Admin from '../pages/Admin'
 import Login from '../pages/Login'
 import { store } from '../store/store'
+import * as ROUTES from '../constants/routes'
 
 const Router = () => (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/book-table' component={BookTable} />
-        <Route path='/review-booking' component={ReviewBooking} />
-        <Route path='/menu' component={Menu} />
+        <Route exact path={ROUTES.HOME} component={Home} />
+        <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
+        <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
+        <Route path={ROUTES.MENU} component={Menu} />
         <UserContext.Provider value='ys'>
-          <Route path='/login' component={Login} />
-          <Route path='/admin' component={Admin} />
+          <Route path={ROUTES.LOGIN} component={Login} />
+          <Route path={ROUTES.ADMIN} component={Admin} />
         </UserContext.Provider>
         <Route component={NotFound} />
       </Switch>

@@ -18,7 +18,6 @@ const Form = ({
       onSubmit={handleSubmit}
       className={cssClass ? `form ${cssClass}` : 'form'}
       action={action || null}
-      method='POST'
     >
       <p className='text'>
         Please remember that, you can book a table with maximum of 4 guests.

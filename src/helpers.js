@@ -79,3 +79,15 @@ export const isDateCurrent = date =>
   dayjs(date).isSame(dayjs(getTomorrowsDate()), 'day')
 
 export const getEmailActionUrl = email => `https://formspree.io/${email}`
+
+export const formatBookings = (data) => {
+  return data.map((booking) => {
+    booking.date = booking.date.toDate()
+    return booking
+  })
+}
+
+export const formatMenu = (data) => {
+  const menu = data[0]
+  return menu
+}

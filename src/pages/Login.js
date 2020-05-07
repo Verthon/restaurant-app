@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
-import { firebase } from '../firebase'
+import { login } from '../utils/login'
 import PropTypes from 'prop-types'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 
@@ -13,29 +13,26 @@ const Login = ({ history }) => {
     password: ''
   })
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(form.email, form.password)
-      .then(
-        setTimeout(() => {
-          history.push(ADMIN)
-        }, 1000)
-      )
-      .catch(error => {
-        handleError(error)
-      })
+    try {
+      login(form.email, form.password)
+      setTimeout(() => {
+        history.push(ADMIN)
+      }, 1000)
+    } catch {
+      handleError(error)
+    }
   }
 
-  const handleInput = e => {
+  const handleInput = (e) => {
     setInputs({
       ...form,
       [e.target.name]: e.target.value
     })
   }
 
-  const handleError = error => {
+  const handleError = (error) => {
     setError(error)
   }
 
