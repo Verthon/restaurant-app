@@ -16,9 +16,9 @@ import {
   getTomorrowsDate,
   getEmailActionUrl
 } from '../helpers'
-import Modal from './Modal'
+import Modal from '../components/Modal'
 import db from '../firebase'
-import Form from './Form'
+import Form from '../components/Form'
 import about from '../images/brooke-lark-about.jpg'
 
 // const ReviewBooking2 = () => {

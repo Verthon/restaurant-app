@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import MenuItem from './MenuItem'
-import Navbar from './Navbar'
-import Spinner from './Spinner'
+import MenuItem from '../components/MenuItem'
+import Navbar from '../components/Navbar'
+import Spinner from '../components/Spinner'
 import db from '../firebase'
 
 const Menu = () => {

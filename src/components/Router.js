@@ -1,13 +1,15 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import Home from './Home'
-import Menu from './Menu'
-import BookTable from './BookTable'
-import NotFound from './NotFound'
-import ReviewBooking from './ReviewBooking'
-import Admin from './Admin'
-import Login from './Login'
+
+import { UserContext } from './UserContext'
+import Home from '../pages/Home'
+import Menu from '../pages/Menu'
+import BookTable from '../pages/BookTable'
+import NotFound from '../pages/NotFound'
+import ReviewBooking from '../pages/ReviewBooking'
+import Admin from '../pages/Admin'
+import Login from '../pages/Login'
 import { store } from '../store/store'
 
 const Router = () => (
@@ -18,8 +20,10 @@ const Router = () => (
         <Route path='/book-table' component={BookTable} />
         <Route path='/review-booking' component={ReviewBooking} />
         <Route path='/menu' component={Menu} />
-        <Route path='/login' component={Login} />
-        <Route path='/admin' component={Admin} />
+        <UserContext.Provider value='ys'>
+          <Route path='/login' component={Login} />
+          <Route path='/admin' component={Admin} />
+        </UserContext.Provider>
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

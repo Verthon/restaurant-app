@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navbar from './Navbar'
+import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
 import { firebase } from '../firebase'
 import PropTypes from 'prop-types'

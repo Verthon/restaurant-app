@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react'
 import AOS from 'aos'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Header from './Header'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import '../scss/App.scss'
 import db from '../firebase'
 import 'aos/dist/aos.css'
@@ -20,7 +20,7 @@ import chef from '../images/cook.jpg'
 const Home = () => {
   const [location, setLocation] = useState({})
   const [hours, setHours] = useState(false)
-  const links = ['About', 'Menu', 'Reviews', 'Contact']
+  const links = ['Menu', 'Contact']
   const [fromCache, handleCache] = useState(false)
 
   const notify = () => toast('Offline mode detected. Application is working on cached version')
