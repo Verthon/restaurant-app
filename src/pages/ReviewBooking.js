@@ -34,9 +34,9 @@ const ReviewBooking = () => {
 
   useEffect(() => {
     const booking = { ...bookingData }
-    // booking.date = convertToDate(bookingData.date)
+    booking.date = convertToDate(bookingData.date)
     console.log('booking in useEffect', booking)
-    setBooking({ booking })
+    setBooking({ ...booking })
   }, [bookingData])
 
   const handleModal = () => {
@@ -49,18 +49,15 @@ const ReviewBooking = () => {
   }
 
   const onHandleChange = (e) => {
-    const booking = { ...this.state.booking }
     if (e.target.name === 'people') {
-      booking[e.target.name] = parseInt(e.target.value)
-      this.setState({ booking })
+      setBooking({ ...booking, [e.target.name]: parseInt(e.target.value) })
       return
     }
-    booking[e.target.name] = e.target.value
-    this.setState({ booking })
+    setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
   const onHandleDate = (e) => {
-    setBooking({ ...booking, e })
+    setBooking({ ...booking, date: e })
   }
 
   const notify = () =>
@@ -88,42 +85,73 @@ const ReviewBooking = () => {
   const { street, number, code, city, province } = contactInfo.info.location
   const { name, people, date } = booking
 
-  if (editable) {
-    return (
-      <>
-        <ToastContainer />
-        <h1 className='heading review-booking__title'>
-          <Link to='/'>{contactInfo.name}</Link>
-        </h1>
-        <Modal show={show} />
-        <article className='review-booking fade-in'>
-          <img src={about} alt='' />
-          <h2 className='heading review-booking__title'>Edit booking</h2>
-          <div className='review-booking__container'>
-            <Form
-              booking={bookingData || booking}
-              config={config}
-              handleChange={onHandleChange}
-              handleDate={onHandleDate}
-              handleSubmit={onHandleSubmit}
-              submitBtn={false}
-              cssClass='form--edit'
-              action={getEmailActionUrl(booking.email)}
-            />
-          </div>
-          <footer className='review-booking__footer review-booking__footer--edit'>
-            <form onSubmit={onHandleSubmit}>
-              <button className='btn btn--dark' type='submit'>
-                Confirm Booking
-              </button>
-            </form>
-          </footer>
-        </article>
-      </>
-    )
-  }
+  // if (editable) {
+  //   return (
+  //     <>
+  //       <ToastContainer />
+  //       <h1 className='heading review-booking__title'>
+  //         <Link to='/'>{contactInfo.name}</Link>
+  //       </h1>
+  //       <Modal show={show} />
+  //       <article className='review-booking fade-in'>
+  //         <img src={about} alt='' />
+  //         <h2 className='heading review-booking__title'>Edit booking</h2>
+  //         <div className='review-booking__container'>
+  //           <Form
+  //             booking={bookingData || booking}
+  //             config={config}
+  //             handleChange={onHandleChange}
+  //             handleDate={onHandleDate}
+  //             handleSubmit={onHandleSubmit}
+  //             submitBtn={false}
+  //             cssClass='form--edit'
+  //             action={getEmailActionUrl(booking.email)}
+  //           />
+  //         </div>
+  //         <footer className='review-booking__footer review-booking__footer--edit'>
+  //           <form onSubmit={onHandleSubmit}>
+  //             <button className='btn btn--dark' type='submit'>
+  //               Confirm Booking
+  //             </button>
+  //           </form>
+  //         </footer>
+  //       </article>
+  //     </>
+  //   )
+  // }
 
-  return (
+  return editable ? (
+    <>
+      <ToastContainer />
+      <h1 className='heading review-booking__title'>
+        <Link to='/'>{contactInfo.name}</Link>
+      </h1>
+      <Modal show={show} />
+      <article className='review-booking fade-in'>
+        <img src={about} alt='' />
+        <h2 className='heading review-booking__title'>Edit booking</h2>
+        <div className='review-booking__container'>
+          <Form
+            booking={booking}
+            config={config}
+            handleChange={onHandleChange}
+            handleDate={onHandleDate}
+            handleSubmit={onHandleSubmit}
+            submitBtn={false}
+            cssClass='form--edit'
+            action={getEmailActionUrl(booking.email)}
+          />
+        </div>
+        <footer className='review-booking__footer review-booking__footer--edit'>
+          <form onSubmit={onHandleSubmit}>
+            <button className='btn btn--dark' type='submit'>
+              Confirm Booking
+            </button>
+          </form>
+        </footer>
+      </article>
+    </>
+  ) : (
     <>
       <Modal show={show} />
       <h1 className='heading review-booking__title'>

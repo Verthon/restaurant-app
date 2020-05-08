@@ -1,5 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -13,6 +14,7 @@ const Form = ({
   cssClass,
   action
 }) => {
+  config.startDate = new Date(dayjs(config.startDate).toISOString())
   return (
     <form
       onSubmit={handleSubmit}
