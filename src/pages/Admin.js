@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../components/UserContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
@@ -12,6 +13,8 @@ const Admin = ({ history }) => {
   const [bookings, setBookings] = useState([])
   const [loading, handleLoading] = useState(true)
 
+  const { user } = useContext(UserContext)
+
   const handleSignOut = () => {
     try {
       logout()
@@ -24,8 +27,8 @@ const Admin = ({ history }) => {
   }
 
   useEffect(() => {
-    const listener = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
+    const listener = auth.onAuthStateChanged(async (authUser) => {
+      if (user) {
         try {
           getCollection('bookings').then((snapshot) => {
             const data = getData(snapshot)

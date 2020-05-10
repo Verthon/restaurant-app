@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../components/UserContext'
 import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
 import { login } from '../utils/login'
@@ -13,10 +14,14 @@ const Login = ({ history }) => {
     password: ''
   })
 
-  const handleSubmit = (e) => {
+  const { setUser } = useContext(UserContext)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      login(form.email, form.password)
+      const user = await login(form.email, form.password)
+      setUser(user)
+      console.log('user set before moving to admin', user)
       setTimeout(() => {
         history.push(ADMIN)
       }, 1000)
