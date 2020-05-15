@@ -29,11 +29,18 @@ const Navbar = ({ links, hashlink }) => {
       </button>
       <ul className='nav__list' ref={navRef}>
         <li className='nav__item'>
-          <NavLink className='nav__link' to='/'>Home</NavLink>
+          <NavLink className='nav__link' to='/'>
+            Home
+          </NavLink>
         </li>
         {links.map((link, index) => (
           <NavItem key={index} name={link} hashlink={hashlink} />
         ))}
+        <li className='nav__item'>
+          <NavLink to='/admin' className='nav__link btn btn--light btn--small'>
+            Dashboard
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

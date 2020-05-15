@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
 import { UserContext } from '../components/UserContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
-import PropTypes from 'prop-types'
 import { getCollection, getData } from '../utils/database'
+import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../helpers'
 
 const Admin = ({ history }) => {
@@ -18,9 +19,7 @@ const Admin = ({ history }) => {
   const handleSignOut = () => {
     try {
       logout()
-      setTimeout(() => {
-        history.push({ pathname: LOGIN })
-      }, 1000)
+      navigateTo(history, LOGIN)
     } catch (error) {
       console.log(error)
     }

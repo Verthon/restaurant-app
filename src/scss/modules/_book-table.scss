@@ -17,8 +17,8 @@
 
   &__subtitle{
     font-size: 1.5rem;
-    font-family: $decorative-font;
-    color: $metallic-gold;
+    font-family: $font-secondary;
+    color: $color-dark;
     margin: 0 0 2rem 0;
     font-weight: 400; 
 
@@ -38,7 +38,7 @@
 
     &:invalid {
       outline: none;
-      border-bottom: 2px solid $vampire;
+      border-bottom: 2px solid $color-error;
       box-shadow: none;
     }
   }

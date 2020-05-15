@@ -1,5 +1,5 @@
 .heading {
-  font-family: $decorative-font, sans-serif;
+  font-family: $font-secondary, sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
   margin: 0;
@@ -39,7 +39,7 @@
   }
 
   &--gold {
-    color: $metallic-gold;
+    color: $color-primary;
   }
 }
 

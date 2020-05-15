@@ -30,7 +30,7 @@
       margin: auto;
     }
     &__heading {
-      font-family: $decorative-font;
+      font-family: $font-secondary;
       text-align: center;
       margin: 0 0 1rem 0;
       @include mQ($ipad) {

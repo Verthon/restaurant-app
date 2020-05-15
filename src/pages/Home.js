@@ -26,9 +26,9 @@ const Home = () => {
 
   const notify = () =>
     toast('Offline mode detected. Application is working on cached version')
-
+  console.log('render HOME')
   useEffect(() => {
-    AOS.init({ duration: 2000 })
+    AOS.init({ duration: 1000 })
     db.collection('location').onSnapshot(
       { includeMetadataChanges: true },
       (snapshot) => {
@@ -90,7 +90,7 @@ const Home = () => {
             data-aos='fade-up'
             data-delay='700'
           >
-            <h2 className='section__about__title heading heading--gold'>
+            <h2 className='section__about__title heading'>
               Just the right food
             </h2>
             <p className='text section__description'>

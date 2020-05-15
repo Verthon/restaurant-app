@@ -16,7 +16,7 @@
   &__title {
     text-align: center;
     margin: 2rem 0 2rem 0;
-    font-family: $main-font;
+    font-family: $font;
     color: $metallic-gold;
     font-weight: 400;
     text-decoration: underline;
@@ -69,7 +69,7 @@
     }
 
     &__name {
-      font-family: $decorative-font;
+      font-family: $font-secondary;
       margin: 0.5rem 0;
       font-weight: 400;
     }

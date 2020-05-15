@@ -29,7 +29,7 @@
   }
 
   &__headline {
-    font-family: $decorative-font;
+    font-family: $font-secondary;
     font-size: 1.75rem;
     font-weight: 400;
     margin: 2rem auto;
@@ -39,21 +39,23 @@
       font-size: 2rem;
     }
     @include mQ($desktopXs){
-      font-size: 2.5rem;
+      font-size: 2.875rem;
     }
   }
 
   &__text {
     font-size: 0.9rem;
     margin: 2rem 0;
+    line-height: 1.5;
+    max-width: 25rem;
     @include mQ($mobile) {
       font-size: 1rem;
     }
     @include mQ($tablet){
-      margin: 1.5rem 0 4rem 0;
+      margin: 1rem 0 3rem 0;
     }
     @include mQ($desktopXs) {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
   }
 

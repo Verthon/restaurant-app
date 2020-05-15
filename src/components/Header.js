@@ -16,16 +16,16 @@ const Header = () => (
       <h1 className='site-header__headline' data-aos='fade'>
         Alkinoos Taverna
       </h1>
-      <p className='text site-header__text' data-aos='fade-up' data-delay='500'>
-        The right ingredients for the right food. Mediterranean Cuisine with
-        long tradition.
+      <p className='site-header__text' data-aos='fade-up' data-delay='500'>
+        The right ingredients for the right food. Family owned Mediterranean Cuisine with
+        the finest farm-to-table ingredients.
       </p>
       <div className='site-header__buttons'>
         <a href='/book-table' className='btn btn--dark'>
-          book a table
+          book table
         </a>
         <a href='/menu' className='btn btn--light'>
-          see the menu
+          our menu
         </a>
       </div>
     </div>

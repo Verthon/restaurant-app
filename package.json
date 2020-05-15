@@ -57,6 +57,7 @@
     "redux-thunk": "^2.3.0",
     "resolve": "1.8.1",
     "style-loader": "0.23.0",
+    "tailwindcss": "^1.4.6",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
     "webpack": "^4.43.0",

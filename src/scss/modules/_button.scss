@@ -1,28 +1,44 @@
 .btn{
   border: 0;
-  border-bottom: 2px solid $metallic-gold;
+  border-bottom: 2px solid $color-primary;
   text-transform: uppercase;
   margin: 0 0.5rem 0 0;
   padding: 0.6rem 0.85rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   display: inline-flex;
 
   @include mQ($desktopXs) {
     font-size: 1rem;
+    padding: 0.7rem 2rem;
+  }
+
+  &--small {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  &--large {
     padding: 0.75rem 1.5rem;
   }
 
   &--light{
-    background-color: $super-silver;
-    color: $nero;
+    background-color: $color-light;
+    color: $color-dark;
   }
 
   &--dark{
-    background-color: $nero;
+    background-color: $color-dark;
     color: $white;
     a{
       color: $white;
     }
+  }
+
+  &--outline {
+    background: $white;
+    border-bottom: 0;
+    border: 1px solid $color-dark;
   }
 }

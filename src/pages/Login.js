@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
+import PropTypes from 'prop-types'
 import { UserContext } from '../components/UserContext'
 import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
+import { navigateTo } from '../utils/navigate'
 import { login } from '../utils/login'
-import PropTypes from 'prop-types'
 import bookTableImg from '../images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
@@ -21,10 +22,7 @@ const Login = ({ history }) => {
     try {
       const user = await login(form.email, form.password)
       setUser(user)
-      console.log('user set before moving to admin', user)
-      setTimeout(() => {
-        history.push(ADMIN)
-      }, 1000)
+      navigateTo(history, ADMIN)
     } catch {
       handleError(error)
     }
