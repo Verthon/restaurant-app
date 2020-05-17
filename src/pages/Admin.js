@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { UserContext } from '../components/UserContext'
+import { DataContext } from '../components/DataContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
@@ -15,6 +16,8 @@ const Admin = ({ history }) => {
   const [loading, handleLoading] = useState(true)
 
   const { user } = useContext(UserContext)
+  const checkContext = useContext(DataContext)
+  console.log('checkContext Admin', checkContext)
 
   const handleSignOut = () => {
     try {

@@ -1,5 +1,12 @@
 import db, { firebase } from '../firebase'
 
+export const getOfflineData = async (name, callback) => {
+  return db.collection(name).onSnapshot(
+    { includeMetadataChanges: true },
+    callback
+  )
+}
+
 export const getCollection = async (name) => {
   return db.collection(name).get()
 }
