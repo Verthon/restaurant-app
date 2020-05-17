@@ -2,6 +2,26 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@font-face {
+  font-family: 'Yeseva One';
+  src: local('Yeseva One'), url(../assets/fonts/YesevaOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), url(../assets/fonts/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: local('Open Sans Light'), url(../assets/fonts/OpenSans-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans SemiBold';
+  src: local('Open Sans SemiBold'), url(../assets/fonts/OpenSans-SemiBold.ttf) format('truetype');
+}
+
 
 // main theme
 $ratio: 1.618;
@@ -40,6 +60,8 @@ $ipadPro: 1024px;
 $desktopXs: 1200px;
 $desktopSm: 1400px;
 
-$font: 'Open Sans';
-$font-secondary: 'Yeseva One';
+$font: 'Open Sans', sans-serif;
+$font-light: 'Open Sans Light', sans-serif;
+$font-semi-bold: 'Open Sans SemiBold', sans-serif;
+$font-secondary: 'Yeseva One', serif;
 

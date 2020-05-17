@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 import { formatPrice } from '../helpers'
+// import { ReactComponent as Ornament } from '../assets/images/greek-ornament.svg'
 
 const MenuItem = ({ menu }) => {
   const { name, price, description } = menu

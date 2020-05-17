@@ -13,15 +13,24 @@
       margin: 0 0 3rem 0;
     }
   }
+  &__container {
+    @include mQ($ipad) {
+      padding: 1rem 1rem 1rem 1rem;
+      @include flexColumn();
+    align-items: center;
+    }
+  }
   &__title {
+    font-size: 1.75rem;
     text-align: center;
     margin: 2rem 0 2rem 0;
-    font-family: $font;
+    font-family: $font-secondary;
     color: $metallic-gold;
     font-weight: 400;
-    text-decoration: underline;
+    //text-decoration: underline;
 
     @include mQ($ipad) {
+      text-align: left;
       margin: 1rem 0 1rem 0;
     }
   }
@@ -30,9 +39,6 @@
     @include flexColumn();
     align-items: center;
     padding: 0;
-    @include mQ($ipad) {
-      padding: 1rem 1rem 1rem 1rem;
-    }
   }
   &__description {
     line-height: 1.2;
@@ -57,7 +63,7 @@
     margin: 1rem 0;
 
     @include mQ($mobile) {
-      margin: 1rem;
+      margin: 1rem 0;
     }
 
     @include mQ($tablet) {
@@ -69,9 +75,14 @@
     }
 
     &__name {
+      font-size: 1.5rem;
       font-family: $font-secondary;
       margin: 0.5rem 0;
       font-weight: 400;
+    }
+
+    &__price {
+      font-size: 1.5rem;
     }
   }
 }

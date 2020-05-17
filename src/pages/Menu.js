@@ -57,12 +57,14 @@ const Menu = () => {
           </div>
 
           <div className='section__col'>
-            <h2 className='menu__title'>Desserts</h2>
-            <ul className='menu__list'>
-              {desserts.map((item) => (
-                <MenuItem key={item.name} menu={item} />
-              ))}
-            </ul>
+            <article className='menu__container'>
+              <h2 className='menu__title'>Desserts</h2>
+              <ul className='menu__list'>
+                {desserts.map((item) => (
+                  <MenuItem key={item.name} menu={item} />
+                ))}
+              </ul>
+            </article>
           </div>
         </div>
 
