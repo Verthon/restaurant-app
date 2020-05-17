@@ -6,7 +6,7 @@ import contactInfo from '../contactInfo'
 import { sendBookingInfo } from '../actions/index'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
-import bookTableImg from '../images/brooke-lark-book-table.jpg'
+import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
 import { REVIEW_BOOKING } from '../constants/routes'
 import {
   getTomorrowsDate,

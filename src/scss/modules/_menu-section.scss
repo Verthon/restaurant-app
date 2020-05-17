@@ -1,5 +1,5 @@
 .section__menu {
-  background-color: $lighthouse;
+  background-color: $color-light-1;
   @include mQ($ipad) {
     padding-bottom: 6rem;
   }

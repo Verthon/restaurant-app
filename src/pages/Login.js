@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
 import { navigateTo } from '../utils/navigate'
 import { login } from '../utils/login'
-import bookTableImg from '../images/brooke-lark-book-table.jpg'
+import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
   const [error, setError] = useState({ error: false })

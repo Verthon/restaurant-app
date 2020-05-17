@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/android-chrome-192x192.svg'
+import logo from '../assets/images/android-chrome-192x192.svg'
 const Spinner = () => {
   return (
     <div className='spinner'>

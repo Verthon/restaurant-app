@@ -7,6 +7,7 @@
 $ratio: 1.618;
 $color-primary: hsl(45.9,64.6%,52.4%);
 $color-light: hsl(43.6,21.6%,90%);
+$color-light-1: hsl(43.6,21.6%,85%);
 $color-dark: hsl(28.6,60%,6.9%);
 
 $color-error: hsl(357.4,36.9%,36.7%);
@@ -28,6 +29,7 @@ $silver: #cccccc;
 $gravel-fint: #bbbbbb;
 $vampire:#c70039;
 $default-shadow: 1px 1px 3px $silver-lake;
+$shadow-light: 0 1px 1px hsla(0, 0%, 0%, 0.2);
 
 //Media Queries vars
 $mobile: 350px;

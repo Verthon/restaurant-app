@@ -1,7 +1,7 @@
 import React from 'react'
-import headerImgXs from '../images/header-xs.jpg'
-import headerImgSm from '../images/header-sm.jpg'
-import headerImg from '../images/header.jpg'
+import headerImgXs from '../assets/images/header-xs.jpg'
+import headerImgSm from '../assets/images/header-sm.jpg'
+import headerImg from '../assets/images/header.jpg'
 
 const Header = () => (
   <header className='site-header container fade-in'>

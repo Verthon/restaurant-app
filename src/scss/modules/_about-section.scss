@@ -1,5 +1,5 @@
 .section__about{
-  background-color: $lighthouse;
+  background-color: $color-light;
 
   @include mQ($ipad){
     padding-top: 2.5rem;

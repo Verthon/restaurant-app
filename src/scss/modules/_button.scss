@@ -7,6 +7,7 @@
   font-size: 1rem;
   cursor: pointer;
   display: inline-flex;
+  box-shadow: $shadow-light;
 
   @include mQ($desktopXs) {
     font-size: 1rem;

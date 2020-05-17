@@ -19,7 +19,7 @@ import {
 import Modal from '../components/Modal'
 import db from '../firebase'
 import Form from '../components/Form'
-import about from '../images/brooke-lark-about.jpg'
+import about from '../assets/images/landing/brooke-lark-about.jpg'
 
 const ReviewBooking = () => {
   const bookingData = useSelector((state) => state.booking)
