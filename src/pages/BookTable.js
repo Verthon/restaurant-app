@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ToastContainer, toast } from 'react-toastify'
 import contactInfo from '../contactInfo'
-import { sendBookingInfo } from '../actions/index'
+import { sendBookingInfo, ADD_BOOKING } from '../actions'
+import { bookingReducer } from '../reducers/booking'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
@@ -30,6 +31,8 @@ const BookTable = ({ sendData, history }) => {
     email: '',
     confirmed: false
   })
+
+  const [bookingState, dispatch] = useReducer(bookingReducer)
 
   useEffect(() => {
     const data = loadLocalStorageState('booking')
@@ -58,7 +61,8 @@ const BookTable = ({ sendData, history }) => {
   const onHandleSubmit = (e) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
-    sendData(booking)
+    dispatch({ type: ADD_BOOKING, booking: booking })
+    // sendData(booking)
     history.push({ pathname: REVIEW_BOOKING })
   }
 

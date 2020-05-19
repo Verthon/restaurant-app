@@ -45,7 +45,6 @@ const Router = () => {
       }
     }
     fetchData()
-    console.log(fromCache, companyData)
   }, [fromCache, isLoading])
 
   return (

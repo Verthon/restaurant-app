@@ -2,7 +2,7 @@
 // eslint-disable react/jsx-boolean-value
 /* eslint-disable react/jsx-handler-names */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect, useSelector } from 'react-redux'
@@ -16,12 +16,15 @@ import {
   getTomorrowsDate,
   getEmailActionUrl
 } from '../helpers'
+import { GET_CURRENT_BOOKING } from '../actions'
+import { bookingReducer } from '../reducers/booking'
 import Modal from '../components/Modal'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 
 const ReviewBooking = () => {
+  const [bookingState, dispatch] = useReducer(bookingReducer, {})
   const bookingData = useSelector((state) => state.booking)
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState({})
@@ -35,7 +38,7 @@ const ReviewBooking = () => {
   useEffect(() => {
     const booking = { ...bookingData }
     booking.date = convertToDate(bookingData.date)
-    console.log('booking in useEffect', booking)
+    console.log('current booking', dispatch({ type: GET_CURRENT_BOOKING }))
     setBooking({ ...booking })
   }, [bookingData])
 

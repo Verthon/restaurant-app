@@ -20,43 +20,22 @@ import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
 import chef from '../assets/images/landing/cook.jpg'
 
 const Home = () => {
-  const [location, setLocation] = useState({})
-  const [hours, setHours] = useState(false)
+  console.log('Home render counter')
+  const [companyData, setCompanyData] = useState({ hours: null, location: null, contact: null })
   const links = ['Menu', 'Contact']
   const [fromCache, handleCache] = useState(false)
 
-  const checkContext = useContext(DataContext)
-  console.log('checkContext', checkContext)
-
+  const dataContext = useContext(DataContext)
+  // const { address, city, country, province, fulladdress, hoursy, name } = dataContext[0]
   const notify = () =>
     toast('Offline mode detected. Application is working on cached version')
   useEffect(() => {
     AOS.init({ duration: 1000 })
-    db.collection('location').onSnapshot(
-      { includeMetadataChanges: true },
-      (snapshot) => {
-        snapshot.metadata.fromCache ? handleCache(true) : handleCache(false)
-      }
-    )
-    db.collection('hours').onSnapshot(
-      { includeMetadataChanges: true },
-      (snapshot) => snapshot
-    )
-    getCollection('location').then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        setLocation(doc.data())
-      })
-    })
-    getCollection('hours').then((snapshot) => {
-      if (snapshot.metadata.fromCache) {
-        fromCache(true)
-        notify
-      }
-      snapshot.docs.forEach((doc) => {
-        setHours(doc.data())
-      })
-    })
-  }, [])
+    if (dataContext[0]) {
+      const data = dataContext[0]
+      setCompanyData({ ...companyData, hours: data.hours, location: data.location, contact: data.contact })
+    }
+  }, [dataContext[0]])
 
   return (
     <>
@@ -66,7 +45,7 @@ const Home = () => {
         progressClassName='toast__progress'
         autoClose={4000}
       />
-      <Navbar name={hours.name} links={links} hashlink />
+      <Navbar name={companyData.name} links={links} hashlink />
       <Header animation={['fade-up']} />
       <article id='About' className='section section__about'>
         <div className='row container'>
@@ -158,7 +137,7 @@ const Home = () => {
         </div>
       </article>
 
-      {hours ? <Footer hours={hours} location={location} /> : null}
+      {companyData.hours ? <Footer hours={companyData.hours} location={companyData.location} contact={companyData.contact} /> : null}
     </>
   )
 }
