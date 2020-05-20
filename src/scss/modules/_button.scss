@@ -21,7 +21,10 @@
   }
 
   &--large {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 2rem;
+    @include mQ($desktopXs) {
+      padding: 0.75rem 2.5rem;
+    }
   }
 
   &--light{

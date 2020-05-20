@@ -9,15 +9,11 @@
   }
 
   @include mQ($desktopXs) {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   &__review-booking {
     margin: 2rem 0;
-  }
-
-  @include mQ($ipad) {
-    font-size: 2rem;
   }
 
   &--center {
@@ -41,8 +37,13 @@
   &--gold {
     color: $color-primary;
   }
+
+  &--white {
+    color: $color-white;
+  }
 }
 
 .text {
   max-width: 30rem;
+  line-height: 1.5;
 }

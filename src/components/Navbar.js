@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import NavItem from './NavItem'
 
 const Navbar = ({ links, hashlink }) => {
-  const navRef = React.createRef()
+  const [isNavActive, setIsNavActive] = useState({
+    firstRender: true,
+    active: false
+  })
   const handleNavbarToggle = () => {
-    navRef.current.classList.toggle('nav__list--active')
+    setIsNavActive({ firstRender: false, active: !isNavActive.active })
   }
+
   return (
     <nav className='nav container' id='mainNav'>
       <NavLink className='nav__link' to='/'>
@@ -27,7 +31,13 @@ const Navbar = ({ links, hashlink }) => {
         <span className='btn__line' />
         <span className='btn__line' />
       </button>
-      <ul className='nav__list' ref={navRef}>
+      <ul
+        className={
+          isNavActive.active && !isNavActive.firstRender
+            ? 'nav__list--active animate__animated animate__fadeInLeft'
+            : 'nav__list animate__animated animate__fadeInUp'
+        }
+      >
         <li className='nav__item'>
           <NavLink className='nav__link' to='/'>
             Home

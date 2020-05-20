@@ -21,10 +21,10 @@ const Header = () => (
         the finest farm-to-table ingredients.
       </p>
       <div className='site-header__buttons'>
-        <a href='/book-table' className='btn btn--dark'>
+        <a href='/book-table' className='btn btn--dark btn--large'>
           book table
         </a>
-        <a href='/menu' className='btn btn--light'>
+        <a href='/menu' className='btn btn--light btn--large'>
           our menu
         </a>
       </div>

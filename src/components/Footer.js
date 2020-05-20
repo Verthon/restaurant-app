@@ -17,17 +17,17 @@ const Footer = ({ hours, location, contact }) => {
         <div className='site-footer__column'>
           <h2 className='site-footer__title'>Our Location</h2>
           <p className='site-footer__description'>{address}</p>
-          <p className='site-footer__location'>
+          <p className='site-footer__description'>
             {code} {city}
           </p>
-          <p className='site-footer__location'>
+          <p className='site-footer__description'>
             {province}, {country}
           </p>
         </div>
         <div className='site-footer__column'>
           <h2 className='site-footer__title'>Contact</h2>
-          <p className='site-footer__description'>Email: {contact.email}</p>
-          <p className='site-footer__description'>Phone: {contact.phone}</p>
+          <p className='site-footer__description'>{contact.email}</p>
+          <p className='site-footer__description'>{contact.phone}</p>
         </div>
       </div>
     </footer>

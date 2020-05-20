@@ -19,8 +19,8 @@
   margin: auto;
   &__modal {
     padding: 1.5rem 0;
-    background: $nero;
-    color: $white;
+    background: $color-dark-1;
+    color: $color-white;
     margin: auto;
     @include mQ($tablet) {
       max-width: 70%;
@@ -40,12 +40,12 @@
     &__quote {
       font-style: italic;
       margin: 0;
-      padding: 1rem 1.5rem;
+      padding: 0 1.5rem 1rem 1.5rem;
       @include mQ($tablet) {
-        padding: 1rem 2.5rem;
+        padding: 0 1rem 1rem 2.5rem;
       }
       @include mQ($ipad) {
-        padding: 2rem 3rem;
+        padding: 0 2rem 2rem 3rem;
       }
     }
   }

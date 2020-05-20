@@ -32,7 +32,7 @@
     font-family: $font-secondary;
     font-size: 1.75rem;
     font-weight: 400;
-    margin: 2rem auto;
+    margin: 1rem 0 1rem auto;
     @include mQ($ipad) {
       display: inline;
       margin: 0;
@@ -44,8 +44,8 @@
   }
 
   &__text {
-    font-size: 0.9rem;
-    margin: 2rem 0;
+    font-size: 1rem;
+    margin: 1rem 0 2rem 0;
     line-height: 1.5;
     max-width: 25rem;
     @include mQ($mobile) {
@@ -53,9 +53,11 @@
     }
     @include mQ($tablet){
       margin: 1rem 0 3rem 0;
+      max-width: 20rem;
     }
     @include mQ($desktopXs) {
       font-size: 1.1rem;
+      max-width: 25rem;
     }
   }
 

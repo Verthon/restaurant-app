@@ -10,14 +10,9 @@
   }
 
   &__description {
-    text-align: justify;
     line-height: 1.5;
-    margin: 2rem 0;
-    font-size: 0.9rem;
-
-    @include mQ($mobile) {
-      font-size: 1rem;
-    }
+    margin: 1rem 0 2rem 0;
+    font-size: 1rem;
   }
 
   &__image {

@@ -21,7 +21,11 @@ import chef from '../assets/images/landing/cook.jpg'
 
 const Home = () => {
   console.log('Home render counter')
-  const [companyData, setCompanyData] = useState({ hours: null, location: null, contact: null })
+  const [companyData, setCompanyData] = useState({
+    hours: null,
+    location: null,
+    contact: null
+  })
   const links = ['Menu', 'Contact']
   const [fromCache, handleCache] = useState(false)
 
@@ -30,10 +34,15 @@ const Home = () => {
   const notify = () =>
     toast('Offline mode detected. Application is working on cached version')
   useEffect(() => {
-    AOS.init({ duration: 1000 })
+    AOS.init({ duration: 750 })
     if (dataContext[0]) {
       const data = dataContext[0]
-      setCompanyData({ ...companyData, hours: data.hours, location: data.location, contact: data.contact })
+      setCompanyData({
+        ...companyData,
+        hours: data.hours,
+        location: data.location,
+        contact: data.contact
+      })
     }
   }, [dataContext[0]])
 
@@ -122,12 +131,13 @@ const Home = () => {
               <h2 className='heading testimonials__modal__heading'>
                 Guest reviews
               </h2>
-              <blockquote className='text testimonials__modal__quote'>
-                If you`ve been to one of our restaurants, you`ve seen - and
-                tasted - what keeps our customers coming back for more. Perfect
-                materials and freshly baked food, delicious Baklavas ,
-                Koulourakia, and gourmet coffees make us hard to resist! Stop in
-                today and check out us
+              <blockquote className='testimonials__modal__quote'>
+                <p className='text'>
+                  If you`ve been in Alkinoos Taverna, you`ve seen - and
+                  tasted - what keeps customers coming back for more.
+                  Perfect materials and freshly baked food, delicious Baklavas ,
+                  Koulourakia, and gourmet coffees make it hard to resist!
+                </p>
                 <p className='quote-writer' data-aos='fade' data-delay='500'>
                   food magazine, Mark Blue
                 </p>
@@ -137,7 +147,13 @@ const Home = () => {
         </div>
       </article>
 
-      {companyData.hours ? <Footer hours={companyData.hours} location={companyData.location} contact={companyData.contact} /> : null}
+      {companyData.hours ? (
+        <Footer
+          hours={companyData.hours}
+          location={companyData.location}
+          contact={companyData.contact}
+        />
+      ) : null}
     </>
   )
 }
