@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect, useContext } from 'react'
 import AOS from 'aos'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+// import { notify } from '../utils/notification'
 import { DataContext } from '../components/DataContext'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
@@ -25,13 +24,13 @@ const Home = () => {
     contact: null
   })
   const links = ['Menu', 'Contact']
-  const [fromCache, handleCache] = useState(false)
+  // const [fromCache, handleCache] = useState(false)
 
   const dataContext = useContext(DataContext)
-  const notify = () =>
-    toast('Offline mode detected. Application is working on cached version')
   useEffect(() => {
     AOS.init({ duration: 750 })
+  }, [])
+  useEffect(() => {
     if (dataContext.state.company) {
       const data = dataContext.state.company
       setCompanyData({

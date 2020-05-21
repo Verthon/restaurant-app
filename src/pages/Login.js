@@ -23,7 +23,7 @@ const Login = ({ history }) => {
       const user = await login(form.email, form.password)
       setUser(user)
       navigateTo(history, ADMIN)
-    } catch {
+    } catch (error) {
       handleError(error)
     }
   }

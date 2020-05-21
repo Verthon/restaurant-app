@@ -9,7 +9,7 @@ import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
 import { getCollection, getData } from '../utils/database'
 import { navigateTo } from '../utils/navigate'
-import { formatBookings } from '../helpers'
+import { formatBookings } from '../utils/helpers'
 
 const Admin = ({ history }) => {
   const [bookings, setBookings] = useState([])

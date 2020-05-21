@@ -1,10 +1,6 @@
-// eslint-disable react/jsx-boolean-value
-/* eslint-disable react/jsx-handler-names */
-
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
-import { connect, useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify'
 import contactInfo from '../contactInfo'
 import {
@@ -12,9 +8,9 @@ import {
   splitTime,
   formatDate,
   convertToDate,
-  getTomorrowsDate,
   getEmailActionUrl
-} from '../helpers'
+} from '../utils/helpers'
+import { DATEPICKER_CONFIG } from '../constants/config'
 import { DataContext } from '../components/DataContext'
 import Modal from '../components/Modal'
 import db from '../firebase'
@@ -22,15 +18,10 @@ import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 
 const ReviewBooking = () => {
-  const { state, dispatch } = useContext(DataContext)
+  const { state } = useContext(DataContext)
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState({})
   const [editable, setEditable] = useState(false)
-  const [config, setConfig] = useState({
-    startDate: getTomorrowsDate(),
-    minTime: 12,
-    maxTime: 22
-  })
 
   useEffect(() => {
     const booking = { ...state.booking }
@@ -97,7 +88,7 @@ const ReviewBooking = () => {
         <div className='review-booking__container'>
           <Form
             booking={booking}
-            config={config}
+            config={DATEPICKER_CONFIG}
             handleChange={onHandleChange}
             handleDate={onHandleDate}
             handleSubmit={onHandleSubmit}

@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import Spinner from '../components/Spinner'
 import db from '../firebase'
 import { getCollection, getData } from '../utils/database'
-import { formatMenu } from '../helpers'
+import { formatMenu } from '../utils/helpers'
 
 const Menu = () => {
   const [appetizers, setAppetizers] = useState([])
@@ -29,9 +29,10 @@ const Menu = () => {
         setMaindishes(menu.Mains)
         handleLoading(false)
       })
-    } catch (error) {
+    } catch (err) {
       handleLoading(false)
-      handleError(error)
+      handleError(err)
+      console.log('error on loading menu', error)
     }
   }, [])
 

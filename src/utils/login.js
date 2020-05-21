@@ -1,4 +1,4 @@
-import db, { firebase } from '../firebase'
+import { firebase } from '../firebase'
 
 export const auth = firebase.auth()
 

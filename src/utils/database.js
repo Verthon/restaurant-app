@@ -1,4 +1,4 @@
-import db, { firebase } from '../firebase'
+import db from '../firebase'
 
 export const getOfflineData = async (name, callback) => {
   return db.collection(name).onSnapshot(

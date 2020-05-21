@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { DataContext } from '../components/DataContext'
 import contactInfo from '../contactInfo'
 import { ADD_BOOKING } from '../reducers/booking'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
+import { DATEPICKER_CONFIG } from '../constants/config'
 import { REVIEW_BOOKING } from '../constants/routes'
 import {
   getTomorrowsDate,
@@ -14,15 +15,9 @@ import {
   loadLocalStorageState,
   saveLocalStorageState,
   isDateCurrent
-} from '../helpers'
+} from '../utils/helpers'
 
 const BookTable = ({ history }) => {
-  const [config, setConfig] = useState({
-    startDate: getTomorrowsDate(),
-    minTime: 12,
-    maxTime: 22
-  })
-
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
     people: 1,
@@ -31,7 +26,7 @@ const BookTable = ({ history }) => {
     confirmed: false
   })
 
-  const { state, dispatch } = useContext(DataContext)
+  const { dispatch } = useContext(DataContext)
 
   useEffect(() => {
     const data = loadLocalStorageState('booking')
@@ -63,12 +58,8 @@ const BookTable = ({ history }) => {
     console.log('booking before submit', booking)
     const action = { type: ADD_BOOKING, booking: booking }
     dispatch(action)
-    // sendData(booking)
     history.push({ pathname: REVIEW_BOOKING })
   }
-
-  const notify = () =>
-    toast('Offline mode detected. Application is working on cached version')
 
   const { location, hours } = contactInfo.info
 
@@ -85,7 +76,7 @@ const BookTable = ({ history }) => {
               handleChange={onHandleChange}
               handleDate={onHandleDate}
               booking={booking}
-              config={config}
+              config={DATEPICKER_CONFIG}
               submitBtn
             />
           </div>

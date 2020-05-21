@@ -17,15 +17,13 @@ Available routes:
 
 ## Technologies
 
-- React.js 16.5.2
-- Redux
+- React.js
 - Scss
 - JavaScript ES6
 - Firebase Firestore
-- Netlify
+- Continuous Deployment with Netlify
 - Enzyme, Jest
 - Photos from [Brooke Lark](http://brookelark.com/) on [Unsplash](https://unsplash.com/@brookelark)
-
 
 ## Setup
 
