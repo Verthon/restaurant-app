@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useReducer } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { ToastContainer, toast } from 'react-toastify'
+import { DataContext } from '../components/DataContext'
 import contactInfo from '../contactInfo'
-import { sendBookingInfo, ADD_BOOKING } from '../actions'
-import { bookingReducer } from '../reducers/booking'
+import { ADD_BOOKING } from '../reducers/booking'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
@@ -17,7 +16,7 @@ import {
   isDateCurrent
 } from '../helpers'
 
-const BookTable = ({ sendData, history }) => {
+const BookTable = ({ history }) => {
   const [config, setConfig] = useState({
     startDate: getTomorrowsDate(),
     minTime: 12,
@@ -32,7 +31,7 @@ const BookTable = ({ sendData, history }) => {
     confirmed: false
   })
 
-  const [bookingState, dispatch] = useReducer(bookingReducer)
+  const { state, dispatch } = useContext(DataContext)
 
   useEffect(() => {
     const data = loadLocalStorageState('booking')
@@ -61,7 +60,9 @@ const BookTable = ({ sendData, history }) => {
   const onHandleSubmit = (e) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
-    dispatch({ type: ADD_BOOKING, booking: booking })
+    console.log('booking before submit', booking)
+    const action = { type: ADD_BOOKING, booking: booking }
+    dispatch(action)
     // sendData(booking)
     history.push({ pathname: REVIEW_BOOKING })
   }
@@ -119,20 +120,11 @@ const BookTable = ({ sendData, history }) => {
 }
 
 BookTable.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func }),
-  sendData: PropTypes.func
+  history: PropTypes.shape({ push: PropTypes.func })
 }
 
 BookTable.defaultProps = {
-  history: {},
-  sendData: sendBookingInfo
+  history: {}
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendData: (payload) => dispatch(sendBookingInfo(payload))
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(BookTable)
+export default BookTable

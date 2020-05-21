@@ -35,7 +35,7 @@ const Navbar = ({ links, hashlink }) => {
         className={
           isNavActive.active && !isNavActive.firstRender
             ? 'nav__list--active animate__animated animate__fadeInLeft'
-            : 'nav__list animate__animated animate__fadeInUp'
+            : 'nav__list'
         }
       >
         <li className='nav__item'>

@@ -1,8 +1,7 @@
-/* eslint-disable react/no-unused-state */
 // eslint-disable react/jsx-boolean-value
 /* eslint-disable react/jsx-handler-names */
 
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { connect, useSelector } from 'react-redux'
@@ -16,16 +15,14 @@ import {
   getTomorrowsDate,
   getEmailActionUrl
 } from '../helpers'
-import { GET_CURRENT_BOOKING } from '../actions'
-import { bookingReducer } from '../reducers/booking'
+import { DataContext } from '../components/DataContext'
 import Modal from '../components/Modal'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 
 const ReviewBooking = () => {
-  const [bookingState, dispatch] = useReducer(bookingReducer, {})
-  const bookingData = useSelector((state) => state.booking)
+  const { state, dispatch } = useContext(DataContext)
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState({})
   const [editable, setEditable] = useState(false)
@@ -36,11 +33,10 @@ const ReviewBooking = () => {
   })
 
   useEffect(() => {
-    const booking = { ...bookingData }
-    booking.date = convertToDate(bookingData.date)
-    console.log('current booking', dispatch({ type: GET_CURRENT_BOOKING }))
+    const booking = { ...state.booking }
+    booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
-  }, [bookingData])
+  }, [state])
 
   const handleModal = () => {
     toggleModal(true)
@@ -173,10 +169,6 @@ const ReviewBooking = () => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
-
 ReviewBooking.propTypes = {
   location: propTypes.shape({
     pathname: propTypes.string,
@@ -202,4 +194,4 @@ ReviewBooking.defaultProps = {
   confirmed: false
 }
 
-export default connect(mapStateToProps)(ReviewBooking)
+export default ReviewBooking

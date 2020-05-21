@@ -8,8 +8,6 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import '../scss/index.scss'
-import db from '../firebase'
-import { getCollection } from '../utils/database'
 import 'aos/dist/aos.css'
 import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
 import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
@@ -30,13 +28,12 @@ const Home = () => {
   const [fromCache, handleCache] = useState(false)
 
   const dataContext = useContext(DataContext)
-  // const { address, city, country, province, fulladdress, hoursy, name } = dataContext[0]
   const notify = () =>
     toast('Offline mode detected. Application is working on cached version')
   useEffect(() => {
     AOS.init({ duration: 750 })
-    if (dataContext[0]) {
-      const data = dataContext[0]
+    if (dataContext.state.company) {
+      const data = dataContext.state.company
       setCompanyData({
         ...companyData,
         hours: data.hours,
@@ -44,7 +41,7 @@ const Home = () => {
         contact: data.contact
       })
     }
-  }, [dataContext[0]])
+  }, [dataContext.state.company])
 
   return (
     <>
@@ -117,7 +114,7 @@ const Home = () => {
             </p>
             <div className='col-md-12 text-center'>
               <a href='/menu' className='btn btn--dark' data-aos='flip-up'>
-                see the menu
+                our menu
               </a>
             </div>
           </div>
