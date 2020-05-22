@@ -10,7 +10,7 @@ const Booking = ({ name, email, confirmed, date, guests }) => {
       <td className='table__cell'>{dayjs(date).format('DD/MM/YYYY')}</td>
       <td className='table__cell'>{dayjs(date).set('minutes', 0).format('HH:mm')}</td>
       <td className='table__cell'>{email}</td>
-      <td className='table__cell'>{guests}</td>
+      <td className='table__cell table__cell--guests'>{guests}</td>
     </tr>
   )
 }

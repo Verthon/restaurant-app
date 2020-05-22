@@ -26,13 +26,13 @@ const Home = () => {
   const links = ['Menu', 'Contact']
   // const [fromCache, handleCache] = useState(false)
 
-  const dataContext = useContext(DataContext)
+  const { state } = useContext(DataContext)
   useEffect(() => {
     AOS.init({ duration: 750 })
   }, [])
   useEffect(() => {
-    if (dataContext.state.company) {
-      const data = dataContext.state.company
+    if (state.company) {
+      const data = state.company
       setCompanyData({
         ...companyData,
         hours: data.hours,
@@ -40,79 +40,79 @@ const Home = () => {
         contact: data.contact
       })
     }
-  }, [dataContext.state.company])
+  }, [state.company])
 
   return (
     <>
       <ToastContainer
-        className='toast__container'
-        toastClassName='toast'
-        progressClassName='toast__progress'
+        className="toast__container"
+        toastClassName="toast"
+        progressClassName="toast__progress"
         autoClose={4000}
       />
       <Navbar name={companyData.name} links={links} hashlink />
       <Header animation={['fade-up']} />
-      <article id='About' className='section section__about'>
-        <div className='row container'>
-          <div className='section__col' data-aos='fade-down' data-delay='1500'>
+      <article id="About" className="section section__about">
+        <div className="row container">
+          <div className="section__col" data-aos="fade-down" data-delay="1500">
             <picture>
-              <source media='(min-width: 475px)' srcSet={aboutImg} />
+              <source media="(min-width: 475px)" srcSet={aboutImg} />
               <img
-                className='img-fluid'
+                className="img-fluid"
                 src={aboutImgXs}
-                alt='example dish from our restaurant'
+                alt="example dish from our restaurant"
               />
             </picture>
             <picture>
-              <source media='(min-width: 475px)' srcSet={about1Img} />
+              <source media="(min-width: 475px)" srcSet={about1Img} />
               <img
-                className='img-fluid'
+                className="img-fluid"
                 src={about1ImgXs}
-                alt='example dish from our restaurant'
+                alt="example dish from our restaurant"
               />
             </picture>
           </div>
           <article
-            className='section__col section__col--white section__col__description'
-            data-aos='fade-up'
-            data-delay='700'
+            className="section__col section__col--white section__col__description"
+            data-aos="fade-up"
+            data-delay="700"
           >
-            <h2 className='section__about__title heading'>
+            <h2 className="section__about__title heading">
               Just the right food
             </h2>
-            <p className='text section__description'>
+            <p className="text section__description">
               If you’ve been to one of our restaurants, you’ve seen – and tasted
               – what keeps our customers coming back for more. Perfect materials
               and freshly baked food, delicious Baklava, Koulourakia, and
               gourmet coffees make us hard to resist! Stop in today and check us
               out!
             </p>
-            <img className='section__about__chef' src={chef} alt='our chef' />
+            <img className="section__about__chef" src={chef} alt="our chef" />
           </article>
         </div>
       </article>
-      <div id='Menu' className='section section__menu'>
-        <div className='row container'>
-          <div className='section__col'>
+      <div id="Menu" className="section section__menu">
+        <div className="row container">
+          <div className="section__col">
             <picture>
-              <source media='(min-width: 475px)' srcSet={menuImg} />
+              <source media="(min-width: 475px)" srcSet={menuImg} />
               <img
-                className='img-fluid section__image'
+                className="img-fluid section__image"
                 src={menuImgXs}
-                alt='example dish from our restaurant'
+                alt="example dish from our restaurant"
               />
             </picture>
           </div>
-          <div className='section__col section__col--white section__col__description'>
-            <h2 className='heading'>Discover our menu!</h2>
-            <p className='text section__description'>
+          <div className="section__col section__col--white section__col__description">
+            <h2 className="heading">Discover our menu!</h2>
+            <p className="text section__description">
               For those with pure food indulgence in mind, come next door and
               sate your desires with our ever changing internationally and
               seasonally inspired small plates. We love food, lots of different
               food, just like you.{' '}
             </p>
-            <div className='col-md-12 text-center'>
-              <a href='/menu' className='btn btn--dark' data-aos='flip-up'>
+            <div className="col-md-12 text-center">
+              <a href="/menu" className="btn btn--dark" data-aos="flip-up">
                 our menu
               </a>
             </div>
@@ -120,21 +120,21 @@ const Home = () => {
         </div>
       </div>
 
-      <article id='Reviews' className='section section__testimonials'>
-        <div className='row container'>
-          <div className='testimonials'>
-            <div className='testimonials__modal'>
-              <h2 className='heading testimonials__modal__heading'>
+      <article id="Reviews" className="section section__testimonials">
+        <div className="row container">
+          <div className="testimonials">
+            <div className="testimonials__modal">
+              <h2 className="heading testimonials__modal__heading">
                 Guest reviews
               </h2>
-              <blockquote className='testimonials__modal__quote'>
-                <p className='text'>
-                  If you`ve been in Alkinoos Taverna, you`ve seen - and
-                  tasted - what keeps customers coming back for more.
-                  Perfect materials and freshly baked food, delicious Baklavas ,
-                  Koulourakia, and gourmet coffees make it hard to resist!
+              <blockquote className="testimonials__modal__quote">
+                <p className="text">
+                  If you`ve been in Alkinoos Taverna, you`ve seen - and tasted -
+                  what keeps customers coming back for more. Perfect materials
+                  and freshly baked food, delicious Baklavas , Koulourakia, and
+                  gourmet coffees make it hard to resist!
                 </p>
-                <p className='quote-writer' data-aos='fade' data-delay='500'>
+                <p className="quote-writer" data-aos="fade" data-delay="500">
                   food magazine, Mark Blue
                 </p>
               </blockquote>

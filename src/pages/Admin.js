@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { UserContext } from '../components/UserContext'
 import { DataContext } from '../components/DataContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
+import { pageTransitions } from '../constants/config'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
 import { getCollection, getData } from '../utils/database'
 import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../utils/helpers'
+import { notify } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 const Admin = ({ history }) => {
   const [bookings, setBookings] = useState([])
@@ -25,6 +30,7 @@ const Admin = ({ history }) => {
       navigateTo(history, LOGIN)
     } catch (error) {
       console.log(error)
+      notify(DB_ERROR_MSG)
     }
   }
 
@@ -40,6 +46,7 @@ const Admin = ({ history }) => {
           })
         } catch (error) {
           console.log('Error on fetching collection', error)
+          notify(DB_ERROR_MSG)
         }
       } else {
         history.push({ pathname: LOGIN })
@@ -54,12 +61,12 @@ const Admin = ({ history }) => {
   return (
     <>
       <Navbar />
-      <main className='container'>
+      <motion.main className='container' initial="exit" animate="enter" exit="exit">
         <h1 className='title'>Bookings</h1>
         <button className='btn' onClick={handleSignOut}>
           Sign out
         </button>
-        <table className='table'>
+        <motion.table className='table' variants={pageTransitions}>
           <thead>
             <tr className='table__row'>
               <th className='table__header'>Name</th>
@@ -84,8 +91,8 @@ const Admin = ({ history }) => {
               })
               : null}
           </tbody>
-        </table>
-      </main>
+        </motion.table>
+      </motion.main>
     </>
   )
 }
@@ -98,4 +105,4 @@ Admin.defaultProps = {
   history: {}
 }
 
-export default Admin
+export default withRouter(Admin)

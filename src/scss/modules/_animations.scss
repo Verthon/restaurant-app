@@ -11,10 +11,10 @@
 }
 
 .bounce {
-@include animation(0, 3s, bounce, ease)
+@include animation(0, 2s, bounce, ease)
 }
 
 
 .fade-in {
-  @include animation(0, 1.5s, fade-in, ease-in)
+  @include animation(0, 0.5s, fade-in, ease-in)
 }

@@ -1,13 +1,19 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
+import { motion } from 'framer-motion'
+import { withRouter } from 'react-router-dom'
 import { UserContext } from '../components/UserContext'
 import Navbar from '../components/Navbar'
 import { ADMIN } from '../constants/routes'
 import { navigateTo } from '../utils/navigate'
 import { login } from '../utils/login'
+import { notify } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
+import { pageTransitions } from '../constants/config'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
+  console.log(history)
   const [error, setError] = useState({ error: false })
 
   const [form, setInputs] = useState({
@@ -25,6 +31,7 @@ const Login = ({ history }) => {
       navigateTo(history, ADMIN)
     } catch (error) {
       handleError(error)
+      notify(DB_ERROR_MSG)
     }
   }
 
@@ -42,7 +49,7 @@ const Login = ({ history }) => {
   return (
     <>
       <Navbar />
-      <div className='container row'>
+      <motion.div initial="exit" animate="enter" exit="exit" variants={pageTransitions} className='container row'>
         <div className='section section__col login'>
           <h1 className='heading'>Login</h1>
           <form method='POST' className='login__form' onSubmit={handleSubmit}>
@@ -65,7 +72,7 @@ const Login = ({ history }) => {
               required
               onChange={handleInput}
             />
-            <p className='login__error fade-in'>
+            <p className='login__error'>
               {error ? error.message : null}
             </p>
             <button type='submit' className='btn btn--dark login__btn'>
@@ -78,7 +85,7 @@ const Login = ({ history }) => {
             <img src={bookTableImg} alt='' className='table-booking__image' />
           </picture>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
@@ -91,4 +98,4 @@ Login.defaultProps = {
   history: {}
 }
 
-export default Login
+export default withRouter(Login)

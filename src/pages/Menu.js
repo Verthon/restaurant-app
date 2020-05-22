@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import MenuItem from '../components/MenuItem'
 import Navbar from '../components/Navbar'
 import Spinner from '../components/Spinner'
 import db from '../firebase'
+import { pageTransitions } from '../constants/config'
 import { getCollection, getData } from '../utils/database'
 import { formatMenu } from '../utils/helpers'
+import { notify } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 const Menu = () => {
   const [appetizers, setAppetizers] = useState([])
@@ -32,7 +36,8 @@ const Menu = () => {
     } catch (err) {
       handleLoading(false)
       handleError(err)
-      console.log('error on loading menu', error)
+      notify(DB_ERROR_MSG)
+      console.log(error)
     }
   }, [])
 
@@ -43,54 +48,54 @@ const Menu = () => {
   return (
     <>
       <Navbar />
-      <section id='menu' className='section menu container fade-in'>
-        <h1 className='heading heading--center menu__heading'>Menu</h1>
-        <div className='row'>
-          <div className='section__col'>
-            <article className='menu__container'>
-              <h2 className='menu__title'>Appetizers</h2>
-              <ul className='menu__list'>
+      <section id="menu" className="section menu container">
+        <h1 className="heading heading--center menu__heading">Menu</h1>
+        <div className="row">
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Appetizers</h2>
+              <ul className="menu__list">
                 {appetizers.map((item) => (
                   <MenuItem key={item.name} menu={item} />
                 ))}
               </ul>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
 
-          <div className='section__col'>
-            <article className='menu__container'>
-              <h2 className='menu__title'>Desserts</h2>
-              <ul className='menu__list'>
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Desserts</h2>
+              <ul className="menu__list">
                 {desserts.map((item) => (
                   <MenuItem key={item.name} menu={item} />
                 ))}
               </ul>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
         </div>
 
-        <div className='row'>
-          <div className='section__col'>
-            <article className='menu__container'>
-              <h2 className='menu__title'>Salads</h2>
-              <ul className='menu__list'>
+        <div className="row">
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Salads</h2>
+              <ul className="menu__list">
                 {salads.map((item) => (
                   <MenuItem key={item.name} menu={item} />
                 ))}
               </ul>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
 
-          <div className='section__col'>
-            <article className='menu__container'>
-              <h2 className='menu__title'>Main dishes</h2>
-              <ul className='menu__list'>
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Main dishes</h2>
+              <ul className="menu__list">
                 {maindishes.map((item) => (
                   <MenuItem key={item.name} menu={item} />
                 ))}
               </ul>
-            </article>
-          </div>
+            </motion.article>
+          </motion.div>
         </div>
       </section>
     </>

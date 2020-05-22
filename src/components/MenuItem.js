@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { formatPrice } from '../utils/helpers'
+import { pageTransitions } from '../constants/config'
 // import { ReactComponent as Ornament } from '../assets/images/greek-ornament.svg'
 
 const MenuItem = ({ menu }) => {
@@ -8,7 +9,7 @@ const MenuItem = ({ menu }) => {
 
   return (
     <>
-      <li className='menu__item'>
+      <li className='menu__item' variants={pageTransitions}>
         <header className='menu__header'>
           <h3 className='menu__item__name'>{name}</h3>{' '}
           <span className='menu__item__price'>{formatPrice(price)}</span>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import contactInfo from '../contactInfo'
 import {
   splitDate,
@@ -16,6 +16,8 @@ import Modal from '../components/Modal'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
+import { notify } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 const ReviewBooking = () => {
   const { state } = useContext(DataContext)
@@ -50,9 +52,6 @@ const ReviewBooking = () => {
     setBooking({ ...booking, date: e })
   }
 
-  const notify = () =>
-    toast('Offline mode detected. Application is working on cached version')
-
   const onHandleSubmit = (e) => {
     const submitBooking = { ...booking }
     console.log('booking to submit', submitBooking)
@@ -68,7 +67,7 @@ const ReviewBooking = () => {
       .then(() => handleModal())
       .catch((err) => {
         console.log('Error occured while saving to database: ', err)
-        notify()
+        notify(DB_ERROR_MSG)
       })
   }
 
@@ -82,7 +81,7 @@ const ReviewBooking = () => {
         <Link to='/'>{contactInfo.name}</Link>
       </h1>
       <Modal show={show} />
-      <article className='review-booking fade-in'>
+      <article className='review-booking'>
         <img src={about} alt='' />
         <h2 className='heading review-booking__title'>Edit booking</h2>
         <div className='review-booking__container'>
@@ -112,7 +111,7 @@ const ReviewBooking = () => {
       <h1 className='heading review-booking__title'>
         <Link to='/'>{contactInfo.name}</Link>
       </h1>
-      <article className='review-booking fade-in'>
+      <article className='review-booking'>
         <img src={about} alt='' />
         <p className='review-booking__client'>
           <strong className='review-booking__name'>{name}</strong> reservation

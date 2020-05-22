@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useReducer, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+// import { AnimatePresence } from 'framer-motion'
 import { DataContext } from './DataContext'
 import { UserContext } from './UserContext'
 import { bookingReducer } from '../reducers/booking'
@@ -11,6 +12,8 @@ import ReviewBooking from '../pages/ReviewBooking'
 import Admin from '../pages/Admin'
 import Login from '../pages/Login'
 import { getCollection, getOfflineData, getData } from '../utils/database'
+import { notify } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
 import * as ROUTES from '../constants/routes'
 
 const Router = () => {
@@ -26,6 +29,7 @@ const Router = () => {
     company: {}
   }
   const [state, dispatch] = useReducer(bookingReducer, initialState)
+  console.log('Router rendered', state)
   const [isLoading, setIsLoading] = useState(true)
   const [fromCache, handleCache] = useState(false)
   const [user, setUser] = useState(null)
@@ -38,20 +42,20 @@ const Router = () => {
     const fetchData = async () => {
       try {
         getOfflineData('company', (snapshot) => {
-          snapshot.metadata.fromCache ? handleCache(true) : handleCache(false)
+          snapshot.metadata.fromCache ? handleCache(!fromCache) : handleCache(fromCache)
         })
         getCollection('company').then((snapshot) => {
           const data = getData(snapshot)
           const [dataObj] = data
           initialState.company = dataObj
-          setIsLoading(false)
+          setIsLoading(!isLoading)
         })
       } catch (err) {
-        console.log(err)
+        return notify(DB_ERROR_MSG)
       }
     }
     fetchData()
-  }, [fromCache, isLoading])
+  }, [])
 
   return (
     <BrowserRouter>
@@ -62,7 +66,9 @@ const Router = () => {
           <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
           <Route path={ROUTES.MENU} component={Menu} />
           <UserContext.Provider value={userValue}>
-            <Route path={ROUTES.LOGIN} component={Login} />
+            <Route path={ROUTES.LOGIN}>
+              <Login key={ROUTES.LOGIN} history={history}/>
+            </Route>
             <Route path={ROUTES.ADMIN} component={Admin} />
           </UserContext.Provider>
           <Route component={NotFound} />
