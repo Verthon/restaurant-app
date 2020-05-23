@@ -33,7 +33,6 @@ const BookTable = ({ history }) => {
     contact: null
   })
   const { state, dispatch } = useContext(DataContext)
-  console.log('data context', state)
   useEffect(() => {
     const data = loadLocalStorageState('booking')
     if (data && isDateCurrent(data.booking.date)) {

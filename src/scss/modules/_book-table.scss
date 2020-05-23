@@ -3,12 +3,14 @@
   align-items: center;
 
   .react-datepicker-wrapper, .react-datepicker__input-container {
-    display: block;
+    display: inline-block;
     width: 100%;
   }
 
   .label{
-    display: none;
+    display: flex;
+    align-self: flex-start;
+    font-size: 0.875rem;
   }
 
   &__title{
@@ -24,7 +26,7 @@
 
     @include mQ($desktopXs) {
       font-size: 1.75rem;
-      margin: 3rem 0 3rem 0;
+      margin: 3rem 0 2rem 0;
     }
   }
 
@@ -33,24 +35,23 @@
     border-bottom: 2px solid $silver;
     padding: 0.5rem 0;
     display: block;
-    margin: 1rem 0;
+    margin: 0 0 2rem 0;
     width: 100%;
 
-    &:invalid {
-      outline: none;
-      border-bottom: 2px solid $color-error;
-      box-shadow: none;
+    &:focus {
+      border-bottom: 2px solid $color-primary;
     }
   }
 
   &__reminder {
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
   }
 
   &__image {
     display: none;
     @include mQ($desktopXs) {
       display: block;
+      margin: 1rem 0 0 0;
     }
   }
 }

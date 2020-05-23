@@ -61,19 +61,26 @@ const Admin = ({ history }) => {
   return (
     <>
       <Navbar />
-      <motion.main className='container' initial="exit" animate="enter" exit="exit">
-        <h1 className='title'>Bookings</h1>
-        <button className='btn' onClick={handleSignOut}>
-          Sign out
-        </button>
-        <motion.table className='table' variants={pageTransitions}>
+      <motion.main
+        className="container"
+        initial="exit"
+        animate="enter"
+        exit="exit"
+      >
+        <header className="admin__header">
+          <h1 className="title">Bookings</h1>
+          <button className="btn btn--light btn--small" onClick={handleSignOut}>
+            Sign out
+          </button>
+        </header>
+        <motion.table className="table" variants={pageTransitions}>
           <thead>
-            <tr className='table__row'>
-              <th className='table__header'>Name</th>
-              <th className='table__header'>Date</th>
-              <th className='table__header'>Time</th>
-              <th className='table__header'>Email</th>
-              <th className='table__header'>Guests</th>
+            <tr className="table__row">
+              <th className="table__header">Name</th>
+              <th className="table__header">Date</th>
+              <th className="table__header">Time</th>
+              <th className="table__header">Email</th>
+              <th className="table__header">Guests</th>
             </tr>
           </thead>
           <tbody>

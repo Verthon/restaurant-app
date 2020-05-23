@@ -31,7 +31,6 @@ const Form = ({
         className='table-booking__input'
         type='text'
         name='name'
-        placeholder='Name'
         required
         defaultValue={booking.name}
         onChange={handleChange}
@@ -43,13 +42,12 @@ const Form = ({
         className='table-booking__input'
         type='email'
         name='email'
-        placeholder='Email address'
         required
         onChange={handleChange}
         defaultValue={booking.email}
       />
       <label htmlFor='Datepicker' className='label'>
-        Please add date
+        Date
       </label>
       <DatePicker
         name='Datepicker'
@@ -66,14 +64,14 @@ const Form = ({
         timeCaption='Time'
         placeholderText='Click and choose the date'
       />
-      <label className='label' htmlFor='people'>
+      <label className='label' htmlFor='people' name='people'>
         Number of guests
       </label>
       <input
         className='table-booking__input'
         name='people'
+        id='people'
         type='number'
-        placeholder='Number of guests'
         min='1'
         max='4'
         required

@@ -13,23 +13,23 @@ const Navbar = ({ links, hashlink }) => {
   }
 
   return (
-    <nav className='nav container' id='mainNav'>
-      <NavLink className='nav__link' to='/'>
-        <h3 className='navbar__brand'>Alkinoos Taverna</h3>
+    <nav className="nav container" id="mainNav">
+      <NavLink className="nav__link" to="/">
+        <h3 className="navbar__brand">Alkinoos Taverna</h3>
       </NavLink>
       <button
-        className='nav__btn'
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarNav'
-        aria-controls='navbarNav'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
+        className="nav__btn"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
         onClick={handleNavbarToggle}
       >
-        <span className='btn__line' />
-        <span className='btn__line' />
-        <span className='btn__line' />
+        <span className="btn__line" />
+        <span className="btn__line" />
+        <span className="btn__line" />
       </button>
       <ul
         className={
@@ -38,16 +38,21 @@ const Navbar = ({ links, hashlink }) => {
             : 'nav__list'
         }
       >
-        <li className='nav__item'>
-          <NavLink className='nav__link' to='/'>
+        <li className="nav__item">
+          <NavLink className="nav__link" to="/">
             Home
           </NavLink>
         </li>
         {links.map((link, index) => (
-          <NavItem key={index} name={link} hashlink={hashlink} />
+          <NavItem
+            key={index}
+            name={link.name}
+            link={link.link}
+            hashlink={hashlink}
+          />
         ))}
-        <li className='nav__item'>
-          <NavLink to='/admin' className='nav__link btn btn--light btn--small'>
+        <li className="nav__item">
+          <NavLink to="/admin" className="nav__link btn btn--light btn--small">
             Dashboard
           </NavLink>
         </li>
@@ -62,7 +67,7 @@ Navbar.propTypes = {
 }
 
 Navbar.defaultProps = {
-  links: ['Menu', 'Book-Table'],
+  links: [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }],
   hashlink: false
 }
 

@@ -1,9 +1,8 @@
 import React, { useState, useMemo, useReducer, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-// import { AnimatePresence } from 'framer-motion'
 import { DataContext } from './DataContext'
 import { UserContext } from './UserContext'
-import { bookingReducer } from '../reducers/booking'
+import { reducer, ADD_COMPANY } from '../reducer'
 import Home from '../pages/Home'
 import Menu from '../pages/Menu'
 import BookTable from '../pages/BookTable'
@@ -28,8 +27,7 @@ const Router = () => {
     },
     company: {}
   }
-  const [state, dispatch] = useReducer(bookingReducer, initialState)
-  console.log('Router rendered', state)
+  const [state, dispatch] = useReducer(reducer, initialState)
   const [isLoading, setIsLoading] = useState(true)
   const [fromCache, handleCache] = useState(false)
   const [user, setUser] = useState(null)
@@ -48,6 +46,7 @@ const Router = () => {
           const data = getData(snapshot)
           const [dataObj] = data
           initialState.company = dataObj
+          dispatch({ type: ADD_COMPANY, company: dataObj })
           setIsLoading(!isLoading)
         })
       } catch (err) {

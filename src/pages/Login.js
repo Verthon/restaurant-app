@@ -53,21 +53,22 @@ const Login = ({ history }) => {
         <div className='section section__col login'>
           <h1 className='heading'>Login</h1>
           <form method='POST' className='login__form' onSubmit={handleSubmit}>
-            <label htmlFor='email' className='label'>
+            <label htmlFor='email' className='label login__label'>
               Email
             </label>
             <input
               type='email'
               className='input'
-              placeholder='email'
               name='email'
               required
               onChange={handleInput}
             />
+            <label htmlFor='email' className='label login__label'>
+              Password
+            </label>
             <input
               type='password'
               className='input'
-              placeholder='password'
               name='password'
               required
               onChange={handleInput}

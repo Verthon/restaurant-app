@@ -6,14 +6,8 @@
   border-bottom: 2px solid #cccccc;
   padding: 0.5rem 0;
   display: block;
-  margin: 1rem 0;
+  margin: 0;
   width: 100%;
-
-  // &:invalid {
-  //   outline: none;
-  //   border-bottom: 2px solid $vampire;
-  //   box-shadow: none;
-  // }
 }
 
 .form {
@@ -30,7 +24,9 @@
 }
 
 .label {
-  display: none;
+  display: flex;
+  align-self: flex-start;
+  color: 0.875rem;
 }
 
 .react-datepicker-wrapper, .react-datepicker__input-container {

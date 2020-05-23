@@ -23,7 +23,7 @@ const Home = () => {
     location: null,
     contact: null
   })
-  const links = ['Menu', 'Contact']
+  const links = [{ name: 'Menu', link: 'menu' }, { name: 'Contact', link: 'contact' }]
   // const [fromCache, handleCache] = useState(false)
 
   const { state } = useContext(DataContext)

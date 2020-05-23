@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
+import { motion } from 'framer-motion'
 import contactInfo from '../contactInfo'
 import {
   splitDate,
@@ -10,9 +11,10 @@ import {
   convertToDate,
   getEmailActionUrl
 } from '../utils/helpers'
-import { DATEPICKER_CONFIG } from '../constants/config'
+import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
 import { DataContext } from '../components/DataContext'
 import Modal from '../components/Modal'
+import Spinner from '../components/Spinner'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
@@ -20,6 +22,12 @@ import { notify } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 const ReviewBooking = () => {
+  const [loading, setLoading] = useState(true)
+  const [companyData, setCompanyData] = useState({
+    hours: null,
+    location: 'oe',
+    contact: null
+  })
   const { state } = useContext(DataContext)
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState({})
@@ -27,9 +35,21 @@ const ReviewBooking = () => {
 
   useEffect(() => {
     const booking = { ...state.booking }
+    const company = { ...state.company }
+    console.log(company)
     booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
-  }, [state])
+    if (company.location) {
+      setCompanyData({
+        ...companyData,
+        hours: company.hours,
+        location: company.location,
+        contact: company.contact,
+        name: company.name
+      })
+      setLoading(false)
+    }
+  }, [state.company.location])
 
   const handleModal = () => {
     toggleModal(true)
@@ -71,90 +91,101 @@ const ReviewBooking = () => {
       })
   }
 
-  const { street, number, code, city, province } = contactInfo.info.location
+  const { address, code, city, province } = companyData.location
+  console.log(address, code, city, province)
   const { name, people, date } = booking
 
-  return editable ? (
+  if (loading) {
+    return <Spinner />
+  }
+
+  if (editable) {
+    return (
+      <motion.div initial="exit" animate="enter" exit="exit">
+        <ToastContainer />
+        <h1 className="heading review-booking__title">
+          <Link to="/">{contactInfo.name}</Link>
+        </h1>
+        <Modal show={show} />
+        <motion.article className="review-booking" variants={pageTransitions}>
+          <img src={about} alt="" />
+          <h2 className="heading review-booking__title">Edit booking</h2>
+          <div className="review-booking__container">
+            <Form
+              booking={booking}
+              config={DATEPICKER_CONFIG}
+              handleChange={onHandleChange}
+              handleDate={onHandleDate}
+              handleSubmit={onHandleSubmit}
+              submitBtn={false}
+              cssClass="form--edit"
+              action={getEmailActionUrl(booking.email)}
+            />
+          </div>
+          <footer className="review-booking__footer review-booking__footer--edit">
+            <form onSubmit={onHandleSubmit}>
+              <button className="btn btn--dark" type="submit">
+                Confirm Booking
+              </button>
+            </form>
+          </footer>
+        </motion.article>
+      </motion.div>
+    )
+  }
+
+  return (
     <>
-      <ToastContainer />
-      <h1 className='heading review-booking__title'>
-        <Link to='/'>{contactInfo.name}</Link>
-      </h1>
       <Modal show={show} />
-      <article className='review-booking'>
-        <img src={about} alt='' />
-        <h2 className='heading review-booking__title'>Edit booking</h2>
-        <div className='review-booking__container'>
-          <Form
-            booking={booking}
-            config={DATEPICKER_CONFIG}
-            handleChange={onHandleChange}
-            handleDate={onHandleDate}
-            handleSubmit={onHandleSubmit}
-            submitBtn={false}
-            cssClass='form--edit'
-            action={getEmailActionUrl(booking.email)}
-          />
-        </div>
-        <footer className='review-booking__footer review-booking__footer--edit'>
-          <form onSubmit={onHandleSubmit}>
-            <button className='btn btn--dark' type='submit'>
-              Confirm Booking
-            </button>
-          </form>
-        </footer>
-      </article>
-    </>
-  ) : (
-    <>
-      <Modal show={show} />
-      <h1 className='heading review-booking__title'>
-        <Link to='/'>{contactInfo.name}</Link>
+      <h1 className="heading review-booking__title">
+        <Link to="/">{contactInfo.name}</Link>
       </h1>
-      <article className='review-booking'>
-        <img src={about} alt='' />
-        <p className='review-booking__client'>
-          <strong className='review-booking__name'>{name}</strong> reservation
-        </p>
-        <div className='row review-booking__container'>
-          <div className='section__col section__col--flexible'>
-            <p className='review-booking__value'>{people}</p>
-            <p className='review-booking__description'>Guests</p>
+      <motion.div initial="exit" animate="enter" exit="exit">
+        <motion.article className="review-booking" variants={pageTransitions}>
+          <img src={about} alt="" />
+          <p className="review-booking__client">
+            <strong className="review-booking__name">{name}</strong> reservation
+          </p>
+          <div className="row review-booking__container">
+            <div className="section__col section__col--flexible">
+              <p className="review-booking__value">{people}</p>
+              <p className="review-booking__description">Guests</p>
+            </div>
+            <div className="section__col section__col--flexible">
+              <p className="review-booking__value">
+                {splitDate(formatDate(convertToDate(date)))}
+              </p>
+              <p className="review-booking__description">Date</p>
+            </div>
+            <div className="section__col section__col--flexible">
+              <p className="review-booking__value">
+                {splitTime(formatDate(convertToDate(date)))}
+              </p>
+              <p className="review-booking__description">Time</p>
+            </div>
           </div>
-          <div className='section__col section__col--flexible'>
-            <p className='review-booking__value'>
-              {splitDate(formatDate(convertToDate(date)))}
-            </p>
-            <p className='review-booking__description'>Date</p>
-          </div>
-          <div className='section__col section__col--flexible'>
-            <p className='review-booking__value'>
-              {splitTime(formatDate(convertToDate(date)))}
-            </p>
-            <p className='review-booking__description'>Time</p>
-          </div>
-        </div>
-        <p className='review-booking__address'>
-          {street} {number}
-        </p>
-        <p className='review-booking__address'>
-          {city}, {province}, {code}{' '}
-        </p>
-        <footer className='review-booking__footer'>
-          <form onSubmit={onHandleSubmit}>
-            <button
-              className='btn btn--light'
-              type='button'
-              onClick={handleEdit}
-            >
-              Edit booking
-            </button>
-            <button className='btn btn--dark' type='submit'>
-              Confirm Booking
-            </button>
-          </form>
-        </footer>
-      </article>
+          {companyData.location ? (<><p className='review-booking__address'>
+            {address}
+          </p>
+          <p className='review-booking__address'>
+            {city}, {province}, {code}{' '}
+          </p></>) : null}
+          <footer className="review-booking__footer">
+            <form onSubmit={onHandleSubmit}>
+              <button
+                className="btn btn--light"
+                type="button"
+                onClick={handleEdit}
+              >
+                Edit booking
+              </button>
+              <button className="btn btn--dark" type="submit">
+                Confirm Booking
+              </button>
+            </form>
+          </footer>
+        </motion.article>
+      </motion.div>
     </>
   )
 }

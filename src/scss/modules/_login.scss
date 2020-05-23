@@ -1,12 +1,15 @@
 .login {
   justify-content: center;
-}
 
-.login__form {
-  margin: 2rem 0;
-}
+  &__form {
+    margin: 2rem 0;
+  }
 
-.login__btn {
-  margin: 2rem 0;
-}
+  &__label {
+    margin: 0.5rem 0;
+  }
 
+  &__btn {
+    margin: 2rem 0;
+  }
+}
