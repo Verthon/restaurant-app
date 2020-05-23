@@ -3,11 +3,11 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 const config = {
-  apiKey:
-    'AIzaSyCGk9d9hxN5KUGbgjlgqAaXdEXRe6Fysuw' || process.env.FIRESTORE_API_KEY,
-  authDomain: process.env.FIRESTORE_AUTH_DOMAIN,
-  projectId: 'restaurant-app-d4b51',
-  databaseURL: process.env.FIRESTORE_DATABASE_URL
+  apiKey: process.env.REACT_APP_DEV_FIRESTORE_API_KEY,
+  authDomain: process.env.REACT_APP_DEV_FIRESTORE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_DEV_FIRESTORE_PROJECT_ID,
+  databaseURL: process.env.REACT_APP_DEV_FIRESTORE_DATABASE_URL,
+  appId: process.env.REACT_APP_DEV_FIRESTORE_APP_ID
 }
 
 const handleError = error => {

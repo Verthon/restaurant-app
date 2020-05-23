@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { DataContext } from '../components/DataContext'
-import { ADD_BOOKING } from '../reducers/booking'
+import { ADD_BOOKING } from '../reducer'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
 import Spinner from '../components/Spinner'
@@ -74,7 +74,6 @@ const BookTable = ({ history }) => {
   const onHandleSubmit = (e) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
-    console.log('booking before submit', booking)
     const action = { type: ADD_BOOKING, booking: booking }
     dispatch(action)
     history.push({ pathname: REVIEW_BOOKING })
@@ -89,7 +88,12 @@ const BookTable = ({ history }) => {
   return (
     <>
       <ToastContainer />
-      <motion.div initial="exit" animate="enter" exit="exit" className="table-booking">
+      <motion.div
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        className="table-booking"
+      >
         <Navbar />
         <motion.div variants={pageTransitions} className="row container">
           <div className="section section__col">
@@ -106,9 +110,7 @@ const BookTable = ({ history }) => {
           {companyData.location ? (
             <article className="section section__col">
               <h2 className="table-booking__subtitle">Located in London</h2>
-              <p>
-                {location.address}
-              </p>
+              <p>{location.address}</p>
               <p>
                 {location.city}, {location.province}, {location.code}
               </p>

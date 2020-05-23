@@ -3,7 +3,9 @@ export const ADD_COMPANY = 'ADD_COMPANY'
 
 const addCompanyData = (state, data) => ({ ...state, company: data })
 
-const addBooking = (state, booking) => ({ ...state, booking: booking })
+const addBooking = (state, booking) => {
+  return { ...state, booking: booking }
+}
 
 export const reducer = (state, action) => {
   switch (action.type) {

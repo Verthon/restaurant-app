@@ -36,7 +36,6 @@ const ReviewBooking = () => {
   useEffect(() => {
     const booking = { ...state.booking }
     const company = { ...state.company }
-    console.log(company)
     booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
     if (company.location) {
@@ -74,7 +73,6 @@ const ReviewBooking = () => {
 
   const onHandleSubmit = (e) => {
     const submitBooking = { ...booking }
-    console.log('booking to submit', submitBooking)
     e.preventDefault()
     db.collection('bookings')
       .add({
@@ -92,7 +90,6 @@ const ReviewBooking = () => {
   }
 
   const { address, code, city, province } = companyData.location
-  console.log(address, code, city, province)
   const { name, people, date } = booking
 
   if (loading) {

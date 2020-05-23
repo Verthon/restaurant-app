@@ -17,7 +17,6 @@ import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
 import chef from '../assets/images/landing/cook.jpg'
 
 const Home = () => {
-  console.log('Home render counter')
   const [companyData, setCompanyData] = useState({
     hours: null,
     location: null,
