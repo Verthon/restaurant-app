@@ -2,12 +2,24 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-const config = {
-  apiKey: process.env.REACT_APP_DEV_FIRESTORE_API_KEY,
-  authDomain: process.env.REACT_APP_DEV_FIRESTORE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_DEV_FIRESTORE_PROJECT_ID,
-  databaseURL: process.env.REACT_APP_DEV_FIRESTORE_DATABASE_URL,
-  appId: process.env.REACT_APP_DEV_FIRESTORE_APP_ID
+let config = null
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  config = {
+    apiKey: process.env.REACT_APP_DEV_FIRESTORE_API_KEY,
+    authDomain: process.env.REACT_APP_DEV_FIRESTORE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_DEV_FIRESTORE_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_DEV_FIRESTORE_DATABASE_URL,
+    appId: process.env.REACT_APP_DEV_FIRESTORE_APP_ID
+  }
+} else {
+  config = {
+    apiKey: process.env.REACT_APP_FIRESTORE_API_KEY,
+    authDomain: process.env.REACT_APP_FIRESTORE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIRESTORE_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_FIRESTORE_DATABASE_URL,
+    appId: process.env.REACT_APP_FIRESTORE_APP_ID
+  }
 }
 
 const handleError = error => {
