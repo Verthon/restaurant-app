@@ -8,6 +8,10 @@
   display: block;
   margin: 0;
   width: 100%;
+
+  &--error {
+    border-bottom: 2px solid $color-error;
+  }
 }
 
 .form {
@@ -20,6 +24,10 @@
     @include mQ($nexus) {
       margin: 0;
     }
+  }
+
+  &__description {
+    margin: 0 0 2rem 0;
   }
 }
 

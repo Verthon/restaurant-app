@@ -21,7 +21,7 @@ const Form = ({
       className={cssClass ? `form ${cssClass}` : 'form'}
       action={action || null}
     >
-      <p className='text'>
+      <p className='text form__description'>
         Please remember that, you can book a table with maximum of 4 guests.
       </p>
       <label className='label' htmlFor='name'>
