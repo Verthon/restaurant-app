@@ -22,7 +22,10 @@ const Home = () => {
     location: null,
     contact: null
   })
-  const links = [{ name: 'Menu', link: 'menu' }, { name: 'Contact', link: 'contact' }]
+  const links = [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Contact', link: 'contact' }
+  ]
   // const [fromCache, handleCache] = useState(false)
 
   const { state } = useContext(DataContext)
@@ -80,11 +83,19 @@ const Home = () => {
               Just the right food
             </h2>
             <p className="text section__description">
-              If you’ve been to one of our restaurants, you’ve seen – and tasted
-              – what keeps our customers coming back for more. Perfect materials
-              and freshly baked food, delicious Baklava, Koulourakia, and
-              gourmet coffees make us hard to resist! Stop in today and check us
-              out!
+              Alkinoos Taverna is cosy, family owned, traditional Greek food
+              restaurant. Outdoor Greek tavernas traditionally combine sunshine
+              and nature, discover rich Mediterranean flavours.
+            </p>
+            <p className="text section__description">
+              For Greeks, food is so much more than nourishment - it’s about
+              culture, comfort, family and life itself. We belive that
+              connection of traditional Greek recipes with addition of local,
+              fresh materials, creates perfect balance for our meals.
+            </p>
+            <p className="text section__description">
+              If you’ve been in Alkinoos Taverna, you’ve seen - and tasted what
+              keeps our customers coming back for more.
             </p>
             <img className="section__about__chef" src={chef} alt="our chef" />
           </article>
@@ -103,15 +114,30 @@ const Home = () => {
             </picture>
           </div>
           <div className="section__col section__col--white section__col__description">
-            <h2 className="heading">Discover our menu!</h2>
-            <p className="text section__description">
-              For those with pure food indulgence in mind, come next door and
-              sate your desires with our ever changing internationally and
-              seasonally inspired small plates. We love food, lots of different
-              food, just like you.{' '}
-            </p>
+            <article className="section__menu-landing">
+              <h2 className="heading">Discover our menu!</h2>
+              <p className="text section__description">
+                Taste our famous traditional, authentic Greek dishes and do not
+                miss our famous local wine list along with your meal.
+              </p>
+              <p className="text section__description">
+                For those with pure food indulgence in mind, come next door and
+                sate your desires with ever changing seasonally inspired small
+                plates. Our menu is filled with Greek ingredients and the
+                freshest hand picked ingredients available locally.
+              </p>
+              <p className="text section__description">
+                Our commitment is to nothing less than excellence and we will
+                settle on nothing as it’s substitute. We will customize any menu
+                to meet your needs and tastes.
+              </p>
+            </article>
             <div className="col-md-12 text-center">
-              <a href="/menu" className="btn btn--dark" data-aos="flip-up">
+              <a
+                href="/menu"
+                className="btn btn--dark section__btn"
+                data-aos="flip-up"
+              >
                 our menu
               </a>
             </div>

@@ -40,12 +40,12 @@
 
   &__client {
     font-size: 1.5rem;
-    color: $gravel-fint;
+    color: $color-dark-3;
     margin: 2.5rem 0;
   }
   &__name {
     margin: 0 0.25rem 0 0;
-    color: $cavernous;
+    color: $color-dark;
   }
 
   &__container {
@@ -61,11 +61,13 @@
   &__value {
     margin: 0;
     text-align: center;
+    color: $color-dark;
+    font-family: $font-semi-bold;
   }
 
   &__description {
     text-align: center;
-    color: $gravel-fint;
+    color: $color-dark-3;
     text-transform: uppercase;
     font-size: 0.95rem;
     margin: 0 0 1rem 0;

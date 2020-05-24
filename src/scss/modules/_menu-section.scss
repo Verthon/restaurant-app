@@ -53,6 +53,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
+    color: $color-dark;
 
     @include mQ($desktopXs) {
       font-size: 1.5rem;
@@ -82,7 +83,7 @@
     }
 
     &__price {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
     }
   }
 }

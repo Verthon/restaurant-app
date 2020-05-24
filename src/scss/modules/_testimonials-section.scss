@@ -31,6 +31,7 @@
     }
     &__heading {
       font-family: $font-secondary;
+      color: $white;
       text-align: center;
       margin: 0 0 1rem 0;
       @include mQ($ipad) {

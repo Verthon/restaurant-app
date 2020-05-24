@@ -11,7 +11,7 @@
 
   &__description {
     line-height: 1.5;
-    margin: 1rem 0 2rem 0;
+    margin: .5rem 0 0 0;
     font-size: 1rem;
   }
 
@@ -52,5 +52,9 @@
     &--flexible {
       flex: 1;
     }
+  }
+
+  &__menu-landing {
+    margin: 0 0 2rem 0;
   }
 }
