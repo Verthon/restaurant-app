@@ -10,7 +10,7 @@ import Spinner from '../components/Spinner'
 import { pageTransitions } from '../constants/config'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
-import { getCollection, getData } from '../utils/database'
+import { getData, getCollectionWithOptions } from '../utils/database'
 import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../utils/helpers'
 import { notify } from '../utils/notification'
@@ -34,11 +34,16 @@ const Admin = ({ history }) => {
     }
   }
 
+  const toggleOptions = () => {
+    console.log('KEK')
+  }
+
   useEffect(() => {
     const listener = auth.onAuthStateChanged(async (authUser) => {
       if (user) {
         try {
-          getCollection('bookings').then((snapshot) => {
+          getCollectionWithOptions('bookings', { name: 'name', type: 'asc' }, 20).then((snapshot) => {
+            console.log('snapshot', snapshot)
             const data = getData(snapshot)
             const allBookings = formatBookings(data)
             setBookings(allBookings)
@@ -68,19 +73,20 @@ const Admin = ({ history }) => {
         exit="exit"
       >
         <header className="admin__header">
-          <h1 className="title">Bookings</h1>
+          <h1 className="admin__title">Bookings</h1>
           <button className="btn btn--light btn--small" onClick={handleSignOut}>
             Sign out
           </button>
         </header>
         <motion.table className="table" variants={pageTransitions}>
-          <thead>
+          <thead className="table__header">
             <tr className="table__row">
-              <th className="table__header">Name</th>
-              <th className="table__header">Date</th>
-              <th className="table__header">Time</th>
-              <th className="table__header">Email</th>
-              <th className="table__header">Guests</th>
+              <th className="table__heading">Name</th>
+              <th className="table__heading">Date</th>
+              <th className="table__heading">Time</th>
+              <th className="table__heading">Email</th>
+              <th className="table__heading">Guests</th>
+              <th className="table__heading">Options</th>
             </tr>
           </thead>
           <tbody>
@@ -93,6 +99,7 @@ const Admin = ({ history }) => {
                     email={item.email}
                     guests={item.guests}
                     date={item.date}
+                    toggleOptions={toggleOptions}
                   />
                 )
               })

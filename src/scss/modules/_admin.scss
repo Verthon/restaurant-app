@@ -1,3 +1,10 @@
+.admin {
+  &__title {
+    font-family: $font-secondary;
+    color: $color-dark;
+    font-weight: normal;
+  }
+}
 
 
 .table {
@@ -5,17 +12,30 @@
   border-collapse: collapse;
   margin: 2rem 0;
   &__header {
+    font-family: $font-semi-bold;
+    border-bottom: 2px solid $color-dark-3;
+  }
+  &__heading {
     padding: 1rem 2rem;
+    text-transform: uppercase;
   }
   &__row {
-    border: 1px solid $silver-lake;
     text-align: left;
+    &:nth-child(even) {
+      background: $color-table;
+    }
   }
   &__cell{
     padding: 2rem;
 
-    &--guests {
+    &--center {
       text-align: center;
+    }
+
+    &__icon {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
     }
   }
 }

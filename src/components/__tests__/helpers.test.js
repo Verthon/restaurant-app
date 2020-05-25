@@ -1,4 +1,4 @@
-import { formatPrice, splitDate, splitTime, formatDate, convertToDate } from '../../helpers'
+import { formatPrice, splitDate, splitTime, formatDate, convertToDate } from '../../utils/helpers'
 
 test('formatPrice', () => {
   expect(formatPrice(290)).toBe('$2.90')

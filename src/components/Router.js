@@ -40,7 +40,9 @@ const Router = () => {
     const fetchData = async () => {
       try {
         getOfflineData('company', (snapshot) => {
-          snapshot.metadata.fromCache ? handleCache(!fromCache) : handleCache(fromCache)
+          snapshot.metadata.fromCache
+            ? handleCache(!fromCache)
+            : handleCache(fromCache)
         })
         getCollection('company').then((snapshot) => {
           const data = getData(snapshot)
@@ -59,19 +61,19 @@ const Router = () => {
   return (
     <BrowserRouter>
       <DataContext.Provider value={contextValue}>
-        <Switch>
-          <Route exact path={ROUTES.HOME} component={Home} />
-          <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
-          <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
-          <Route path={ROUTES.MENU} component={Menu} />
-          <UserContext.Provider value={userValue}>
+        <UserContext.Provider value={userValue}>
+          <Switch>
+            <Route exact path={ROUTES.HOME} component={Home} />
+            <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
+            <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
+            <Route path={ROUTES.MENU} component={Menu} />
             <Route path={ROUTES.LOGIN}>
-              <Login key={ROUTES.LOGIN} history={history}/>
+              <Login key={ROUTES.LOGIN} history={history} />
             </Route>
             <Route path={ROUTES.ADMIN} component={Admin} />
-          </UserContext.Provider>
-          <Route component={NotFound} />
-        </Switch>
+            <Route component={NotFound} />
+          </Switch>
+        </UserContext.Provider>
       </DataContext.Provider>
     </BrowserRouter>
   )

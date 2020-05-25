@@ -25,7 +25,7 @@ const ReviewBooking = () => {
   const [loading, setLoading] = useState(true)
   const [companyData, setCompanyData] = useState({
     hours: null,
-    location: 'oe',
+    location: {},
     contact: null
   })
   const { state } = useContext(DataContext)
@@ -84,7 +84,7 @@ const ReviewBooking = () => {
       })
       .then(() => handleModal())
       .catch((err) => {
-        console.log('Error occured while saving to database: ', err)
+        console.log('Error occurred while saving to database: ', err)
         notify(DB_ERROR_MSG)
       })
   }

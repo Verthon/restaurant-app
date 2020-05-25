@@ -13,7 +13,6 @@ import { pageTransitions } from '../constants/config'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
-  console.log(history)
   const [error, setError] = useState({ error: false })
 
   const [form, setInputs] = useState({
