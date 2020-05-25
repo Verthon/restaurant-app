@@ -6,16 +6,26 @@ const Modal = ({ show }) => {
   const activeClassName = show ? 'modal-book--active' : 'modal-book--disabled'
   return (
     <div className={`modal-book ${activeClassName}`}>
-      <article className='modal-book__content fade-in'>
-        <h2 className='heading'>Thank you</h2>
-        <p className='text modal-book__text'>
-          Thank you for booking reservation. We will contact you shortly.
+      <article className="modal-book__content fade-in">
+        <h2 className="heading modal-book__heading">Thank you</h2>
+        <p className="text modal-book__text">
+          Thank you for booking reservation.
         </p>
-        <Link to='/'>
-          <button className='btn btn--dark' type='button'>
-            Continue
-          </button>
-        </Link>
+        <p className="text modal-book__text">
+          We will contact you shortly.
+        </p>
+        <footer className="modal-book__footer">
+          <Link to="/menu">
+            <button className="btn btn--light" type="button">
+              See Menu
+            </button>
+          </Link>
+          <Link to="/">
+            <button className="btn btn--dark" type="button">
+              Back to Home
+            </button>
+          </Link>
+        </footer>
       </article>
     </div>
   )

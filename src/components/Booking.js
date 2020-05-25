@@ -6,7 +6,7 @@ import { ReactComponent as OptionsIcon } from '../assets/icons/option.svg'
 
 const Booking = ({ name, email, confirmed, date, guests, toggleOptions }) => {
   return (
-    <tr className='table__row'>
+    <tr className='table__row animate__animated animate__fadeInDown'>
       <td className='table__cell'>{name}</td>
       <td className='table__cell'>{dayjs(date).format('DD/MM/YYYY')}</td>
       <td className='table__cell'>{dayjs(date).set('minutes', 0).format('HH:mm')}</td>
