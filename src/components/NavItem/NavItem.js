@@ -6,11 +6,11 @@ import PropTypes from 'prop-types'
 const NavItem = ({ hashlink, name, link }) => (
   <li className='nav__item'>
     {hashlink ? (
-      <HashLink className='nav__link' to={`/#${link}`}>
+      <HashLink className='nav__link' data-testid="navlink" to={`/#${link}`}>
         {name}
       </HashLink>
     ) : (
-      <Link className='nav__link' to={`/${link}`}>
+      <Link className='nav__link' data-testid="navlink" to={`/${link}`}>
         {name}
       </Link>
     )}

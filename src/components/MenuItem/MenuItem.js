@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { formatPrice } from '../utils/helpers'
-import { pageTransitions } from '../constants/config'
-// import { ReactComponent as Ornament } from '../assets/images/greek-ornament.svg'
+import { formatPrice } from '../../utils/helpers'
+import { pageTransitions } from '../../constants/config'
 
 const MenuItem = ({ menu }) => {
   const { name, price, description } = menu

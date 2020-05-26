@@ -72,6 +72,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js && echo '/*    /index.html   200' > build/_redirects",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "deploy": "npm run build && netlify deploy",
     "lint": "eslint ."
   },

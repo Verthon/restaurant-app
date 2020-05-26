@@ -33,7 +33,7 @@ const handleError = error => {
     return {
       message: 'Error',
       description:
-        'The current browser does not support all of the features required to enable persistenc'
+        'The current browser does not support all of the features required to enable persistence'
     }
   }
 }

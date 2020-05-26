@@ -13,7 +13,7 @@ import {
 } from '../utils/helpers'
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
 import { DataContext } from '../components/DataContext'
-import Modal from '../components/Modal'
+import Modal from '../components/Modal/Modal'
 import Spinner from '../components/Spinner'
 import db from '../firebase'
 import Form from '../components/Form'

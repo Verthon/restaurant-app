@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import MenuItem from '../components/MenuItem'
+import MenuItem from '../components/MenuItem/MenuItem'
 import Navbar from '../components/Navbar'
 import Spinner from '../components/Spinner'
 import db from '../firebase'

@@ -89,7 +89,7 @@ const Home = () => {
             </p>
             <p className="text section__description">
               For Greeks, food is so much more than nourishment - it’s about
-              culture, comfort, family and life itself. We belive that
+              culture, comfort, family and life itself. We believe that
               connection of traditional Greek recipes with addition of local,
               fresh materials, creates perfect balance for our meals.
             </p>

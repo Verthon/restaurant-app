@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import NavItem from './NavItem'
+import NavItem from './NavItem/NavItem'
 
 const Navbar = ({ links, hashlink }) => {
   const [isNavActive, setIsNavActive] = useState({
@@ -62,7 +62,10 @@ const Navbar = ({ links, hashlink }) => {
 }
 
 Navbar.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.string),
+  links: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    link: PropTypes.string
+  })),
   hashlink: PropTypes.bool
 }
 

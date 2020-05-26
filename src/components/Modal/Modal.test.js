@@ -1,0 +1,14 @@
+import React from 'react'
+import '@testing-library/jest-dom/extend-expect'
+import { renderWithRouter } from '../../utils/testUtils'
+import Modal from './Modal'
+
+test('Should render Modal component with disabled class', () => {
+  const { container } = renderWithRouter(<Modal show={false} />)
+  expect(container.querySelector('.modal-book')).toHaveClass('modal-book--disabled')
+})
+
+test('Should render Modal component with active class', () => {
+  const { container } = renderWithRouter(<Modal show={true} />)
+  expect(container.querySelector('.modal-book')).toHaveClass('modal-book--active')
+})
