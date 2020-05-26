@@ -54,7 +54,7 @@ const Home = () => {
       />
       <Navbar name={companyData.name} links={links} hashlink />
       <Header animation={['fade-up']} />
-      <article id="About" className="section section__about">
+      <article id="about" className="section section__about">
         <div className="row container">
           <div className="section__col" data-aos="fade-down" data-delay="1500">
             <picture>
@@ -101,7 +101,7 @@ const Home = () => {
           </article>
         </div>
       </article>
-      <div id="Menu" className="section section__menu">
+      <div id="menu" className="section section__menu">
         <div className="row container">
           <div className="section__col">
             <picture>

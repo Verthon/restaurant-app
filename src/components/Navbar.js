@@ -13,7 +13,7 @@ const Navbar = ({ links, hashlink }) => {
   }
 
   return (
-    <nav className="nav container" id="mainNav">
+    <nav className="nav container" id="mainNav" aria-label="Main">
       <NavLink className="nav__link" to="/">
         <h3 className="navbar__brand">Alkinoos Taverna</h3>
       </NavLink>

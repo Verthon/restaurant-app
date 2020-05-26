@@ -20,6 +20,7 @@ const Form = ({
       onSubmit={handleSubmit}
       className={cssClass ? `form ${cssClass}` : 'form'}
       action={action || null}
+      aria-label="Add a booking"
     >
       <p className='text form__description'>
         Please remember that, you can book a table with maximum of 4 guests.
@@ -32,6 +33,7 @@ const Form = ({
         type='text'
         name='name'
         required
+        aria-required="true"
         defaultValue={booking.name}
         onChange={handleChange}
       />
@@ -43,6 +45,7 @@ const Form = ({
         type='email'
         name='email'
         required
+        aria-required="true"
         onChange={handleChange}
         defaultValue={booking.email}
       />
@@ -75,6 +78,7 @@ const Form = ({
         min='1'
         max='4'
         required
+        aria-required="true"
         onChange={handleChange}
         defaultValue={booking.people}
       />

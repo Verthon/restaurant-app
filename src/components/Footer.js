@@ -5,29 +5,29 @@ const Footer = ({ hours, location, contact }) => {
   const { weekdays, weekend } = hours
   const { address, code, city, province, country } = location
   return (
-    <footer id='Contact' className='site-footer section'>
-      <div className='row container'>
-        <div className='site-footer__column'>
-          <h2 className='site-footer__title'>Opening Hours</h2>
-          <p className='site-footer__description'>{weekdays.days}</p>
-          <p className='site-footer__description'>{weekdays.time}</p>
-          <p className='site-footer__description'>{weekend.days}</p>
-          <p className='site-footer__description'>{weekend.time}</p>
+    <footer id="contact" className="site-footer section">
+      <div className="row container">
+        <div className="site-footer__column">
+          <h2 className="site-footer__title">Opening Hours</h2>
+          <p className="site-footer__description">{weekdays.days}</p>
+          <p className="site-footer__description">{weekdays.time}</p>
+          <p className="site-footer__description">{weekend.days}</p>
+          <p className="site-footer__description">{weekend.time}</p>
         </div>
-        <div className='site-footer__column'>
-          <h2 className='site-footer__title'>Our Location</h2>
-          <p className='site-footer__description'>{address}</p>
-          <p className='site-footer__description'>
+        <div className="site-footer__column">
+          <h2 className="site-footer__title">Our Location</h2>
+          <p className="site-footer__description">{address}</p>
+          <p className="site-footer__description">
             {code} {city}
           </p>
-          <p className='site-footer__description'>
+          <p className="site-footer__description">
             {province}, {country}
           </p>
         </div>
-        <div className='site-footer__column'>
-          <h2 className='site-footer__title'>Contact</h2>
-          <p className='site-footer__description'>{contact.email}</p>
-          <p className='site-footer__description'>{contact.phone}</p>
+        <div className="site-footer__column">
+          <h2 className="site-footer__title">Contact</h2>
+          <p className="site-footer__description">{contact.email}</p>
+          <p className="site-footer__description">{contact.phone}</p>
         </div>
       </div>
     </footer>
