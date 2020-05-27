@@ -8,6 +8,7 @@
   cursor: pointer;
   display: inline-flex;
   box-shadow: $shadow-light;
+  color: $color-dark;
 
   @include mQ($desktopXs) {
     font-size: 1rem;
@@ -28,7 +29,7 @@
   }
 
   &--light{
-    background-color: $color-light;
+    background-color: $color-light-2;
     color: $color-dark;
   }
 
@@ -40,9 +41,9 @@
     }
   }
 
-  &--outline {
-    background: $white;
+  &--tertiary {
+    background: transparent;
     border-bottom: 0;
-    border: 1px solid $color-dark;
+    box-shadow: none;
   }
 }

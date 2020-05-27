@@ -121,7 +121,7 @@ const ReviewBooking = () => {
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
             <form onSubmit={onHandleSubmit}>
-              <button className="btn btn--dark" type="submit">
+              <button className="btn btn--light" type="submit">
                 Confirm Booking
               </button>
             </form>
@@ -170,13 +170,13 @@ const ReviewBooking = () => {
           <footer className="review-booking__footer">
             <form onSubmit={onHandleSubmit}>
               <button
-                className="btn btn--light"
+                className="btn btn--tertiary"
                 type="button"
                 onClick={handleEdit}
               >
                 Edit booking
               </button>
-              <button className="btn btn--dark" type="submit">
+              <button className="btn btn--light" type="submit">
                 Confirm Booking
               </button>
             </form>

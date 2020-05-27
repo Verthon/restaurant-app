@@ -1,19 +1,16 @@
 .review-booking {
   margin: 0 auto;
-  padding: 0 0 2rem 0;
+  padding: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
   max-width: 600px;
   box-shadow: $default-shadow;
 
-  .react-datepicker-wrapper, .react-datepicker__input-container {
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
     display: block;
     width: 100%;
-  }
-
-  @include mQ($tablet) {
-    padding: 0 0 3rem 0;
   }
 
   &__title {
@@ -80,7 +77,12 @@
   }
 
   &__footer {
+    display: flex;
+    justify-content: center;
     margin: 2rem 0 0 0;
+    width: 100%;
+    background-color: $color-light;
+    padding: 1.25rem 0;
     @include mQ($tablet) {
       margin: 3rem 0 0 0;
     }

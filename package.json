@@ -27,6 +27,7 @@
     "eslint-plugin-flowtype": "2.50.1",
     "file-loader": "2.0.0",
     "firebase": "^5.5.9",
+    "firebase-admin": "^8.12.1",
     "framer-motion": "^1.11.0",
     "fs-extra": "7.0.0",
     "gh-pages": "^2.2.0",
