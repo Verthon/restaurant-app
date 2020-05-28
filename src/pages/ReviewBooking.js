@@ -105,7 +105,21 @@ const ReviewBooking = () => {
         exit="exit"
       >
         <ToastContainer />
-        <Modal show={show} />
+        <Modal show={show}>
+          <h2 className="heading modal-book__heading">Thank you</h2>
+          <p className="text modal-book__text">
+            Thank you for booking reservation.
+          </p>
+          <p className="text modal-book__text">We will contact you shortly.</p>
+          <footer className="modal-book__footer">
+            <Link className="btn btn--tertiary" to="/">
+              Back to Home
+            </Link>
+            <Link className="btn btn--light" to="/menu">
+              See Menu
+            </Link>
+          </footer>
+        </Modal>
         <motion.article
           className="review-booking__content"
           variants={pageTransitions}
@@ -141,7 +155,23 @@ const ReviewBooking = () => {
 
   return (
     <>
-      <Modal show={show} />
+      <Modal show={show}>
+        <article className="modal-book__content fade-in">
+          <h2 className="heading modal-book__heading">Thank you</h2>
+          <p className="text modal-book__text">
+            Thank you for booking reservation.
+          </p>
+          <p className="text modal-book__text">We will contact you shortly.</p>
+          <footer className="modal-book__footer">
+            <Link className="btn btn--tertiary" to="/">
+              Back to Home
+            </Link>
+            <Link className="btn btn--light" to="/menu">
+              See Menu
+            </Link>
+          </footer>
+        </article>
+      </Modal>
       <motion.div
         className="review-booking"
         initial="exit"

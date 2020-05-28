@@ -4,6 +4,17 @@
     color: $color-dark;
     font-weight: normal;
   }
+  &__container {
+    @include flexColumn();
+    align-items: center;
+  }
+  &__header {
+    padding: 0 2.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+  }
 }
 
 
@@ -11,6 +22,7 @@
   display: block;
   border-collapse: collapse;
   margin: 2rem 0;
+  color: $color-dark;
   &__header {
     font-family: $font-semi-bold;
     border-bottom: 2px solid $color-dark-3;

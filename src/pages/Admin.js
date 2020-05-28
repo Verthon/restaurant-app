@@ -7,6 +7,7 @@ import { DataContext } from '../components/DataContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
+import Modal from '../components/Modal/Modal'
 import { pageTransitions } from '../constants/config'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
@@ -16,14 +17,16 @@ import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../utils/helpers'
 import { notify } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
+import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
 const Admin = ({ history }) => {
   const [bookings, setBookings] = useState([])
+  const [showModal, setShowModal] = useState(false)
   const [loading, handleLoading] = useState(true)
 
   const { user } = useContext(UserContext)
   const checkContext = useContext(DataContext)
-  console.log('checkContext Admin', checkContext)
+  console.log('checkContext Admin', checkContext.state)
 
   const handleSignOut = () => {
     try {
@@ -36,7 +39,8 @@ const Admin = ({ history }) => {
   }
 
   const toggleOptions = () => {
-    console.log('KEK')
+    console.log('oe')
+    setShowModal(!showModal)
   }
 
   useEffect(() => {
@@ -74,9 +78,29 @@ const Admin = ({ history }) => {
   }
   return (
     <>
+      <Modal show={showModal}>
+        <div className="modal-book__nav">
+          <button className="modal-book__close" onClick={() => setShowModal(false)}>
+            <CloseIcon />
+          </button>
+        </div>
+        <h2 className="heading modal-book__heading">Booking action</h2>
+        <p className="text modal-book__text">
+          Thank you for booking reservation.
+        </p>
+        <p className="text modal-book__text">We will contact you shortly.</p>
+        <footer className="modal-book__footer">
+          <button className="btn btn--tertiary" type="button">
+            See Menu
+          </button>
+          <button className="btn btn--light" type="button">
+            Back to Home
+          </button>
+        </footer>
+      </Modal>
       <Navbar />
       <motion.main
-        className="container"
+        className="container admin__container"
         initial="exit"
         animate="enter"
         exit="exit"

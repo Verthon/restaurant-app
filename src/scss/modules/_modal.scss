@@ -6,6 +6,23 @@
   height: 100vh;
   position: fixed;
 
+  &__nav {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &__close {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
   &--active {
     display: block;
     z-index: 1;
