@@ -98,15 +98,23 @@ const ReviewBooking = () => {
 
   if (editable) {
     return (
-      <motion.div initial="exit" animate="enter" exit="exit">
+      <motion.div
+        className="review-booking"
+        initial="exit"
+        animate="enter"
+        exit="exit"
+      >
         <ToastContainer />
-        <h1 className="heading review-booking__title">
-          <Link to="/">{contactInfo.name}</Link>
-        </h1>
         <Modal show={show} />
-        <motion.article className="review-booking" variants={pageTransitions}>
-          <img src={about} alt="" />
-          <h2 className="heading review-booking__title">Edit booking</h2>
+        <motion.article
+          className="review-booking__content"
+          variants={pageTransitions}
+        >
+          <h1 className="heading review-booking__company">
+            <Link to="/">{contactInfo.name}</Link>
+          </h1>
+          <img className="review-booking__image" src={about} alt="" />
+          <h2 className="review-booking__title">Edit booking</h2>
           <div className="review-booking__container">
             <Form
               booking={booking}
@@ -134,12 +142,20 @@ const ReviewBooking = () => {
   return (
     <>
       <Modal show={show} />
-      <h1 className="heading review-booking__title">
-        <Link to="/">{contactInfo.name}</Link>
-      </h1>
-      <motion.div initial="exit" animate="enter" exit="exit">
-        <motion.article className="review-booking" variants={pageTransitions}>
-          <img src={about} alt="" />
+      <motion.div
+        className="review-booking"
+        initial="exit"
+        animate="enter"
+        exit="exit"
+      >
+        <motion.article
+          className="review-booking__content"
+          variants={pageTransitions}
+        >
+          <h1 className="heading review-booking__company">
+            <Link to="/">{contactInfo.name}</Link>
+          </h1>
+          <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">
             <strong className="review-booking__name">{name}</strong> reservation
           </p>
@@ -161,12 +177,14 @@ const ReviewBooking = () => {
               <p className="review-booking__description">Time</p>
             </div>
           </div>
-          {companyData.location ? (<><p className='review-booking__address'>
-            {address}
-          </p>
-          <p className='review-booking__address'>
-            {city}, {province}, {code}{' '}
-          </p></>) : null}
+          {companyData.location ? (
+            <>
+              <p className="review-booking__address">{address}</p>
+              <p className="review-booking__address">
+                {city}, {province}, {code}{' '}
+              </p>
+            </>
+          ) : null}
           <footer className="review-booking__footer">
             <form onSubmit={onHandleSubmit}>
               <button
