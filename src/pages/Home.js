@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import AOS from 'aos'
 import { ToastContainer } from 'react-toastify'
-// import { notify } from '../utils/notification'
+import '@brainhubeu/react-carousel/lib/style.css'
+import Carousel, { Dots } from '@brainhubeu/react-carousel'
 import { DataContext } from '../components/DataContext'
+import Testimonial from '../components/Testimonial/Testimonial'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -22,11 +24,8 @@ const Home = () => {
     location: null,
     contact: null
   })
-  const links = [
-    { name: 'Menu', link: 'menu' },
-    { name: 'Contact', link: 'contact' }
-  ]
-  // const [fromCache, handleCache] = useState(false)
+  const [dotValue, setDotValue] = useState(0)
+  const [slides, setSlides] = useState([])
 
   const { state } = useContext(DataContext)
   useEffect(() => {
@@ -44,6 +43,25 @@ const Home = () => {
     }
   }, [state.company])
 
+  useEffect(() => {
+    setSlides(allTestimonials)
+  }, [])
+
+  const links = [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Contact', link: 'contact' }
+  ]
+  const testimonials = [
+    {
+      author: 'Mark Blue',
+      text:
+        'If you`ve been in Alkinoos Taverna, you`ve seen - and tasted - what keeps customers coming back for more. Perfect materials and freshly baked food, delicious Baklavas , Koulourakia, and gourmet coffees make it hard to resist!'
+    }
+  ]
+  const allTestimonials = testimonials.map((testimonial, index) => (
+    <Testimonial key={index} name={testimonial.name} text={testimonial.text} />
+  ))
+  // const [fromCache, handleCache] = useState(false)
   return (
     <>
       <ToastContainer
@@ -152,17 +170,18 @@ const Home = () => {
               <h2 className="heading testimonials__modal__heading">
                 Guest reviews
               </h2>
-              <blockquote className="testimonials__modal__quote">
-                <p className="text">
-                  If you`ve been in Alkinoos Taverna, you`ve seen - and tasted -
-                  what keeps customers coming back for more. Perfect materials
-                  and freshly baked food, delicious Baklavas , Koulourakia, and
-                  gourmet coffees make it hard to resist!
-                </p>
-                <p className="quote-writer" data-aos="fade" data-delay="500">
-                  food magazine, Mark Blue
-                </p>
-              </blockquote>
+              <Carousel
+                slidesPerPage={1}
+                centered
+                value={dotValue}
+                slides={slides}
+                onChange={(value) => setDotValue(value)}
+              />
+              <Dots
+                value={dotValue}
+                onChange={(value) => setDotValue(value)}
+                number={slides.length}
+              />
             </div>
           </div>
         </div>

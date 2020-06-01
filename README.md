@@ -1,10 +1,10 @@
-![Alkinoos Taverna desktop homescreen](src/images/screenshot.jpg)
+![Alkinoos Taverna desktop homescreen](src/assets/images/screenshot.jpg)
 
 # Alkinoos Taverna
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2f26e187-e1a6-4c3f-8c0c-6e7fb675901c/deploy-status)](https://app.netlify.com/sites/alkinoos-taverna/deploys)
 [Live version on Netlify](https://alkinoos-taverna.netlify.com/ "Live version on Netlify")  
-Fully responsive, serverless, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating panel for restaurant staff.
+Fully responsive, serverless, restaurant progressive web app using React.js, where user can easily create a booking. There is also administrating panel for restaurant staff in /admin.
 Available routes:
 - `/menu`
 - `/login`
@@ -23,7 +23,7 @@ Available routes:
 - JavaScript ES6
 - Firebase Firestore
 - Continuous Deployment with Netlify
-- Enzyme, Jest
+- React Testing Library and Jest
 - Photos from [Brooke Lark](http://brookelark.com/) on [Unsplash](https://unsplash.com/@brookelark)
 
 ## Setup
@@ -38,4 +38,3 @@ Available routes:
 
 - Datepicker for React [React Datepicker](https://github.com/Hacker0x01/react-datepicker)
 - React notifications [React Toastify](https://github.com/fkhadra/react-toastify)
-- Awesome tool for managing color variables [ColorNamer](https://colornamer.netlify.com/)
