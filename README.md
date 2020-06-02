@@ -1,4 +1,4 @@
-![Alkinoos Taverna desktop homescreen](src/assets/images/screenshot.jpg)
+![Alkinoos Taverna desktop homescreen](src/assets/images/screenshot.png)
 
 # Alkinoos Taverna
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -24,6 +24,7 @@ Available routes:
 - Firebase Firestore
 - Continuous Deployment with Netlify
 - React Testing Library and Jest
+- BrainHub's Carousel component [React Carousel](https://github.com/brainhubeu/react-carousel)
 - Photos from [Brooke Lark](http://brookelark.com/) on [Unsplash](https://unsplash.com/@brookelark)
 
 ## Setup

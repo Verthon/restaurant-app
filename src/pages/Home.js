@@ -56,10 +56,13 @@ const Home = () => {
       author: 'Mark Blue',
       text:
         'If you`ve been in Alkinoos Taverna, you`ve seen - and tasted - what keeps customers coming back for more. Perfect materials and freshly baked food, delicious Baklavas , Koulourakia, and gourmet coffees make it hard to resist!'
+    },
+    {
+      author: 'Steven Gerrard', text: 'KEK'
     }
   ]
   const allTestimonials = testimonials.map((testimonial, index) => (
-    <Testimonial key={index} name={testimonial.name} text={testimonial.text} />
+    <Testimonial key={index} author={testimonial.author} text={testimonial.text} />
   ))
   // const [fromCache, handleCache] = useState(false)
   return (
@@ -175,6 +178,7 @@ const Home = () => {
                 centered
                 value={dotValue}
                 slides={slides}
+                itemWidth={450}
                 onChange={(value) => setDotValue(value)}
               />
               <Dots
