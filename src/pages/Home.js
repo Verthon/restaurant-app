@@ -3,6 +3,7 @@ import AOS from 'aos'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
+import { getCollection, getData } from '../utils/database'
 import { DataContext } from '../components/DataContext'
 import Testimonial from '../components/Testimonial/Testimonial'
 import Header from '../components/Header'
@@ -44,26 +45,46 @@ const Home = () => {
   }, [state.company])
 
   useEffect(() => {
-    setSlides(allTestimonials)
+    getCollection('testimonials').then((snapshot) => {
+      const data = getData(snapshot)
+      const allTestimonials = data.map((testimonial, index) => (
+        <Testimonial
+          key={index}
+          author={testimonial.author}
+          text={testimonial.text}
+        />
+      ))
+      setSlides(allTestimonials)
+    })
   }, [])
 
   const links = [
     { name: 'Menu', link: 'menu' },
     { name: 'Contact', link: 'contact' }
   ]
-  const testimonials = [
-    {
-      author: 'Mark Blue',
-      text:
-        'If you`ve been in Alkinoos Taverna, you`ve seen - and tasted - what keeps customers coming back for more. Perfect materials and freshly baked food, delicious Baklavas , Koulourakia, and gourmet coffees make it hard to resist!'
-    },
-    {
-      author: 'Steven Gerrard', text: 'KEK'
-    }
-  ]
-  const allTestimonials = testimonials.map((testimonial, index) => (
-    <Testimonial key={index} author={testimonial.author} text={testimonial.text} />
-  ))
+  // const testimonials = [
+  //   {
+  //     author: 'Marek Jankulovski',
+  //     text:
+  //       'Got there early on a recent Saturday for dinner. Seated quickly and had great, attentive service. Not too noisy despite a good crowd. We had Chickpea soup and Karydopita. Would definitely go back to try more seafood!'
+  //   },
+  //   {
+  //     author: 'Mark Blue',
+  //     text:
+  //       'If you`ve been in Alkinoos Taverna, you`ve seen - and tasted - what keeps customers coming back for more. Perfect materials and freshly baked food, delicious Baklavas , Koulourakia, and gourmet coffees make it hard to resist!'
+  //   },
+  //   {
+  //     author: 'Maxime Gonalons',
+  //     text:
+  //       'The Roasted Lamb looks very spicy, which may put off many potential customers. That said, I did strongly urge anyone who has not tried it yet to give it a shot. It is the best meat that I ever eat. Expand your horizons and you will not be disappointed!'
+  //   },
+  //   {
+  //     author: 'Vito Corleone',
+  //     text:
+  //       'This is a local, small restaurant filled with regulars and once I saw their menu I knew it would be one of mine. We ordered the special Moussaka, Saganaki and Tabbouleh. Very fresh and tasty.'
+  //   }
+  // ]
+
   // const [fromCache, handleCache] = useState(false)
   return (
     <>
