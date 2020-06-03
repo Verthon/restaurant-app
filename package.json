@@ -26,6 +26,7 @@
     "eslint-config-react-app": "^3.0.4",
     "eslint-loader": "2.1.1",
     "eslint-plugin-flowtype": "2.50.1",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "file-loader": "2.0.0",
     "firebase": "^5.5.9",
     "firebase-admin": "^8.12.1",

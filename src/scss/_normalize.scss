@@ -348,3 +348,19 @@ template {
 [hidden] {
   display: none;
 }
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot {
+  opacity: 0.8;
+}
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot::before {
+  background-color: #d4af37;
+}
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot:hover {
+  background-color: #d4af37;
+}
+
+.BrainhubCarousel__dots .BrainhubCarousel__dot.BrainhubCarousel__dot--selected {
+  background-color: #ffffff;
+}
