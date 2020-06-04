@@ -39,7 +39,7 @@ const Menu = () => {
       notify(DB_ERROR_MSG)
       console.log(error)
     }
-  }, [])
+  }, [error])
 
   if (loading) {
     return <Spinner />

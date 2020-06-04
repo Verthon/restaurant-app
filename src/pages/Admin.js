@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../components/UserContext'
-import { DataContext } from '../components/DataContext'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
@@ -20,13 +19,12 @@ import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
 const Admin = ({ history }) => {
+  const [bookingDetail, setBookingDetail] = useState(false)
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [loading, handleLoading] = useState(true)
 
   const { user } = useContext(UserContext)
-  const checkContext = useContext(DataContext)
-  console.log('checkContext Admin', checkContext.state)
 
   const handleSignOut = () => {
     try {
@@ -38,8 +36,8 @@ const Admin = ({ history }) => {
     }
   }
 
-  const toggleOptions = () => {
-    console.log('oe')
+  const toggleOptions = (bookingData) => {
+    setBookingDetail(bookingData)
     setShowModal(!showModal)
   }
 
@@ -71,7 +69,7 @@ const Admin = ({ history }) => {
       }
     })
     return () => listener()
-  }, [])
+  }, [history, user])
 
   if (loading) {
     return <Spinner />
@@ -80,15 +78,18 @@ const Admin = ({ history }) => {
     <>
       <Modal show={showModal}>
         <div className="modal-book__nav">
-          <button className="modal-book__close" onClick={() => setShowModal(false)}>
+          <button
+            className="modal-book__close"
+            onClick={() => setShowModal(false)}
+          >
             <CloseIcon />
           </button>
         </div>
         <h2 className="heading modal-book__heading">Booking action</h2>
         <p className="text modal-book__text">
-          Thank you for booking reservation.
+          Choose an action for <strong>{bookingDetail.name}</strong> booking.
         </p>
-        <p className="text modal-book__text">We will contact you shortly.</p>
+        <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
         <footer className="modal-book__footer">
           <button className="btn btn--tertiary" type="button">
             See Menu
@@ -135,7 +136,7 @@ const Admin = ({ history }) => {
                       email={item.email}
                       guests={item.guests}
                       date={item.date}
-                      toggleOptions={toggleOptions}
+                      toggleOptions={() => toggleOptions(item)}
                     />
                   )
                 })
