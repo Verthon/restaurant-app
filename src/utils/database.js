@@ -16,5 +16,5 @@ export const getCollectionWithOptions = async (name, order = { name: 'id', type:
 }
 
 export const getData = (snapshot) => {
-  return snapshot.docs.map((doc) => doc.data())
+  return snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
 }

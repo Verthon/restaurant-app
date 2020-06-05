@@ -80,14 +80,14 @@ export const isDateCurrent = date =>
 
 export const getEmailActionUrl = email => `https://formspree.io/${email}`
 
-export const formatBookings = (data) => {
-  return data.map((booking) => {
-    booking.date = booking.date.toDate()
+export const formatBookings = (booking) => {
+  return booking.map((booking) => {
+    booking.data.date = booking.data.date.toDate()
     return booking
   })
 }
 
 export const formatMenu = (data) => {
-  const menu = data[0]
+  const menu = data[0].data
   return menu
 }

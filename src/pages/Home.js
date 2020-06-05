@@ -33,8 +33,8 @@ const Home = () => {
     AOS.init({ duration: 750 })
   }, [])
   useEffect(() => {
-    if (state.company) {
-      const data = state.company
+    if (state.company.data) {
+      const data = state.company.data
       setCompanyData({
         ...companyData,
         hours: data.hours,
@@ -47,11 +47,11 @@ const Home = () => {
   useEffect(() => {
     getCollection('testimonials').then((snapshot) => {
       const data = getData(snapshot)
-      const allTestimonials = data.map((testimonial, index) => (
+      const allTestimonials = data.map((testimonial) => (
         <Testimonial
-          key={index}
-          author={testimonial.author}
-          text={testimonial.text}
+          key={testimonial.id}
+          author={testimonial.data.author}
+          text={testimonial.data.text}
         />
       ))
       setSlides(allTestimonials)
@@ -189,7 +189,7 @@ const Home = () => {
         </div>
       </article>
 
-      {companyData.hours ? (
+      {companyData.location ? (
         <Footer
           hours={companyData.hours}
           location={companyData.location}

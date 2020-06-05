@@ -34,11 +34,8 @@ const ReviewBooking = () => {
   const [editable, setEditable] = useState(false)
 
   useEffect(() => {
-    const booking = { ...state.booking }
-    const company = { ...state.company }
-    booking.date = convertToDate(booking.date)
-    setBooking({ ...booking })
-    if (company.location) {
+    if (state.company.data) {
+      const company = state.company.data
       setCompanyData({
         ...companyData,
         hours: company.hours,
@@ -48,8 +45,11 @@ const ReviewBooking = () => {
       })
       setLoading(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.company.location])
+    const booking = { ...state.booking }
+    booking.date = convertToDate(booking.date)
+    setBooking({ ...booking })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.company])
 
   const handleModal = () => {
     toggleModal(true)
@@ -140,6 +140,7 @@ const ReviewBooking = () => {
               submitBtn={false}
               cssClass="form--edit"
               action={getEmailActionUrl(booking.email)}
+              withBookingDesc={true}
             />
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
@@ -157,21 +158,19 @@ const ReviewBooking = () => {
   return (
     <>
       <Modal show={show}>
-        <article className="modal-book__content fade-in">
-          <h2 className="heading modal-book__heading">Thank you</h2>
-          <p className="text modal-book__text">
-            Thank you for booking reservation.
-          </p>
-          <p className="text modal-book__text">We will contact you shortly.</p>
-          <footer className="modal-book__footer">
-            <Link className="btn btn--tertiary" to="/">
-              Back to Home
-            </Link>
-            <Link className="btn btn--light" to="/menu">
-              See Menu
-            </Link>
-          </footer>
-        </article>
+        <h2 className="heading modal-book__heading">Thank you</h2>
+        <p className="text modal-book__text">
+          Thank you for booking reservation.
+        </p>
+        <p className="text modal-book__text">We will contact you shortly.</p>
+        <footer className="modal-book__footer">
+          <Link className="btn btn--tertiary" to="/">
+            Back to Home
+          </Link>
+          <Link className="btn btn--light" to="/menu">
+            See Menu
+          </Link>
+        </footer>
       </Modal>
       <motion.div
         className="review-booking"

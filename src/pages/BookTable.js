@@ -41,8 +41,7 @@ const BookTable = ({ history }) => {
   }, [])
 
   useEffect(() => {
-    const { location, hours, contact } = state.company
-    if (location && hours && contact) {
+    if (state.company.data) {
       const data = state.company
       setCompanyData({
         ...companyData,
@@ -104,6 +103,7 @@ const BookTable = ({ history }) => {
               handleDate={onHandleDate}
               booking={booking}
               config={DATEPICKER_CONFIG}
+              withBookingDesc={true}
               submitBtn
             />
           </div>
