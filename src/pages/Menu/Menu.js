@@ -7,7 +7,7 @@ import db from '../../firebase'
 import { pageTransitions } from '../../constants/config'
 import { getCollection, getData } from '../../utils/database'
 import { formatMenu } from '../../utils/helpers'
-import { notify } from '../../utils/notification'
+import { notifyError } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 
 const Menu = () => {
@@ -36,7 +36,7 @@ const Menu = () => {
     } catch (err) {
       handleLoading(false)
       handleError(err)
-      notify(DB_ERROR_MSG)
+      notifyError(DB_ERROR_MSG)
       console.log(error)
     }
   }, [error])

@@ -17,7 +17,7 @@ import db from '../firebase'
 import { getData } from '../utils/database'
 import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../utils/helpers'
-import { notify } from '../utils/notification'
+import { notifyError, notifyInfo } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
@@ -35,7 +35,7 @@ const Admin = ({ history }) => {
       navigateTo(history, LOGIN)
     } catch (error) {
       console.log(error)
-      notify(DB_ERROR_MSG)
+      notifyError(DB_ERROR_MSG)
     }
   }
 
@@ -87,7 +87,10 @@ const Admin = ({ history }) => {
     db.collection('bookings')
       .doc(bookingDetail.id)
       .delete()
-      .then(() => {})
+      .then(() => {
+        setShowModal(false)
+        notifyInfo(`Removed ${bookingDetail.data.name} booking successfully.`)
+      })
       .catch((err) => console.log('error in handleDelete', err))
   }
 
@@ -111,7 +114,7 @@ const Admin = ({ history }) => {
             })
         } catch (error) {
           console.log('Error on fetching collection', error)
-          notify(DB_ERROR_MSG)
+          notifyError(DB_ERROR_MSG)
         }
       } else {
         history.push({ pathname: LOGIN })
@@ -129,7 +132,6 @@ const Admin = ({ history }) => {
         className="toast__container"
         toastClassName="toast"
         progressClassName="toast__progress"
-        autoClose={4000}
       />
       <Modal show={showModal} onKeyUp={(e) => hideModal(e)}>
         <div className="modal-book__nav">

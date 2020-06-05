@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar'
 import { ADMIN } from '../../constants/routes'
 import { navigateTo } from '../../utils/navigate'
 import { login } from '../../utils/login'
-import { notify } from '../../utils/notification'
+import { notifyError } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
@@ -30,7 +30,7 @@ const Login = ({ history }) => {
       navigateTo(history, ADMIN)
     } catch (error) {
       handleError(error)
-      notify(DB_ERROR_MSG)
+      notifyError(DB_ERROR_MSG)
     }
   }
 

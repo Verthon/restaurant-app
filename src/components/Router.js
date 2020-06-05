@@ -11,7 +11,7 @@ import ReviewBooking from '../pages/ReviewBooking'
 import Admin from '../pages/Admin'
 import Login from '../pages/Login/Login'
 import { getCollection, getOfflineData, getData } from '../utils/database'
-import { notify } from '../utils/notification'
+import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 import * as ROUTES from '../constants/routes'
 
@@ -52,7 +52,7 @@ const Router = () => {
           setIsLoading(!isLoading)
         })
       } catch (err) {
-        return notify(DB_ERROR_MSG)
+        return notifyError(DB_ERROR_MSG)
       }
     }
     fetchData()

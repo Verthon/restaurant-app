@@ -18,7 +18,7 @@ import Spinner from '../components/Spinner'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
-import { notify } from '../utils/notification'
+import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 const ReviewBooking = () => {
@@ -86,7 +86,7 @@ const ReviewBooking = () => {
       .then(() => handleModal())
       .catch((err) => {
         console.log('Error occurred while saving to database: ', err)
-        notify(DB_ERROR_MSG)
+        notifyError(DB_ERROR_MSG)
       })
   }
 
