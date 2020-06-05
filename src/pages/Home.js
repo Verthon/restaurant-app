@@ -71,7 +71,7 @@ const Home = () => {
         progressClassName="toast__progress"
         autoClose={4000}
       />
-      <Navbar name={companyData.name} links={links} hashlink />
+      <Navbar name={companyData.name} links={links} hashlink withDashboard/>
       <Header animation={['fade-up']} />
       <article id="about" className="section section__about">
         <div className="row container">

@@ -20,6 +20,7 @@ import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
+import dayjs from 'dayjs'
 
 const ReviewBooking = () => {
   const [loading, setLoading] = useState(true)
@@ -81,7 +82,8 @@ const ReviewBooking = () => {
         name: submitBooking.name,
         date: submitBooking.date,
         guests: submitBooking.guests,
-        confirmed: true
+        confirmed: true,
+        createdAt: dayjs().format('YYYY-MM-DD HH:mm')
       })
       .then(() => handleModal())
       .catch((err) => {

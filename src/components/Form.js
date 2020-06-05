@@ -101,6 +101,10 @@ const Form = ({
   )
 }
 
+Form.defaultProps = {
+  withBookingDesc: false
+}
+
 Form.propTypes = {
   handleChange: propTypes.func,
   handleSubmit: propTypes.func,

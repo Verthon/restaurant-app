@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import NavItem from './NavItem/NavItem'
 
-const Navbar = ({ links, hashlink }) => {
+const Navbar = ({ links, hashlink, withDashboard }) => {
   const [isNavActive, setIsNavActive] = useState({
     firstRender: true,
     active: false
@@ -51,26 +51,37 @@ const Navbar = ({ links, hashlink }) => {
             hashlink={hashlink}
           />
         ))}
-        <li className="nav__item">
-          <NavLink to="/admin" className="nav__link btn btn--light btn--small">
-            Dashboard
-          </NavLink>
-        </li>
+        {withDashboard ? (
+          <li className="nav__item">
+            <NavLink
+              to="/admin"
+              className="nav__link btn btn--light btn--small"
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        ) : null}
       </ul>
     </nav>
   )
 }
 
 Navbar.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    link: PropTypes.string
-  })),
-  hashlink: PropTypes.bool
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      link: PropTypes.string
+    })
+  ),
+  hashlink: PropTypes.bool,
+  withDashboard: PropTypes.bool
 }
 
 Navbar.defaultProps = {
-  links: [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }],
+  links: [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Book Table', link: 'book-table' }
+  ],
   hashlink: false
 }
 
