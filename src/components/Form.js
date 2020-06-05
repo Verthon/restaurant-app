@@ -71,20 +71,20 @@ const Form = ({
         timeCaption="Time"
         placeholderText="Click and choose the date"
       />
-      <label className="label" htmlFor="people" name="people">
+      <label className="label" htmlFor="guests" name="guests">
         Number of guests
       </label>
       <input
         className="table-booking__input"
-        name="people"
-        id="people"
+        name="guests"
+        id="guests"
         type="number"
         min="1"
         max="4"
         required
         aria-required="true"
         onChange={handleChange}
-        defaultValue={booking.people}
+        defaultValue={booking.guests}
       />
       {withBookingDesc ? (
         <p className="text table-booking__reminder">
@@ -107,7 +107,7 @@ Form.propTypes = {
   handleDate: propTypes.func,
   booking: propTypes.shape({
     date: propTypes.instanceOf(Date),
-    people: propTypes.number,
+    guests: propTypes.number,
     name: propTypes.string,
     email: propTypes.string,
     confirmed: propTypes.bool

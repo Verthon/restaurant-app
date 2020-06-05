@@ -49,41 +49,47 @@ const Admin = ({ history }) => {
   }
 
   const onHandleChange = (e) => {
-    if (e.target.name === 'people') {
+    const updatedBookingData = { ...bookingDetail.data, [e.target.name]: e.target.value }
+    if (e.target.name === 'guests') {
+      const updatedBookingData = { ...bookingDetail.data, [e.target.name]: parseInt(e.target.value) }
       setBookingDetail({
         ...bookingDetail,
-        [e.target.name]: parseInt(e.target.value)
+        data: updatedBookingData
       })
       return
     }
-    setBookingDetail({ ...bookingDetail, [e.target.name]: e.target.value })
+    setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
   const onHandleDate = (e) => {
-    setBookingDetail({ ...bookingDetail, date: e })
+    const updatedBookingData = { ...bookingDetail.data, date: e }
+    setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
   const onHandleUpdate = (e) => {
     const submitBooking = { ...bookingDetail }
     e.preventDefault()
     console.log('data to be submitted', submitBooking)
-    // db.collection('bookings')
-    //   .update({
-    //     email: submitBooking.email,
-    //     name: submitBooking.name,
-    //     date: submitBooking.date,
-    //     guests: submitBooking.people,
-    //     confirmed: true
-    //   })
-    //   .then(() => handleModal())
-    //   .catch((err) => {
-    //     console.log('Error occurred while saving to database: ', err)
-    //     notify(DB_ERROR_MSG)
-    //   })
+    db.collection('bookings')
+      .doc(bookingDetail.id)
+      .update({
+        email: submitBooking.data.email,
+        name: submitBooking.data.name,
+        date: submitBooking.data.date,
+        guests: submitBooking.data.guests,
+        confirmed: true
+      })
+      .then(() => {
+        setShowModal(false)
+        notifyInfo('Booking updated successfully.')
+      })
+      .catch((err) => {
+        console.log('Error occurred while saving to database: ', err)
+        notifyError(DB_ERROR_MSG)
+      })
   }
 
   const onHandleDelete = () => {
-    console.log('actual booking', bookingDetail)
     db.collection('bookings')
       .doc(bookingDetail.id)
       .delete()
@@ -169,7 +175,7 @@ const Admin = ({ history }) => {
           >
             Delete
           </button>
-          <button className="btn btn--light" type="submit">
+          <button className="btn btn--light" type="submit" onClick={onHandleUpdate}>
             Update
           </button>
         </footer>

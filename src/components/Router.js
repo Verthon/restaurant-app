@@ -19,7 +19,7 @@ const Router = () => {
   const initialState = {
     booking: {
       date: new Date(),
-      people: 1,
+      guests: 1,
       name: 'John Doe',
       email: 'johndoe@xx.ox',
       confirmed: false,

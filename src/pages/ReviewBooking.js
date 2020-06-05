@@ -61,7 +61,7 @@ const ReviewBooking = () => {
   }
 
   const onHandleChange = (e) => {
-    if (e.target.name === 'people') {
+    if (e.target.name === 'guests') {
       setBooking({ ...booking, [e.target.name]: parseInt(e.target.value) })
       return
     }
@@ -80,7 +80,7 @@ const ReviewBooking = () => {
         email: submitBooking.email,
         name: submitBooking.name,
         date: submitBooking.date,
-        guests: submitBooking.people,
+        guests: submitBooking.guests,
         confirmed: true
       })
       .then(() => handleModal())
@@ -91,7 +91,7 @@ const ReviewBooking = () => {
   }
 
   const { address, code, city, province } = companyData.location
-  const { name, people, date } = booking
+  const { name, guests, date } = booking
 
   if (loading) {
     return <Spinner />
@@ -191,7 +191,7 @@ const ReviewBooking = () => {
           </p>
           <div className="row review-booking__container">
             <div className="section__col section__col--flexible">
-              <p className="review-booking__value">{people}</p>
+              <p className="review-booking__value">{guests}</p>
               <p className="review-booking__description">Guests</p>
             </div>
             <div className="section__col section__col--flexible">
@@ -242,7 +242,7 @@ ReviewBooking.propTypes = {
   }),
   booking: propTypes.shape({
     name: propTypes.string,
-    people: propTypes.number,
+    guests: propTypes.number,
     date: propTypes.instanceOf(Date),
     confirmed: propTypes.bool
   })
@@ -254,7 +254,7 @@ ReviewBooking.defaultProps = {
     search: propTypes.string
   }),
   name: 'John Doe',
-  people: 1,
+  guests: 1,
   date: new Date(),
   email: 'john.doe@gmail.uu',
   confirmed: false

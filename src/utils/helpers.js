@@ -69,7 +69,7 @@ export const transformLocalStorageData = data => {
   const booking = {
     ...data,
     date: convertToDate(data.date),
-    people: parseInt(data.people)
+    guests: parseInt(data.guests)
   }
   return booking
 }

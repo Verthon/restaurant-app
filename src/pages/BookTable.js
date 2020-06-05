@@ -22,7 +22,7 @@ const BookTable = ({ history }) => {
   const [loading, setLoading] = useState(true)
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
-    people: 1,
+    guests: 1,
     name: '',
     email: '',
     confirmed: false
@@ -42,7 +42,7 @@ const BookTable = ({ history }) => {
 
   useEffect(() => {
     if (state.company.data) {
-      const data = state.company
+      const data = state.company.data
       setCompanyData({
         ...companyData,
         hours: data.hours,
@@ -58,7 +58,7 @@ const BookTable = ({ history }) => {
   }
 
   const onHandleChange = (e) => {
-    if (e.target.name === 'people') {
+    if (e.target.name === 'guests') {
       const value = parseInt(e.target.value)
       setBooking({ ...booking, [e.target.name]: value })
       return
