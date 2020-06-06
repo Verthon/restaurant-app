@@ -3,13 +3,56 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import NavItem from './NavItem/NavItem'
 
-const Navbar = ({ links, hashlink, withDashboard }) => {
+const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
   const [isNavActive, setIsNavActive] = useState({
     firstRender: true,
     active: false
   })
   const handleNavbarToggle = () => {
     setIsNavActive({ firstRender: false, active: !isNavActive.active })
+  }
+
+  if (admin) {
+    return (
+      <nav className="nav container" id="mainNav" aria-label="Main">
+        <NavLink className="nav__link" to="/">
+          <h3 className="navbar__brand">Alkinoos Taverna</h3>
+        </NavLink>
+        <button
+          className="nav__btn"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={handleNavbarToggle}
+        >
+          <span className="btn__line" />
+          <span className="btn__line" />
+          <span className="btn__line" />
+        </button>
+        <ul
+          className={
+            isNavActive.active && !isNavActive.firstRender
+              ? 'nav__list--active animate__animated animate__fadeInLeft'
+              : 'nav__list'
+          }
+        >
+          {links.map((link, index) => (
+            <NavItem
+              key={index}
+              name={link.name}
+              link={link.link}
+              hashlink={hashlink}
+            />
+          ))}
+          <li className="nav__link">
+            {children}
+          </li>
+        </ul>
+      </nav>
+    )
   }
 
   return (
@@ -74,7 +117,9 @@ Navbar.propTypes = {
     })
   ),
   hashlink: PropTypes.bool,
-  withDashboard: PropTypes.bool
+  withDashboard: PropTypes.bool,
+  children: PropTypes.node,
+  admin: PropTypes.bool
 }
 
 Navbar.defaultProps = {
@@ -82,7 +127,9 @@ Navbar.defaultProps = {
     { name: 'Menu', link: 'menu' },
     { name: 'Book Table', link: 'book-table' }
   ],
-  hashlink: false
+  hashlink: false,
+  withDashboard: false,
+  admin: false
 }
 
 export default Navbar

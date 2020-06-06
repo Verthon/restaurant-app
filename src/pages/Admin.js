@@ -27,6 +27,11 @@ const Admin = ({ history }) => {
   const [showModal, setShowModal] = useState(false)
   const [loading, handleLoading] = useState(true)
 
+  const adminLinks = [
+    { name: 'Bookings', link: 'bookings' },
+    { name: 'Storage', link: 'storage' }
+  ]
+
   const { user } = useContext(UserContext)
 
   const handleSignOut = () => {
@@ -49,9 +54,15 @@ const Admin = ({ history }) => {
   }
 
   const onHandleChange = (e) => {
-    const updatedBookingData = { ...bookingDetail.data, [e.target.name]: e.target.value }
+    const updatedBookingData = {
+      ...bookingDetail.data,
+      [e.target.name]: e.target.value
+    }
     if (e.target.name === 'guests') {
-      const updatedBookingData = { ...bookingDetail.data, [e.target.name]: parseInt(e.target.value) }
+      const updatedBookingData = {
+        ...bookingDetail.data,
+        [e.target.name]: parseInt(e.target.value)
+      }
       setBookingDetail({
         ...bookingDetail,
         data: updatedBookingData
@@ -175,24 +186,27 @@ const Admin = ({ history }) => {
           >
             Delete
           </button>
-          <button className="btn btn--light" type="submit" onClick={onHandleUpdate}>
+          <button
+            className="btn btn--light"
+            type="submit"
+            onClick={onHandleUpdate}
+          >
             Update
           </button>
         </footer>
       </Modal>
-      <Navbar />
+      <Navbar admin hashlink links={adminLinks}>
+        <button className="btn btn--light btn--small" onClick={handleSignOut}>
+          Sign out
+        </button>
+      </Navbar>
       <motion.main
         className="container admin__container"
         initial="exit"
         animate="enter"
         exit="exit"
       >
-        <header className="admin__header">
-          <h1 className="admin__title">Bookings</h1>
-          <button className="btn btn--light btn--small" onClick={handleSignOut}>
-            Sign out
-          </button>
-        </header>
+        <h2 className="admin__title" id="bookings">Bookings</h2>
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
@@ -225,6 +239,7 @@ const Admin = ({ history }) => {
             </tbody>
           </motion.table>
         )}
+        <h2 className="admin__title" id="storage">Storage</h2>
       </motion.main>
     </>
   )
