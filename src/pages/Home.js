@@ -1,16 +1,12 @@
-import React, { useState, useEffect, useContext, Suspense } from 'react'
+import React, { useState, useEffect, useContext, Suspense, lazy } from 'react'
 import AOS from 'aos'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
 import { getCollection, getData } from '../utils/database'
 import { DataContext } from '../components/DataContext'
-import Testimonial from '../components/Testimonial/Testimonial'
 import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import Spinner from '../components/Spinner'
-import '../scss/index.scss'
 import 'aos/dist/aos.css'
 import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
 import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
@@ -19,6 +15,9 @@ import menuImgXs from '../assets/images/landing/brooke-lark-menu-xs.jpg'
 import aboutImgXs from '../assets/images/landing/brooke-lark-about-xs.jpg'
 import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
 import chef from '../assets/images/landing/cook.jpg'
+const Navbar = lazy(() => import('../components/Navbar'))
+const Footer = lazy(() => import('../components/Footer'))
+const Testimonial = lazy(() => import('../components/Testimonial/Testimonial'))
 
 const Home = () => {
   const [companyData, setCompanyData] = useState({
@@ -66,7 +65,7 @@ const Home = () => {
   // const [fromCache, handleCache] = useState(false)
   return (
     <>
-      <Suspense fallback={<Spinner/>}>
+      <Suspense fallback={<Spinner />}>
         <ToastContainer
           className="toast__container"
           toastClassName="toast"
