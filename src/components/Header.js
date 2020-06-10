@@ -9,7 +9,7 @@ const Header = () => (
       <picture>
         <source media='(min-width: 767px)' srcSet={headerImg} />
         <source media='(min-width: 475px)' srcSet={headerImgSm} />
-        <img src={headerImgXs} alt='' />
+        <img src={headerImgXs} alt='' loading="lazy" />
       </picture>
     </div>
     <div className='site-header__content'>

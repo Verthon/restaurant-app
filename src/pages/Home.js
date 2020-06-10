@@ -20,6 +20,7 @@ const Footer = lazy(() => import('../components/Footer'))
 const Testimonial = lazy(() => import('../components/Testimonial/Testimonial'))
 
 const Home = () => {
+  console.log('Home renders')
   const [companyData, setCompanyData] = useState({
     hours: null,
     location: null,

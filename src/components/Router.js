@@ -53,13 +53,14 @@ const Router = () => {
             ? handleCache(!fromCache)
             : handleCache(fromCache)
         })
-        getCollection('company').then(snapshot => {
-          const data = getData(snapshot)
-          const [dataObj] = data
-          initialState.company = dataObj
-          dispatch({ type: ADD_COMPANY, company: dataObj })
-          setIsLoading(!isLoading)
-        })
+        getCollection('company')
+          .then(snapshot => {
+            const data = getData(snapshot)
+            const [dataObj] = data
+            initialState.company = dataObj
+            dispatch({ type: ADD_COMPANY, company: dataObj })
+          })
+          .finally(() => setIsLoading(false))
       } catch (err) {
         return notifyError(DB_ERROR_MSG)
       }
@@ -68,8 +69,12 @@ const Router = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
-    <Suspense fallback={<Spinner/>}>
+    <Suspense fallback={<Spinner />}>
       <BrowserRouter>
         <DataContext.Provider value={contextValue}>
           <UserContext.Provider value={userValue}>
