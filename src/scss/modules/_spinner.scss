@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  &.animate__animated animate__bounce {
+    animation-duration: 1.5s;
+  }
   &__logo {
     max-width: 100px;
     height: 50vh;

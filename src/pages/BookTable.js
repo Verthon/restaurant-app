@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { DataContext } from '../components/DataContext'
+import { useCompanyData } from '../hooks/useCompanyData'
 import { ADD_BOOKING } from '../reducer'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
@@ -19,7 +20,6 @@ import {
 } from '../utils/helpers'
 
 const BookTable = ({ history }) => {
-  const [loading, setLoading] = useState(true)
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
     guests: 1,
@@ -27,31 +27,14 @@ const BookTable = ({ history }) => {
     email: '',
     confirmed: false
   })
-  const [companyData, setCompanyData] = useState({
-    hours: null,
-    location: null,
-    contact: null
-  })
-  const { state, dispatch } = useContext(DataContext)
+  const { hours, location, contact, isLoading } = useCompanyData()
+  const { dispatch } = useContext(DataContext)
   useEffect(() => {
     const data = loadLocalStorageState('booking')
     if (data && isDateCurrent(data.booking.date)) {
       handleLocalStorageRead(data)
     }
   }, [])
-
-  useEffect(() => {
-    if (state.company.data) {
-      const data = state.company.data
-      setCompanyData({
-        ...companyData,
-        hours: data.hours,
-        location: data.location,
-        contact: data.contact
-      })
-      setLoading(false)
-    }
-  }, [state.company])
 
   const handleLocalStorageRead = (data) => {
     setBooking(transformLocalStorageData(data.booking))
@@ -78,9 +61,7 @@ const BookTable = ({ history }) => {
     history.push({ pathname: REVIEW_BOOKING })
   }
 
-  const { contact, location, hours } = companyData
-
-  if (loading) {
+  if (isLoading) {
     return <Spinner />
   }
 
@@ -107,7 +88,7 @@ const BookTable = ({ history }) => {
               submitBtn
             />
           </div>
-          {companyData.location ? (
+          {!isLoading ? (
             <article className="section section__col">
               <h2 className="table-booking__subtitle">Located in London</h2>
               <p>{location.address}</p>

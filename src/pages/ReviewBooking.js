@@ -12,6 +12,7 @@ import {
   getEmailActionUrl
 } from '../utils/helpers'
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
+import { useCompanyData } from '../hooks/useCompanyData'
 import { DataContext } from '../components/DataContext'
 import Modal from '../components/Modal/Modal'
 import Spinner from '../components/Spinner'
@@ -23,34 +24,18 @@ import { DB_ERROR_MSG } from '../constants/toastMessages'
 import dayjs from 'dayjs'
 
 const ReviewBooking = () => {
-  const [loading, setLoading] = useState(true)
-  const [companyData, setCompanyData] = useState({
-    hours: null,
-    location: {},
-    contact: null
-  })
+  const { location, isLoading } = useCompanyData()
   const { state } = useContext(DataContext)
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState({})
   const [editable, setEditable] = useState(false)
 
   useEffect(() => {
-    if (state.company.data) {
-      const company = state.company.data
-      setCompanyData({
-        ...companyData,
-        hours: company.hours,
-        location: company.location,
-        contact: company.contact,
-        name: company.name
-      })
-      setLoading(false)
-    }
     const booking = { ...state.booking }
     booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.company])
+  }, [state.booking])
 
   const handleModal = () => {
     toggleModal(true)
@@ -92,10 +77,10 @@ const ReviewBooking = () => {
       })
   }
 
-  const { address, code, city, province } = companyData.location
-  const { name, guests, date } = booking
+  const { address, code, city, province } = location
+  const { bookingName, guests, date } = booking
 
-  if (loading) {
+  if (isLoading) {
     return <Spinner />
   }
 
@@ -189,7 +174,7 @@ const ReviewBooking = () => {
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">
-            <strong className="review-booking__name">{name}</strong> reservation
+            <strong className="review-booking__name">{bookingName}</strong> reservation
           </p>
           <div className="row review-booking__container">
             <div className="section__col section__col--flexible">
@@ -209,7 +194,7 @@ const ReviewBooking = () => {
               <p className="review-booking__description">Time</p>
             </div>
           </div>
-          {companyData.location ? (
+          {location ? (
             <>
               <p className="review-booking__address">{address}</p>
               <p className="review-booking__address">

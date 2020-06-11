@@ -216,10 +216,10 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+button::-moz-focusing,
+[type="button"]::-moz-focusing,
+[type="reset"]::-moz-focusing,
+[type="submit"]::-moz-focusing {
   outline: 1px dotted ButtonText;
 }
 

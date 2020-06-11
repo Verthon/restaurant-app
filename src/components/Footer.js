@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Footer = ({ hours, location, contact }) => {
+  console.log(hours)
   const { weekdays, weekend } = hours
   const { address, code, city, province, country } = location
   return (
