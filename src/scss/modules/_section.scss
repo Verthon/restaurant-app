@@ -54,7 +54,10 @@
     }
 
     &--flexible {
-      flex: 1;
+      flex: 100%;
+      @include mQ($ipad) {
+        flex: 1;
+      }
     }
   }
 

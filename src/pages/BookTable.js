@@ -76,7 +76,7 @@ const BookTable = ({ history }) => {
       >
         <Navbar />
         <motion.div variants={pageTransitions} className="row container">
-          <div className="section section__col">
+          <div className="section section__col section__col--flexible">
             <h2 className="table-booking__subtitle">Make a reservation</h2>
             <Form
               handleSubmit={onHandleSubmit}
@@ -89,7 +89,7 @@ const BookTable = ({ history }) => {
             />
           </div>
           {!isLoading ? (
-            <article className="section section__col">
+            <article className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Located in London</h2>
               <p>{location.address}</p>
               <p>
@@ -106,7 +106,7 @@ const BookTable = ({ history }) => {
               </p>
             </article>
           ) : null}
-          <div className="section section__col table-booking__image">
+          <div className="section section__col section__col--flexible table-booking__image">
             <picture>
               <img src={bookTableImg} alt="" className="table-booking__image" />
             </picture>
