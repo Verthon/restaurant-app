@@ -23,7 +23,6 @@ const Home = () => {
   const { name, hours, location, contact, isLoading } = useCompanyData()
   const [dotValue, setDotValue] = useState(0)
   const [slides, setSlides] = useState([])
-  console.log('useCompanyData hook', location)
 
   useEffect(() => {
     AOS.init({ duration: 750 })

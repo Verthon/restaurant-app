@@ -19,6 +19,7 @@ export const useCompanyData = () => {
       contact: data.contact,
       isLoading: false
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.company.data])
 
   return {

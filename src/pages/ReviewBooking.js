@@ -34,7 +34,6 @@ const ReviewBooking = () => {
     const booking = { ...state.booking }
     booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.booking])
 
   const handleModal = () => {
@@ -59,8 +58,8 @@ const ReviewBooking = () => {
   }
 
   const onHandleSubmit = (e) => {
-    const submitBooking = { ...booking }
     e.preventDefault()
+    const submitBooking = { ...booking }
     db.collection('bookings')
       .add({
         email: submitBooking.email,

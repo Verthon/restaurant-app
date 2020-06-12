@@ -28,7 +28,7 @@
     flex: 100%;
 
     @include mQ($ipad) {
-      flex: 1;
+      flex: 50%;
     }
 
     &--white {

@@ -88,6 +88,9 @@ export const formatBookings = (booking) => {
 }
 
 export const formatMenu = (data) => {
-  const menu = data[0].data
-  return menu
+  if (data.length > 0) {
+    const menu = [...data]
+    return menu
+  }
+  return {}
 }
