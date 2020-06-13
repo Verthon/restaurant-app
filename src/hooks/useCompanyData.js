@@ -11,6 +11,7 @@ export const useCompanyData = () => {
   })
 
   useEffect(() => {
+    console.log('state in useCompanyData', state)
     const data = state.company.data
     setCompanyData({
       ...companyData,

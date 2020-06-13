@@ -4,17 +4,17 @@ import db from '../firebase'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 
-export const useGetCollection = () => {
+export const useGetCollection = ({ collectionName }) => {
   const [error, setError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState({})
   useEffect(() => {
-    db.collection('menu').onSnapshot(
+    db.collection(collectionName).onSnapshot(
       { includeMetadataChanges: true },
       snapshot => snapshot
     )
     try {
-      getCollection('menu').then(snapshot => {
+      getCollection(collectionName).then(snapshot => {
         setData(getData(snapshot))
         setIsLoading(false)
       })

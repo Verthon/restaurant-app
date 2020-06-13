@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
-import contactInfo from '../contactInfo'
+import { contactInfo } from '../constants/contact'
 import {
   splitDate,
   splitTime,
@@ -112,7 +112,7 @@ const ReviewBooking = () => {
           variants={pageTransitions}
         >
           <h1 className="heading review-booking__company">
-            <Link to="/">{contactInfo.name}</Link>
+            <Link to="/">{contactInfo.data.name}</Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <h2 className="review-booking__title">Edit booking</h2>
@@ -169,7 +169,7 @@ const ReviewBooking = () => {
           variants={pageTransitions}
         >
           <h1 className="heading review-booking__company">
-            <Link to="/">{contactInfo.name}</Link>
+            <Link to="/">{contactInfo.data.name}</Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">

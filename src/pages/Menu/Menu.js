@@ -9,7 +9,7 @@ import { useGetCollection } from '../../hooks/useGetCollection'
 
 const Menu = () => {
   const [menu, setMenu] = useState({})
-  const { isLoading, data } = useGetCollection()
+  const { isLoading, data } = useGetCollection({ collectionName: 'menu' })
 
   useEffect(() => {
     const formattedMenu = formatMenu(data)
@@ -26,7 +26,7 @@ const Menu = () => {
       <section id="menu" className="section menu container">
         <h1 className="heading heading--center menu__heading">Menu</h1>
         <div className="row">
-          {menu.map((category) => {
+          {menu.map(category => {
             return (
               <motion.div
                 className="section__col"
