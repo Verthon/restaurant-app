@@ -25,16 +25,13 @@ const App = () => {
     return { state, dispatch }
   }, [state, dispatch])
   useEffect(() => {
-    console.log(setCompanyData)
-    // const controller = new AbortController()
-    // console.log('data', data[0].data)
-    // if (data.length > 0) {
-    //   console.log('data aftercheck', data[0].data)
-    //   setCompanyData(data[0].data)
-    //   // initialState.company = dataObj
-    dispatch({ type: ADD_COMPANY, company: companyData })
-    // }
-    // return () => controller.abort()
+    const controller = new AbortController()
+    console.log('data', data)
+    if (data.length > 0) {
+      setCompanyData(data[0].data)
+      dispatch({ type: ADD_COMPANY, company: companyData })
+    }
+    return () => controller.abort()
   }, [data])
   if (isLoading) {
     return <Spinner />
