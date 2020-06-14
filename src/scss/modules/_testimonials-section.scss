@@ -7,9 +7,10 @@
     background-position: 20%;
   }
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   @include mQ($ipad) {
+    flex-direction: column;
     min-height: 500px;
     background-size: cover;
   }

@@ -77,7 +77,7 @@ const ReviewBooking = () => {
   }
 
   const { address, code, city, province } = location
-  const { bookingName, guests, date } = booking
+  const { name, guests, date } = booking
 
   if (isLoading) {
     return <Spinner />
@@ -173,7 +173,7 @@ const ReviewBooking = () => {
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">
-            <strong className="review-booking__name">{bookingName}</strong> reservation
+            <strong className="review-booking__name">{name}</strong> reservation
           </p>
           <div className="row review-booking__container">
             <div className="section__col section__col--flexible">
