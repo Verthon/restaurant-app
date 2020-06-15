@@ -41,9 +41,11 @@ const Menu = () => {
                 >
                   <h2 className="menu__title">{category.id}</h2>
                   <ul className="menu__list">
-                    {category.data.data.map(item => (
-                      <MenuItem key={item.name} menu={item} />
-                    ))}
+                    {category.data.data
+                      ? category.data.data.map(item => (
+                        <MenuItem key={item.name} menu={item} />
+                      ))
+                      : null}
                   </ul>
                 </motion.article>
               </motion.div>
