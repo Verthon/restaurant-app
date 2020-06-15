@@ -85,6 +85,9 @@
 
   &__link {
     text-transform: capitalize;
+    &--active {
+      font-family: $font-semi-bold;
+    }
   }
 }
 

@@ -45,6 +45,7 @@ const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
               name={link.name}
               link={link.link}
               hashlink={hashlink}
+              activeClassName="nav__link--active"
             />
           ))}
           <li className="nav__link">

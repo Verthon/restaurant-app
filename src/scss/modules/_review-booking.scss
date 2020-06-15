@@ -32,7 +32,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 600px;
-    background-color: $white;
+    background-color: $color-white;
 
     @include mQ($ipad) {
       box-shadow: $default-shadow;

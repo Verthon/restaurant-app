@@ -1,6 +1,6 @@
 import React from 'react'
 import { HashLink } from 'react-router-hash-link'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const NavItem = ({ hashlink, name, link }) => (
@@ -10,9 +10,9 @@ const NavItem = ({ hashlink, name, link }) => (
         {name}
       </HashLink>
     ) : (
-      <Link className='nav__link' data-testid="navlink" to={`/${link}`}>
+      <NavLink className='nav__link' data-testid="navlink" activeClassName="nav__link--active" to={`/${link}`}>
         {name}
-      </Link>
+      </NavLink>
     )}
   </li>
 )

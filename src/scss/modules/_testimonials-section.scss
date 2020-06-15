@@ -33,7 +33,7 @@
     }
     &__heading {
       font-family: $font-secondary;
-      color: $white;
+      color: $color-white;
       text-align: center;
       margin: 0 0 1rem 0;
       @include mQ($ipad) {
@@ -60,7 +60,7 @@
 }
 
 .quote-writer {
-  color: $metallic-gold;
+  color: $color-primary;
   font-family: $font-semi-bold;
   font-style: normal;
   margin: 2rem auto 0 auto;

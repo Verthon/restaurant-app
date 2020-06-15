@@ -3,13 +3,13 @@
 }
 
 .toast {
-  color: $lighthouse;
+  color: $color-light-1;
   background: $nero;
   font-size: 1.1rem;
   &__container{
     display: block;
   }
   &__progress {
-    background: $metallic-gold;
+    background: $color-primary;
   }
 }
