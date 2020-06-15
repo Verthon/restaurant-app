@@ -11,7 +11,7 @@
   justify-content: center;
   @include mQ($ipad) {
     flex-direction: column;
-    min-height: 500px;
+    min-height: 700px;
     background-size: cover;
   }
 }

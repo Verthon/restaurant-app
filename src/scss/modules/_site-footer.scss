@@ -1,6 +1,6 @@
 .site-footer {
   background: $color-white;
-  color: $nero;
+  color: $color-dark;
   padding: 1.5rem;
 
   @include mQ($mobile) {
@@ -23,7 +23,7 @@
   }
 
   &__title {
-    color: $nero;
+    color: $color-dark;
     font-family: $font-secondary;
     font-weight: 400;
     margin: 0 0 0.5rem 0;

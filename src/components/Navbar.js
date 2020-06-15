@@ -48,7 +48,7 @@ const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
               activeClassName="nav__link--active"
             />
           ))}
-          <li className="nav__link">
+          <li className="nav__item">
             {children}
           </li>
         </ul>
