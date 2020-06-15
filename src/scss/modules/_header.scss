@@ -1,6 +1,6 @@
 .site-header {
-  display: flex;
-  @include flexColumn();
+  display: grid;
+  grid-template-columns: 100%;
   padding: 0 1.5rem 3rem 1.5rem;
 
   @include mQ($tablet) {
@@ -8,7 +8,7 @@
   }
 
   @include mQ($ipad) {
-    flex-direction: row;
+    grid-template-columns: 50% 50%;
   }
 
   &__content {
