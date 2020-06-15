@@ -10,6 +10,9 @@
     background-image: url('../assets/images/review-booking-bg.jpg');
     background-repeat: no-repeat;
     align-items: center;
+    @include mQ($desktopLg) {
+      background-position: center center;
+    }
   }
 
   .react-datepicker-wrapper {

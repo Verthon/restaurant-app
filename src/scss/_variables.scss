@@ -52,7 +52,7 @@ $silver-lake: #dedede;
 $silver: #cccccc;
 $gravel-fint: #bbbbbb;
 $vampire:#c70039;
-$default-shadow: 1px 1px 3px $silver-lake;
+$default-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.4);
 $shadow-light: 0 1px 1px hsla(0, 0%, 0%, 0.2);
 
 //Media Queries vars
@@ -63,6 +63,9 @@ $ipad: 768px;
 $ipadPro: 1024px;
 $desktopXs: 1200px;
 $desktopSm: 1400px;
+$desktopLg: 1920px;
+$desktopXl: 2560px;
+$desktopXXl: 4096px;
 
 $font: 'Open Sans', sans-serif;
 $font-light: 'Open Sans Light', sans-serif;
