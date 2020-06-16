@@ -35,6 +35,7 @@
     background-color: $color-white;
 
     @include mQ($ipad) {
+      min-width: 500px;
       box-shadow: $default-shadow;
     }
   }
