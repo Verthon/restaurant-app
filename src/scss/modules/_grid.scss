@@ -1,6 +1,10 @@
 .row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  @include mQ($ipad) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .container {
@@ -13,6 +17,12 @@
   }
   @include mQ($desktopSm) {
     max-width: 1200px;
+  }
+  @include mQ($desktopXl) {
+    max-width: 1600px;
+  }
+  @include mQ($desktopXXl) {
+    max-width: 1920px;
   }
 }
 

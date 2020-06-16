@@ -1,7 +1,7 @@
 .review-booking {
   width: 100%;
   height: 100vh;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: flex-end;
   margin: 0;
@@ -87,6 +87,8 @@
 
   &__container {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     @include mQ($tablet) {
       width: 70%;
     }

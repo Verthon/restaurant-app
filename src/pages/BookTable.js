@@ -75,7 +75,7 @@ const BookTable = ({ history }) => {
         className="table-booking"
       >
         <Navbar />
-        <motion.div variants={pageTransitions} className="row container">
+        <motion.div variants={pageTransitions} className="table-booking__wrapper container">
           <div className="section section__col section__col--flexible">
             <h2 className="table-booking__subtitle">Make a reservation</h2>
             <Form

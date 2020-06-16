@@ -6,7 +6,7 @@ const Footer = ({ hours, location, contact }) => {
   const { address, code, city, province, country } = location
   return (
     <footer id="contact" className="site-footer section">
-      <div className="row container">
+      <div className="container site-footer__wrapper">
         <div className="site-footer__column">
           <h2 className="site-footer__title">Opening Hours</h2>
           <p className="site-footer__description">{weekdays.days}</p>

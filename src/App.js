@@ -26,7 +26,6 @@ const App = () => {
   }, [state, dispatch])
   useEffect(() => {
     const controller = new AbortController()
-    console.log('data', data)
     if (data.length > 0) {
       setCompanyData(data[0].data)
       dispatch({ type: ADD_COMPANY, company: companyData })

@@ -1,28 +1,39 @@
-.table-booking{
+.table-booking {
   @include flexColumn();
   align-items: center;
 
-  .react-datepicker-wrapper, .react-datepicker__input-container {
+  &__wrapper {
+    display: grid;
+    @include mQ($desktopXs) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mQ($desktopSm) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
     display: inline-block;
     width: 100%;
   }
 
-  .label{
+  .label {
     display: flex;
     align-self: flex-start;
     font-size: 0.875rem;
   }
 
-  &__title{
+  &__title {
     margin: 4rem 0;
   }
 
-  &__subtitle{
+  &__subtitle {
     font-size: 1.5rem;
     font-family: $font-secondary;
     color: $color-dark;
     margin: 0 0 2rem 0;
-    font-weight: 400; 
+    font-weight: 400;
 
     @include mQ($desktopXs) {
       font-size: 1.75rem;
@@ -30,7 +41,7 @@
     }
   }
 
-  &__input{
+  &__input {
     border: 0;
     border-bottom: 2px solid $color-gray-3;
     padding: 0.5rem 0;
@@ -49,7 +60,7 @@
 
   &__image {
     display: none;
-    @include mQ($desktopXs) {
+    @include mQ($desktopSm) {
       display: block;
       margin: 1rem 0 0 0;
     }

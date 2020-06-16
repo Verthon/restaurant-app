@@ -152,7 +152,7 @@ const Home = () => {
       </div>
 
       <article id="Reviews" className="section section__testimonials">
-        <div className="row container">
+        <div className="container">
           <div className="testimonials">
             <div className="testimonials__modal">
               <h2 className="heading testimonials__modal__heading">

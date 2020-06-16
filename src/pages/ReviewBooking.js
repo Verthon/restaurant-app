@@ -175,7 +175,7 @@ const ReviewBooking = () => {
           <p className="review-booking__client">
             <strong className="review-booking__name">{name}</strong> reservation
           </p>
-          <div className="row review-booking__container">
+          <div className="review-booking__container">
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">{guests}</p>
               <p className="review-booking__description">Guests</p>

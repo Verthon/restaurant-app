@@ -11,13 +11,17 @@
     padding: 2.5rem;
   }
 
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   &__column {
     @include flexColumn();
     flex: 100%;
     margin: 1rem 0;
 
     @include mQ($ipad) {
-      flex: 1;
       text-align: center;
     }
   }
