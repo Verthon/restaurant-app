@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import propTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
+import emailjs from 'emailjs-com'
+import dayjs from 'dayjs'
 import { contactInfo } from '../constants/contact'
 import {
   splitDate,
@@ -21,7 +23,6 @@ import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
-import dayjs from 'dayjs'
 
 const ReviewBooking = () => {
   const { location, isLoading } = useCompanyData()
@@ -45,7 +46,7 @@ const ReviewBooking = () => {
     setEditable(true)
   }
 
-  const onHandleChange = (e) => {
+  const onHandleChange = e => {
     if (e.target.name === 'guests') {
       setBooking({ ...booking, [e.target.name]: parseInt(e.target.value) })
       return
@@ -53,11 +54,36 @@ const ReviewBooking = () => {
     setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const onHandleDate = (e) => {
+  const onHandleDate = e => {
     setBooking({ ...booking, date: e })
   }
 
-  const onHandleSubmit = (e) => {
+  const handleEmailSend = () => {
+    const templateParams = {
+      name: booking.name,
+      email: booking.email,
+      guests: booking.guests,
+      date: dayjs(booking.date).format('DD-MMMM-YYYY HH:mm')
+    }
+    emailjs
+      .send(
+        'gmail-alkinoos',
+        'reservation',
+        templateParams,
+        process.env.REACT_APP_DEV_EMAIL_API_KEY
+      )
+      .then(
+        response => {
+          console.info('SUCCESS!', response.status, response.text)
+          handleModal()
+        },
+        err => {
+          console.error('FAILED...', err)
+        }
+      )
+  }
+
+  const onHandleSubmit = e => {
     e.preventDefault()
     const submitBooking = { ...booking }
     db.collection('bookings')
@@ -69,8 +95,10 @@ const ReviewBooking = () => {
         confirmed: true,
         createdAt: dayjs().format('YYYY-MM-DD HH:mm')
       })
-      .then(() => handleModal())
-      .catch((err) => {
+      .then(() => {
+        handleEmailSend()
+      })
+      .catch(err => {
         console.log('Error occurred while saving to database: ', err)
         notifyError(DB_ERROR_MSG)
       })
