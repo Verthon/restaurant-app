@@ -31,6 +31,7 @@ const App = () => {
       dispatch({ type: ADD_COMPANY, company: companyData })
     }
     return () => controller.abort()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
   if (isLoading) {
     return <Spinner />

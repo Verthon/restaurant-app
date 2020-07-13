@@ -24,7 +24,7 @@ export const useGetCollection = ({ collectionName }) => {
       notifyError(DB_ERROR_MSG)
       console.log(error)
     }
-  }, [error])
+  }, [error, collectionName])
 
   return {
     error: error,
