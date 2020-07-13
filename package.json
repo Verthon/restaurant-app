@@ -23,6 +23,7 @@
     "dayjs": "^1.8.26",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "emailjs-com": "^2.4.1",
     "eslint-config-react-app": "^3.0.4",
     "eslint-loader": "2.1.1",
     "eslint-plugin-flowtype": "2.50.1",
