@@ -7,7 +7,7 @@
   margin: 0;
 
   @include mQ($ipad) {
-    background-image: url('../assets/images/review-booking-bg.jpg');
+    background: linear-gradient(hsla(0,0%,100%, 0.21), hsla(0,0%,100%, 0.31)), url(/static/media/review-booking-bg.e94c2fa1.jpg);
     background-repeat: no-repeat;
     align-items: center;
     @include mQ($desktopLg) {
@@ -48,6 +48,14 @@
 
   &__company {
     margin: 1rem 0;
+  }
+
+  &__form {
+    padding: 1rem;
+    @include mQ($ipad) {
+      padding: 2rem;
+    }
+    
   }
 
   &__title {

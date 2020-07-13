@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   &.animate__animated animate__bounce {
-    animation-duration: 0.25s;
+    animation-duration: infinite;
   }
   &__logo {
     max-width: 100px;

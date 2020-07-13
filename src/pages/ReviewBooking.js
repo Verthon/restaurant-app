@@ -116,7 +116,7 @@ const ReviewBooking = () => {
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <h2 className="review-booking__title">Edit booking</h2>
-          <div className="r">
+          <div className="review-booking__form">
             <Form
               booking={booking}
               config={DATEPICKER_CONFIG}

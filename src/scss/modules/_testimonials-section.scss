@@ -53,6 +53,7 @@
   }
   &__text {
     max-width: 20rem;
+    line-height: 1.5;
     @include mQ($ipad) {
       max-width: 25rem;
     }
