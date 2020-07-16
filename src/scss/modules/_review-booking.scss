@@ -7,7 +7,7 @@
   margin: 0;
 
   @include mQ($ipad) {
-    background: linear-gradient(hsla(0,0%,100%, 0.21), hsla(0,0%,100%, 0.31)), url('../assets/images/review-booking-bg.jpg');
+    background: linear-gradient(hsla(0,0%,100%, 0.21), hsla(0,0%,100%, 0.31)), url('../../assets/images/review-booking-bg.jpg');
     background-repeat: no-repeat;
     align-items: center;
     @include mQ($desktopLg) {

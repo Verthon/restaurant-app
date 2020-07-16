@@ -1,10 +1,21 @@
 import React from 'react'
-import propTypes from 'prop-types'
 import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const Form = ({
+type Props = {
+  handleDate: (date: Date, e: React.SyntheticEvent<any, Event>) => void,
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void,
+  booking: any,
+  config: any,
+  cssClass?: string,
+  submitBtn: boolean,
+  action: string,
+  withBookingDesc: boolean
+}
+
+const Form: React.FC<Props> = ({
   handleChange,
   handleDate,
   handleSubmit,
@@ -20,7 +31,7 @@ const Form = ({
     <form
       onSubmit={handleSubmit}
       className={cssClass ? `form ${cssClass}` : 'form'}
-      action={action || null}
+      action={action}
       aria-label="Add a booking"
     >
       {withBookingDesc ? (
@@ -71,7 +82,7 @@ const Form = ({
         timeCaption="Time"
         placeholderText="Click and choose the date"
       />
-      <label className="label" htmlFor="guests" name="guests">
+      <label className="label" htmlFor="guests">
         Number of guests
       </label>
       <input
@@ -99,32 +110,6 @@ const Form = ({
       ) : null}
     </form>
   )
-}
-
-Form.defaultProps = {
-  withBookingDesc: false
-}
-
-Form.propTypes = {
-  handleChange: propTypes.func,
-  handleSubmit: propTypes.func,
-  handleDate: propTypes.func,
-  booking: propTypes.shape({
-    date: propTypes.instanceOf(Date),
-    guests: propTypes.number,
-    name: propTypes.string,
-    email: propTypes.string,
-    confirmed: propTypes.bool
-  }),
-  config: propTypes.shape({
-    startDate: propTypes.instanceOf(Date),
-    minTime: propTypes.number,
-    maxTime: propTypes.number
-  }),
-  submitBtn: propTypes.bool,
-  cssClass: propTypes.string,
-  action: propTypes.string,
-  withBookingDesc: propTypes.boolean
 }
 
 export default Form

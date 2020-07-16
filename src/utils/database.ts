@@ -1,17 +1,24 @@
 import db from '../firebase'
 
-export const getOfflineData = async (name, callback) => {
+type OrderByDirection = 'desc' | 'asc';
+
+export type Order = {
+  name: string,
+  type: OrderByDirection
+}
+
+export const getOfflineData = async (name: string, callback: () => void) => {
   return db.collection(name).onSnapshot(
     { includeMetadataChanges: true },
     callback
   )
 }
 
-export const getCollection = async (name) => {
+export const getCollection = async (name: string) => {
   return db.collection(name).get()
 }
 
-export const getCollectionWithOptions = async (name, order = { name: 'id', type: 'desc' }, limit = 20) => {
+export const getCollectionWithOptions = async (name: string, order: Order = { name: 'id', type: 'asc' }, limit = 20) => {
   return db.collection(name).orderBy(order.name, order.type).limit(limit).get()
 }
 
