@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../../components/UserContext'
@@ -13,7 +12,13 @@ import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
 
 const Login = ({ history }) => {
-  const [error, setError] = useState({ error: false })
+  const links = [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Book Table', link: 'book-table' }
+  ]
+  const [error, setError]:any = useState({ error: {
+    message: ''
+  } })
 
   const [form, setInputs] = useState({
     email: '',
@@ -47,7 +52,7 @@ const Login = ({ history }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar links={links} hashlink={false}/>
       <motion.div initial="exit" animate="enter" exit="exit" variants={pageTransitions} className='container row'>
         <div className='section section__col login'>
           <h1 className='heading'>Login</h1>
@@ -88,14 +93,6 @@ const Login = ({ history }) => {
       </motion.div>
     </>
   )
-}
-
-Login.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func })
-}
-
-Login.defaultProps = {
-  history: {}
 }
 
 export default withRouter(Login)

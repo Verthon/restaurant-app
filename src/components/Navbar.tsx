@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import NavItem from './NavItem/NavItem'
 
-const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
+type Link = {
+  name: string,
+  link: string
+}
+
+type Props = {
+  links: Array<Link>,
+  hashlink: boolean,
+  withDashboard?: boolean,
+  admin?: boolean,
+}
+
+const Navbar: React.FC<Props> = ({ links, hashlink, withDashboard, admin, children }) => {
   const [isNavActive, setIsNavActive] = useState({
     firstRender: true,
     active: false
@@ -45,7 +56,6 @@ const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
               name={link.name}
               link={link.link}
               hashlink={hashlink}
-              activeClassName="nav__link--active"
             />
           ))}
           <li className="nav__item">
@@ -108,29 +118,6 @@ const Navbar = ({ links, hashlink, withDashboard, admin, children }) => {
       </ul>
     </nav>
   )
-}
-
-Navbar.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      link: PropTypes.string
-    })
-  ),
-  hashlink: PropTypes.bool,
-  withDashboard: PropTypes.bool,
-  children: PropTypes.node,
-  admin: PropTypes.bool
-}
-
-Navbar.defaultProps = {
-  links: [
-    { name: 'Menu', link: 'menu' },
-    { name: 'Book Table', link: 'book-table' }
-  ],
-  hashlink: false,
-  withDashboard: false,
-  admin: false
 }
 
 export default Navbar

@@ -57,8 +57,9 @@ export const getTomorrowsDate = () => {
   const tomorrow = dayjs()
     .add(1, 'day')
     .set('hour', 12)
-    .set('minutes', 0)
-  return tomorrow.$d
+    .set('minute', 0)
+  console.log('tomorrow', tomorrow)  
+  return tomorrow.toDate()
 }
 
 export const convertToDate = date => {
@@ -78,7 +79,7 @@ export const isDateCurrent = date =>
   dayjs(getTomorrowsDate()).isBefore(dayjs(date)) ||
   dayjs(date).isSame(dayjs(getTomorrowsDate()), 'day')
 
-export const getEmailActionUrl = email => `https://formspree.io/${email}`
+export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
 export const formatBookings = (booking) => {
   return booking.map((booking) => {
@@ -92,5 +93,5 @@ export const formatMenu = (data) => {
     const menu = [...data]
     return menu
   }
-  return {}
+  return []
 }

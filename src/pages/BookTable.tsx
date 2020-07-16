@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import PropTypes from 'prop-types'
+import { RouteComponentProps } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { DataContext } from '../components/DataContext'
@@ -19,7 +19,7 @@ import {
   isDateCurrent
 } from '../utils/helpers'
 
-const BookTable = ({ history }) => {
+const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
     guests: 1,
@@ -29,6 +29,11 @@ const BookTable = ({ history }) => {
   })
   const { hours, location, contact, isLoading } = useCompanyData()
   const { dispatch } = useContext(DataContext)
+  const links = [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Book Table', link: 'book-table' }
+  ]
+
   useEffect(() => {
     const data = loadLocalStorageState('booking')
     if (data && isDateCurrent(data.booking.date)) {
@@ -36,11 +41,11 @@ const BookTable = ({ history }) => {
     }
   }, [])
 
-  const handleLocalStorageRead = (data) => {
+  const handleLocalStorageRead = data => {
     setBooking(transformLocalStorageData(data.booking))
   }
 
-  const onHandleChange = (e) => {
+  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'guests') {
       const value = parseInt(e.target.value)
       setBooking({ ...booking, [e.target.name]: value })
@@ -49,11 +54,12 @@ const BookTable = ({ history }) => {
     setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const onHandleDate = (e) => {
-    setBooking({ ...booking, date: e })
+  const onHandleDate = (date: Date, e: React.SyntheticEvent<any, Event>) => {
+    console.log('onHandleChange date and e', date, e)
+    setBooking({ ...booking, date: date })
   }
 
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
     const action = { type: ADD_BOOKING, booking: booking }
@@ -74,8 +80,11 @@ const BookTable = ({ history }) => {
         exit="exit"
         className="table-booking"
       >
-        <Navbar />
-        <motion.div variants={pageTransitions} className="table-booking__wrapper container">
+        <Navbar links={links} hashlink={false} />
+        <motion.div
+          variants={pageTransitions}
+          className="table-booking__wrapper container"
+        >
           <div className="section section__col section__col--flexible">
             <h2 className="table-booking__subtitle">Make a reservation</h2>
             <Form
@@ -86,6 +95,7 @@ const BookTable = ({ history }) => {
               config={DATEPICKER_CONFIG}
               withBookingDesc={true}
               submitBtn
+              action=""
             />
           </div>
           {!isLoading ? (
@@ -116,14 +126,6 @@ const BookTable = ({ history }) => {
       </motion.div>
     </>
   )
-}
-
-BookTable.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func })
-}
-
-BookTable.defaultProps = {
-  history: {}
 }
 
 export default BookTable

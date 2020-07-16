@@ -18,7 +18,7 @@ const App = () => {
     },
     company: contactInfo
   }
-  const { data, isLoading } = useGetCollection({ collectionName: 'company' })
+  const { data, isLoading }: any = useGetCollection({ collectionName: 'company' })
   const [companyData, setCompanyData] = useState(initialState.company)
   const [state, dispatch] = useReducer(reducer, initialState)
   const contextValue = useMemo(() => {

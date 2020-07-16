@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import propTypes from 'prop-types'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import emailjs from 'emailjs-com'
@@ -24,15 +23,27 @@ import about from '../assets/images/landing/brooke-lark-about.jpg'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 
-const ReviewBooking = () => {
+type Booking = {
+  name: string,
+  email: string,
+  guests: number,
+  date: Date
+}
+
+const ReviewBooking: React.FC = () => {
   const { location, isLoading } = useCompanyData()
   const { state } = useContext(DataContext)
   const [show, toggleModal] = useState(false)
-  const [booking, setBooking] = useState({})
+  const [booking, setBooking] = useState<Booking>({
+    name: '',
+    email: '',
+    guests: 0,
+    date: new Date()
+  })
   const [editable, setEditable] = useState(false)
 
   useEffect(() => {
-    const booking = { ...state.booking }
+    const booking: Booking = { ...state.booking }
     booking.date = convertToDate(booking.date)
     setBooking({ ...booking })
   }, [state.booking])
@@ -46,7 +57,7 @@ const ReviewBooking = () => {
     setEditable(true)
   }
 
-  const onHandleChange = e => {
+  const onHandleChange = (e) => {
     if (e.target.name === 'guests') {
       setBooking({ ...booking, [e.target.name]: parseInt(e.target.value) })
       return
@@ -247,31 +258,6 @@ const ReviewBooking = () => {
       </motion.div>
     </>
   )
-}
-
-ReviewBooking.propTypes = {
-  location: propTypes.shape({
-    pathname: propTypes.string,
-    search: propTypes.string
-  }),
-  booking: propTypes.shape({
-    name: propTypes.string,
-    guests: propTypes.number,
-    date: propTypes.instanceOf(Date),
-    confirmed: propTypes.bool
-  })
-}
-
-ReviewBooking.defaultProps = {
-  location: propTypes.shape({
-    pathname: propTypes.string,
-    search: propTypes.string
-  }),
-  name: 'John Doe',
-  guests: 1,
-  date: new Date(),
-  email: 'john.doe@gmail.uu',
-  confirmed: false
 }
 
 export default ReviewBooking

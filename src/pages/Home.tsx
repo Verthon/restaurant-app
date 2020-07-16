@@ -3,6 +3,7 @@ import AOS from 'aos'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
+import 'aos/dist/aos.css'
 import { getCollection, getData } from '../utils/database'
 import Spinner from '../components/Spinner'
 import Header from '../components/Header'
@@ -10,7 +11,6 @@ import Navbar from '../components/Navbar'
 import Testimonial from '../components/Testimonial/Testimonial'
 import Footer from '../components/Footer'
 import { useCompanyData } from '../hooks/useCompanyData'
-import 'aos/dist/aos.css'
 import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
 import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
 import menuImg from '../assets/images/landing/brooke-lark-menu.jpg'
@@ -20,7 +20,7 @@ import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
 import chef from '../assets/images/landing/cook.jpg'
 
 const Home = () => {
-  const { name, hours, location, contact, isLoading } = useCompanyData()
+  const { hours, location, contact, isLoading } = useCompanyData()
   const [dotValue, setDotValue] = useState(0)
   const [slides, setSlides] = useState([])
 
@@ -58,8 +58,8 @@ const Home = () => {
         progressClassName="toast__progress"
         autoClose={4000}
       />
-      <Navbar name={name} links={links} hashlink withDashboard />
-      <Header animation={['fade-up']} />
+      <Navbar links={links} hashlink withDashboard />
+      <Header />
       <article id="about" className="section section__about">
         <div className="row container">
           <div className="section__col" data-aos="fade-down" data-delay="1500">
