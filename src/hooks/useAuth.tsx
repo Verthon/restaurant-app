@@ -1,6 +1,6 @@
 import React, { useMemo, useReducer } from 'react'
 import PropTypes from 'prop-types'
-import { login, logout } from '../../utils/login'
+import { login, logout } from '../utils/login'
 import { AuthContext } from '../components/AuthContext'
 import { reducer } from '../reducer'
 
@@ -11,7 +11,7 @@ export const useAuth = () => {
     user: null
   }
   const [state, dispatch] = useReducer(reducer, initialState)
-  const doLogin = async (email, password) => {
+  const doLogin = async (email: string, password: string) => {
     const response = await login(email, password)
     return response
   }
@@ -29,7 +29,7 @@ export const useAuth = () => {
   }
 }
 
-export const AuthProvider = props => {
+export const AuthProvider = (props: { value: any; children: React.ReactNode }) => {
   return (
     <AuthContext.Provider value={props.value}>
       {props.children}

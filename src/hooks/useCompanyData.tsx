@@ -4,9 +4,10 @@ import { DataContext } from '../components/DataContext'
 export const useCompanyData = () => {
   const { state } = useContext(DataContext)
   const [companyData, setCompanyData] = useState({
-    hours: {},
-    location: {},
-    contact: {},
+    name: '',
+    hours: null,
+    location: null,
+    contact: null,
     isLoading: true
   })
 

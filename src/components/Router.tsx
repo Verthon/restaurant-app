@@ -2,8 +2,7 @@ import React, { useState, useMemo, Suspense, lazy } from 'react'
 import '../scss/index.scss'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { UserContext } from './UserContext'
-// import { AuthProvider } from '../hooks/useAuth'
-import Spinner from '../components/Spinner'
+import Spinner from './Spinner'
 import * as ROUTES from '../constants/routes'
 const Home = lazy(() => import('../pages/Home'))
 const BookTable = lazy(() => import('../pages/BookTable'))
@@ -27,7 +26,7 @@ const Router = () => {
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
             <Route path={ROUTES.MENU} component={Menu} />
             <Route path={ROUTES.LOGIN}>
-              <Login key={ROUTES.LOGIN} history={history} />
+              <Login key={ROUTES.LOGIN} history={window.history} />
             </Route>
             <Route path={ROUTES.ADMIN} component={Admin} />
             <Route component={NotFound} />

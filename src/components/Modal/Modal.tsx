@@ -1,7 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const Modal = ({ show, children }) => {
+type Props = {
+  show: boolean
+  children: React.ReactNode
+}
+
+const Modal: React.FC<Props> = ({ show, children }) => {
   const activeClassName = show ? 'modal-book--active' : 'modal-book--disabled'
   return (
     <div className={`modal-book ${activeClassName}`}>
@@ -9,9 +13,5 @@ const Modal = ({ show, children }) => {
     </div>
   )
 }
-
-Modal.propTypes = { show: PropTypes.bool, children: PropTypes.node }
-
-Modal.defaultProps = { show: false, children: {} }
 
 export default Modal

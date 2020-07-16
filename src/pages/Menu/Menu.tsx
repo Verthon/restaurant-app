@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import MenuItem from '../../components/MenuItem/MenuItem'
 import Navbar from '../../components/Navbar'
 import Spinner from '../../components/Spinner'
 import { pageTransitions } from '../../constants/config'
-import { formatMenu } from '../../utils/helpers'
-import { useGetCollection } from '../../hooks/useGetCollection'
+import { useMenuData } from '../../hooks/useMenuData'
 
 const Menu = () => {
-  const [menu, setMenu] = useState({})
-  const { isLoading, data } = useGetCollection({ collectionName: 'menu' })
-
-  useEffect(() => {
-    const formattedMenu = formatMenu(data)
-    setMenu(formattedMenu)
-  }, [isLoading, data])
+  const {menu, isLoading} = useMenuData()
+  const links = [
+    { name: 'Menu', link: 'menu' },
+    { name: 'Book Table', link: 'book-table' }
+  ]
 
   if (isLoading) {
     return <Spinner />
@@ -22,7 +19,7 @@ const Menu = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar links={links} hashlink={false}/>
       <section id="menu" className="section menu container">
         <h1 className="heading heading--center menu__heading">Menu</h1>
         <div className="row">

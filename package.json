@@ -4,72 +4,35 @@
   "private": true,
   "homepage": "https://alkinoos-taverna.netlify.com",
   "dependencies": {
-    "@babel/core": "7.1.0",
     "@brainhubeu/react-carousel": "^1.16.2",
-    "@svgr/webpack": "2.4.1",
     "@testing-library/dom": "^7.5.7",
     "@testing-library/jest-dom": "^5.8.0",
+    "@types/jest": "^26.0.4",
+    "@types/node": "^14.0.23",
+    "@types/react": "^16.9.43",
+    "@types/react-datepicker": "^3.0.2",
+    "@types/react-dom": "^16.9.8",
     "animate.css": "^4.1.0",
     "aos": "^3.0.0-beta.6",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "8.0.4",
-    "babel-plugin-named-asset-import": "^0.2.2",
-    "babel-preset-react-app": "^5.0.4",
-    "bfj": "6.1.1",
-    "case-sensitive-paths-webpack-plugin": "2.1.2",
-    "chalk": "2.4.1",
-    "css-loader": "1.0.0",
     "dayjs": "^1.8.26",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "emailjs-com": "^2.4.1",
-    "eslint-config-react-app": "^3.0.4",
-    "eslint-loader": "2.1.1",
-    "eslint-plugin-flowtype": "2.50.1",
-    "eslint-plugin-react-hooks": "^4.0.4",
-    "file-loader": "2.0.0",
     "firebase": "^5.5.9",
     "firebase-admin": "^8.12.1",
     "framer-motion": "^1.11.0",
-    "fs-extra": "7.0.0",
-    "gh-pages": "^2.2.0",
-    "html-webpack-plugin": "4.0.0-alpha.2",
-    "identity-obj-proxy": "3.0.0",
-    "jest-pnp-resolver": "1.0.1",
-    "jest-resolve": "23.6.0",
-    "mini-css-extract-plugin": "0.4.3",
-    "node-sass": "^4.14.1",
-    "optimize-css-assets-webpack-plugin": "5.0.1",
-    "pnp-webpack-plugin": "1.1.0",
-    "postcss-flexbugs-fixes": "4.1.0",
-    "postcss-loader": "3.0.0",
-    "postcss-preset-env": "6.0.6",
-    "postcss-safe-parser": "4.0.1",
-    "prop-types": "^15.6.2",
     "react": "^16.13.1",
-    "react-app-polyfill": "^0.1.3",
     "react-datepicker": "^2.15.0",
-    "react-dev-utils": "^6.0.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^1.2.1",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1",
     "react-toastify": "^5.5.0",
-    "reactjs-popup": "^1.5.0",
-    "resolve": "1.8.1",
-    "style-loader": "0.23.0",
-    "terser-webpack-plugin": "1.1.0",
-    "url-loader": "1.1.1",
-    "webpack": "^4.43.0",
-    "webpack-dev-server": "^3.10.3",
-    "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.2",
-    "yup": "^0.27.0"
+    "typescript": "^3.9.6"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "react-scripts start",
     "build": "node scripts/build.js && echo '/*    /index.html   200' > build/_redirects",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -95,34 +58,24 @@
   ],
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
-    "babel-eslint": "^9.0.0",
-    "eslint": "^7.0.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-standard": "^4.0.1",
+    "file-loader": "^6.0.0",
     "jest": "^24.9.0",
+    "node-sass": "^4.14.1",
     "prettier": "1.18.2",
-    "prettier-eslint": "^9.0.1",
-    "sass-loader": "^7.3.1"
+    "url-loader": "^4.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/**/*.{ts,tsx}"
     ],
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
       "react-app-polyfill/jsdom"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx}"
+      "<rootDir>/src/**/__tests__/**/*.{ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{ts,tsx}"
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
@@ -145,12 +98,9 @@
       "json",
       "web.jsx",
       "jsx",
-      "node"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
+      "node",
+      "tsx",
+      "ts"
     ]
   }
 }

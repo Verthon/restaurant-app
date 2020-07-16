@@ -14,7 +14,7 @@ import { pageTransitions, DATEPICKER_CONFIG } from '../constants/config'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
 import db from '../firebase'
-import { getData } from '../utils/database'
+import { getData, Order } from '../utils/database'
 import { navigateTo } from '../utils/navigate'
 import { formatBookings } from '../utils/helpers'
 import { notifyError, notifyInfo } from '../utils/notification'
@@ -22,7 +22,7 @@ import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
 const Admin = ({ history }) => {
-  const [bookingDetail, setBookingDetail] = useState({ id: '', data: {} })
+  const [bookingDetail, setBookingDetail]: any = useState({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [loading, handleLoading] = useState(true)
@@ -78,7 +78,7 @@ const Admin = ({ history }) => {
   }
 
   const onHandleUpdate = (e) => {
-    const submitBooking = { ...bookingDetail }
+    const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
     console.log('data to be submitted', submitBooking)
     db.collection('bookings')
@@ -113,16 +113,22 @@ const Admin = ({ history }) => {
 
   useEffect(() => {
     const listener = auth.onAuthStateChanged(async (authUser) => {
+      type Params = {
+        name: string,
+        order: Order,
+        limit: number
+      }
       if (user) {
         try {
-          const params = {
+          const params: Params = {
             name: 'bookings',
             order: { name: 'date', type: 'asc' },
             limit: 20
           }
-          db.collection(params.name)
-            .orderBy(params.order.name, params.order.type)
-            .limit(params.limit)
+          const {order, name, limit} = params
+           db.collection(name)
+            .orderBy(order.name, order.type)
+            .limit(limit)
             .onSnapshot((querySnapshot) => {
               const booking = getData(querySnapshot)
               const allBookings = formatBookings(booking)
@@ -150,7 +156,7 @@ const Admin = ({ history }) => {
         toastClassName="toast"
         progressClassName="toast__progress"
       />
-      <Modal show={showModal} onKeyUp={(e) => hideModal(e)}>
+      <Modal show={showModal}>
         <div className="modal-book__nav">
           <button
             className="modal-book__close"
@@ -166,7 +172,7 @@ const Admin = ({ history }) => {
         <p className="text modal-book__text">
           Both edit or delete process cannot be undone.
         </p>
-        <div className="admin__form-container">
+        <div className="admin__form-container" onKeyUp={(e) => hideModal(e)}>
           <Form
             booking={bookingDetail.data}
             config={DATEPICKER_CONFIG}
@@ -175,6 +181,7 @@ const Admin = ({ history }) => {
             handleSubmit={onHandleUpdate}
             submitBtn={false}
             cssClass="form--edit"
+            action=""
             withBookingDesc={false}
           />
         </div>
