@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "node scripts/build.js && echo '/*    /index.html   200' > build/_redirects",
+    "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
