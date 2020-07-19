@@ -1,8 +1,9 @@
 import React, { useState, useMemo, Suspense, lazy } from 'react'
-import '../scss/index.scss'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
+import { createBrowserHistory } from "history";
 import { UserContext } from './UserContext'
 import Spinner from './Spinner'
+import '../scss/index.scss'
 import * as ROUTES from '../constants/routes'
 const Home = lazy(() => import('../pages/Home'))
 const BookTable = lazy(() => import('../pages/BookTable'))
@@ -13,9 +14,9 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'))
 const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
 
 const Router = () => {
+  const history = createBrowserHistory()
   const [user, setUser] = useState(null)
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser])
-
   return (
     <Suspense fallback={<Spinner />}>
       <BrowserRouter>
@@ -26,9 +27,9 @@ const Router = () => {
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
             <Route path={ROUTES.MENU} component={Menu} />
             <Route path={ROUTES.LOGIN}>
-              <Login key={ROUTES.LOGIN} history={window.history} />
+            <Login key={ROUTES.LOGIN} history={history}/>
             </Route>
-            <Route path={ROUTES.ADMIN} component={Admin} />
+            <Route path={ROUTES.ADMIN} component={Admin} history={history} />
             <Route component={NotFound} />
           </Switch>
         </UserContext.Provider>

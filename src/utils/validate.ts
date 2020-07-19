@@ -5,7 +5,9 @@ export const validateEmail = (email: string) => {
   return regex.test(String(email).toLowerCase())
 }
 
-export const validate = (form) => {
+type Form = { name: string; email: string }
+
+export const validate = (form: Form) => {
   if (form.name.length === 0) {
     return { inputName: 'name', message: errorMsg.name }
   } else if (!validateEmail(form.email)) {

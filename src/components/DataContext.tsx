@@ -1,3 +1,12 @@
 import { createContext } from 'react'
 
-export const DataContext = createContext(null)
+type Props = {
+  state: any; 
+  dispatch?: React.Dispatch<any>
+}
+
+const contextData: Props = {
+  state: {}
+}
+
+export const DataContext = createContext(contextData)

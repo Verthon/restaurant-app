@@ -1,8 +1,13 @@
 import React, { useMemo, useReducer } from 'react'
-import PropTypes from 'prop-types'
 import { login, logout } from '../utils/login'
 import { AuthContext } from '../components/AuthContext'
 import { reducer } from '../reducer'
+
+type State = {
+  booking: any,
+  contact: {},
+  user: null | {}
+}
 
 export const useAuth = () => {
   const initialState = {
@@ -35,13 +40,4 @@ export const AuthProvider = (props: { value: any; children: React.ReactNode }) =
       {props.children}
     </AuthContext.Provider>
   )
-}
-
-AuthProvider.propTypes = {
-  children: PropTypes.node,
-  value: PropTypes.string
-}
-
-AuthProvider.defaultProps = {
-  history: {}
 }

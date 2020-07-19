@@ -6,8 +6,21 @@ import Spinner from '../../components/Spinner'
 import { pageTransitions } from '../../constants/config'
 import { useMenuData } from '../../hooks/useMenuData'
 
+type MenuData = {
+  description: string,
+  name: string,
+  price: number
+}
+
+type MenuCategory = {
+  id: string,
+  data: {
+    data: Array<MenuData>
+  }
+}
+
 const Menu = () => {
-  const {menu, isLoading} = useMenuData()
+  const { menu, isLoading } = useMenuData()
   const links = [
     { name: 'Menu', link: 'menu' },
     { name: 'Book Table', link: 'book-table' }
@@ -19,11 +32,11 @@ const Menu = () => {
 
   return (
     <>
-      <Navbar links={links} hashlink={false}/>
+      <Navbar links={links} hashlink={false} />
       <section id="menu" className="section menu container">
         <h1 className="heading heading--center menu__heading">Menu</h1>
         <div className="row">
-          {menu.map(category => {
+          {menu.map((category: MenuCategory) => {
             return (
               <motion.div
                 className="section__col"
@@ -38,11 +51,10 @@ const Menu = () => {
                 >
                   <h2 className="menu__title">{category.id}</h2>
                   <ul className="menu__list">
-                    {category.data.data
-                      ? category.data.data.map(item => (
+                    {category.data.data &&
+                      category.data.data.map((item: MenuData) => (
                         <MenuItem key={item.name} menu={item} />
-                      ))
-                      : null}
+                      ))}
                   </ul>
                 </motion.article>
               </motion.div>

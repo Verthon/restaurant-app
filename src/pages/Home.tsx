@@ -22,7 +22,7 @@ import chef from '../assets/images/landing/cook.jpg'
 const Home = () => {
   const { hours, location, contact, isLoading } = useCompanyData()
   const [dotValue, setDotValue] = useState(0)
-  const [slides, setSlides] = useState([])
+  const [slides, setSlides] = useState<JSX.Element[]>([])
 
   useEffect(() => {
     AOS.init({ duration: 750 })
@@ -31,13 +31,15 @@ const Home = () => {
   useEffect(() => {
     getCollection('testimonials').then(snapshot => {
       const data = getData(snapshot)
-      const allTestimonials = data.map(testimonial => (
-        <Testimonial
-          key={testimonial.id}
-          author={testimonial.data.author}
-          text={testimonial.data.text}
-        />
-      ))
+      const allTestimonials = data.map(testimonial => {
+        return (
+          <Testimonial
+            key={testimonial.id}
+            author={testimonial.data.author}
+            text={testimonial.data.text}
+          />
+        )
+      })
       setSlides(allTestimonials)
     })
   }, [])
@@ -49,7 +51,6 @@ const Home = () => {
   if (isLoading) {
     return <Spinner />
   }
-  // const [fromCache, handleCache] = useState(false)
   return (
     <>
       <ToastContainer
