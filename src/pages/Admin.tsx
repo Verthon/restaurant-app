@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { motion } from 'framer-motion'
-import { withRouter, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import { UserContext } from '../components/UserContext'
@@ -20,8 +20,7 @@ import { notifyError, notifyInfo } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
-const Admin: React.FC<any> = props => {
-  console.log('props Admin', props)
+const Admin: React.FC<any> = ({ history }) => {
   const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
@@ -36,9 +35,9 @@ const Admin: React.FC<any> = props => {
   const handleSignOut = async () => {
     try {
       await logout()
-      navigateTo(props.history, LOGIN)
+      navigateTo(history, LOGIN)
     } catch (error) {
-      console.log(error)
+      console.error(error)
       notifyError(DB_ERROR_MSG)
     }
   }
@@ -139,12 +138,12 @@ const Admin: React.FC<any> = props => {
           notifyError(DB_ERROR_MSG)
         }
       } else {
-        console.log('ADMIN return to LOGIN', props.history, user)
-        props.history.push({ pathname: LOGIN })
+        console.log('ADMIN return to LOGIN', user)
+        history.push({ pathname: LOGIN })
       }
     })
     return () => listener()
-  }, [props.history, user])
+  }, [history, user])
 
   if (loading) {
     return <Spinner />
