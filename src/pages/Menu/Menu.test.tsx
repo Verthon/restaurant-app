@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import Menu from './Menu.js'
+import Menu from './Menu'
 import { renderWithRouter } from '../../utils/testUtils'
 
 jest.mock('../../firebase', () => {

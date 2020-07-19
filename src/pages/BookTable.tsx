@@ -41,7 +41,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     }
   }, [])
 
-  const handleLocalStorageRead = data => {
+  const handleLocalStorageRead = (data: any) => {
     setBooking(transformLocalStorageData(data.booking))
   }
 
@@ -63,7 +63,9 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
     const action = { type: ADD_BOOKING, booking: booking }
-    dispatch(action)
+    if(dispatch && action) {
+      dispatch(action)
+    }
     history.push({ pathname: REVIEW_BOOKING })
   }
 
@@ -98,7 +100,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
               action=""
             />
           </div>
-          {!isLoading ? (
+          {location && contact && hours ? (
             <article className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Located in London</h2>
               <p>{location.address}</p>
@@ -109,7 +111,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
 
               <h2 className="table-booking__subtitle">Hours of operation</h2>
               <p>
-                {hours.weekdays.days} {hours.weekdays.time}
+                {hours.weekdays.days} {hours.weekdays?.time}
               </p>
               <p>
                 {hours.weekend.days} {hours.weekend.time}

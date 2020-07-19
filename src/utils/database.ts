@@ -22,6 +22,6 @@ export const getCollectionWithOptions = async (name: string, order: Order = { na
   return db.collection(name).orderBy(order.name, order.type).limit(limit).get()
 }
 
-export const getData = (snapshot) => {
+export const getData = (snapshot: firebase.firestore.QuerySnapshot) => {
   return snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
 }

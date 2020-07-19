@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { motion } from 'framer-motion'
-import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { withRouter, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import { UserContext } from '../components/UserContext'
@@ -21,12 +20,12 @@ import { notifyError, notifyInfo } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
-const Admin = ({ history }) => {
-  const [bookingDetail, setBookingDetail]: any = useState({ id: '', data: {} })
+const Admin: React.FC<any> = props => {
+  console.log('props Admin', props)
+  const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [loading, handleLoading] = useState(true)
-
   const adminLinks = [
     { name: 'Bookings', link: 'bookings' },
     { name: 'Storage', link: 'storage' }
@@ -34,26 +33,26 @@ const Admin = ({ history }) => {
 
   const { user } = useContext(UserContext)
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     try {
-      logout()
-      navigateTo(history, LOGIN)
+      await logout()
+      navigateTo(props.history, LOGIN)
     } catch (error) {
       console.log(error)
       notifyError(DB_ERROR_MSG)
     }
   }
 
-  const hideModal = (e) => {
+  const hideModal = (e: React.KeyboardEvent<HTMLDivElement>) => {
     console.log('hide modal event', e)
   }
 
-  const toggleOptions = (booking) => {
+  const toggleOptions = (booking: any) => {
     setBookingDetail(booking)
     setShowModal(!showModal)
   }
 
-  const onHandleChange = (e) => {
+  const onHandleChange = (e: { target: { name: string; value: string } }) => {
     const updatedBookingData = {
       ...bookingDetail.data,
       [e.target.name]: e.target.value
@@ -72,12 +71,12 @@ const Admin = ({ history }) => {
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
-  const onHandleDate = (e) => {
+  const onHandleDate = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
     const updatedBookingData = { ...bookingDetail.data, date: e }
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
-  const onHandleUpdate = (e) => {
+  const onHandleUpdate = (e: { preventDefault: () => void }) => {
     const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
     console.log('data to be submitted', submitBooking)
@@ -94,7 +93,7 @@ const Admin = ({ history }) => {
         setShowModal(false)
         notifyInfo('Booking updated successfully.')
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('Error occurred while saving to database: ', err)
         notifyError(DB_ERROR_MSG)
       })
@@ -108,14 +107,14 @@ const Admin = ({ history }) => {
         setShowModal(false)
         notifyInfo(`Removed ${bookingDetail.data.name} booking successfully.`)
       })
-      .catch((err) => console.log('error in handleDelete', err))
+      .catch(err => console.error('error in handleDelete', err))
   }
 
   useEffect(() => {
-    const listener = auth.onAuthStateChanged(async (authUser) => {
+    const listener = auth.onAuthStateChanged(async () => {
       type Params = {
-        name: string,
-        order: Order,
+        name: string
+        order: Order
         limit: number
       }
       if (user) {
@@ -125,13 +124,13 @@ const Admin = ({ history }) => {
             order: { name: 'date', type: 'asc' },
             limit: 20
           }
-          const {order, name, limit} = params
-           db.collection(name)
+          const { order, name, limit } = params
+          db.collection(name)
             .orderBy(order.name, order.type)
             .limit(limit)
-            .onSnapshot((querySnapshot) => {
+            .onSnapshot(querySnapshot => {
               const booking = getData(querySnapshot)
-              const allBookings = formatBookings(booking)
+              const allBookings: any = formatBookings(booking)
               setBookings(allBookings)
               handleLoading(false)
             })
@@ -140,11 +139,12 @@ const Admin = ({ history }) => {
           notifyError(DB_ERROR_MSG)
         }
       } else {
-        history.push({ pathname: LOGIN })
+        console.log('ADMIN return to LOGIN', props.history, user)
+        props.history.push({ pathname: LOGIN })
       }
     })
     return () => listener()
-  }, [history, user])
+  }, [props.history, user])
 
   if (loading) {
     return <Spinner />
@@ -172,7 +172,7 @@ const Admin = ({ history }) => {
         <p className="text modal-book__text">
           Both edit or delete process cannot be undone.
         </p>
-        <div className="admin__form-container" onKeyUp={(e) => hideModal(e)}>
+        <div className="admin__form-container" onKeyUp={e => hideModal(e)}>
           <Form
             booking={bookingDetail.data}
             config={DATEPICKER_CONFIG}
@@ -213,7 +213,9 @@ const Admin = ({ history }) => {
         animate="enter"
         exit="exit"
       >
-        <h2 className="admin__title" id="bookings">Bookings</h2>
+        <h2 className="admin__title" id="bookings">
+          Bookings
+        </h2>
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
@@ -229,8 +231,8 @@ const Admin = ({ history }) => {
               </tr>
             </thead>
             <tbody>
-              {bookings
-                ? bookings.map((item) => {
+              {bookings &&
+                bookings.map((item: any) => {
                   return (
                     <Booking
                       key={item.id}
@@ -241,23 +243,16 @@ const Admin = ({ history }) => {
                       toggleOptions={() => toggleOptions(item)}
                     />
                   )
-                })
-                : null}
+                })}
             </tbody>
           </motion.table>
         )}
-        <h2 className="admin__title" id="storage">Storage</h2>
+        <h2 className="admin__title" id="storage">
+          Storage
+        </h2>
       </motion.main>
     </>
   )
-}
-
-Admin.propTypes = {
-  history: PropTypes.shape({ push: PropTypes.func })
-}
-
-Admin.defaultProps = {
-  history: {}
 }
 
 export default withRouter(Admin)

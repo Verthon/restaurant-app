@@ -12,7 +12,7 @@ describe('validateEmail function', () => {
 })
 
 describe('validate function', () => {
-  it('should return error object (message, inputName) on invalid name', async () => {
+  test('should return error object (message, inputName) on invalid name', async () => {
     const testFormData = {
       name: '',
       email: 'correctmail@mail.com'

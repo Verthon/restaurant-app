@@ -2,12 +2,19 @@ import { useEffect, useState, useContext } from 'react'
 import { DataContext } from '../components/DataContext'
 
 export const useCompanyData = () => {
+  type CompanyData = {
+    name: string,
+    hours: string | any,
+    contact: string | any,
+    location: string | any,
+    isLoading: boolean
+  }
   const { state } = useContext(DataContext)
-  const [companyData, setCompanyData] = useState({
+  const [companyData, setCompanyData] = useState<CompanyData>({
     name: '',
-    hours: null,
-    location: null,
-    contact: null,
+    hours: '',
+    location: '',
+    contact: '',
     isLoading: true
   })
 
@@ -20,6 +27,7 @@ export const useCompanyData = () => {
       contact: data.contact,
       isLoading: false
     })
+    console.log('companyData', companyData)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.company.data])
 
