@@ -1,6 +1,5 @@
 import React, { useState, useMemo, Suspense, lazy } from 'react'
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
-import { createBrowserHistory } from "history";
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { UserContext } from './UserContext'
 import Spinner from './Spinner'
 import '../scss/index.scss'
@@ -14,7 +13,6 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'))
 const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
 
 const Router = () => {
-  const history = createBrowserHistory()
   const [user, setUser] = useState(null)
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser])
   return (
@@ -27,9 +25,9 @@ const Router = () => {
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
             <Route path={ROUTES.MENU} component={Menu} />
             <Route path={ROUTES.LOGIN}>
-            <Login key={ROUTES.LOGIN} history={history}/>
+            <Login key={ROUTES.LOGIN} />
             </Route>
-            <Route path={ROUTES.ADMIN} component={Admin} history={history} />
+            <Route path={ROUTES.ADMIN} component={Admin} />
             <Route component={NotFound} />
           </Switch>
         </UserContext.Provider>
