@@ -120,7 +120,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
           ) : null}
           <div className="section section__col section__col--flexible table-booking__image">
             <picture>
-              <img src={bookTableImg} alt="" className="table-booking__image" />
+              <img src={bookTableImg} alt="" className="table-booking__image" loading="lazy"/>
             </picture>
           </div>
         </motion.div>

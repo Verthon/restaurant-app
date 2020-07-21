@@ -70,6 +70,7 @@ const Home = () => {
                 className="img-fluid"
                 src={aboutImgXs}
                 alt="example dish from our restaurant"
+                loading="lazy"
               />
             </picture>
             <picture>
@@ -78,6 +79,7 @@ const Home = () => {
                 className="img-fluid"
                 src={about1ImgXs}
                 alt="example dish from our restaurant"
+                loading="lazy"
               />
             </picture>
           </div>
@@ -117,6 +119,7 @@ const Home = () => {
                 className="img-fluid section__image"
                 src={menuImgXs}
                 alt="example dish from our restaurant"
+                loading="lazy"
               />
             </picture>
           </div>
