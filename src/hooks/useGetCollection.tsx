@@ -1,34 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import { getCollection, getData } from '../utils/database'
 import db from '../firebase'
+import { apiReducer } from '../reducers/apiReducer'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
+import { useIsMountedRef } from './useIsMountedRef'
 
-export const useGetCollection = ({ collectionName }: {collectionName: string}) => {
-  const [error, setError] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState({})
+export const useGetCollection = ({ collectionName }: { collectionName: string }) => {
+  const [response, dispatch] = useReducer(apiReducer, { data: null, isLoading: false, error: null })
+  const isMountedRef = useIsMountedRef()
   useEffect(() => {
-    db.collection(collectionName).onSnapshot(
-      { includeMetadataChanges: true },
-      snapshot => snapshot
-    )
+    dispatch({ type: 'FETCHING' })
+    db.collection(collectionName).onSnapshot({ includeMetadataChanges: true }, snapshot => snapshot)
     try {
       getCollection(collectionName).then(snapshot => {
-        setData(getData(snapshot))
-        setIsLoading(false)
+        const result = getData(snapshot)
+        if (isMountedRef.current) {
+          dispatch({ type: 'SUCCESS', payload: result })
+        }
       })
     } catch (err) {
-      setIsLoading(false)
-      setError(err)
+      dispatch({ type: 'ERROR' })
       notifyError(DB_ERROR_MSG)
-      console.log(error)
+      console.error(err)
     }
-  }, [error, collectionName])
+  }, [collectionName, isMountedRef])
 
-  return {
-    error: error,
-    isLoading: isLoading,
-    data: data
-  }
+  return response
 }
