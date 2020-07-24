@@ -88,7 +88,7 @@ export const formatBookings = (booking: any[]) => {
 }
 
 export const formatMenu = (data: string | any) => {
-  if (data.length > 0) {
+  if (data && data.length > 0) {
     const menu = [...data]
     return menu
   }

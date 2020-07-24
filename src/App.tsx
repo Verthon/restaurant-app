@@ -18,21 +18,20 @@ const App = () => {
     },
     company: contactInfo
   }
-  const { data, isLoading }: any = useGetCollection({ collectionName: 'company' })
+  const { data, isLoading } = useGetCollection({ collectionName: 'company' })
   const [companyData, setCompanyData] = useState(initialState.company)
   const [state, dispatch] = useReducer(reducer, initialState)
   const contextValue = useMemo(() => {
     return { state, dispatch }
   }, [state, dispatch])
   useEffect(() => {
-    const controller = new AbortController()
-    if (data.length > 0) {
+    if (data && data.length > 0) {
+      console.log('APP data', data)
       setCompanyData(data[0].data)
       dispatch({ type: ADD_COMPANY, company: companyData })
     }
-    return () => controller.abort()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
+  }, [])
   if (isLoading) {
     return <Spinner />
   }

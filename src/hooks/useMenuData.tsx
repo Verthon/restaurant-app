@@ -3,13 +3,13 @@ import { formatMenu } from '../utils/helpers'
 import { useGetCollection } from './useGetCollection'
 
 type MenuData = {
-  description: string,
-  name: string,
+  description: string
+  name: string
   price: number
 }
 
 type MenuCategory = {
-  id: string,
+  id: string
   data: {
     data: Array<MenuData>
   }
@@ -23,7 +23,7 @@ export const useMenuData = () => {
   useEffect(() => {
     const formattedMenu: MenuState = formatMenu(data)
     setMenu(formattedMenu)
-  }, [isLoading, data])
+  }, [data, isLoading])
   return {
     menu,
     isLoading
