@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useReducer } from 'react'
 import { motion } from 'framer-motion'
 import { withRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import { UserContext } from '../components/UserContext'
+import { apiReducer, apiInitialState } from '../reducers/apiReducer'
 import Navbar from '../components/Navbar'
 import Booking from '../components/Booking'
 import Spinner from '../components/Spinner'
@@ -21,10 +22,10 @@ import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
 
 const Admin: React.FC<any> = ({ history }) => {
+  const [state, dispatch] = useReducer(apiReducer, apiInitialState)
   const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
-  const [loading, handleLoading] = useState(true)
   const adminLinks = [
     { name: 'Bookings', link: 'bookings' },
     { name: 'Storage', link: 'storage' }
@@ -33,11 +34,13 @@ const Admin: React.FC<any> = ({ history }) => {
   const { user } = useContext(UserContext)
 
   const handleSignOut = async () => {
+    dispatch({type: 'FETCHING'})
     try {
       await logout()
+      dispatch({type: 'SUCCESS'})
       navigateTo(history, LOGIN)
     } catch (error) {
-      console.error(error)
+      dispatch({type: 'ERROR'})
       notifyError(DB_ERROR_MSG)
     }
   }
@@ -78,7 +81,7 @@ const Admin: React.FC<any> = ({ history }) => {
   const onHandleUpdate = (e: { preventDefault: () => void }) => {
     const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
-    console.log('data to be submitted', submitBooking)
+    console.info('data to be submitted', submitBooking)
     db.collection('bookings')
       .doc(bookingDetail.id)
       .update({
@@ -93,7 +96,7 @@ const Admin: React.FC<any> = ({ history }) => {
         notifyInfo('Booking updated successfully.')
       })
       .catch(err => {
-        console.log('Error occurred while saving to database: ', err)
+        console.error('Error occurred while saving to database: ', err)
         notifyError(DB_ERROR_MSG)
       })
   }
@@ -118,6 +121,7 @@ const Admin: React.FC<any> = ({ history }) => {
       }
       if (user) {
         try {
+          dispatch({ type: 'FETCHING'})
           const params: Params = {
             name: 'bookings',
             order: { name: 'date', type: 'asc' },
@@ -131,10 +135,11 @@ const Admin: React.FC<any> = ({ history }) => {
               const booking = getData(querySnapshot)
               const allBookings: any = formatBookings(booking)
               setBookings(allBookings)
-              handleLoading(false)
+              dispatch({ type: 'SUCCESS'})
             })
         } catch (error) {
-          console.log('Error on fetching collection', error)
+          dispatch({ type: 'ERROR'})
+          console.error('Error on fetching collection', error)
           notifyError(DB_ERROR_MSG)
         }
       } else {
@@ -145,7 +150,7 @@ const Admin: React.FC<any> = ({ history }) => {
     return () => listener()
   }, [history, user])
 
-  if (loading) {
+  if (state.isLoading) {
     return <Spinner />
   }
   return (

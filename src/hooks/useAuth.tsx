@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer } from 'react'
+import React, { useMemo, useReducer, useCallback } from 'react'
 import { login, logout } from '../utils/login'
 import { AuthContext } from '../components/AuthContext'
 import { reducer } from '../reducer'
@@ -17,8 +17,9 @@ export const useAuth = () => {
   }
   const [state, dispatch] = useReducer(reducer, initialState)
   const doLogin = async (email: string, password: string) => {
-    const response = await login(email, password)
-    return response
+      const response = await login(email, password)
+      return response
+    
   }
   const doLogout = async () => {
     const response = await logout()
