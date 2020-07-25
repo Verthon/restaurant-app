@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useReducer } from 'react'
 import { motion } from 'framer-motion'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../../components/UserContext'
+import { apiReducer, apiInitialState } from '../../reducers/apiReducer'
 import Navbar from '../../components/Navbar'
 import { ADMIN } from '../../constants/routes'
 import { navigateTo } from '../../utils/navigate'
@@ -10,12 +11,14 @@ import { notifyError } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
+import Spinner from '../../components/Spinner'
 
 type Error = {
   message: string
 }
 
 const Login: React.FC<any> = ({ history }) => {
+  const [state, dispatch] = useReducer(apiReducer, apiInitialState)
   const links = [
     { name: 'Menu', link: 'menu' },
     { name: 'Book Table', link: 'book-table' }
@@ -34,14 +37,17 @@ const Login: React.FC<any> = ({ history }) => {
   const { setUser } = useContext(UserContext)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    dispatch({ type: 'FETCHING' })
     e.preventDefault()
     try {
       const user = await login(form.email, form.password)
       if (setUser) {
         setUser(user)
+        dispatch({ type: 'SUCCESS' })
         navigateTo(history, ADMIN)
       }
     } catch (error) {
+      dispatch({type: 'ERROR'})
       handleError(error)
       notifyError(DB_ERROR_MSG)
     }
@@ -56,6 +62,12 @@ const Login: React.FC<any> = ({ history }) => {
 
   const handleError = (error: any) => {
     setError(error)
+  }
+
+  if(state.isLoading) {
+    return (
+      <Spinner/>
+    )
   }
 
   return (
