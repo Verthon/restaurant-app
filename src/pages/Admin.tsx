@@ -26,21 +26,18 @@ const Admin: React.FC<any> = ({ history }) => {
   const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
   const [showModal, setShowModal] = useState(false)
-  const adminLinks = [
-    { name: 'Bookings', link: 'bookings' },
-    { name: 'Storage', link: 'storage' }
-  ]
+  const adminLinks = [{ name: 'Bookings', link: 'bookings' }, { name: 'Storage', link: 'storage' }]
 
   const { user } = useContext(UserContext)
 
   const handleSignOut = async () => {
-    dispatch({type: 'FETCHING'})
+    dispatch({ type: 'FETCHING' })
     try {
       await logout()
-      dispatch({type: 'SUCCESS'})
+      dispatch({ type: 'SUCCESS' })
       navigateTo(history, LOGIN)
     } catch (error) {
-      dispatch({type: 'ERROR'})
+      dispatch({ type: 'ERROR' })
       notifyError(DB_ERROR_MSG)
     }
   }
@@ -54,7 +51,7 @@ const Admin: React.FC<any> = ({ history }) => {
     setShowModal(!showModal)
   }
 
-  const onHandleChange = (e: { target: { name: string; value: string } }) => {
+  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedBookingData = {
       ...bookingDetail.data,
       [e.target.name]: e.target.value
@@ -73,12 +70,14 @@ const Admin: React.FC<any> = ({ history }) => {
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
-  const onHandleDate = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
+  const handleDateChange = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
     const updatedBookingData = { ...bookingDetail.data, date: e }
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
-  const onHandleUpdate = (e: { preventDefault: () => void }) => {
+  const handleBookingUpdate = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
+  ) => {
     const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
     console.info('data to be submitted', submitBooking)
@@ -101,7 +100,7 @@ const Admin: React.FC<any> = ({ history }) => {
       })
   }
 
-  const onHandleDelete = () => {
+  const handleBookingDelete = () => {
     db.collection('bookings')
       .doc(bookingDetail.id)
       .delete()
@@ -121,7 +120,7 @@ const Admin: React.FC<any> = ({ history }) => {
       }
       if (user) {
         try {
-          dispatch({ type: 'FETCHING'})
+          dispatch({ type: 'FETCHING' })
           const params: Params = {
             name: 'bookings',
             order: { name: 'date', type: 'asc' },
@@ -135,15 +134,14 @@ const Admin: React.FC<any> = ({ history }) => {
               const booking = getData(querySnapshot)
               const allBookings: any = formatBookings(booking)
               setBookings(allBookings)
-              dispatch({ type: 'SUCCESS'})
+              dispatch({ type: 'SUCCESS' })
             })
         } catch (error) {
-          dispatch({ type: 'ERROR'})
+          dispatch({ type: 'ERROR' })
           console.error('Error on fetching collection', error)
           notifyError(DB_ERROR_MSG)
         }
       } else {
-        console.log('ADMIN return to LOGIN', user)
         history.push({ pathname: LOGIN })
       }
     })
@@ -155,17 +153,10 @@ const Admin: React.FC<any> = ({ history }) => {
   }
   return (
     <>
-      <ToastContainer
-        className="toast__container"
-        toastClassName="toast"
-        progressClassName="toast__progress"
-      />
+      <ToastContainer className="toast__container" toastClassName="toast" progressClassName="toast__progress" />
       <Modal show={showModal}>
         <div className="modal-book__nav">
-          <button
-            className="modal-book__close"
-            onClick={() => setShowModal(false)}
-          >
+          <button className="modal-book__close" onClick={() => setShowModal(false)}>
             <CloseIcon />
           </button>
         </div>
@@ -173,16 +164,14 @@ const Admin: React.FC<any> = ({ history }) => {
         <p className="text modal-book__text">
           Choose an action for <strong>{bookingDetail.name}</strong> booking.
         </p>
-        <p className="text modal-book__text">
-          Both edit or delete process cannot be undone.
-        </p>
+        <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
         <div className="admin__form-container" onKeyUp={e => hideModal(e)}>
           <Form
             booking={bookingDetail.data}
             config={DATEPICKER_CONFIG}
-            handleChange={onHandleChange}
-            handleDate={onHandleDate}
-            handleSubmit={onHandleUpdate}
+            handleChange={handleBookingChange}
+            handleDate={handleDateChange}
+            handleSubmit={handleBookingUpdate}
             submitBtn={false}
             cssClass="form--edit"
             action=""
@@ -190,18 +179,10 @@ const Admin: React.FC<any> = ({ history }) => {
           />
         </div>
         <footer className="modal-book__footer">
-          <button
-            className="btn btn--tertiary"
-            type="button"
-            onClick={onHandleDelete}
-          >
+          <button className="btn btn--tertiary" type="button" onClick={handleBookingDelete}>
             Delete
           </button>
-          <button
-            className="btn btn--light"
-            type="submit"
-            onClick={onHandleUpdate}
-          >
+          <button className="btn btn--light" type="submit" onClick={handleBookingUpdate}>
             Update
           </button>
         </footer>
@@ -211,12 +192,7 @@ const Admin: React.FC<any> = ({ history }) => {
           Sign out
         </button>
       </Navbar>
-      <motion.main
-        className="container admin__container"
-        initial="exit"
-        animate="enter"
-        exit="exit"
-      >
+      <motion.main className="container admin__container" initial="exit" animate="enter" exit="exit">
         <h2 className="admin__title" id="bookings">
           Bookings
         </h2>

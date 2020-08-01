@@ -45,7 +45,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     setBooking(transformLocalStorageData(data.booking))
   }
 
-  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'guests') {
       const value = parseInt(e.target.value)
       setBooking({ ...booking, [e.target.name]: value })
@@ -54,12 +54,12 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const onHandleDate = (date: Date, e: React.SyntheticEvent<any, Event>) => {
-    console.log('onHandleChange date and e', date, e)
+  const handleDateChange = (date: Date, e: React.SyntheticEvent<any, Event>) => {
+    console.log('handleBookingChange date and e', date, e)
     setBooking({ ...booking, date: date })
   }
 
-  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleBookingSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     saveLocalStorageState({ booking: booking })
     const action = { type: ADD_BOOKING, booking: booking }
@@ -90,9 +90,9 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
           <div className="section section__col section__col--flexible">
             <h2 className="table-booking__subtitle">Make a reservation</h2>
             <Form
-              handleSubmit={onHandleSubmit}
-              handleChange={onHandleChange}
-              handleDate={onHandleDate}
+              handleSubmit={handleBookingSubmit}
+              handleChange={handleBookingChange}
+              handleDate={handleDateChange}
               booking={booking}
               config={DATEPICKER_CONFIG}
               withBookingDesc={true}

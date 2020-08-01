@@ -5,8 +5,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 type Props = {
   handleDate: (date: Date, e: React.SyntheticEvent<any, Event>) => void,
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void,
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => void,
+  handleBookingChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
   booking: any,
   config: any,
   cssClass?: string,
@@ -19,6 +20,7 @@ const Form: React.FC<Props> = ({
   handleChange,
   handleDate,
   handleSubmit,
+  handleBookingChange,
   booking,
   config,
   submitBtn,
