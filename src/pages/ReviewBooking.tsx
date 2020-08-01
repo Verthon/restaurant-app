@@ -53,11 +53,11 @@ const ReviewBooking: React.FC = () => {
     window.localStorage.removeItem('booking')
   }
 
-  const handleEdit = () => {
+  const handleBookingEdit = () => {
     setEditable(true)
   }
 
-  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'guests') {
       setBooking({ ...booking, [e.target.name]: parseInt(e.target.value) })
       return
@@ -65,7 +65,7 @@ const ReviewBooking: React.FC = () => {
     setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const onHandleDate = (date: Date, e: React.SyntheticEvent<any, Event>) => {
+  const handleDateChange = (date: Date, e: React.SyntheticEvent<any, Event>) => {
     console.log('important check on datepicker e, date', e, date)
     //previously was bound to e
     setBooking({ ...booking, date: date })
@@ -96,7 +96,7 @@ const ReviewBooking: React.FC = () => {
       )
   }
 
-  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleBookingSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const submitBooking = { ...booking }
     db.collection('bookings')
@@ -161,9 +161,9 @@ const ReviewBooking: React.FC = () => {
             <Form
               booking={booking}
               config={DATEPICKER_CONFIG}
-              handleChange={onHandleChange}
-              handleDate={onHandleDate}
-              handleSubmit={onHandleSubmit}
+              handleBookingChange={handleBookingChange}
+              handleDate={handleDateChange}
+              handleSubmit={handleBookingSubmit}
               submitBtn={false}
               cssClass="form--edit"
               action={getEmailActionUrl(booking.email)}
@@ -171,7 +171,7 @@ const ReviewBooking: React.FC = () => {
             />
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
-            <form onSubmit={onHandleSubmit}>
+            <form onSubmit={handleBookingSubmit}>
               <button className="btn btn--light" type="submit">
                 Confirm Booking
               </button>
@@ -243,11 +243,11 @@ const ReviewBooking: React.FC = () => {
             </>
           ) : null}
           <footer className="review-booking__footer">
-            <form onSubmit={onHandleSubmit}>
+            <form onSubmit={handleBookingSubmit}>
               <button
                 className="btn btn--tertiary"
                 type="button"
-                onClick={handleEdit}
+                onClick={handleBookingEdit}
               >
                 Edit booking
               </button>

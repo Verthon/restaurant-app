@@ -65,7 +65,7 @@ export const convertToDate = (date: string | number | Date) => {
   return new Date(date)
 }
 
-export const transformLocalStorageData = (data: { date: any; guests: string } | any) => {
+export const transformLocalStorageData = (data: { date: string; guests: string } | any) => {
   const booking = {
     ...data,
     date: convertToDate(data.date),
