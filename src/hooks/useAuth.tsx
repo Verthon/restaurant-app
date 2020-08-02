@@ -4,8 +4,8 @@ import { AuthContext } from '../components/AuthContext'
 import { reducer } from '../reducer'
 
 type State = {
-  booking: any,
-  contact: {},
+  booking: any
+  contact: {}
   user: null | {}
 }
 
@@ -17,9 +17,8 @@ export const useAuth = () => {
   }
   const [state, dispatch] = useReducer(reducer, initialState)
   const doLogin = async (email: string, password: string) => {
-      const response = await login(email, password)
-      return response
-    
+    const response = await login(email, password)
+    return response
   }
   const doLogout = async () => {
     const response = await logout()
@@ -36,9 +35,5 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = (props: { value: any; children: React.ReactNode }) => {
-  return (
-    <AuthContext.Provider value={props.value}>
-      {props.children}
-    </AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={props.value}>{props.children}</AuthContext.Provider>
 }

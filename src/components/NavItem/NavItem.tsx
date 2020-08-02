@@ -11,12 +11,7 @@ const NavItem: React.FC<Props> = ({ hashlink, name, link }) => (
         {name}
       </HashLink>
     ) : (
-      <NavLink
-        className="nav__link"
-        data-testid="navlink"
-        activeClassName="nav__link--active"
-        to={`/${link}`}
-      >
+      <NavLink className="nav__link" data-testid="navlink" activeClassName="nav__link--active" to={`/${link}`}>
         {name}
       </NavLink>
     )}
