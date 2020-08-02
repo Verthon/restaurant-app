@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 
 type Props = {
-  state: any; 
+  state: any
   dispatch?: React.Dispatch<any>
 }
 

@@ -3,10 +3,10 @@ import { DataContext } from '../components/DataContext'
 
 export const useCompanyData = () => {
   type CompanyData = {
-    name: string,
-    hours: string | any,
-    contact: string | any,
-    location: string | any,
+    name: string
+    hours: string | any
+    contact: string | any
+    location: string | any
     isLoading: boolean
   }
   const { state } = useContext(DataContext)
@@ -27,7 +27,7 @@ export const useCompanyData = () => {
       contact: data.contact,
       isLoading: false
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.company.data])
 
   return {

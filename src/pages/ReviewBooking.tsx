@@ -5,13 +5,7 @@ import { motion } from 'framer-motion'
 import emailjs from 'emailjs-com'
 import dayjs from 'dayjs'
 import { contactInfo } from '../constants/contact'
-import {
-  splitDate,
-  splitTime,
-  formatDate,
-  convertToDate,
-  getEmailActionUrl
-} from '../utils/helpers'
+import { splitDate, splitTime, formatDate, convertToDate, getEmailActionUrl } from '../utils/helpers'
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
 import { useCompanyData } from '../hooks/useCompanyData'
 import { DataContext } from '../components/DataContext'
@@ -24,9 +18,9 @@ import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 
 type Booking = {
-  name: string,
-  email: string,
-  guests: number,
+  name: string
+  email: string
+  guests: number
   date: Date
 }
 
@@ -78,25 +72,20 @@ const ReviewBooking: React.FC = () => {
       guests: booking.guests,
       date: dayjs(booking.date).format('DD-MMMM-YYYY HH:mm')
     }
-    emailjs
-      .send(
-        'gmail-alkinoos',
-        'reservation',
-        templateParams,
-        process.env.REACT_APP_DEV_EMAIL_API_KEY
-      )
-      .then(
-        response => {
-          console.info('SUCCESS!', response.status, response.text)
-          handleModal()
-        },
-        err => {
-          console.error('FAILED...', err)
-        }
-      )
+    emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_DEV_EMAIL_API_KEY).then(
+      response => {
+        console.info('SUCCESS!', response.status, response.text)
+        handleModal()
+      },
+      err => {
+        console.error('FAILED...', err)
+      }
+    )
   }
 
-  const handleBookingSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
+  const handleBookingSubmit = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault()
     const submitBooking = { ...booking }
     db.collection('bookings')
@@ -126,18 +115,11 @@ const ReviewBooking: React.FC = () => {
 
   if (editable) {
     return (
-      <motion.div
-        className="review-booking"
-        initial="exit"
-        animate="enter"
-        exit="exit"
-      >
+      <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
         <ToastContainer />
         <Modal show={show}>
           <h2 className="heading modal-book__heading">Thank you</h2>
-          <p className="text modal-book__text">
-            Thank you for booking reservation.
-          </p>
+          <p className="text modal-book__text">Thank you for booking reservation.</p>
           <p className="text modal-book__text">We will contact you shortly.</p>
           <footer className="modal-book__footer">
             <Link className="btn btn--tertiary" to="/">
@@ -148,10 +130,7 @@ const ReviewBooking: React.FC = () => {
             </Link>
           </footer>
         </Modal>
-        <motion.article
-          className="review-booking__content"
-          variants={pageTransitions}
-        >
+        <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
             <Link to="/">{contactInfo.data.name}</Link>
           </h1>
@@ -186,9 +165,7 @@ const ReviewBooking: React.FC = () => {
     <>
       <Modal show={show}>
         <h2 className="heading modal-book__heading">Thank you</h2>
-        <p className="text modal-book__text">
-          Thank you for booking reservation.
-        </p>
+        <p className="text modal-book__text">Thank you for booking reservation.</p>
         <p className="text modal-book__text">We will contact you shortly.</p>
         <footer className="modal-book__footer">
           <Link className="btn btn--tertiary" to="/">
@@ -199,16 +176,8 @@ const ReviewBooking: React.FC = () => {
           </Link>
         </footer>
       </Modal>
-      <motion.div
-        className="review-booking"
-        initial="exit"
-        animate="enter"
-        exit="exit"
-      >
-        <motion.article
-          className="review-booking__content"
-          variants={pageTransitions}
-        >
+      <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
+        <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
             <Link to="/">{contactInfo.data.name}</Link>
           </h1>
@@ -222,15 +191,11 @@ const ReviewBooking: React.FC = () => {
               <p className="review-booking__description">Guests</p>
             </div>
             <div className="section__col section__col--flexible">
-              <p className="review-booking__value">
-                {splitDate(formatDate(convertToDate(date)))}
-              </p>
+              <p className="review-booking__value">{splitDate(formatDate(convertToDate(date)))}</p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="section__col section__col--flexible">
-              <p className="review-booking__value">
-                {splitTime(formatDate(convertToDate(date)))}
-              </p>
+              <p className="review-booking__value">{splitTime(formatDate(convertToDate(date)))}</p>
               <p className="review-booking__description">Time</p>
             </div>
           </div>
@@ -244,11 +209,7 @@ const ReviewBooking: React.FC = () => {
           ) : null}
           <footer className="review-booking__footer">
             <form onSubmit={handleBookingSubmit}>
-              <button
-                className="btn btn--tertiary"
-                type="button"
-                onClick={handleBookingEdit}
-              >
+              <button className="btn btn--tertiary" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </button>
               <button className="btn btn--light" type="submit">
