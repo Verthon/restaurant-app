@@ -122,7 +122,7 @@ const ReviewBooking: React.FC = () => {
           <p className="text modal-book__text">Thank you for booking reservation.</p>
           <p className="text modal-book__text">We will contact you shortly.</p>
           <footer className="modal-book__footer">
-            <Link className="btn btn--tertiary" to="/">
+            <Link className="btn btn--transparent" to="/">
               Back to Home
             </Link>
             <Link className="btn btn--light" to="/menu">
@@ -168,7 +168,7 @@ const ReviewBooking: React.FC = () => {
         <p className="text modal-book__text">Thank you for booking reservation.</p>
         <p className="text modal-book__text">We will contact you shortly.</p>
         <footer className="modal-book__footer">
-          <Link className="btn btn--tertiary" to="/">
+          <Link className="btn btn--transparent" to="/">
             Back to Home
           </Link>
           <Link className="btn btn--light" to="/menu">
@@ -209,7 +209,7 @@ const ReviewBooking: React.FC = () => {
           ) : null}
           <footer className="review-booking__footer">
             <form onSubmit={handleBookingSubmit}>
-              <button className="btn btn--tertiary" type="button" onClick={handleBookingEdit}>
+              <button className="btn btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </button>
               <button className="btn btn--light" type="submit">
