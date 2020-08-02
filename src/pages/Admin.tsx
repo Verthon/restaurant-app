@@ -179,7 +179,7 @@ const Admin: React.FC<any> = ({ history }) => {
           />
         </div>
         <footer className="modal-book__footer">
-          <button className="btn btn--tertiary" type="button" onClick={handleBookingDelete}>
+          <button className="btn btn--transparent" type="button" onClick={handleBookingDelete}>
             Delete
           </button>
           <button className="btn btn--light" type="submit" onClick={handleBookingUpdate}>
