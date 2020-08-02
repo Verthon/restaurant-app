@@ -19,10 +19,7 @@ type Error = {
 
 const Login: React.FC<any> = ({ history }) => {
   const [state, dispatch] = useReducer(apiReducer, apiInitialState)
-  const links = [
-    { name: 'Menu', link: 'menu' },
-    { name: 'Book Table', link: 'book-table' }
-  ]
+  const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
   const [error, setError] = useState<any>({
     error: {
       message: ''
@@ -47,13 +44,13 @@ const Login: React.FC<any> = ({ history }) => {
         navigateTo(history, ADMIN)
       }
     } catch (error) {
-      dispatch({type: 'ERROR'})
+      dispatch({ type: 'ERROR' })
       handleError(error)
       notifyError(DB_ERROR_MSG)
     }
   }
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...form,
       [e.target.name]: e.target.value
@@ -64,51 +61,27 @@ const Login: React.FC<any> = ({ history }) => {
     setError(error)
   }
 
-  if(state.isLoading) {
-    return (
-      <Spinner/>
-    )
+  if (state.isLoading) {
+    return <Spinner />
   }
 
   return (
     <>
       <Navbar links={links} hashlink={false} />
-      <motion.div
-        initial="exit"
-        animate="enter"
-        exit="exit"
-        variants={pageTransitions}
-        className="container row"
-      >
+      <motion.div initial="exit" animate="enter" exit="exit" variants={pageTransitions} className="container row">
         <div className="section section__col login">
           <h1 className="heading">Login</h1>
           <form method="POST" className="login__form" onSubmit={handleSubmit}>
             <label htmlFor="email" className="label login__label">
               Email
             </label>
-            <input
-              type="email"
-              className="input"
-              name="email"
-              required
-              onChange={handleInput}
-            />
+            <input type="email" className="input" name="email" required onChange={handleInputChange} />
             <label htmlFor="email" className="label login__label">
               Password
             </label>
-            <input
-              type="password"
-              className="input"
-              name="password"
-              required
-              onChange={handleInput}
-            />
+            <input type="password" className="input" name="password" required onChange={handleInputChange} />
             <p className="login__error">{error ? error.message : null}</p>
-            <button
-              data-testid="login-submit"
-              type="submit"
-              className="btn btn--dark login__btn"
-            >
+            <button data-testid="login-submit" type="submit" className="btn btn--dark login__btn">
               Login
             </button>
           </form>

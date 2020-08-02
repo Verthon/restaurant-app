@@ -30,7 +30,7 @@ const App = () => {
       setCompanyData(data[0].data)
       dispatch({ type: ADD_COMPANY, company: companyData })
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if (isLoading) {
     return <Spinner />

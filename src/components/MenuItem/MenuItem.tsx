@@ -18,8 +18,7 @@ const MenuItem: React.FC<Props> = ({ menu }) => {
     <>
       <motion.li className="menu__item" variants={pageTransitions}>
         <header className="menu__header">
-          <h3 className="menu__item__name">{name}</h3>{' '}
-          <span className="menu__item__price">{formatPrice(price)}</span>
+          <h3 className="menu__item__name">{name}</h3> <span className="menu__item__price">{formatPrice(price)}</span>
         </header>
         <p className="text menu__description">{description}</p>
       </motion.li>
