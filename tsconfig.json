@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "node_modules",
+    "types": ["cypress"],
     "target": "es5",
     "module": "esnext",
     "lib": [
       "es2015",
-      "DOM"
+      "dom"
     ],
     "strict": true,
     "declaration": true,
@@ -22,7 +24,8 @@
     "jsx": "react"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules",

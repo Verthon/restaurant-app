@@ -24,3 +24,6 @@ Desktop.ini
 
 # Windows shortcuts
 *.lnk
+
+# Cypress local
+cypress/videos
