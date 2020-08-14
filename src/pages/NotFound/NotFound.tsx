@@ -1,11 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const NotFound = () => (
-  <>
-    <h1>404 not found in database</h1>
-    <Link to='/'>Homepage</Link>
-  </>
+import {NotFound as NotFoundError} from '../../ui/NotFound/NotFound'
+
+export const NotFound = () => (
+  <NotFoundError/>
 )
-
-export default NotFound

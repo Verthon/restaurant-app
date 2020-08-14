@@ -1,0 +1,74 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.modal-book {
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+
+  &__nav {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &__close {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &--active {
+    display: block;
+    z-index: 1;
+  }
+
+  &--disabled {
+    display: none;
+  }
+
+  &__heading {
+    margin: 0 0 2rem 0;
+  }
+
+  &__content {
+    @include flexColumn();
+    width: 90%;
+    padding: 1rem 1.5rem;
+    background: $color-white;
+    position: fixed;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+
+    @include mQ($tablet) {
+      padding: 2rem 2.5rem;
+    }
+
+    @include mQ($ipad) {
+      width: 60%;
+    }
+    @include mQ($desktopXs) {
+      width: auto;
+    }
+  }
+
+  &__text {
+    margin: 0.25rem 0 0.25rem 0;
+    font-size: 1rem;
+  }
+
+  &__footer {
+    margin: 2rem 0 0 0;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useMemo, Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { UserContext } from './UserContext'
-import Spinner from './Spinner'
+import { Spinner } from '../ui/Spinner/Spinner'
 import '../scss/index.scss'
 import * as ROUTES from '../constants/routes'
 const Home = lazy(() => import('../pages/Home'))
@@ -9,7 +9,7 @@ const BookTable = lazy(() => import('../pages/BookTable'))
 const Menu = lazy(() => import('../pages/Menu/Menu'))
 const Login = lazy(() => import('../pages/Login/Login'))
 const Admin = lazy(() => import('../pages/Admin'))
-const NotFound = lazy(() => import('../pages/NotFound/NotFound'))
+const NotFound = lazy(() => import('../pages/NotFound/NotFound').then(module => ({ default: module.NotFound})))
 const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
 
 const Router = () => {

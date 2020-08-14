@@ -1,4 +1,6 @@
 import React from 'react'
+
+import {Button} from '../ui/Button/Button'
 import headerImgXs from '../assets/images/header-xs.jpg'
 import headerImgSm from '../assets/images/header-sm.jpg'
 import headerImg from '../assets/images/header.jpg'
@@ -21,12 +23,12 @@ const Header = () => (
         ingredients.
       </p>
       <div className="site-header__buttons">
-        <a href="/book-table" className="btn btn--dark btn--large">
+        <Button href="/book-table" className="btn--dark" size="btn--large">
           book table
-        </a>
-        <a href="/menu" className="btn btn--light btn--large">
+        </Button>
+        <Button href="/menu" className="btn--light" size="btn--large">
           our menu
-        </a>
+        </Button>
       </div>
     </div>
   </header>

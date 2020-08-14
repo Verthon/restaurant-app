@@ -3,6 +3,10 @@ import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import { Label } from '../ui/Label/Label'
+import { Input } from '../ui/Input/Input'
+import { Button } from '../ui/Button/Button'
+
 type Props = {
   handleDate: (date: Date, e: React.SyntheticEvent<any, Event>) => void
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -20,7 +24,6 @@ const Form: React.FC<Props> = ({
   handleChange,
   handleDate,
   handleSubmit,
-  handleBookingChange,
   booking,
   config,
   submitBtn,
@@ -39,12 +42,8 @@ const Form: React.FC<Props> = ({
       {withBookingDesc ? (
         <p className="text form__description">Please remember that, you can book a table with maximum of 4 guests.</p>
       ) : null}
-
-      <label className="label" htmlFor="name">
-        Name
-      </label>
-      <input
-        className="table-booking__input"
+      <Label htmlFor="name">Name</Label>
+      <Input
         type="text"
         name="name"
         required
@@ -52,11 +51,8 @@ const Form: React.FC<Props> = ({
         defaultValue={booking.name}
         onChange={handleChange}
       />
-      <label htmlFor="email" className="label">
-        Email
-      </label>
-      <input
-        className="table-booking__input"
+      <Label htmlFor="email">Email</Label>
+      <Input
         type="email"
         name="email"
         required
@@ -64,12 +60,10 @@ const Form: React.FC<Props> = ({
         onChange={handleChange}
         defaultValue={booking.email}
       />
-      <label htmlFor="Datepicker" className="label">
-        Date
-      </label>
+      <Label htmlFor="Datepicker">Date</Label>
       <DatePicker
         name="Datepicker"
-        className="table-booking__input"
+        className="input"
         selected={booking.date}
         onChange={handleDate}
         showTimeSelect
@@ -82,11 +76,8 @@ const Form: React.FC<Props> = ({
         timeCaption="Time"
         placeholderText="Click and choose the date"
       />
-      <label className="label" htmlFor="guests">
-        Number of guests
-      </label>
-      <input
-        className="table-booking__input"
+      <Label htmlFor="guests">Number of guests</Label>
+      <Input
         name="guests"
         id="guests"
         type="number"
@@ -103,9 +94,9 @@ const Form: React.FC<Props> = ({
         </p>
       ) : null}
       {submitBtn ? (
-        <button className="btn btn--dark" type="submit">
+        <Button className="btn--dark" type="submit">
           Next step
-        </button>
+        </Button>
       ) : null}
     </form>
   )

@@ -4,12 +4,14 @@ import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
 import 'aos/dist/aos.css'
+
 import { getCollection, getData } from '../utils/database'
-import Spinner from '../components/Spinner'
 import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import Testimonial from '../components/Testimonial/Testimonial'
 import Footer from '../components/Footer'
+import { Navbar } from '../ui/Navbar/Navbar'
+import { Testimonial } from '../ui/Testimonial/Testimonial'
+import { Spinner } from '../ui/Spinner/Spinner'
+import { Button } from '../ui/Button/Button'
 import { useCompanyData } from '../hooks/useCompanyData'
 import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
 import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
@@ -118,9 +120,9 @@ const Home = () => {
               </p>
             </article>
             <div className="col-md-12 text-center">
-              <a href="/menu" className="btn btn--dark section__btn" data-aos="flip-up">
+              <Button href="/menu" className="btn--dark" data-aos="flip-up">
                 our menu
-              </a>
+              </Button>
             </div>
           </div>
         </div>
