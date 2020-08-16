@@ -5,12 +5,12 @@ import { ToastContainer } from 'react-toastify'
 
 import { UserContext } from '../components/UserContext'
 import { apiReducer, apiInitialState } from '../reducers/apiReducer'
-import Navbar from '../components/Navbar'
-import Booking from '../components/Booking'
-import Spinner from '../components/Spinner'
-import Modal from '../components/Modal/Modal'
+import { Navbar } from '../ui/Navbar/Navbar'
+import { BookingsTable } from '../ui/BookingsTable/BookingsTable'
+import { Spinner } from '../ui/Spinner/Spinner'
+import { Modal } from '../ui/Modal/Modal'
 import Form from '../components/Form'
-import { pageTransitions, DATEPICKER_CONFIG } from '../constants/config'
+import { DATEPICKER_CONFIG } from '../constants/config'
 import { LOGIN } from '../constants/routes'
 import { auth, logout } from '../utils/login'
 import db from '../firebase'
@@ -20,6 +20,7 @@ import { formatBookings } from '../utils/helpers'
 import { notifyError, notifyInfo } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
 import { ReactComponent as CloseIcon } from '../assets/icons/close.svg'
+import { Button } from '../ui/Button/Button'
 
 const Admin: React.FC<any> = ({ history }) => {
   const [state, dispatch] = useReducer(apiReducer, apiInitialState)
@@ -179,18 +180,18 @@ const Admin: React.FC<any> = ({ history }) => {
           />
         </div>
         <footer className="modal-book__footer">
-          <button className="btn btn--transparent" type="button" onClick={handleBookingDelete}>
+          <Button className="btn--transparent" type="button" onClick={handleBookingDelete}>
             Delete
-          </button>
-          <button className="btn btn--light" type="submit" onClick={handleBookingUpdate}>
+          </Button>
+          <Button className="btn--light" type="submit" onClick={handleBookingUpdate}>
             Update
-          </button>
+          </Button>
         </footer>
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
-        <button className="btn btn--light btn--small" onClick={handleSignOut}>
+        <Button className="btn--light" size="btn--small" onClick={handleSignOut}>
           Sign out
-        </button>
+        </Button>
       </Navbar>
       <motion.main className="container admin__container" initial="exit" animate="enter" exit="exit">
         <h2 className="admin__title" id="bookings">
@@ -199,33 +200,7 @@ const Admin: React.FC<any> = ({ history }) => {
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
-          <motion.table className="table" variants={pageTransitions}>
-            <thead className="table__header">
-              <tr className="table__row">
-                <th className="table__heading">Name</th>
-                <th className="table__heading">Date</th>
-                <th className="table__heading">Time</th>
-                <th className="table__heading">Email</th>
-                <th className="table__heading">Guests</th>
-                <th className="table__heading">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings &&
-                bookings.map((item: any) => {
-                  return (
-                    <Booking
-                      key={item.id}
-                      name={item.data.name}
-                      email={item.data.email}
-                      guests={item.data.guests}
-                      date={item.data.date}
-                      toggleOptions={() => toggleOptions(item)}
-                    />
-                  )
-                })}
-            </tbody>
-          </motion.table>
+          <BookingsTable bookings={bookings} toggleOptions={toggleOptions} />
         )}
         <h2 className="admin__title" id="storage">
           Storage

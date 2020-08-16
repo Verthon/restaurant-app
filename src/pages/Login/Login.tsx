@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { withRouter } from 'react-router-dom'
 import { UserContext } from '../../components/UserContext'
 import { apiReducer, apiInitialState } from '../../reducers/apiReducer'
-import Navbar from '../../components/Navbar'
+import { Navbar } from '../../ui/Navbar/Navbar'
 import { ADMIN } from '../../constants/routes'
 import { navigateTo } from '../../utils/navigate'
 import { login } from '../../utils/login'
@@ -11,7 +11,10 @@ import { notifyError } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
-import Spinner from '../../components/Spinner'
+import { Spinner } from '../../ui/Spinner/Spinner'
+import { Button } from '../../ui/Button/Button'
+import { Label } from '../../ui/Label/Label'
+import { Input } from '../../ui/Input/Input'
 
 type Error = {
   message: string
@@ -72,18 +75,18 @@ const Login: React.FC<any> = ({ history }) => {
         <div className="section section__col login">
           <h1 className="heading">Login</h1>
           <form method="POST" className="login__form" onSubmit={handleSubmit}>
-            <label htmlFor="email" className="label login__label">
+            <Label htmlFor="email" className="label login__label">
               Email
-            </label>
-            <input type="email" className="input" name="email" required onChange={handleInputChange} />
-            <label htmlFor="email" className="label login__label">
+            </Label>
+            <Input type="email" name="email" required onChange={handleInputChange} />
+            <Label htmlFor="email" className="label login__label">
               Password
-            </label>
-            <input type="password" className="input" name="password" required onChange={handleInputChange} />
+            </Label>
+            <Input type="password" name="password" required onChange={handleInputChange} />
             <p className="login__error">{error ? error.message : null}</p>
-            <button data-testid="login-submit" type="submit" className="btn btn--dark login__btn">
+            <Button data-testid="login-submit" type="submit" className="btn--dark">
               Login
-            </button>
+            </Button>
           </form>
         </div>
         <div className="section section__col">
