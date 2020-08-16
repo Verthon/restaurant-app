@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 type Props = { hashlink: boolean; name: string; link: string }
 
-const NavItem: React.FC<Props> = ({ hashlink, name, link }) => (
+export const NavItem: React.FC<Props> = ({ hashlink, name, link }) => (
   <li className="nav__item">
     {hashlink ? (
       <HashLink className="nav__link" data-testid="navlink" to={`#${link}`}>
@@ -17,5 +17,3 @@ const NavItem: React.FC<Props> = ({ hashlink, name, link }) => (
     )}
   </li>
 )
-
-export default NavItem

@@ -21,7 +21,6 @@ export const apiReducer = (state: State = apiInitialState, action: Action) => {
     case 'FETCHING':
       return { data: null, isLoading: true, error: null };
     case 'SUCCESS':
-      console.log('SUCCESS in reducer', action)
       return { data: action.payload, isLoading: false, error: null };
     case 'ERROR':
       return { data: null, isLoading: false, error: action.payload };
