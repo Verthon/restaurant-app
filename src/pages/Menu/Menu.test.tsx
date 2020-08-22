@@ -7,7 +7,7 @@ import { renderWithRouter } from '../../utils/testUtils'
 
 jest.mock('../../firebase', () => {
   db: {
-    collection: jest.fn(() => Promise.resolve())
+    collection: jest.fn(() => Promise.resolve('test'))
   }
 })
 const docData = { data: 'MOCK_DATA' }
