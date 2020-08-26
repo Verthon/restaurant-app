@@ -1,11 +1,13 @@
 import React from 'react'
 
+import './Modal.scss';
+
 type Props = {
   show: boolean
   children: React.ReactNode
 }
 
-const Modal: React.FC<Props> = ({ show, children }) => {
+export const Modal: React.FC<Props> = ({ show, children }) => {
   const activeClassName = show ? 'modal-book--active' : 'modal-book--disabled'
   return (
     <div className={`modal-book ${activeClassName}`}>
@@ -13,5 +15,3 @@ const Modal: React.FC<Props> = ({ show, children }) => {
     </div>
   )
 }
-
-export default Modal

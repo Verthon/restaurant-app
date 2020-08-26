@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer, useMemo } from 'react'
 import { DataContext } from './components/DataContext'
 import { useGetCollection } from './hooks/useGetCollection'
 import { reducer, ADD_COMPANY } from './reducer'
-import Spinner from './components/Spinner'
+import { Spinner } from './ui/Spinner/Spinner'
 import Router from './components/Router'
 import { contactInfo } from './constants/contact'
 

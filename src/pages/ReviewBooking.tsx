@@ -9,13 +9,14 @@ import { splitDate, splitTime, formatDate, convertToDate, getEmailActionUrl } fr
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
 import { useCompanyData } from '../hooks/useCompanyData'
 import { DataContext } from '../components/DataContext'
-import Modal from '../components/Modal/Modal'
-import Spinner from '../components/Spinner'
+import { Modal } from '../ui/Modal/Modal'
+import { Spinner } from '../ui/Spinner/Spinner'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
 import { notifyError } from '../utils/notification'
 import { DB_ERROR_MSG } from '../constants/toastMessages'
+import { Button } from '../ui/Button/Button'
 
 type Booking = {
   name: string
@@ -60,8 +61,6 @@ const ReviewBooking: React.FC = () => {
   }
 
   const handleDateChange = (date: Date, e: React.SyntheticEvent<any, Event>) => {
-    console.log('important check on datepicker e, date', e, date)
-    //previously was bound to e
     setBooking({ ...booking, date: date })
   }
 
@@ -122,7 +121,7 @@ const ReviewBooking: React.FC = () => {
           <p className="text modal-book__text">Thank you for booking reservation.</p>
           <p className="text modal-book__text">We will contact you shortly.</p>
           <footer className="modal-book__footer">
-            <Link className="btn btn--tertiary" to="/">
+            <Link className="btn btn--transparent" to="/">
               Back to Home
             </Link>
             <Link className="btn btn--light" to="/menu">
@@ -140,7 +139,7 @@ const ReviewBooking: React.FC = () => {
             <Form
               booking={booking}
               config={DATEPICKER_CONFIG}
-              handleBookingChange={handleBookingChange}
+              handleChange={handleBookingChange}
               handleDate={handleDateChange}
               handleSubmit={handleBookingSubmit}
               submitBtn={false}
@@ -151,9 +150,9 @@ const ReviewBooking: React.FC = () => {
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
             <form onSubmit={handleBookingSubmit}>
-              <button className="btn btn--light" type="submit">
+              <Button className="btn--light" type="submit">
                 Confirm Booking
-              </button>
+              </Button>
             </form>
           </footer>
         </motion.article>
@@ -168,7 +167,7 @@ const ReviewBooking: React.FC = () => {
         <p className="text modal-book__text">Thank you for booking reservation.</p>
         <p className="text modal-book__text">We will contact you shortly.</p>
         <footer className="modal-book__footer">
-          <Link className="btn btn--tertiary" to="/">
+          <Link className="btn btn--transparent" to="/">
             Back to Home
           </Link>
           <Link className="btn btn--light" to="/menu">
@@ -209,12 +208,12 @@ const ReviewBooking: React.FC = () => {
           ) : null}
           <footer className="review-booking__footer">
             <form onSubmit={handleBookingSubmit}>
-              <button className="btn btn--tertiary" type="button" onClick={handleBookingEdit}>
+              <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
-              </button>
-              <button className="btn btn--light" type="submit">
+              </Button>
+              <Button className="btn--light" type="submit">
                 Confirm Booking
-              </button>
+              </Button>
             </form>
           </footer>
         </motion.article>

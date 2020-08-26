@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import MenuItem from '../../components/MenuItem/MenuItem'
-import Navbar from '../../components/Navbar'
-import Spinner from '../../components/Spinner'
+import { MenuList } from '../../ui/MenuList/MenuList'
+import { Navbar } from '../../ui/Navbar/Navbar'
+import { Spinner } from '../../ui/Spinner/Spinner'
 import { pageTransitions } from '../../constants/config'
 import { useMenuData } from '../../hooks/useMenuData'
 
@@ -38,10 +38,14 @@ const Menu = () => {
               <motion.div className="section__col" initial="exit" animate="enter" exit="exit" key={category.id}>
                 <motion.article className="menu__container" variants={pageTransitions}>
                   <h2 className="menu__title">{category.id}</h2>
+<<<<<<< HEAD
                   <ul className="menu__list">
                     {category.data.data &&
                       category.data.data.map((item: MenuData) => <MenuItem key={item.name} menu={item} />)}
                   </ul>
+=======
+                  <MenuList category={category}/>
+>>>>>>> dev
                 </motion.article>
               </motion.div>
             )

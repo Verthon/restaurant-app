@@ -1,7 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+
 import { formatPrice } from '../../utils/helpers'
 import { pageTransitions } from '../../constants/config'
+import './MenuItem.scss'
 
 type Props = {
   menu: {
@@ -11,7 +13,7 @@ type Props = {
   }
 }
 
-const MenuItem: React.FC<Props> = ({ menu }) => {
+export const MenuItem: React.FC<Props> = ({ menu }) => {
   const { name, price, description } = menu
 
   return (
@@ -25,5 +27,3 @@ const MenuItem: React.FC<Props> = ({ menu }) => {
     </>
   )
 }
-
-export default MenuItem

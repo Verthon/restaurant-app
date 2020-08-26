@@ -75,6 +75,7 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
+    "@storybook/preset-scss": "^1.0.2",
     "@testing-library/react": "^9.5.0",
     "cypress": "^4.12.1",
     "eslint-plugin-standard": "^4.0.1",

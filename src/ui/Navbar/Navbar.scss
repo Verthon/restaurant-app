@@ -1,3 +1,6 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
 .show {
   z-index: 1;
   background: $color-dark;
