@@ -7,7 +7,7 @@ import * as ROUTES from '../constants/routes'
 const Home = lazy(() => import('../pages/Home'))
 const BookTable = lazy(() => import('../pages/BookTable'))
 const Menu = lazy(() => import('../pages/Menu/Menu'))
-const Login = lazy(() => import('../pages/Login/Login'))
+const Login = lazy(() => import('../pages/Login/LoginContainer'))
 const Admin = lazy(() => import('../pages/Admin'))
 const NotFound = lazy(() => import('../pages/NotFound/NotFound').then(module => ({ default: module.NotFound})))
 const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
