@@ -4,13 +4,10 @@ import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import emailjs from 'emailjs-com'
 import dayjs from 'dayjs'
-import { contactInfo } from '../constants/contact'
 import { splitDate, splitTime, formatDate, convertToDate, getEmailActionUrl } from '../utils/helpers'
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
-import { useCompanyData } from '../hooks/useCompanyData'
 import { DataContext } from '../components/DataContext'
 import { Modal } from '../ui/Modal/Modal'
-import { Spinner } from '../ui/Spinner/Spinner'
 import db from '../firebase'
 import Form from '../components/Form'
 import about from '../assets/images/landing/brooke-lark-about.jpg'
@@ -26,8 +23,8 @@ type Booking = {
 }
 
 const ReviewBooking: React.FC = () => {
-  const { location, isLoading } = useCompanyData()
   const { state } = useContext(DataContext)
+  const { location, contact } = state.company
   const [show, toggleModal] = useState(false)
   const [booking, setBooking] = useState<Booking>({
     name: '',
@@ -108,10 +105,6 @@ const ReviewBooking: React.FC = () => {
   const { address, code, city, province } = location
   const { name, guests, date } = booking
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   if (editable) {
     return (
       <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
@@ -131,7 +124,7 @@ const ReviewBooking: React.FC = () => {
         </Modal>
         <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
-            <Link to="/">{contactInfo.data.name}</Link>
+            <Link to="/">{contact.name}</Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <h2 className="review-booking__title">Edit booking</h2>
@@ -178,7 +171,7 @@ const ReviewBooking: React.FC = () => {
       <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
         <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
-            <Link to="/">{contactInfo.data.name}</Link>
+            <Link to="/">{contact.name}</Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">
@@ -198,14 +191,10 @@ const ReviewBooking: React.FC = () => {
               <p className="review-booking__description">Time</p>
             </div>
           </div>
-          {location ? (
-            <>
-              <p className="review-booking__address">{address}</p>
-              <p className="review-booking__address">
-                {city}, {province}, {code}{' '}
-              </p>
-            </>
-          ) : null}
+          <p className="review-booking__address">{address}</p>
+          <p className="review-booking__address">
+            {city}, {province}, {code}{' '}
+          </p>
           <footer className="review-booking__footer">
             <form onSubmit={handleBookingSubmit}>
               <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>

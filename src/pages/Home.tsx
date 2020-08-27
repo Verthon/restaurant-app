@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import AOS from 'aos'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
@@ -10,9 +10,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Navbar } from '../ui/Navbar/Navbar'
 import { Testimonial } from '../ui/Testimonial/Testimonial'
-import { Spinner } from '../ui/Spinner/Spinner'
 import { Button } from '../ui/Button/Button'
-import { useCompanyData } from '../hooks/useCompanyData'
 import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
 import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
 import menuImg from '../assets/images/landing/brooke-lark-menu.jpg'
@@ -20,9 +18,11 @@ import menuImgXs from '../assets/images/landing/brooke-lark-menu-xs.jpg'
 import aboutImgXs from '../assets/images/landing/brooke-lark-about-xs.jpg'
 import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
 import chef from '../assets/images/landing/cook.jpg'
+import { DataContext } from '../components/DataContext'
 
 const Home = () => {
-  const { hours, location, contact, isLoading } = useCompanyData()
+  const { state } = useContext(DataContext)
+  const { hours, location, contact } = state.company
   const [dotValue, setDotValue] = useState(0)
   const [slides, setSlides] = useState<JSX.Element[]>([])
 
@@ -41,9 +41,6 @@ const Home = () => {
   }, [])
 
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Contact', link: 'contact' }]
-  if (isLoading) {
-    return <Spinner />
-  }
   return (
     <>
       <ToastContainer

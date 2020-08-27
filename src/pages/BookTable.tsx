@@ -3,11 +3,9 @@ import { RouteComponentProps } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { DataContext } from '../components/DataContext'
-import { useCompanyData } from '../hooks/useCompanyData'
 import { ADD_BOOKING } from '../reducer'
 import { Navbar } from '../ui/Navbar/Navbar'
 import Form from '../components/Form'
-import { Spinner } from '../ui/Spinner/Spinner'
 import bookTableImg from '../assets/images/brooke-lark-book-table.jpg'
 import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
 import { REVIEW_BOOKING } from '../constants/routes'
@@ -20,6 +18,8 @@ import {
 } from '../utils/helpers'
 
 const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
+  const { state } = useContext(DataContext)
+  const {location, hours, contact} = state.company
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
     guests: 1,
@@ -27,7 +27,6 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     email: '',
     confirmed: false
   })
-  const { hours, location, contact, isLoading } = useCompanyData()
   const { dispatch } = useContext(DataContext)
   const links = [
     { name: 'Menu', link: 'menu' },
@@ -69,10 +68,6 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
     history.push({ pathname: REVIEW_BOOKING })
   }
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   return (
     <>
       <ToastContainer />
@@ -100,7 +95,6 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
               action=""
             />
           </div>
-          {location && contact && hours ? (
             <article className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Located in London</h2>
               <p>{location.address}</p>
@@ -117,7 +111,6 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
                 {hours.weekend.days} {hours.weekend.time}
               </p>
             </article>
-          ) : null}
           <div className="section section__col section__col--flexible table-booking__image">
             <picture>
               <img src={bookTableImg} alt="" className="table-booking__image" loading="lazy"/>
