@@ -1,0 +1,17 @@
+import { useState, useEffect } from 'react'
+import { formatMenu } from '../../utils/helpers'
+import { useGetCollection } from '../useGetCollection'
+import { MenuState } from './useMenuData.types'
+
+export const useMenuData = () => {
+  const [menu, setMenu] = useState<MenuState>([])
+  const { isLoading, data } = useGetCollection({ collectionName: 'menu' })
+  useEffect(() => {
+    const formattedMenu: MenuState = formatMenu(data)
+    setMenu(formattedMenu)
+  }, [data, isLoading])
+  return {
+    menu,
+    isLoading
+  }
+}
