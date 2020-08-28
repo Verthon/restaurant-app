@@ -6,7 +6,7 @@ import '../scss/index.scss'
 import * as ROUTES from '../constants/routes'
 const Home = lazy(() => import('../pages/Home'))
 const BookTable = lazy(() => import('../pages/BookTable'))
-const Menu = lazy(() => import('../pages/Menu/Menu'))
+const MenuContainer = lazy(() => import('../pages/Menu/MenuContainer').then(module => ({ default: module.MenuContainer})))
 const Login = lazy(() => import('../pages/Login/LoginContainer'))
 const Admin = lazy(() => import('../pages/Admin'))
 const NotFound = lazy(() => import('../pages/NotFound/NotFound').then(module => ({ default: module.NotFound})))
@@ -23,7 +23,7 @@ const Router = () => {
             <Route exact path={ROUTES.HOME} component={Home} />
             <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
-            <Route path={ROUTES.MENU} component={Menu} />
+            <Route path={ROUTES.MENU} component={MenuContainer} />
             <Route path={ROUTES.LOGIN}>
             <Login key={ROUTES.LOGIN} />
             </Route>

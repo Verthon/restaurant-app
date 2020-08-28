@@ -4,7 +4,7 @@ import { MenuList } from '../../ui/MenuList/MenuList'
 import { Navbar } from '../../ui/Navbar/Navbar'
 import { Spinner } from '../../ui/Spinner/Spinner'
 import { pageTransitions } from '../../constants/config'
-import { useMenuData } from '../../hooks/useMenuData'
+import { Props } from './Menu.types'
 
 type MenuData = {
   description: string
@@ -19,12 +19,19 @@ type MenuCategory = {
   }
 }
 
-const Menu = () => {
-  const { menu, isLoading } = useMenuData()
+export const Menu = ({ menu, isLoading }: Props) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
 
   if (isLoading) {
-    return <Spinner />
+    return (
+      <>
+      <Navbar links={links} hashlink={false} />
+      <section id="menu" className="section menu container">
+        <h1 className="heading heading--center menu__heading">Menu</h1>
+        <Spinner />
+      </section>
+    </>
+    )
   }
 
   return (
@@ -48,5 +55,3 @@ const Menu = () => {
     </>
   )
 }
-
-export default Menu
