@@ -9,7 +9,7 @@ const HomeContainer = lazy(() => import('../pages/Home/HomeContainer').then(modu
 const BookTable = lazy(() => import('../pages/BookTable'))
 const MenuContainer = lazy(() => import('../pages/Menu/MenuContainer').then(module => ({ default: module.MenuContainer})))
 const Login = lazy(() => import('../pages/Login/LoginContainer'))
-const Admin = lazy(() => import('../pages/Admin'))
+const AdminContainer = lazy(() => import('../pages/Admin/AdminContainer').then(module => ({ default: module.AdminContainer})))
 const NotFound = lazy(() => import('../pages/NotFound/NotFound').then(module => ({ default: module.NotFound})))
 const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
 
@@ -28,7 +28,7 @@ const Router = () => {
             <Route path={ROUTES.LOGIN}>
             <Login key={ROUTES.LOGIN} />
             </Route>
-            <Route path={ROUTES.ADMIN} component={Admin} />
+            <Route path={ROUTES.ADMIN} component={AdminContainer} />
             <Route component={NotFound} />
           </Switch>
         </UserContext.Provider>
