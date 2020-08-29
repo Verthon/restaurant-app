@@ -7,19 +7,7 @@ import { Spinner } from '../../ui/Spinner/Spinner'
 import { Button } from '../../ui/Button/Button'
 import { Label } from '../../ui/Label/Label'
 import { Input } from '../../ui/Input/Input'
-
-type Props = {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  state: {
-    data: any
-    isLoading: boolean
-    error: null
-  }
-  error: {
-    message: string
-  }
-}
+import { Props } from './Login.types'
 
 export const Login: React.FC<Props> = ({ onSubmit, state, handleChange, error }) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
