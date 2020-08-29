@@ -1,10 +1,11 @@
 import React, { useState, useMemo, Suspense, lazy } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { UserContext } from './UserContext'
-import { Spinner } from '../ui/Spinner/Spinner'
+import { motion } from 'framer-motion';
 import '../scss/index.scss'
 import * as ROUTES from '../constants/routes'
-const Home = lazy(() => import('../pages/Home'))
+import { pageTransitions } from '../constants/config';
+const HomeContainer = lazy(() => import('../pages/Home/HomeContainer').then(module => ({ default: module.HomeContainer})))
 const BookTable = lazy(() => import('../pages/BookTable'))
 const MenuContainer = lazy(() => import('../pages/Menu/MenuContainer').then(module => ({ default: module.MenuContainer})))
 const Login = lazy(() => import('../pages/Login/LoginContainer'))
@@ -16,11 +17,11 @@ const Router = () => {
   const [user, setUser] = useState(null)
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser])
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<motion.div variants={pageTransitions}></motion.div>}>
       <BrowserRouter>
         <UserContext.Provider value={userValue}>
           <Switch>
-            <Route exact path={ROUTES.HOME} component={Home} />
+            <Route exact path={ROUTES.HOME} component={HomeContainer} />
             <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
             <Route path={ROUTES.MENU} component={MenuContainer} />

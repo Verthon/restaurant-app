@@ -1,46 +1,25 @@
-import React, { useState, useEffect, useContext } from 'react'
-import AOS from 'aos'
+import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
-import 'aos/dist/aos.css'
 
-import { getCollection, getData } from '../utils/database'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { Navbar } from '../ui/Navbar/Navbar'
-import { Testimonial } from '../ui/Testimonial/Testimonial'
-import { Button } from '../ui/Button/Button'
-import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
-import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
-import menuImg from '../assets/images/landing/brooke-lark-menu.jpg'
-import menuImgXs from '../assets/images/landing/brooke-lark-menu-xs.jpg'
-import aboutImgXs from '../assets/images/landing/brooke-lark-about-xs.jpg'
-import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
-import chef from '../assets/images/landing/cook.jpg'
-import { DataContext } from '../components/DataContext'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import { Navbar } from '../../ui/Navbar/Navbar'
+import { Button } from '../../ui/Button/Button'
+import aboutImg from '../../assets/images/landing/brooke-lark-about.jpg'
+import about1Img from '../../assets/images/landing/brooke-lark-about1.jpg'
+import menuImg from '../../assets/images/landing/brooke-lark-menu.jpg'
+import menuImgXs from '../../assets/images/landing/brooke-lark-menu-xs.jpg'
+import aboutImgXs from '../../assets/images/landing/brooke-lark-about-xs.jpg'
+import about1ImgXs from '../../assets/images/landing/brooke-lark-about1-xs.jpg'
+import chef from '../../assets/images/landing/cook.jpg'
+import { Props } from './Home.types'
 
-const Home = () => {
-  const { state } = useContext(DataContext)
-  const { hours, location, contact } = state.company
-  const [dotValue, setDotValue] = useState(0)
-  const [slides, setSlides] = useState<JSX.Element[]>([])
-
-  useEffect(() => {
-    AOS.init({ duration: 750 })
-  }, [])
-
-  useEffect(() => {
-    getCollection('testimonials').then(snapshot => {
-      const data = getData(snapshot)
-      const allTestimonials = data.map(testimonial => {
-        return <Testimonial key={testimonial.id} author={testimonial.data.author} text={testimonial.data.text} />
-      })
-      setSlides(allTestimonials)
-    })
-  }, [])
-
+export const Home = ({company, slidesState, dotState } : Props) => {
+  const {hours, location, contact} = company
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Contact', link: 'contact' }]
+
   return (
     <>
       <ToastContainer
@@ -133,12 +112,12 @@ const Home = () => {
               <Carousel
                 slidesPerPage={1}
                 centered
-                value={dotValue}
-                slides={slides}
+                value={dotState.dotValue}
+                slides={slidesState.slides}
                 itemWidth={450}
-                onChange={value => setDotValue(value)}
+                onChange={value => dotState.setDotValue(value)}
               />
-              <Dots value={dotValue} onChange={value => setDotValue(value)} number={slides.length} />
+              <Dots value={dotState.dotValue} onChange={value => dotState.setDotValue(value)} number={slidesState.slides.length} />
             </div>
           </div>
         </div>
@@ -148,4 +127,3 @@ const Home = () => {
   )
 }
 
-export default Home
