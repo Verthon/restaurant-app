@@ -1,14 +1,15 @@
 import React from 'react'
 import { DataContext, contextData } from './components/DataContext'
 import Router from './components/Router'
+import { BookingModalController } from './context/bookingModal/BookingModalController'
 
 
-const App = () => {
+export const App = () => {
   return (
     <DataContext.Provider value={contextData}>
-      <Router />
+      <BookingModalController>
+        <Router />
+      </BookingModalController>
     </DataContext.Provider>
   )
 }
-
-export default App
