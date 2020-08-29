@@ -5,11 +5,11 @@ import AOS from 'aos'
 import { Home } from './Home'
 import { getCollection, getData } from '../../utils/database'
 import { Testimonial } from '../../ui/Testimonial/Testimonial'
-import { DataContext } from '../../components/DataContext'
+import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
 
 export const HomeContainer = () => {
-  const { state } = useContext(DataContext)
-  const { hours, location, contact } = state.company
+  const company = useContext(CompanyDataContext)
+  const { hours, location, contact } = company.companyData
   const [dotValue, setDotValue] = useState(0)
   const [slides, setSlides] = useState<JSX.Element[]>([])
   useEffect(() => {
