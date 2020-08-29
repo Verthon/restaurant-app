@@ -16,10 +16,11 @@ import {
   saveLocalStorageState,
   isDateCurrent
 } from '../utils/helpers'
+import { CompanyDataContext } from '../context/companyData/CompanyDataContext'
 
 const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
-  const { state } = useContext(DataContext)
-  const {location, hours, contact} = state.company
+  const company = useContext(CompanyDataContext)
+  const { hours, location, contact } = company.companyData
   const [booking, setBooking] = useState({
     date: getTomorrowsDate(),
     guests: 1,
