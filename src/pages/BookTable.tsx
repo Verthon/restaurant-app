@@ -17,17 +17,19 @@ import {
   isDateCurrent
 } from '../utils/helpers'
 import { CompanyDataContext } from '../context/companyData/CompanyDataContext'
+import { BookingDataContext } from '../context/bookingData/BookingDataContext'
 
 const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
   const company = useContext(CompanyDataContext)
   const { hours, location, contact } = company.companyData
-  const [booking, setBooking] = useState({
-    date: getTomorrowsDate(),
-    guests: 1,
-    name: '',
-    email: '',
-    confirmed: false
-  })
+  const bookingData = useContext(BookingDataContext)
+  // const [booking, setBooking] = useState({
+  //   date: getTomorrowsDate(),
+  //   guests: 1,
+  //   name: '',
+  //   email: '',
+  //   confirmed: false
+  // })
   const { dispatch } = useContext(DataContext)
   const links = [
     { name: 'Menu', link: 'menu' },
@@ -42,30 +44,38 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
   }, [])
 
   const handleLocalStorageRead = (data: any) => {
-    setBooking(transformLocalStorageData(data.booking))
+    if(bookingData?.setBooking) {
+      bookingData.setBooking(transformLocalStorageData(data.booking))
+    }
   }
 
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === 'guests') {
-      const value = parseInt(e.target.value)
-      setBooking({ ...booking, [e.target.name]: value })
-      return
+    if (bookingData?.setBooking) {
+      if (e.target.name === 'guests') {
+        const value = parseInt(e.target.value)
+        bookingData.setBooking({ ...bookingData.booking, [e.target.name]: value })
+        return
+      }
+      bookingData.setBooking({ ...bookingData.booking, [e.target.name]: e.target.value })
     }
-    setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const handleDateChange = (date: Date, e: React.SyntheticEvent<any, Event>) => {
+  const handleDateChange = (date: Date | null, e: React.SyntheticEvent<any, Event> | undefined) => {
     console.log('handleBookingChange date and e', date, e)
-    setBooking({ ...booking, date: date })
+    if(bookingData?.setBooking) {
+      if(date) {
+        bookingData?.setBooking({ ...bookingData.booking, date: date })
+      }
+    }
   }
 
   const handleBookingSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    saveLocalStorageState({ booking: booking })
-    const action = { type: ADD_BOOKING, booking: booking }
-    if(dispatch && action) {
-      dispatch(action)
-    }
+    saveLocalStorageState({ booking: bookingData?.booking })
+    // const action = { type: ADD_BOOKING, booking: booking }
+    // if(dispatch && action) {
+    //   dispatch(action)
+    // }
     history.push({ pathname: REVIEW_BOOKING })
   }
 
@@ -89,7 +99,7 @@ const BookTable: React.FC<RouteComponentProps> = ({ history }) => {
               handleSubmit={handleBookingSubmit}
               handleChange={handleBookingChange}
               handleDate={handleDateChange}
-              booking={booking}
+              booking={bookingData?.booking}
               config={DATEPICKER_CONFIG}
               withBookingDesc={true}
               submitBtn

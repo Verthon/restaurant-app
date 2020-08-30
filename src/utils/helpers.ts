@@ -1,5 +1,8 @@
 /* eslint-disable prefer-destructuring */
 import dayjs from 'dayjs'
+
+import { INITIAL_BOOKING_STATE_TYPE } from '../constants/booking';
+
 export const formatPrice = (cents: number) => {
   const options = {
     style: 'currency',
@@ -46,7 +49,7 @@ export const loadLocalStorageState = (name: string) => {
   }
 }
 
-export const saveLocalStorageState = (state: { booking: { date: Date; guests: number; name: string; email: string; confirmed: boolean } }) => {
+export const saveLocalStorageState = (state: { booking: INITIAL_BOOKING_STATE_TYPE | undefined }) => {
   try {
     const serializedState = JSON.stringify(state)
     window.localStorage.setItem('booking', serializedState)
@@ -61,8 +64,11 @@ export const getTomorrowsDate = () => {
   return tomorrow.toDate()
 }
 
-export const convertToDate = (date: string | number | Date) => {
-  return new Date(date)
+export const convertToDate = (date: string | number | Date ) => {
+  if(date) {
+    return new Date(date)
+  }
+  return new Date()
 }
 
 export const transformLocalStorageData = (data: { date: string; guests: string } | any) => {
