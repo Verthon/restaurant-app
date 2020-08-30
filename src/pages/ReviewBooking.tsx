@@ -30,7 +30,7 @@ const ReviewBooking: React.FC = () => {
       booking.date = convertToDate(booking.date)
       bookingData?.setBooking({ ...booking })
     }
-  }, [bookingData])
+  }, [])
 
   const handleModal = () => {
     toggleModal(true)
