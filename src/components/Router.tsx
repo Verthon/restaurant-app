@@ -6,7 +6,7 @@ import '../scss/index.scss'
 import * as ROUTES from '../constants/routes'
 import { pageTransitions } from '../constants/config';
 const HomeContainer = lazy(() => import('../pages/Home/HomeContainer').then(module => ({ default: module.HomeContainer})))
-const BookTable = lazy(() => import('../pages/BookTable'))
+const BookTableContainer = lazy(() => import('../pages/BookTable/BookTableContainer').then(module => ({ default: module.BookTableContainer})))
 const MenuContainer = lazy(() => import('../pages/Menu/MenuContainer').then(module => ({ default: module.MenuContainer})))
 const Login = lazy(() => import('../pages/Login/LoginContainer'))
 const AdminContainer = lazy(() => import('../pages/Admin/AdminContainer').then(module => ({ default: module.AdminContainer})))
@@ -22,7 +22,7 @@ const Router = () => {
         <UserContext.Provider value={userValue}>
           <Switch>
             <Route exact path={ROUTES.HOME} component={HomeContainer} />
-            <Route path={ROUTES.BOOK_TABLE} component={BookTable} />
+            <Route path={ROUTES.BOOK_TABLE} component={BookTableContainer} />
             <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
             <Route path={ROUTES.MENU} component={MenuContainer} />
             <Route path={ROUTES.LOGIN}>
