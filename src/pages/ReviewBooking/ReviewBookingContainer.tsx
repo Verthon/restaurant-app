@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import emailjs from 'emailjs-com'
 
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext';
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext';
 import { ReviewBooking } from './ReviewBooking';
 import db from '../../firebase';
 import { notifyError } from '../../utils/notification';
@@ -13,8 +13,6 @@ import { convertToDate } from '../../utils/helpers';
 
 export const ReviewBookingContainer = () => {
   const bookingData = useContext(BookingDataContext)
-  const company = useContext(CompanyDataContext)
-  const { location, contact } = company.companyData
   const [show, toggleModal] = useState(false)
   const [editable, setEditable] = useState(false)
 
