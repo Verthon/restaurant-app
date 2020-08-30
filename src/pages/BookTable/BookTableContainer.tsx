@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useCallback } from 'react';
 
 import {BookTable} from './BookTable';
