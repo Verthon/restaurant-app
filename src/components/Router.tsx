@@ -11,7 +11,7 @@ const MenuContainer = lazy(() => import('../pages/Menu/MenuContainer').then(modu
 const Login = lazy(() => import('../pages/Login/LoginContainer'))
 const AdminContainer = lazy(() => import('../pages/Admin/AdminContainer').then(module => ({ default: module.AdminContainer})))
 const NotFound = lazy(() => import('../pages/NotFound/NotFound').then(module => ({ default: module.NotFound})))
-const ReviewBooking = lazy(() => import('../pages/ReviewBooking'))
+const ReviewBookingContainer = lazy(() => import('../pages/ReviewBooking/ReviewBookingContainer').then(module => ({ default: module.ReviewBookingContainer})))
 
 const Router = () => {
   const [user, setUser] = useState(null)
@@ -23,7 +23,7 @@ const Router = () => {
           <Switch>
             <Route exact path={ROUTES.HOME} component={HomeContainer} />
             <Route path={ROUTES.BOOK_TABLE} component={BookTableContainer} />
-            <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBooking} />
+            <Route path={ROUTES.REVIEW_BOOKING} component={ReviewBookingContainer} />
             <Route path={ROUTES.MENU} component={MenuContainer} />
             <Route path={ROUTES.LOGIN}>
             <Login key={ROUTES.LOGIN} />
