@@ -7,6 +7,7 @@
     "@brainhubeu/react-carousel": "^1.16.2",
     "@testing-library/dom": "^7.5.7",
     "@testing-library/jest-dom": "^5.8.0",
+    "@testing-library/react-hooks": "^3.4.1",
     "@types/aos": "^3.0.3",
     "@types/brainhubeu__react-carousel": "^1.15.0",
     "@types/jest": "^26.0.4",
