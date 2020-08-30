@@ -1,103 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
-import emailjs from 'emailjs-com'
-import dayjs from 'dayjs'
-import { splitDate, splitTime, formatDate, convertToDate, getEmailActionUrl } from '../utils/helpers'
-import { DATEPICKER_CONFIG, pageTransitions } from '../constants/config'
-import { Modal } from '../ui/Modal/Modal'
-import db from '../firebase'
-import Form from '../components/Form'
-import about from '../assets/images/landing/brooke-lark-about.jpg'
-import { notifyError } from '../utils/notification'
-import { DB_ERROR_MSG } from '../constants/toastMessages'
-import { Button } from '../ui/Button/Button'
-import { BookingDataContext } from '../context/bookingData/BookingDataContext'
-import { CompanyDataContext } from '../context/companyData/CompanyDataContext'
-import { Booking } from '../context/bookingData/BookingDataContext.types'
 
-const ReviewBooking: React.FC = () => {
+import { splitDate, splitTime, formatDate, convertToDate, getEmailActionUrl } from '../../utils/helpers'
+import { DATEPICKER_CONFIG, pageTransitions } from '../../constants/config'
+import { Modal } from '../../ui/Modal/Modal'
+import Form from '../../components/Form'
+import about from '../../assets/images/landing/brooke-lark-about.jpg'
+import { Button } from '../../ui/Button/Button'
+import { BookingDataContext } from '../../context/bookingData/BookingDataContext'
+import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
+import { Props } from './ReviewBooking.types'
+
+export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Props) => {
   const bookingData = useContext(BookingDataContext)
   const company = useContext(CompanyDataContext)
   const { location, contact } = company.companyData
-  const [show, toggleModal] = useState(false)
-  const [editable, setEditable] = useState(false)
-
-  useEffect(() => {
-    if (bookingData?.setBooking) {
-      const booking: Booking = { ...bookingData?.booking }
-      booking.date = convertToDate(booking.date)
-      bookingData?.setBooking({ ...booking })
-    }
-  }, [])
-
-  const handleModal = () => {
-    toggleModal(true)
-    window.localStorage.removeItem('booking')
-  }
-
-  const handleBookingEdit = () => {
-    setEditable(true)
-  }
-
-  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(bookingData?.setBooking) {
-    if (e.target.name === 'guests') {
-      bookingData?.setBooking({ ...bookingData?.booking, [e.target.name]: parseInt(e.target.value) })
-      return
-    }
-    bookingData?.setBooking({ ...bookingData?.booking, [e.target.name]: e.target.value })
-    }
-  }
-
-  const handleDateChange = (date: Date, e: React.SyntheticEvent<any, Event>) => {
-    if(bookingData?.setBooking) {
-      bookingData?.setBooking({ ...bookingData?.booking, date: date })
-    }
-  }
-
-  const handleEmailSend = () => {
-    const templateParams = {
-      name: bookingData?.booking.name,
-      email: bookingData?.booking.email,
-      guests: bookingData?.booking.guests,
-      date: dayjs(bookingData?.booking.date).format('DD-MMMM-YYYY HH:mm')
-    }
-    emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_DEV_EMAIL_API_KEY).then(
-      response => {
-        handleModal()
-      },
-      err => {
-        console.error('FAILED...', err)
-      }
-    )
-  }
-
-  const handleBookingSubmit = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault()
-    if (bookingData?.setBooking) {
-    const submitBooking = { ...bookingData?.booking }
-    db.collection('bookings')
-      .add({
-        email: submitBooking.email,
-        name: submitBooking.name,
-        date: submitBooking.date,
-        guests: submitBooking.guests,
-        confirmed: true,
-        createdAt: dayjs().format('YYYY-MM-DD HH:mm')
-      })
-      .then(() => {
-        handleEmailSend()
-      })
-      .catch(err => {
-        console.log('Error occurred while saving to database: ', err)
-        notifyError(DB_ERROR_MSG)
-      })
-    }
-  }
 
   const { address, code, city, province } = location
   const { name, guests, date, email } = bookingData?.booking || {}
@@ -129,9 +48,9 @@ const ReviewBooking: React.FC = () => {
             <Form
               booking={bookingData?.booking}
               config={DATEPICKER_CONFIG}
-              handleChange={handleBookingChange}
-              handleDate={handleDateChange}
-              handleSubmit={handleBookingSubmit}
+              handleChange={bookingData?.handleBookingChange}
+              handleDate={bookingData?.handleDateChange!}
+              handleSubmit={onSubmit}
               submitBtn={false}
               cssClass="form--edit"
               action={getEmailActionUrl(email)}
@@ -139,7 +58,7 @@ const ReviewBooking: React.FC = () => {
             />
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
-            <form onSubmit={handleBookingSubmit}>
+            <form onSubmit={onSubmit}>
               <Button className="btn--light" type="submit">
                 Confirm Booking
               </Button>
@@ -193,7 +112,7 @@ const ReviewBooking: React.FC = () => {
             {city}, {province}, {code}{' '}
           </p>
           <footer className="review-booking__footer">
-            <form onSubmit={handleBookingSubmit}>
+            <form onSubmit={onSubmit}>
               <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </Button>
@@ -207,5 +126,3 @@ const ReviewBooking: React.FC = () => {
     </>
   )
 }
-
-export default ReviewBooking

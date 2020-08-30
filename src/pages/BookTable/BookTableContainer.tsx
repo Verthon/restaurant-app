@@ -17,7 +17,7 @@ export const BookTableContainer = () => {
     if(bookingData?.setBooking) {
       bookingData.setBooking(transformLocalStorageData(data.booking))
     }
-  }, [bookingData])
+  }, [])
 
   const handleBookingSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
