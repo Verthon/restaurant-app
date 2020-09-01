@@ -13,7 +13,6 @@ export const useBooking = () => {
   }
 
   const handleDateChange = (date: Date | null, e: React.SyntheticEvent<any, Event> | undefined) => {
-    console.log('handleBookingChange date and e', date, e)
     if (date) {
       setBooking({ ...booking, date: date })
     }

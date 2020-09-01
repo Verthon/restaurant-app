@@ -45,14 +45,7 @@ export const Menu = ({ menu, isLoading }: Props) => {
               <motion.div className="section__col" initial="exit" animate="enter" exit="exit" key={category.id}>
                 <motion.article className="menu__container" variants={pageTransitions}>
                   <h2 className="menu__title">{category.id}</h2>
-<<<<<<< HEAD
-                  <ul className="menu__list">
-                    {category.data.data &&
-                      category.data.data.map((item: MenuData) => <MenuItem key={item.name} menu={item} />)}
-                  </ul>
-=======
                   <MenuList category={category}/>
->>>>>>> dev
                 </motion.article>
               </motion.div>
             )
