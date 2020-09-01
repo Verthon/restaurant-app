@@ -69,7 +69,6 @@ export const ReviewBookingContainer = () => {
         handleEmailSend()
       })
       .catch(err => {
-        console.log('Error occurred while saving to database: ', err)
         notifyError(DB_ERROR_MSG)
       })
     }

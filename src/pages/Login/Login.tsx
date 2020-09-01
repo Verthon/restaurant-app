@@ -25,16 +25,6 @@ export const Login: React.FC<Props> = ({ onSubmit, state, handleChange, error })
           <form method="POST" className="login__form" onSubmit={onSubmit}>
             <Label htmlFor="email" className="label login__label">
               Email
-<<<<<<< HEAD
-            </label>
-            <input type="email" className="input" name="email" required onChange={handleInputChange} />
-            <label htmlFor="email" className="label login__label">
-              Password
-            </label>
-            <input type="password" className="input" name="password" required onChange={handleInputChange} />
-            <p className="login__error">{error ? error.message : null}</p>
-            <button data-testid="login-submit" type="submit" className="btn btn--dark login__btn">
-=======
             </Label>
             <Input type="email" name="email" required onChange={handleChange} />
             <Label htmlFor="email" className="label login__label">
@@ -43,7 +33,6 @@ export const Login: React.FC<Props> = ({ onSubmit, state, handleChange, error })
             <Input type="password" name="password" required onChange={handleChange} />
             <p className="login__error">{error ? error.message : null}</p>
             <Button data-testid="login-submit" type="submit" className="btn--dark">
->>>>>>> dev
               Login
             </Button>
           </form>
