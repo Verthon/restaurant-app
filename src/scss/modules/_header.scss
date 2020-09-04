@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: 100%;
   padding: 0 1.5rem 3rem 1.5rem;
+  //transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  height: 100%;
 
   @include mQ($tablet) {
     padding: 0 2.5rem 3rem 2.5rem;
@@ -25,6 +27,22 @@
     @include mQ($ipad) {
       order: 2;
       flex: 50%;
+    }
+    img {
+      min-height: 250px;
+
+      @include mQ($tablet) {
+        min-height: 300px;
+      }
+      @include mQ($ipad) {
+        min-height: 516px;
+      }
+      @include mQ($desktopXs){
+        min-height: 690px;
+      }
+      @include mQ($desktopSm){
+        min-height: 840px;
+      }
     }
   }
 

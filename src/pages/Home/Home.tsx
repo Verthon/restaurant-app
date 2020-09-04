@@ -79,7 +79,8 @@ export const Home = ({company, slidesState, dotState } : Props) => {
             </picture>
           </div>
           <div className="section__col section__col--white section__col__description">
-            <article className="section__menu-landing">
+            <article className="section__menu-landing" data-aos="fade-up"
+            data-delay="700">
               <h2 className="heading">Discover our menu!</h2>
               <p className="text section__description">
                 Taste our famous traditional, authentic Greek dishes and do not miss our famous local wine list along
