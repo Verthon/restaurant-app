@@ -18,6 +18,8 @@ body {
   padding: 0;
   color: $color-dark-3;
   font-family: $font, sans-serif;
+  height: 100%;
+  width: 100%;
 }
 
 img {
@@ -40,4 +42,8 @@ button:focus {
 
 picture {
   margin: 0;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }

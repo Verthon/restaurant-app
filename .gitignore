@@ -26,9 +26,6 @@ Desktop.ini
 *.lnk
 
 # Cypress local
-<<<<<<< HEAD
-cypress/videos
-=======
 cypress/videos
 cypress.env.json
->>>>>>> dev
+

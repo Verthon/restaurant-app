@@ -5,7 +5,7 @@ import logo from '../../assets/images/android-chrome-192x192.svg'
 export const Spinner = () => {
   return (
     <div className='spinner'>
-      <img className='spinner__logo animate__animated animate__bounce' src={logo} alt='Alkinoos Taverna' />
+      <img className='spinner__logo animate__animated animate__bounce animate__infinite' src={logo} alt='Alkinoos Taverna' />
     </div>
   )
 }

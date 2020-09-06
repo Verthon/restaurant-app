@@ -1,49 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import AOS from 'aos'
+import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots } from '@brainhubeu/react-carousel'
-import 'aos/dist/aos.css'
 
-import { getCollection, getData } from '../utils/database'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { Navbar } from '../ui/Navbar/Navbar'
-import { Testimonial } from '../ui/Testimonial/Testimonial'
-import { Spinner } from '../ui/Spinner/Spinner'
-import { Button } from '../ui/Button/Button'
-import { useCompanyData } from '../hooks/useCompanyData'
-import aboutImg from '../assets/images/landing/brooke-lark-about.jpg'
-import about1Img from '../assets/images/landing/brooke-lark-about1.jpg'
-import menuImg from '../assets/images/landing/brooke-lark-menu.jpg'
-import menuImgXs from '../assets/images/landing/brooke-lark-menu-xs.jpg'
-import aboutImgXs from '../assets/images/landing/brooke-lark-about-xs.jpg'
-import about1ImgXs from '../assets/images/landing/brooke-lark-about1-xs.jpg'
-import chef from '../assets/images/landing/cook.jpg'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import { Navbar } from '../../ui/Navbar/Navbar'
+import { Button } from '../../ui/Button/Button'
+import aboutImg from '../../assets/images/landing/brooke-lark-about.jpg'
+import about1Img from '../../assets/images/landing/brooke-lark-about1.jpg'
+import menuImg from '../../assets/images/landing/brooke-lark-menu.jpg'
+import menuImgXs from '../../assets/images/landing/brooke-lark-menu-xs.jpg'
+import aboutImgXs from '../../assets/images/landing/brooke-lark-about-xs.jpg'
+import about1ImgXs from '../../assets/images/landing/brooke-lark-about1-xs.jpg'
+import chef from '../../assets/images/landing/cook.jpg'
+import { Props } from './Home.types'
 
-const Home = () => {
-  const { hours, location, contact, isLoading } = useCompanyData()
-  const [dotValue, setDotValue] = useState(0)
-  const [slides, setSlides] = useState<JSX.Element[]>([])
-
-  useEffect(() => {
-    AOS.init({ duration: 750 })
-  }, [])
-
-  useEffect(() => {
-    getCollection('testimonials').then(snapshot => {
-      const data = getData(snapshot)
-      const allTestimonials = data.map(testimonial => {
-        return <Testimonial key={testimonial.id} author={testimonial.data.author} text={testimonial.data.text} />
-      })
-      setSlides(allTestimonials)
-    })
-  }, [])
-
+export const Home = ({company, slidesState, dotState } : Props) => {
+  const {hours, location, contact} = company
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Contact', link: 'contact' }]
-  if (isLoading) {
-    return <Spinner />
-  }
+
   return (
     <>
       <ToastContainer
@@ -103,7 +79,8 @@ const Home = () => {
             </picture>
           </div>
           <div className="section__col section__col--white section__col__description">
-            <article className="section__menu-landing">
+            <article className="section__menu-landing" data-aos="fade-up"
+            data-delay="700">
               <h2 className="heading">Discover our menu!</h2>
               <p className="text section__description">
                 Taste our famous traditional, authentic Greek dishes and do not miss our famous local wine list along
@@ -136,12 +113,12 @@ const Home = () => {
               <Carousel
                 slidesPerPage={1}
                 centered
-                value={dotValue}
-                slides={slides}
+                value={dotState.dotValue}
+                slides={slidesState.slides}
                 itemWidth={450}
-                onChange={value => setDotValue(value)}
+                onChange={value => dotState.setDotValue(value)}
               />
-              <Dots value={dotValue} onChange={value => setDotValue(value)} number={slides.length} />
+              <Dots value={dotState.dotValue} onChange={value => dotState.setDotValue(value)} number={slidesState.slides.length} />
             </div>
           </div>
         </div>
@@ -151,4 +128,3 @@ const Home = () => {
   )
 }
 
-export default Home

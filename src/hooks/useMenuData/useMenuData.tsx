@@ -1,21 +1,7 @@
 import { useState, useEffect } from 'react'
-import { formatMenu } from '../utils/helpers'
-import { useGetCollection } from './useGetCollection'
-
-type MenuData = {
-  description: string
-  name: string
-  price: number
-}
-
-type MenuCategory = {
-  id: string
-  data: {
-    data: Array<MenuData>
-  }
-}
-
-type MenuState = Array<MenuCategory>
+import { formatMenu } from '../../utils/helpers'
+import { useGetCollection } from '../useGetCollection'
+import { MenuState } from './useMenuData.types'
 
 export const useMenuData = () => {
   const [menu, setMenu] = useState<MenuState>([])
