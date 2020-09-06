@@ -28,3 +28,4 @@ Desktop.ini
 # Cypress local
 cypress/videos
 cypress.env.json
+
