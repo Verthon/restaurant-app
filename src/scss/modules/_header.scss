@@ -29,10 +29,10 @@
       flex: 50%;
     }
     img {
-      min-height: 250px;
+      min-height: 200px;
 
       @include mQ($tablet) {
-        min-height: 300px;
+        min-height: 250px;
       }
       @include mQ($ipad) {
         min-height: 516px;
