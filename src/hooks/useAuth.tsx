@@ -1,11 +1,10 @@
 import { login, logout } from '../utils/login'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import firebase, { User } from 'firebase'
 
 export const useAuth = () => {
-  const initialState = {
-    user: null
-  }
-  const [user, setUser] = useState(initialState)
+  const initialState = null;
+  const [user, setUser] = useState<User | null>(initialState)
   const doLogin = async (email: string, password: string) => {
     const response = await login(email, password)
     return response
@@ -14,6 +13,12 @@ export const useAuth = () => {
     const response = await logout()
     return response
   }
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      setUser(user)
+    });
+  }, [])
   return {
     user,
     setUser,
