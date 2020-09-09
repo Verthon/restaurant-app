@@ -5,13 +5,14 @@ import { Admin } from './Admin'
 import { UserContext } from '../../components/UserContext'
 import { apiReducer, apiInitialState } from '../../reducers/apiReducer'
 import { LOGIN } from '../../constants/routes'
-import { auth, logout } from '../../utils/login'
+import { logout } from '../../utils/login'
 import db from '../../firebase'
-import { getData, Order } from '../../utils/database'
+import { getData } from '../../utils/database'
 import { formatBookings } from '../../utils/helpers'
 import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
+import { Params } from './Admin.types'
 
 export const AdminContainer = () => {
   const history = useHistory()
@@ -21,6 +22,8 @@ export const AdminContainer = () => {
   const [bookings, setBookings] = useState([])
 
   const { user } = useContext(UserContext)
+
+  console.log('user in Main admin', user);
 
   const handleSignOut = async () => {
     dispatch({ type: 'FETCHING' })
@@ -100,40 +103,63 @@ export const AdminContainer = () => {
   }
 
   useEffect(() => {
-    const listener = auth.onAuthStateChanged(async () => {
-      type Params = {
-        name: string
-        order: Order
-        limit: number
-      }
-      if (user) {
-        try {
-          dispatch({ type: 'FETCHING' })
-          const params: Params = {
-            name: 'bookings',
-            order: { name: 'date', type: 'asc' },
-            limit: 20
-          }
-          const { order, name, limit } = params
-          db.collection(name)
-            .orderBy(order.name, order.type)
-            .limit(limit)
-            .onSnapshot(querySnapshot => {
-              const booking = getData(querySnapshot)
-              const allBookings: any = formatBookings(booking)
-              setBookings(allBookings)
-              dispatch({ type: 'SUCCESS' })
-            })
-        } catch (error) {
-          dispatch({ type: 'ERROR' })
-          notifyError(DB_ERROR_MSG)
+    if (user) {
+      try {
+        dispatch({ type: 'FETCHING' })
+        const params: Params = {
+          name: 'bookings',
+          order: { name: 'date', type: 'asc' },
+          limit: 20
         }
-      } else {
-        history.push({ pathname: LOGIN })
-      }
-    })
-    return () => listener()
-  }, [history, user])
+        const { order, name, limit } = params
+        db.collection(name)
+          .orderBy(order.name, order.type)
+          .limit(limit)
+          .onSnapshot(querySnapshot => {
+            const booking = getData(querySnapshot)
+            const allBookings: any = formatBookings(booking)
+            setBookings(allBookings)
+            dispatch({ type: 'SUCCESS' })
+          })
+      } catch (error) {
+        dispatch({ type: 'ERROR' })
+        notifyError(DB_ERROR_MSG)
+      }}
+    // } else {
+    //   history.push({ pathname: LOGIN })
+    // }
+  }, [user])
+
+  // useEffect(() => {
+  //   const listener = auth.onAuthStateChanged(async () => {
+  //     if (user) {
+  //       try {
+  //         dispatch({ type: 'FETCHING' })
+  //         const params: Params = {
+  //           name: 'bookings',
+  //           order: { name: 'date', type: 'asc' },
+  //           limit: 20
+  //         }
+  //         const { order, name, limit } = params
+  //         db.collection(name)
+  //           .orderBy(order.name, order.type)
+  //           .limit(limit)
+  //           .onSnapshot(querySnapshot => {
+  //             const booking = getData(querySnapshot)
+  //             const allBookings: any = formatBookings(booking)
+  //             setBookings(allBookings)
+  //             dispatch({ type: 'SUCCESS' })
+  //           })
+  //       } catch (error) {
+  //         dispatch({ type: 'ERROR' })
+  //         notifyError(DB_ERROR_MSG)
+  //       }
+  //     } else {
+  //       history.push({ pathname: LOGIN })
+  //     }
+  //   })
+  //   return () => listener()
+  // }, [history, user])
 
   return (
     <Admin
