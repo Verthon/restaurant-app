@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import { AuthDispatchContext, AuthStateContext } from './AuthContext'
+import { authReducer } from './authReducer/AuthReducer';
 
 export const AuthController = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(authReducer, {
