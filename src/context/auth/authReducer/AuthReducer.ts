@@ -1,5 +1,4 @@
 import { AuthAction } from './AuthReducer.types';
-import { action } from '@storybook/addon-actions';
 
 export const SET_AUTHORIZED = 'auth/set-authorized'
 export const SET_UNAUTHORIZED = 'auth/set-unauthorized'

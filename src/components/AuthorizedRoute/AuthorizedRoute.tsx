@@ -3,13 +3,14 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { AuthorizedRouteProps } from './Authorized.types';
 import { useAuthState } from '../../hooks/useAuthState/useAuthState';
+import * as ROUTES from '../../constants/routes'
 
 export const AuthorizedRoute = (props: AuthorizedRouteProps) => {
-  const { isAuthorized } = useAuthState();
+  const { user } = useAuthState();
 
-  if (isAuthorized) {
+  if (user) {
     return <Route {...props} />;
   }
 
-  return <Redirect to="/login" />;
+  return <Redirect to={ROUTES.LOGIN} />;
 };
