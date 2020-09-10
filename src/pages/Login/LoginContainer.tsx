@@ -9,7 +9,7 @@ import { notifyError } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { Login } from './Login'
 
-const LoginContainer = () => {
+export const LoginContainer = () => {
   const history = useHistory();
   const [state, dispatch] = useReducer(apiReducer, apiInitialState)
   const [error, setError] = useState<any>({
@@ -54,5 +54,3 @@ const LoginContainer = () => {
   }
   return <Login onSubmit={handleSubmit} handleChange={handleInputChange} error={error} state={state} />
 }
-
-export default LoginContainer
