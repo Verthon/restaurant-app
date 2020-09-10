@@ -36,8 +36,13 @@ Available routes:
 
 ## Setup
 
+- You need to have node 10 LTS installed to run this project
+- If you run into issues with node-sass, try `npm rebuild node-sass` command
+
 ```bash
   git clone https://github.com/Verthon/restaurant-app.git
+  create a firestore database for web https://console.firebase.google.com/
+  create .env file and paste credentials from firestore take a look how to name them in firebase.ts file
   npm install
   npm start
 ```
