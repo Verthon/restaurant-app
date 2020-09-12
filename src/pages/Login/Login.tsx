@@ -9,10 +9,10 @@ import { Label } from '../../ui/Label/Label'
 import { Input } from '../../ui/Input/Input'
 import { Props } from './Login.types'
 
-export const Login: React.FC<Props> = ({ onSubmit, state, handleChange, error }) => {
+export const Login: React.FC<Props> = ({ onSubmit, handleChange, error, loading }) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
 
-  if (state.isLoading) {
+  if (loading) {
     return <Spinner />
   }
 
@@ -31,7 +31,7 @@ export const Login: React.FC<Props> = ({ onSubmit, state, handleChange, error })
               Password
             </Label>
             <Input type="password" name="password" required onChange={handleChange} />
-            <p className="login__error">{error ? error.message : null}</p>
+            <p className="login__error">{error ? 'error.message' : null}</p>
             <Button data-testid="login-submit" type="submit" className="btn--dark">
               Login
             </Button>
