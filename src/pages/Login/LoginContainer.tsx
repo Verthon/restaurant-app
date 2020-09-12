@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
-import { ADMIN } from '../../constants/routes'
-import { login } from '../../utils/login'
-import { notifyError } from '../../utils/notification'
-import { DB_ERROR_MSG } from '../../constants/toastMessages'
+import * as ROUTES from '../../constants/routes'
+import { doLogin } from '../../utils/login'
 import { Login } from './Login'
 import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
 import { setAuthorized, setUnauthorized, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
 import { useAuthState } from '../../hooks/useAuthState/useAuthState'
 
 export const LoginContainer = () => {
-  const history = useHistory();
   const [error, setError] = useState<boolean>(false)
 
   const [form, setInputs] = useState({
@@ -19,26 +16,25 @@ export const LoginContainer = () => {
     password: ''
   })
 
-  const { user, isAuthorizing } = useAuthState();
+  const { isAuthorizing, isAuthorized } = useAuthState();
   const dispatch = useAuthDispatch(); 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    dispatch(startAuthorizing())
     e.preventDefault()
+    dispatch(startAuthorizing())
     try {
-      const payload = await login(form.email, form.password)
-      console.log('user in login', payload.user)
-      console.info('user in AuthState', user)
-      dispatch(setAuthorized(payload.user as any))
-      if(payload.user && user) {
-        history.push(ADMIN);
+      const payload = await doLogin(form.email, form.password)
+      if(payload && payload.user) {
+        dispatch(setAuthorized(payload.user as any))
+        return true
       }
     } catch (error) {
       console.log('error in login', error)
       dispatch(setUnauthorized())
-      handleError(error)
-      notifyError(DB_ERROR_MSG)
+      setError(true)
     }
+    dispatch(setUnauthorized())
+    return false
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,8 +44,9 @@ export const LoginContainer = () => {
     })
   }
 
-  const handleError = (error: any) => {
-    setError(error)
+  if (isAuthorized) {
+    return <Redirect to={ROUTES.ADMIN} />
   }
+
   return <Login onSubmit={handleSubmit} handleChange={handleInputChange} error={error} loading={isAuthorizing} />
 }
