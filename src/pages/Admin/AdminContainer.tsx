@@ -1,10 +1,6 @@
-import React, { useReducer, useState, useContext, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { Admin } from './Admin'
-import { UserContext } from '../../components/UserContext'
-import { apiReducer, apiInitialState } from '../../reducers/apiReducer'
-import { LOGIN } from '../../constants/routes'
 import { logout } from '../../utils/login'
 import db from '../../firebase'
 import { getData } from '../../utils/database'
@@ -13,26 +9,26 @@ import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
 import { Params } from './Admin.types'
+import { useAuthState } from '../../hooks/useAuthState/useAuthState'
+import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
+import { setUnauthorized, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
 
 export const AdminContainer = () => {
-  const history = useHistory()
-  const [state, dispatch] = useReducer(apiReducer, apiInitialState)
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
 
-  const { user } = useContext(UserContext)
+  const { user, isAuthorizing } = useAuthState()
+  const dispatch = useAuthDispatch()
 
   console.log('user in Main admin', user);
 
   const handleSignOut = async () => {
-    dispatch({ type: 'FETCHING' })
+    dispatch(startAuthorizing())
     try {
       await logout()
-      dispatch({ type: 'SUCCESS' })
-      history.push(LOGIN)
+      dispatch(setUnauthorized())
     } catch (error) {
-      dispatch({ type: 'ERROR' })
       notifyError(DB_ERROR_MSG)
     }
   }
@@ -125,45 +121,11 @@ export const AdminContainer = () => {
         dispatch({ type: 'ERROR' })
         notifyError(DB_ERROR_MSG)
       }}
-    // } else {
-    //   history.push({ pathname: LOGIN })
-    // }
-  }, [user])
-
-  // useEffect(() => {
-  //   const listener = auth.onAuthStateChanged(async () => {
-  //     if (user) {
-  //       try {
-  //         dispatch({ type: 'FETCHING' })
-  //         const params: Params = {
-  //           name: 'bookings',
-  //           order: { name: 'date', type: 'asc' },
-  //           limit: 20
-  //         }
-  //         const { order, name, limit } = params
-  //         db.collection(name)
-  //           .orderBy(order.name, order.type)
-  //           .limit(limit)
-  //           .onSnapshot(querySnapshot => {
-  //             const booking = getData(querySnapshot)
-  //             const allBookings: any = formatBookings(booking)
-  //             setBookings(allBookings)
-  //             dispatch({ type: 'SUCCESS' })
-  //           })
-  //       } catch (error) {
-  //         dispatch({ type: 'ERROR' })
-  //         notifyError(DB_ERROR_MSG)
-  //       }
-  //     } else {
-  //       history.push({ pathname: LOGIN })
-  //     }
-  //   })
-  //   return () => listener()
-  // }, [history, user])
+  }, [dispatch, user])
 
   return (
     <Admin
-      isLoading={state.isLoading}
+      isLoading={isAuthorizing}
       handleSignOut={handleSignOut}
       bookingHandlers={{ handleBookingChange, handleBookingUpdate, handleDateChange, handleBookingDelete }}
       toggleOptions={toggleOptions}
