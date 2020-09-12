@@ -7,7 +7,6 @@ export const START_AUTHORIZING = 'auth/start-authorizing'
 export const LOGOUT = 'auth/logout'
 
 export const authReducer = (state: Auth, action: AuthAction) => {
-  console.log('authReducer', state, action)
   switch (action.type) {
     case START_AUTHORIZING:
       return { ...state, isAuthorizing: true }
@@ -15,12 +14,12 @@ export const authReducer = (state: Auth, action: AuthAction) => {
       return { ...state, user: action.user, isAuthorizing: false, isAuthorized: true }
     case SET_UNAUTHORIZED:
       return {
-        ...state, user: undefined, isAuthorizing: false,
+        ...state, user: null, isAuthorizing: false,
         isAuthorized: false,
       }
     case LOGOUT:
       return {
-        user: undefined,
+        user: null,
         isAuthorizing: false,
         isAuthorized: false,
       }

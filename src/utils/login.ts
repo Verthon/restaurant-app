@@ -2,10 +2,10 @@ import { firebase } from '../firebase'
 
 export const auth = firebase.auth()
 
-export const login = async (email: string, password: string) => {
+export const doLogin = async (email: string, password: string) => {
   return await firebase.auth().signInWithEmailAndPassword(email, password)
 }
 
-export const logout = async () => {
+export const doLogout = async () => {
   return await firebase.auth().signOut()
 }

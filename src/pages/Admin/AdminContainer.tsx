@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 
 import { Admin } from './Admin'
-import { logout } from '../../utils/login'
+import { doLogout } from '../../utils/login'
 import db from '../../firebase'
 import { getData } from '../../utils/database'
 import { formatBookings } from '../../utils/helpers'
@@ -11,7 +11,7 @@ import { BookingModalContext } from '../../context/bookingModal/BookingModalCont
 import { Params } from './Admin.types'
 import { useAuthState } from '../../hooks/useAuthState/useAuthState'
 import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
-import { setUnauthorized, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
+import { logout, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
 
 export const AdminContainer = () => {
   const bookingModal = useContext(BookingModalContext)
@@ -21,13 +21,11 @@ export const AdminContainer = () => {
   const { user, isAuthorizing } = useAuthState()
   const dispatch = useAuthDispatch()
 
-  console.log('user in Main admin', user);
-
   const handleSignOut = async () => {
     dispatch(startAuthorizing())
     try {
-      await logout()
-      dispatch(setUnauthorized())
+      await doLogout()
+      dispatch(logout())
     } catch (error) {
       notifyError(DB_ERROR_MSG)
     }
@@ -67,7 +65,6 @@ export const AdminContainer = () => {
   ) => {
     const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
-    console.info('data to be submitted', submitBooking)
     db.collection('bookings')
       .doc(bookingDetail.id)
       .update({

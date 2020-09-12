@@ -9,6 +9,10 @@
     margin: 0.5rem 0;
   }
 
+  &__error {
+    color: $color-error;
+  }
+
   &__btn {
     margin: 2rem 0;
   }

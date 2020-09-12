@@ -7,7 +7,6 @@ import * as ROUTES from '../../constants/routes'
 
 export const AuthorizedRoute = (props: AuthorizedRouteProps) => {
   const { user } = useAuthState();
-  console.log('user in Authrized route', user);
   if (user) {
     return <Route {...props} />;
   }

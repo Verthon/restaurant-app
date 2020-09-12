@@ -3,18 +3,13 @@ import { motion } from 'framer-motion'
 import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
 import { Navbar } from '../../ui/Navbar/Navbar'
-import { Spinner } from '../../ui/Spinner/Spinner'
 import { Button } from '../../ui/Button/Button'
 import { Label } from '../../ui/Label/Label'
 import { Input } from '../../ui/Input/Input'
 import { Props } from './Login.types'
 
-export const Login: React.FC<Props> = ({ onSubmit, handleChange, error, loading }) => {
+export const Login = ({ onSubmit, handleChange, error }: Props) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
-
-  if (loading) {
-    return <Spinner />
-  }
 
   return (
     <>
@@ -31,7 +26,7 @@ export const Login: React.FC<Props> = ({ onSubmit, handleChange, error, loading 
               Password
             </Label>
             <Input type="password" name="password" required onChange={handleChange} />
-            <p className="login__error">{error ? 'error.message' : null}</p>
+            <p className="login__error">{error ? 'Error occurred with login, please try again' : null}</p>
             <Button data-testid="login-submit" type="submit" className="btn--dark">
               Login
             </Button>
