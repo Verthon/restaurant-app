@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
+import NProgress from 'nprogress'
 
 import { Admin } from './Admin'
 import { doLogout } from '../../utils/login'
@@ -23,11 +24,14 @@ export const AdminContainer = () => {
 
   const handleSignOut = async () => {
     dispatch(startAuthorizing())
+    NProgress.start()
     try {
       await doLogout()
       dispatch(logout())
+      NProgress.done()
     } catch (error) {
       notifyError(DB_ERROR_MSG)
+      NProgress.done()
     }
   }
 
