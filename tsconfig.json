@@ -22,7 +22,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "rootDirs": ["src", "stories"]
+    "rootDirs": ["src", "stories"],
+    "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src/**/*",
