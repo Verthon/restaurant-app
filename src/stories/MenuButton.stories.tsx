@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import { MenuButton } from '../ui/MenuButton/MenuButton'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'MenuButton',
   component: MenuButton
 }
+
+export default Component
 
 const mobileWrapper = {
   maxWidth: '320px',

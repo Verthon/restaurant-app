@@ -4,10 +4,12 @@ import { MemoryRouter } from 'react-router-dom'
 import { NotFound } from '../ui/NotFound/NotFound'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'NotFound',
   component: NotFound
 }
+
+export default Component
 
 export const DefaultModal = () => (
   <MemoryRouter>

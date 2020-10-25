@@ -3,10 +3,12 @@ import React from 'react'
 import { BookingsTable } from '../ui/BookingsTable/BookingsTable'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'BookingsTable',
   component: BookingsTable
 }
+
+export default Component
 
 const toggleOptions = () => console.log('test')
 
