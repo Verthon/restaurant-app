@@ -3,10 +3,12 @@ import React from 'react'
 import { MenuList } from '../ui/MenuList/MenuList'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'MenuList',
   component: MenuList
 }
+
+export default Component
 
 const category = {
   id: 'Appetizers',

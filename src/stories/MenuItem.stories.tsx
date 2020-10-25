@@ -3,10 +3,12 @@ import React from 'react'
 import { MenuItem } from '../ui/MenuItem/MenuItem'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'MenuItem',
   component: MenuItem
 }
+
+export default Component
 
 const menu = {
   name: 'Moussaka',

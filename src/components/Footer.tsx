@@ -5,11 +5,6 @@ interface OpeningTimes {
   time: string | null
 }
 
-interface Hours {
-  weekdays: OpeningTimes | null,
-  weekend: OpeningTimes | null
-}
-
 type RestaurantLocation = {
   address: string,
   city: string,

@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import {screen} from '@testing-library/react'
-import Login from './Login'
+import {Login} from './Login'
 import { UserContext } from '../../components/UserContext'
 import { renderWithRouter } from '../../utils/testUtils'
 

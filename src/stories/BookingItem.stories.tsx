@@ -3,10 +3,12 @@ import React from 'react'
 import { BookingItem } from '../ui/BookingItem/BookingItem'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'BookingItem',
   component: BookingItem
 }
+
+export default Component
 
 const props = {
   name: 'Bill Gates',
