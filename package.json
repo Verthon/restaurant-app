@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://alkinoos-taverna.netlify.com",
   "dependencies": {
+    "@apollo/client": "^3.2.5",
     "@brainhubeu/react-carousel": "^1.16.2",
     "@testing-library/dom": "^7.5.7",
     "@testing-library/jest-dom": "^5.8.0",
@@ -27,6 +28,7 @@
     "firebase": "^5.5.9",
     "firebase-admin": "^8.12.1",
     "framer-motion": "^1.11.0",
+    "graphql": "^15.4.0",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-datepicker": "^2.15.0",

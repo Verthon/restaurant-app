@@ -3,7 +3,7 @@ import 'aos/dist/aos.css'
 import AOS from 'aos'
 
 import { Home } from './Home'
-import { getCollection, getData } from '../../utils/database'
+import { getData } from '../../utils/database'
 import { Testimonial } from '../../ui/Testimonial/Testimonial'
 import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
 
@@ -15,14 +15,14 @@ export const HomeContainer = () => {
   useEffect(() => {
     AOS.init({ duration: 750 })
   }, [])
-  useEffect(() => {
-    getCollection('testimonials').then(snapshot => {
-      const data = getData(snapshot)
-      const allTestimonials = data.map(testimonial => {
-        return <Testimonial key={testimonial.id} author={testimonial.data.author} text={testimonial.data.text} />
-      })
-      setSlides(allTestimonials)
-    })
-  }, [])
+  // useEffect(() => {
+  //   getCollection('testimonials').then(snapshot => {
+  //     const data = getData(snapshot)
+  //     const allTestimonials = data.map(testimonial => {
+  //       return <Testimonial key={testimonial.id} author={testimonial.data.author} text={testimonial.data.text} />
+  //     })
+  //     setSlides(allTestimonials)
+  //   })
+  // }, [])
   return <Home company={{hours, location, contact}} dotState={{dotValue, setDotValue}} slidesState={{slides, setSlides}}/>
 }

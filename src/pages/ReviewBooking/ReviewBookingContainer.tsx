@@ -5,7 +5,6 @@ import emailjs from 'emailjs-com'
 
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext';
 import { ReviewBooking } from './ReviewBooking';
-import db from '../../firebase';
 import { notifyError } from '../../utils/notification';
 import { DB_ERROR_MSG } from '../../constants/toastMessages';
 import { Booking } from '../../context/bookingData/BookingDataContext.types';
@@ -56,21 +55,6 @@ export const ReviewBookingContainer = () => {
     e.preventDefault()
     if (bookingData?.setBooking) {
     const submitBooking = { ...bookingData?.booking }
-    db.collection('bookings')
-      .add({
-        email: submitBooking.email,
-        name: submitBooking.name,
-        date: submitBooking.date,
-        guests: submitBooking.guests,
-        confirmed: true,
-        createdAt: dayjs().format('YYYY-MM-DD HH:mm')
-      })
-      .then(() => {
-        handleEmailSend()
-      })
-      .catch(err => {
-        notifyError(DB_ERROR_MSG)
-      })
     }
   }
 

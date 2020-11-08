@@ -1,17 +1,44 @@
+import { gql, useQuery } from '@apollo/client'
 import { useState, useEffect } from 'react'
-import { formatMenu } from '../../utils/helpers'
-import { useGetCollection } from '../useGetCollection'
+import { formatMenu } from '../../utils/menu'
 import { MenuState } from './useMenuData.types'
 
+const GET_MENU = gql`
+  query getMenu {
+    products {
+      price
+      name
+      id
+      description
+      category_id
+      category {
+        id
+        name
+      }
+    }
+  }
+`
+
 export const useMenuData = () => {
-  const [menu, setMenu] = useState<MenuState>([])
-  const { isLoading, data } = useGetCollection({ collectionName: 'menu' })
+  const { data, loading, error, refetch } = useQuery(GET_MENU)
+  const INITIAL_STATE = {
+    appetizers: [],
+    desserts: [],
+    mains: [],
+    salads: [],
+    drinks: []
+  }
+  const [menu, setMenu] = useState<MenuState>(INITIAL_STATE)
   useEffect(() => {
-    const formattedMenu: MenuState = formatMenu(data)
-    setMenu(formattedMenu)
-  }, [data, isLoading])
+    if(data?.products) {
+      const formattedMenu = formatMenu(data?.products)
+      setMenu(formattedMenu)
+    }
+  }, [data, loading])
   return {
     menu,
-    isLoading
+    loading,
+    error,
+    refetch
   }
 }

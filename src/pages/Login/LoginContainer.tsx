@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import NProgress from 'nprogress'
 
 import * as ROUTES from '../../constants/routes'
-import { doLogin } from '../../utils/login'
+//import { doLogin } from '../../utils/login'
 import { Login } from './Login'
 import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
 import { setAuthorized, setUnauthorized, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
@@ -25,7 +25,9 @@ export const LoginContainer = () => {
     dispatch(startAuthorizing())
     NProgress.start()
     try {
-      const payload = await doLogin(form.email, form.password)
+      const payload = {
+        user: 'test'
+      }
       if(payload && payload.user) {
         dispatch(setAuthorized(payload.user as any))
         NProgress.done()

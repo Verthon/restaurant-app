@@ -6,6 +6,8 @@ node_modules
 dist
 build
 .env
+.env.local
+endpoint.ts
 
 ### macOS ###
 *.DS_Store
