@@ -14,7 +14,7 @@ import { Props } from './Admin.types'
 
 export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookingHandlers, toggleOptions, bookingModal }: Props) => {
   const adminLinks = [{ name: 'Bookings', link: 'bookings' }, { name: 'Storage', link: 'storage' }]
-  const {handleBookingChange, handleDateChange, handleBookingUpdate, handleBookingDelete} = bookingHandlers
+  //const {handleBookingChange, handleDateChange, handleBookingUpdate, handleBookingDelete} = bookingHandlers
   if (isLoading) {
     return (
       <>
@@ -48,7 +48,7 @@ export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookin
           Choose an action for <strong>{bookingDetail.name}</strong> booking.
         </p>
         <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
-        <div className="admin__form-container">
+        {/* <div className="admin__form-container">
           <Form
             booking={bookingDetail.data}
             config={DATEPICKER_CONFIG}
@@ -68,7 +68,7 @@ export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookin
           <Button className="btn--light" type="submit" onClick={handleBookingUpdate}>
             Update
           </Button>
-        </footer>
+        </footer> */}
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
         <Button className="btn--light" size="btn--small" onClick={handleSignOut}>

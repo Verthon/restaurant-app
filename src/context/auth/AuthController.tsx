@@ -1,7 +1,5 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useReducer } from 'react'
 
-import { firebase } from '../../firebase';
-import { setAuthorized } from './authActionCreators/authActionCreator';
 import { AuthDispatchContext, AuthStateContext } from './AuthContext'
 import { authReducer } from './authReducer/AuthReducer';
 
@@ -11,13 +9,6 @@ export const AuthController = ({ children }: { children: React.ReactNode }) => {
     isAuthorizing: false,
     user: null,
   });
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(setAuthorized(user));
-      }
-    })
-  }, [state.isAuthorizing])
 
   return <AuthDispatchContext.Provider value={dispatch}>
     <AuthStateContext.Provider value={state}>

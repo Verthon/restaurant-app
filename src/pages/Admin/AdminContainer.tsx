@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import NProgress from 'nprogress'
 
 import { Admin } from './Admin'
-import { doLogout } from '../../utils/login'
-import db from '../../firebase'
 import { getData } from '../../utils/database'
 import { formatBookings } from '../../utils/helpers'
 import { notifyError, notifyInfo } from '../../utils/notification'
@@ -26,7 +24,6 @@ export const AdminContainer = () => {
     dispatch(startAuthorizing())
     NProgress.start()
     try {
-      await doLogout()
       dispatch(logout())
       NProgress.done()
     } catch (error) {
@@ -64,71 +61,10 @@ export const AdminContainer = () => {
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
-  const handleBookingUpdate = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
-  ) => {
-    const submitBooking: any = { ...bookingDetail }
-    e.preventDefault()
-    db.collection('bookings')
-      .doc(bookingDetail.id)
-      .update({
-        email: submitBooking.data.email,
-        name: submitBooking.data.name,
-        date: submitBooking.data.date,
-        guests: submitBooking.data.guests,
-        confirmed: true
-      })
-      .then(() => {
-        bookingModal?.toggleModal()
-        notifyInfo('Booking updated successfully.')
-      })
-      .catch(err => {
-        console.error('Error occurred while saving to database: ', err)
-        notifyError(DB_ERROR_MSG)
-      })
-  }
-
-  const handleBookingDelete = () => {
-    db.collection('bookings')
-      .doc(bookingDetail.id)
-      .delete()
-      .then(() => {
-        bookingModal?.toggleModal()
-        notifyInfo(`Removed ${bookingDetail.data.name} booking successfully.`)
-      })
-      .catch(err => console.error('error in handleDelete', err))
-  }
-
-  useEffect(() => {
-    if (user) {
-      try {
-        dispatch({ type: 'FETCHING' })
-        const params: Params = {
-          name: 'bookings',
-          order: { name: 'date', type: 'asc' },
-          limit: 20
-        }
-        const { order, name, limit } = params
-        db.collection(name)
-          .orderBy(order.name, order.type)
-          .limit(limit)
-          .onSnapshot(querySnapshot => {
-            const booking = getData(querySnapshot)
-            const allBookings: any = formatBookings(booking)
-            setBookings(allBookings)
-            dispatch({ type: 'SUCCESS' })
-          })
-      } catch (error) {
-        dispatch({ type: 'ERROR' })
-        notifyError(DB_ERROR_MSG)
-      }}
-  }, [dispatch, user])
-
   return (
     <Admin
       isLoading={isAuthorizing}
       handleSignOut={handleSignOut}
-      bookingHandlers={{ handleBookingChange, handleBookingUpdate, handleDateChange, handleBookingDelete }}
       toggleOptions={toggleOptions}
       bookings={bookings}
       bookingDetail={bookingDetail}

@@ -1,28 +1,16 @@
 import React from 'react'
+import { Product } from '../../pages/Menu/Menu.types'
 
 import { MenuItem } from '../MenuItem/MenuItem'
 
-type MenuData = {
-  description: string
-  name: string
-  price: number
-}
-
-type MenuCategory = {
-  id: string
-  data: {
-    data: Array<MenuData>
-  }
-}
-
 type Props = {
-  category: MenuCategory
+  category: Product[]
 }
 
 export const MenuList = ({category}: Props) => {
   return (
     <ul className="menu__list">
-      {category.data.data && category.data.data.map((item: MenuData) => <MenuItem key={item.name} menu={item} />)}
+      {category && category.map((product) => <MenuItem key={product.id} menu={product} />)}
     </ul>
   )
 }
