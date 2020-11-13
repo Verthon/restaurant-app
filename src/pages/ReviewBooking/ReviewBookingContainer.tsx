@@ -12,19 +12,15 @@ import { Booking } from '../../context/bookingData/BookingDataContext.types';
 import { convertToDate } from '../../utils/helpers';
 
 const ADD_BOOKING = gql`
-  mutation AddBooking($booking){
-    insert_booking(objects: $booking) {
+  mutation ($email: String!, $name: String!, $date: date!, $guests: smallint!) {
+    insert_bookings(objects: {email: $email, name: $name, date: $date, guests: $guests}) {
       affected_rows
-      returning {
-        id
-        created_at
-      }
     }
   }
 `
 
 export const ReviewBookingContainer = () => {
-  const [insert_booking] = useMutation(ADD_BOOKING)
+  const [addBooking, { loading: mutationLoading, error: mutationError }] = useMutation(ADD_BOOKING)
   const bookingData = useContext(BookingDataContext)
   const [show, toggleModal] = useState(false)
   const [editable, setEditable] = useState(false)
@@ -69,7 +65,7 @@ export const ReviewBookingContainer = () => {
     e.preventDefault()
     if (bookingData?.setBooking) {
       const submitBooking = { ...bookingData?.booking }
-      await insert_booking({ variables: {booking: submitBooking} })
+      await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
       handleEmailSend()
       console.log('submitBooking', JSON.stringify(submitBooking));
     }

@@ -8,6 +8,7 @@ build
 .env
 .env.local
 endpoint.ts
+schema.json
 
 ### macOS ###
 *.DS_Store
