@@ -9,11 +9,12 @@ import { Modal } from '../../ui/Modal/Modal'
 import Form from '../../components/Form'
 import about from '../../assets/images/landing/brooke-lark-about.jpg'
 import { Button } from '../../ui/Button/Button'
+import { LoadingIndicator } from '../../ui/LoadingIndicator/LoadingIndicator'
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext'
 import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
 import { Props } from './ReviewBooking.types'
 
-export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Props) => {
+export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, loading}: Props) => {
   const bookingData = useContext(BookingDataContext)
   const company = useContext(CompanyDataContext)
   const { location, contact } = company.companyData
@@ -59,7 +60,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Pro
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
             <form onSubmit={onSubmit}>
-              <Button className="btn--light" type="submit">
+              <Button className="btn--light" type="submit" loading={true}>
                 Confirm Booking
               </Button>
             </form>
@@ -116,7 +117,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Pro
               <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </Button>
-              <Button className="btn--light" type="submit">
+              <Button className="btn--light" type="submit" loading={true}>
                 Confirm Booking
               </Button>
             </form>
