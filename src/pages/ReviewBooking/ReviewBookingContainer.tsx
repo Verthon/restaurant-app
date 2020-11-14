@@ -50,7 +50,7 @@ export const ReviewBookingContainer = () => {
       date: dayjs(bookingData?.booking.date).format('DD-MMMM-YYYY HH:mm')
     }
     try {
-      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_DEV_EMAIL_API_KEY)
+      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_EMAIL_API_KEY)
       handleModal()
     } catch (error) {
       notifyError(EMAIL_SENDING_FAIL_MSG)

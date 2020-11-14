@@ -60,7 +60,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, load
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
             <form onSubmit={onSubmit}>
-              <Button className="btn--light" type="submit" loading={true}>
+              <Button className="btn--light" type="submit" loading={loading}>
                 Confirm Booking
               </Button>
             </form>
@@ -117,7 +117,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, load
               <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </Button>
-              <Button className="btn--light" type="submit" loading={true}>
+              <Button className="btn--light" type="submit" loading={loading}>
                 Confirm Booking
               </Button>
             </form>
