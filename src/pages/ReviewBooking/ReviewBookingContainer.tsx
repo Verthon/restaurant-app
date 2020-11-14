@@ -19,6 +19,14 @@ const ADD_BOOKING = gql`
   }
 `
 
+const UPDATE_BOOKING = gql`
+  mutation () {
+    update_bookings() {
+      affected_rows
+    }
+  }
+`
+
 export const ReviewBookingContainer = () => {
   const [addBooking, { loading: mutationLoading, error: mutationError }] = useMutation(ADD_BOOKING)
   const bookingData = useContext(BookingDataContext)
