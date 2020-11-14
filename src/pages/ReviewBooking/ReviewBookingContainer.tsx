@@ -7,7 +7,7 @@ import emailjs from 'emailjs-com'
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext';
 import { ReviewBooking } from './ReviewBooking';
 import { notifyError } from '../../utils/notification';
-import { DB_ERROR_MSG } from '../../constants/toastMessages';
+import { BOOKING_DUPLICATED_EMAIL_MSG, EMAIL_SENDING_FAIL_MSG } from '../../constants/toastMessages';
 import { Booking } from '../../context/bookingData/BookingDataContext.types';
 import { convertToDate } from '../../utils/helpers';
 
@@ -42,37 +42,40 @@ export const ReviewBookingContainer = () => {
     }
   }, [])
 
-  const handleEmailSend = () => {
+  const handleEmailSend = async () => {
     const templateParams = {
       name: bookingData?.booking.name,
       email: bookingData?.booking.email,
       guests: bookingData?.booking.guests,
       date: dayjs(bookingData?.booking.date).format('DD-MMMM-YYYY HH:mm')
     }
-    emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_DEV_EMAIL_API_KEY).then(
-      response => {
-        handleModal()
-      },
-      err => {
-        console.error('FAILED...', err)
-      }
-    )
+    try {
+      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_DEV_EMAIL_API_KEY)
+      handleModal()
+    } catch (error) {
+      notifyError(EMAIL_SENDING_FAIL_MSG)
+    }
   }
 
   const handleBookingSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
-    e.preventDefault()
-    if (bookingData?.setBooking) {
-      const submitBooking = { ...bookingData?.booking }
-      await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
-      handleEmailSend()
-      console.log('submitBooking', JSON.stringify(submitBooking));
+    try {
+      e.preventDefault()
+
+      if (bookingData?.setBooking) {
+        const submitBooking = { ...bookingData?.booking }
+        await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
+        console.log('statuses', mutationLoading, mutationError)
+        handleEmailSend()
+      }
+    } catch(error) {
+      notifyError(BOOKING_DUPLICATED_EMAIL_MSG)
     }
   }
 
   if (bookingData?.handleBookingChange && bookingData.handleDateChange) {
-    return <ReviewBooking onSubmit={handleBookingSubmit} bookingData={{...bookingData}} show={show} editable={editable} handleBookingEdit={handleBookingEdit} />
+    return <ReviewBooking onSubmit={handleBookingSubmit} bookingData={{...bookingData}} show={show} editable={editable} handleBookingEdit={handleBookingEdit} loading={mutationLoading}/>
   }
 
   return (

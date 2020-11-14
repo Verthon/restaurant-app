@@ -5,5 +5,6 @@ export type Props = {
   bookingData: BookingData,
   editable: boolean,
   show: boolean,
-  handleBookingEdit: () => void
+  handleBookingEdit: () => void,
+  loading: boolean,
 }
