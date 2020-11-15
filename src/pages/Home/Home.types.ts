@@ -32,5 +32,10 @@ export type Props = {
     slides: JSX.Element[],
     setSlides: React.Dispatch<React.SetStateAction<JSX.Element[]>>
   }
+}
 
+export type TestimonialType = {
+  author: string,
+  id: number,
+  text: string
 }
