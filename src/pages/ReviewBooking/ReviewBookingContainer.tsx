@@ -15,23 +15,28 @@ const ADD_BOOKING = gql`
   mutation ($email: String!, $name: String!, $date: date!, $guests: smallint!) {
     insert_bookings(objects: {email: $email, name: $name, date: $date, guests: $guests}) {
       affected_rows
+      returning {
+        id
+      }
     }
   }
 `
 
 const UPDATE_BOOKING = gql`
-  mutation () {
-    update_bookings() {
+  mutation ($id: Int!) {
+    update_bookings(_set: {confirmed: true}, where: {id: {_eq: $id}}) {
       affected_rows
     }
   }
 `
 
 export const ReviewBookingContainer = () => {
-  const [addBooking, { loading: mutationLoading, error: mutationError }] = useMutation(ADD_BOOKING)
+  const [addBooking, { loading: mutationLoading, error: mutationError }] = useMutation(ADD_BOOKING, {ignoreResults: false})
+  const [updateBooking] = useMutation(UPDATE_BOOKING)
   const bookingData = useContext(BookingDataContext)
   const [show, toggleModal] = useState(false)
   const [editable, setEditable] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
 
   const handleModal = () => {
     toggleModal(true)
@@ -50,7 +55,8 @@ export const ReviewBookingContainer = () => {
     }
   }, [])
 
-  const handleEmailSend = async () => {
+  const handleEmailSend = async (id: number) => {
+    setEmailLoading(true)
     const templateParams = {
       name: bookingData?.booking.name,
       email: bookingData?.booking.email,
@@ -59,8 +65,11 @@ export const ReviewBookingContainer = () => {
     }
     try {
       await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.REACT_APP_EMAIL_API_KEY)
+      await updateBooking({ variables: {id: id} })
+      setEmailLoading(false)
       handleModal()
     } catch (error) {
+      setEmailLoading(false)
       notifyError(EMAIL_SENDING_FAIL_MSG)
     }
   }
@@ -73,9 +82,10 @@ export const ReviewBookingContainer = () => {
 
       if (bookingData?.setBooking) {
         const submitBooking = { ...bookingData?.booking }
-        await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
-        console.log('statuses', mutationLoading, mutationError)
-        handleEmailSend()
+        const result = await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
+        console.log('error', mutationError)
+        const id = result.data.insert_bookings.returning[0].id;
+        await handleEmailSend(id);
       }
     } catch(error) {
       notifyError(BOOKING_DUPLICATED_EMAIL_MSG)
@@ -83,7 +93,7 @@ export const ReviewBookingContainer = () => {
   }
 
   if (bookingData?.handleBookingChange && bookingData.handleDateChange) {
-    return <ReviewBooking onSubmit={handleBookingSubmit} bookingData={{...bookingData}} show={show} editable={editable} handleBookingEdit={handleBookingEdit} loading={mutationLoading}/>
+    return <ReviewBooking onSubmit={handleBookingSubmit} bookingData={{...bookingData}} show={show} editable={editable} handleBookingEdit={handleBookingEdit} loading={mutationLoading || emailLoading}/>
   }
 
   return (
