@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 import NProgress from 'nprogress'
 
 import * as ROUTES from '../../constants/routes'
-//import { doLogin } from '../../utils/login'
 import { Login } from './Login'
-import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
-import { setAuthorized, setUnauthorized, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
-import { useAuthState } from '../../hooks/useAuthState/useAuthState'
 
 export const LoginContainer = () => {
+
+  const { user, loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  console.log('isAuthenticated', isAuthenticated)
   const [error, setError] = useState<boolean>(false)
 
   const [form, setInputs] = useState({
@@ -17,30 +17,24 @@ export const LoginContainer = () => {
     password: ''
   })
 
-  const { isAuthorizing, isAuthorized } = useAuthState();
-  const dispatch = useAuthDispatch(); 
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(startAuthorizing())
     NProgress.start()
     try {
-      const payload = {
-        user: 'test'
-      }
-      if(payload && payload.user) {
-        dispatch(setAuthorized(payload.user as any))
+      await loginWithRedirect()
+      console.log('user', user)
+      if(user) {
         NProgress.done()
+
         return true
       }
     } catch (error) {
       console.log('error in login', error)
-      dispatch(setUnauthorized())
       NProgress.done()
       setError(true)
     }
     NProgress.done()
-    dispatch(setUnauthorized())
+ 
     return false
   }
 
@@ -51,9 +45,9 @@ export const LoginContainer = () => {
     })
   }
 
-  if (isAuthorized) {
+  if (isAuthenticated) {
     return <Redirect to={ROUTES.ADMIN} />
   }
 
-  return <Login onSubmit={handleSubmit} handleChange={handleInputChange} error={error} loading={isAuthorizing} />
+  return <Login onSubmit={handleSubmit} handleChange={handleInputChange} error={error} loading={isLoading} />
 }

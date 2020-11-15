@@ -7,24 +7,18 @@ import { formatBookings } from '../../utils/helpers'
 import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
-import { Params } from './Admin.types'
-import { useAuthState } from '../../hooks/useAuthState/useAuthState'
-import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
-import { logout, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export const AdminContainer = () => {
+  const { logout, isAuthenticated, isLoading } = useAuth0();
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
   const [bookings, setBookings] = useState([])
 
-  const { user, isAuthorizing } = useAuthState()
-  const dispatch = useAuthDispatch()
-
   const handleSignOut = async () => {
-    dispatch(startAuthorizing())
     NProgress.start()
     try {
-      dispatch(logout())
+      logout()
       NProgress.done()
     } catch (error) {
       notifyError(DB_ERROR_MSG)
@@ -63,7 +57,7 @@ export const AdminContainer = () => {
 
   return (
     <Admin
-      isLoading={isAuthorizing}
+      isLoading={isLoading}
       handleSignOut={handleSignOut}
       toggleOptions={toggleOptions}
       bookings={bookings}

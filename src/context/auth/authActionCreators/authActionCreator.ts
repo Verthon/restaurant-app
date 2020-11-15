@@ -1,8 +1,7 @@
-import { User } from "firebase";
 import { SET_AUTHORIZED, SET_UNAUTHORIZED, LOGOUT, START_AUTHORIZING } from "../authReducer/AuthReducer";
 import { AuthAction } from "../authReducer/AuthReducer.types";
 
-export const setAuthorized: (user: User) => AuthAction = user => {
+export const setAuthorized: (user: any) => AuthAction = user => {
   return ({
     type: SET_AUTHORIZED,
     user,
