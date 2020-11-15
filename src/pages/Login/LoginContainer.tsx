@@ -9,7 +9,6 @@ import { Login } from './Login'
 export const LoginContainer = () => {
 
   const { user, loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
-  console.log('isAuthenticated', isAuthenticated)
   const [error, setError] = useState<boolean>(false)
 
   const [form, setInputs] = useState({
@@ -22,14 +21,12 @@ export const LoginContainer = () => {
     NProgress.start()
     try {
       await loginWithRedirect()
-      console.log('user', user)
       if(user) {
         NProgress.done()
 
         return true
       }
     } catch (error) {
-      console.log('error in login', error)
       NProgress.done()
       setError(true)
     }
