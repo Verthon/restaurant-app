@@ -1,30 +1,47 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { gql, useQuery, useMutation } from '@apollo/client'
 import NProgress from 'nprogress'
 
 import { Admin } from './Admin'
-import { getData } from '../../utils/database'
 import { formatBookings } from '../../utils/helpers'
 import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
-import { Params } from './Admin.types'
-import { useAuthState } from '../../hooks/useAuthState/useAuthState'
-import { useAuthDispatch } from '../../hooks/useAuthDispatch/useAuthDispatch'
-import { logout, startAuthorizing } from '../../context/auth/authActionCreators/authActionCreator'
+import { useAuth0 } from '@auth0/auth0-react'
+
+const GET_BOOKINGS = gql`
+  query GetTestimonials {
+    bookings(limit: 20, order_by: {date: desc}) {
+      id
+      name
+      guests
+      email
+      date
+      confirmed
+    }
+  }
+`
+
+const UPDATE_BOOKING = gql`
+  mutation ($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: date!) {
+    update_bookings(_set: {confirmed: $confirmed, name: $name, email: $email, date: $date}, where: {id: {_eq: $id}}) {
+      affected_rows
+    }
+  }
+`
 
 export const AdminContainer = () => {
+  const { logout, isLoading } = useAuth0()
+  const { data, loading } = useQuery(GET_BOOKINGS)
+  const [updateBooking, { loading: updateBookingLoading }] = useMutation(UPDATE_BOOKING, {ignoreResults: false})
   const bookingModal = useContext(BookingModalContext)
-  const [bookingDetail, setBookingDetail] = useState<any>({ id: '', data: {} })
+  const [bookingDetail, setBookingDetail] = useState<any>({ id: '', name: '', date: '', email: '', confirmed: false  })
   const [bookings, setBookings] = useState([])
 
-  const { user, isAuthorizing } = useAuthState()
-  const dispatch = useAuthDispatch()
-
   const handleSignOut = async () => {
-    dispatch(startAuthorizing())
     NProgress.start()
     try {
-      dispatch(logout())
+      logout()
       NProgress.done()
     } catch (error) {
       notifyError(DB_ERROR_MSG)
@@ -35,6 +52,24 @@ export const AdminContainer = () => {
   const toggleOptions = (booking: any) => {
     setBookingDetail(booking)
     bookingModal?.toggleModal();
+  }
+
+  const handleBookingUpdate = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
+  ) => {
+    const submitBooking: any = { ...bookingDetail }
+    e.preventDefault()
+    try {
+      await updateBooking({ variables: {id: bookingDetail.id, email: submitBooking.data.email,
+        name: submitBooking.data.name,
+        date: submitBooking.data.date,
+        guests: submitBooking.data.guests,
+        confirmed: true} })
+      bookingModal?.toggleModal()
+      notifyInfo('Booking updated successfully.')
+    } catch(error) {
+      notifyError(DB_ERROR_MSG)
+    }
   }
 
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,14 +96,27 @@ export const AdminContainer = () => {
     setBookingDetail({ ...bookingDetail, data: updatedBookingData })
   }
 
+  const handleBookingDelete = async () => {
+    console.log('handleDelete')
+  }
+
+  useEffect(() => {
+      if(data) {
+        const bookings = data.bookings;
+        console.log('bookings', bookings);
+        setBookings(bookings)
+      }
+  }, [data])
+
   return (
     <Admin
-      isLoading={isAuthorizing}
+      isLoading={isLoading || loading || updateBookingLoading}
       handleSignOut={handleSignOut}
       toggleOptions={toggleOptions}
       bookings={bookings}
       bookingDetail={bookingDetail}
       bookingModal={{ showModal: bookingModal?.showModal, toggleModal: bookingModal?.toggleModal }}
+      bookingHandlers={{ handleBookingChange, handleBookingUpdate, handleDateChange, handleBookingDelete }}
     />
   )
 }
