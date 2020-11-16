@@ -35,7 +35,7 @@ export const AdminContainer = () => {
   const { data, loading } = useQuery(GET_BOOKINGS)
   const [updateBooking, { loading: updateBookingLoading }] = useMutation(UPDATE_BOOKING, {ignoreResults: false})
   const bookingModal = useContext(BookingModalContext)
-  const [bookingDetail, setBookingDetail] = useState<any>({ id: '', name: '', date: '', email: '', confirmed: false  })
+  const [bookingDetail, setBookingDetail] = useState<any>({})
   const [bookings, setBookings] = useState([])
 
   const handleSignOut = async () => {
@@ -50,6 +50,7 @@ export const AdminContainer = () => {
   }
 
   const toggleOptions = (booking: any) => {
+    console.log(booking)
     setBookingDetail(booking)
     bookingModal?.toggleModal();
   }
@@ -60,10 +61,10 @@ export const AdminContainer = () => {
     const submitBooking: any = { ...bookingDetail }
     e.preventDefault()
     try {
-      await updateBooking({ variables: {id: bookingDetail.id, email: submitBooking.data.email,
-        name: submitBooking.data.name,
-        date: submitBooking.data.date,
-        guests: submitBooking.data.guests,
+      await updateBooking({ variables: {id: bookingDetail.id, email: submitBooking.email,
+        name: submitBooking.name,
+        date: submitBooking.date,
+        guests: submitBooking.guests,
         confirmed: true} })
       bookingModal?.toggleModal()
       notifyInfo('Booking updated successfully.')
@@ -74,26 +75,27 @@ export const AdminContainer = () => {
 
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedBookingData = {
-      ...bookingDetail.data,
+      ...bookingDetail,
       [e.target.name]: e.target.value
     }
     if (e.target.name === 'guests') {
       const updatedBookingData = {
-        ...bookingDetail.data,
+        ...bookingDetail,
         [e.target.name]: parseInt(e.target.value)
       }
       setBookingDetail({
         ...bookingDetail,
-        data: updatedBookingData
+        updatedBookingData
       })
       return
     }
-    setBookingDetail({ ...bookingDetail, data: updatedBookingData })
+    setBookingDetail({ ...bookingDetail, updatedBookingData })
   }
 
   const handleDateChange = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
-    const updatedBookingData = { ...bookingDetail.data, date: e }
-    setBookingDetail({ ...bookingDetail, data: updatedBookingData })
+    console.log(_date)
+    const updatedBookingData = { ...bookingDetail, date: e }
+    setBookingDetail({ ...bookingDetail, updatedBookingData })
   }
 
   const handleBookingDelete = async () => {

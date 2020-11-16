@@ -12,7 +12,7 @@ import { Booking } from '../../context/bookingData/BookingDataContext.types';
 import { convertToDate } from '../../utils/helpers';
 
 const ADD_BOOKING = gql`
-  mutation ($email: String!, $name: String!, $date: date!, $guests: smallint!) {
+  mutation ($email: String!, $name: String!, $date: timestamp!, $guests: smallint!) {
     insert_bookings(objects: {email: $email, name: $name, date: $date, guests: $guests}) {
       affected_rows
       returning {

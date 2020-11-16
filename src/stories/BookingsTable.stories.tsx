@@ -14,7 +14,7 @@ const toggleOptions = () => console.log('test')
 
 const bookings = [
   {
-    id: 'gates',
+    id: 1,
     confirmed: false,
     name: 'Bill Gates',
     email: 'gates@test.pl',
@@ -22,7 +22,7 @@ const bookings = [
     guests: 1
   },
   {
-    id: 'trump',
+    id: 2,
     confirmed: false,
     name: 'Donald Trump',
     email: 'trump@test.pl',
