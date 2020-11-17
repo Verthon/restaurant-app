@@ -36,6 +36,7 @@ export const AdminContainer = () => {
   const [updateBooking, { loading: updateBookingLoading }] = useMutation(UPDATE_BOOKING, {ignoreResults: false})
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({})
+  console.log('bookingDetail', bookingDetail)
   const [bookings, setBookings] = useState([])
 
   const handleSignOut = async () => {
@@ -59,6 +60,7 @@ export const AdminContainer = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
     const submitBooking: any = { ...bookingDetail }
+    console.log('submitBooking', submitBooking)
     e.preventDefault()
     try {
       await updateBooking({ variables: {id: bookingDetail.id, email: submitBooking.email,
@@ -94,7 +96,7 @@ export const AdminContainer = () => {
 
   const handleDateChange = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
     console.log(_date)
-    const updatedBookingData = { ...bookingDetail, date: e }
+    const updatedBookingData = { ...bookingDetail, date: _date }
     setBookingDetail({ ...bookingDetail, updatedBookingData })
   }
 
@@ -104,8 +106,7 @@ export const AdminContainer = () => {
 
   useEffect(() => {
       if(data) {
-        const bookings = data.bookings;
-        console.log('bookings', bookings);
+        const bookings = data.bookings.map((booking: any) => ({...booking, date: new Date(booking.date)}));
         setBookings(bookings)
       }
   }, [data])
