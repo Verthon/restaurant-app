@@ -30,10 +30,22 @@ const UPDATE_BOOKING = gql`
   }
 `
 
+const DELETE_BOOKING = gql`
+  mutation ($bookingId: Int) {
+    delete_bookings(where: {id:{_eq:$bookingId}}) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`
+
 export const AdminContainer = () => {
   const { logout, isLoading } = useAuth0()
   const { data, loading } = useQuery(GET_BOOKINGS)
   const [updateBooking, { loading: updateBookingLoading }] = useMutation(UPDATE_BOOKING, {ignoreResults: false})
+  const [ deleteBooking, { loading: deleteBookingLoading }] = useMutation(DELETE_BOOKING)
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({})
   console.log('bookingDetail', bookingDetail)
@@ -51,7 +63,6 @@ export const AdminContainer = () => {
   }
 
   const toggleOptions = (booking: any) => {
-    console.log(booking)
     setBookingDetail(booking)
     bookingModal?.toggleModal();
   }
@@ -59,9 +70,9 @@ export const AdminContainer = () => {
   const handleBookingUpdate = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
+    e.preventDefault()
     const submitBooking: any = { ...bookingDetail }
     console.log('submitBooking', submitBooking)
-    e.preventDefault()
     try {
       await updateBooking({ variables: {id: bookingDetail.id, email: submitBooking.email,
         name: submitBooking.name,
@@ -94,21 +105,26 @@ export const AdminContainer = () => {
     setBookingDetail({ ...bookingDetail, updatedBookingData })
   }
 
-  const handleDateChange = (_date: Date, e: React.SyntheticEvent<any, Event>) => {
-    console.log(_date)
-    const updatedBookingData = { ...bookingDetail, date: _date }
+  const handleDateChange = (date: Date) => {
+    console.log(date)
+    const updatedBookingData = { ...bookingDetail, date }
     setBookingDetail({ ...bookingDetail, updatedBookingData })
+    console.log('updatedBookingData', updatedBookingData)
   }
 
   const handleBookingDelete = async () => {
-    console.log('handleDelete')
+    try {
+      deleteBooking({variables: { bookingId: bookingDetail.id}})
+    } catch(error) {
+      notifyError(DB_ERROR_MSG)
+    }
   }
 
   useEffect(() => {
-      if(data) {
-        const bookings = data.bookings.map((booking: any) => ({...booking, date: new Date(booking.date)}));
-        setBookings(bookings)
-      }
+    if(data) {
+      const bookings = data.bookings.map((booking: any) => ({...booking, date: new Date(booking.date)}));
+      setBookings(bookings)
+    }
   }, [data])
 
   return (
