@@ -3,7 +3,6 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 import NProgress from 'nprogress'
 
 import { Admin } from './Admin'
-import { formatBookings } from '../../utils/helpers'
 import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
@@ -23,8 +22,8 @@ const GET_BOOKINGS = gql`
 `
 
 const UPDATE_BOOKING = gql`
-  mutation ($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: date!) {
-    update_bookings(_set: {confirmed: $confirmed, name: $name, email: $email, date: $date}, where: {id: {_eq: $id}}) {
+  mutation ($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: timestamptz!, $guests: smallint!) {
+    update_bookings(_set: {confirmed: $confirmed, name: $name, email: $email, date: $date, guests: $guests}, where: {id: {_eq: $id}}) {
       affected_rows
     }
   }
@@ -48,7 +47,6 @@ export const AdminContainer = () => {
   const [ deleteBooking, { loading: deleteBookingLoading }] = useMutation(DELETE_BOOKING)
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({})
-  console.log('bookingDetail', bookingDetail)
   const [bookings, setBookings] = useState([])
 
   const handleSignOut = async () => {
@@ -98,17 +96,16 @@ export const AdminContainer = () => {
       }
       setBookingDetail({
         ...bookingDetail,
-        updatedBookingData
+        ...updatedBookingData
       })
       return
     }
-    setBookingDetail({ ...bookingDetail, updatedBookingData })
+    setBookingDetail({ ...bookingDetail, ...updatedBookingData })
   }
 
   const handleDateChange = (date: Date) => {
-    console.log(date)
     const updatedBookingData = { ...bookingDetail, date }
-    setBookingDetail({ ...bookingDetail, updatedBookingData })
+    setBookingDetail({ ...bookingDetail, ...updatedBookingData })
     console.log('updatedBookingData', updatedBookingData)
   }
 
@@ -129,7 +126,7 @@ export const AdminContainer = () => {
 
   return (
     <Admin
-      isLoading={isLoading || loading || updateBookingLoading}
+      isLoading={isLoading || loading || updateBookingLoading || deleteBookingLoading}
       handleSignOut={handleSignOut}
       toggleOptions={toggleOptions}
       bookings={bookings}

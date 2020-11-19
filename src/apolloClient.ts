@@ -1,12 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-import { HASURA_ENDPOINT, HASURA_GRAPHQL_ADMIN_SECRET } from './endpoint'
-
 const client = new ApolloClient({
   cache: new InMemoryCache({}),
-  uri: HASURA_ENDPOINT,
+  uri: process.env.REACT_APP_HASURA_ENDPOINT,
   headers: {
-    'X-hasura-admin-secret': HASURA_GRAPHQL_ADMIN_SECRET
+    'X-hasura-admin-secret': process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET!
   }
 });
 
