@@ -1,10 +1,6 @@
 import { createContext } from 'react'
-import { useCompanyDataState } from '../../hooks/useCompanyData/useCompanyData.types'
-import { COMPANY_DATA } from '../../constants/companyData'
+import { COMPANY_DATA_TYPE } from '../../constants/companyData'
+import { State } from './CompanyDataContext.types'
 
-export const contextData: useCompanyDataState = {
-  companyData: COMPANY_DATA,
-  setCompanyData: () => {}
-}
-
-export const CompanyDataContext = createContext(contextData)
+export const CompanyDataStateContext = createContext<State | undefined>(undefined)
+export const CompanyDataDispatchContext = createContext<React.Dispatch<React.SetStateAction<COMPANY_DATA_TYPE>> | undefined>(undefined)

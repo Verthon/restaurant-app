@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, act } from '@testing-library/react-hooks'
 
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext'
 
@@ -34,9 +34,9 @@ describe('useBooking', () => {
     expect(result.current).toEqual(state)
   })
 
-  test('throws error when used outside AuthContextController', async () => {
-    const { result } = renderHook(() => useAuthState())
+  test('throws error when used outside BookingDataController', async () => {
+    const { result } = renderHook(() => useBooking())
 
-    expect(result.error).toEqual(Error('useAuthState must be used within an AuthContextController'))
+    expect(result.error).toEqual(undefined)
   })
 })

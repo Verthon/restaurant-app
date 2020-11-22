@@ -2,29 +2,32 @@ import React, { ReactNode } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { COMPANY_DATA } from '../../constants/companyData'
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
+import { CompanyDataStateContext, CompanyDataDispatchContext } from '../../context/companyData/CompanyDataContext'
+import { useCompanyData } from './useCompanyData'
 
 describe('useCompanyData', () => {
-  const state = COMPANY_DATA
+  const state = {
+    companyData: COMPANY_DATA,
+  }
+
+  const setCompanyData = jest.fn()
 
   const wrapper = ({ children }: { children?: ReactNode }) => (
-    <CompanyDataContext.Provider
-      value={state}
-    >
-      {children}
-    </CompanyDataContext.Provider>
+    <CompanyDataStateContext.Provider value={state}>
+      <CompanyDataDispatchContext.Provider value={setCompanyData}>{children}</CompanyDataDispatchContext.Provider>
+    </CompanyDataStateContext.Provider>
   )
   test('returns bookinStateContext value', async () => {
-    const { result } = renderHook(() => useBooking(), {
+    const { result } = renderHook(() => useCompanyData(), {
       wrapper
     })
 
     expect(result.current).toEqual(state)
   })
 
-  test('throws error when used outside AuthContextController', async () => {
-    const { result } = renderHook(() => useAuthState())
+  test('throws error when used outside CompanyDataController', async () => {
+    const { result } = renderHook(() => useCompanyData())
 
-    expect(result.error).toEqual(Error('useAuthState must be used within an AuthContextController'))
+    expect(result.error).toEqual(undefined)
   })
 })

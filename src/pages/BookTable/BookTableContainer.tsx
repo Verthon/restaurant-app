@@ -3,15 +3,15 @@ import React, { useContext, useEffect, useCallback } from 'react';
 
 import {BookTable} from './BookTable';
 import { useHistory } from 'react-router-dom';
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext';
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext';
 import { loadLocalStorageState, isDateCurrent, transformLocalStorageData, saveLocalStorageState } from '../../utils/helpers';
 import { REVIEW_BOOKING } from '../../constants/routes';
+import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData';
 
 export const BookTableContainer = () => {
   const history = useHistory()
-  const company = useContext(CompanyDataContext)
-  const { hours, location, contact } = company.companyData
+  const { companyData } = useCompanyData()
+  const { hours, location, contact } = companyData
   const bookingData = useContext(BookingDataContext)
 
   const handleLocalStorageRead = useCallback((data: any) => {

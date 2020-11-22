@@ -6,7 +6,7 @@ import { gql, useQuery } from '@apollo/client'
 import { Home } from './Home'
 import { TestimonialType } from './Home.types'
 import { Testimonial } from '../../ui/Testimonial/Testimonial'
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
+import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData'
 
 const GET_TESTIMONIALS = gql`
   query GetTestimonials {
@@ -19,9 +19,9 @@ const GET_TESTIMONIALS = gql`
 `
 
 export const HomeContainer = () => {
-  const company = useContext(CompanyDataContext)
+  const { companyData } = useCompanyData()
   const { data } = useQuery(GET_TESTIMONIALS)
-  const { hours, location, contact } = company.companyData
+  const { hours, location, contact } = companyData
   const [dotValue, setDotValue] = useState(0)
   const [slides, setSlides] = useState<JSX.Element[]>([])
 
