@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'aos/dist/aos.css'
 import AOS from 'aos'
 import { gql, useQuery } from '@apollo/client'
@@ -8,7 +8,7 @@ import { TestimonialType } from './Home.types'
 import { Testimonial } from '../../ui/Testimonial/Testimonial'
 import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData'
 
-const GET_TESTIMONIALS = gql`
+export const GET_TESTIMONIALS = gql`
   query GetTestimonials {
     testimonials {
       id
