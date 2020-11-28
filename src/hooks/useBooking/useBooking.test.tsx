@@ -1,21 +1,23 @@
-import { renderHook, act } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react-hooks'
 import MockDate from 'mockdate'
-
-import { getTomorrowsDate } from '../../utils/helpers'
 import { useBooking } from './useBooking'
 
+MockDate.set('2000-12-12')
+
+jest.mock('../../utils/helpers', () => ({
+  __esModule: true, // this property makes it work
+  getTomorrowsDate: jest.fn(() => new Date("2000-12-12")),
+}));
 
 describe('useBooking', () => {
-  MockDate.set('2000-12-12')
   const state = {
-    booking: {
       date: new Date(),
       guests: 1,
       name: "",
       email: "",
       confirmed: false
-    }
   }
+
   test('returns bookinStateContext value', async () => {
     const { result } = renderHook(() => useBooking())
 
