@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 import { MockedProvider } from '@apollo/client/testing'
 
@@ -70,7 +70,6 @@ function getHookWrapper(mocks = []) {
 
 describe('useMenuData', () => {
   test('returns default state when loading data from GraphQl', async () => {
-    const wrapper = ({ children }: { children: ReactNode }) => <MockedProvider>{children}</MockedProvider>
 
     const { result, waitForNextUpdate } = getHookWrapper([menuQueryMock])
 
