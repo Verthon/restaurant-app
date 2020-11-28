@@ -7,7 +7,7 @@ import { Menu } from './Menu'
 import { renderWithRouter } from '../../utils/testUtils'
 
 test('Should render Menu component', () => {
-  const { container } = renderWithRouter(<Menu />)
+  const { container } = renderWithRouter(<Menu isLoading={true} />)
   const text = 'Menu'
   expect(container.innerHTML).toMatch(text)
 })

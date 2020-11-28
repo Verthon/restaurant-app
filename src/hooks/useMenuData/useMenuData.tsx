@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { formatMenu } from '../../utils/menu'
 import { MenuState } from './useMenuData.types'
 
-const GET_MENU = gql`
+export const GET_MENU = gql`
   query getMenu {
     products {
       price

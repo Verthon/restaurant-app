@@ -20,6 +20,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-router-hash-link": "^1.2.1",
+    "@types/testing-library__jest-dom": "^5.9.5",
     "animate.css": "^4.1.0",
     "aos": "^3.0.0-beta.6",
     "dayjs": "^1.8.26",
@@ -28,6 +29,7 @@
     "emailjs-com": "^2.4.1",
     "framer-motion": "^1.11.0",
     "graphql": "^15.4.0",
+    "mockdate": "^3.0.2",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-datepicker": "^3.3.0",
@@ -97,7 +99,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
     ],
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
@@ -112,6 +116,17 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    }
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
   }
 }
