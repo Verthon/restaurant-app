@@ -9,7 +9,7 @@ import { BookingModalContext } from '../../context/bookingModal/BookingModalCont
 import { useAuth0 } from '@auth0/auth0-react'
 
 const GET_BOOKINGS = gql`
-  query GetTestimonials {
+  query GetBookings {
     bookings(limit: 20, order_by: {date: desc}) {
       id
       name
@@ -36,6 +36,19 @@ const DELETE_BOOKING = gql`
       returning {
         id
       }
+    }
+  }
+`
+
+const SUBSCRIBE_BOOKINGS = gql`
+  query SubscribeBookings {
+    bookings(limit: 20, order_by: {date: desc}) {
+      id
+      name
+      guests
+      email
+      date
+      confirmed
     }
   }
 `

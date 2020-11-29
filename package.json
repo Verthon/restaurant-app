@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://alkinoos-taverna.netlify.com",
   "dependencies": {
-    "@apollo/client": "^3.2.5",
+    "@apollo/client": "^3.2.9",
     "@auth0/auth0-react": "^1.2.0",
     "@brainhubeu/react-carousel": "^1.16.2",
     "@testing-library/dom": "^7.5.7",
@@ -38,6 +38,7 @@
     "react-router-hash-link": "^1.2.1",
     "react-scripts": "4.0.0",
     "react-toastify": "^5.5.0",
+    "subscriptions-transport-ws": "^0.9.18",
     "typescript": "^3.9.6"
   },
   "scripts": {
