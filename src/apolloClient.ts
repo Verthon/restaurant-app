@@ -12,10 +12,10 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/`,
+  uri: process.env.REACT_APP_HASURA_ENDPOINT_WEB_SOCKET!,
   options: {
-    reconnect: true
-  }
+    reconnect: true,
+  },
 });
 
 // The split function takes three parameters:
