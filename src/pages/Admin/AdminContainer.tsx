@@ -40,18 +40,18 @@ const DELETE_BOOKING = gql`
   }
 `
 
-const SUBSCRIBE_BOOKINGS = gql`
-  query SubscribeBookings {
-    bookings(limit: 20, order_by: {date: desc}) {
-      id
-      name
-      guests
-      email
-      date
-      confirmed
-    }
-  }
-`
+// const SUBSCRIBE_BOOKINGS = gql`
+//   query SubscribeBookings {
+//     bookings(limit: 20, order_by: {date: desc}) {
+//       id
+//       name
+//       guests
+//       email
+//       date
+//       confirmed
+//     }
+//   }
+// `
 
 export const AdminContainer = () => {
   const { logout, isLoading } = useAuth0()

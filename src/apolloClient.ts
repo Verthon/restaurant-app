@@ -8,13 +8,17 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 export const HASURA_GRAPHQL_ENGINE_HOSTNAME = 'realtime-poll.demo.hasura.app';
 
 const httpLink = new HttpLink({
-  uri: process.env.REACT_APP_HASURA_ENDPOINT
+  uri: process.env.REACT_APP_HASURA_ENDPOINT,
+  headers: {
+    'X-hasura-admin-secret': process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET
+  }
 });
 
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_HASURA_ENDPOINT_WEB_SOCKET!,
   options: {
     reconnect: true,
+    connectionParams: { headers: { 'X-hasura-admin-secret': process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET } }
   },
 });
 
