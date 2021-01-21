@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { gql, useQuery, useMutation } from '@apollo/client'
+import { gql, useMutation, useSubscription } from '@apollo/client'
 import NProgress from 'nprogress'
 
 import { Admin } from './Admin'
@@ -7,19 +7,6 @@ import { notifyError, notifyInfo } from '../../utils/notification'
 import { DB_ERROR_MSG } from '../../constants/toastMessages'
 import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
 import { useAuth0 } from '@auth0/auth0-react'
-
-const GET_BOOKINGS = gql`
-  query GetTestimonials {
-    bookings(limit: 20, order_by: {date: desc}) {
-      id
-      name
-      guests
-      email
-      date
-      confirmed
-    }
-  }
-`
 
 const UPDATE_BOOKING = gql`
   mutation ($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: timestamptz!, $guests: smallint!) {
@@ -40,11 +27,26 @@ const DELETE_BOOKING = gql`
   }
 `
 
+const SUBSCRIBE_BOOKINGS = gql`
+  query SubscribeBookings {
+    bookings(limit: 20, order_by: {date: desc}) {
+      id
+      name
+      guests
+      email
+      date
+      confirmed
+    }
+  }
+`
+
 export const AdminContainer = () => {
   const { logout, isLoading } = useAuth0()
-  const { data, loading } = useQuery(GET_BOOKINGS)
   const [updateBooking, { loading: updateBookingLoading }] = useMutation(UPDATE_BOOKING, {ignoreResults: false})
-  const [ deleteBooking, { loading: deleteBookingLoading }] = useMutation(DELETE_BOOKING)
+  const [deleteBooking, { loading: deleteBookingLoading }] = useMutation(DELETE_BOOKING)
+  const { data, loading } = useSubscription(
+    SUBSCRIBE_BOOKINGS,
+  );
   const bookingModal = useContext(BookingModalContext)
   const [bookingDetail, setBookingDetail] = useState<any>({})
   const [bookings, setBookings] = useState([])
