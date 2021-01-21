@@ -24,7 +24,6 @@ const Form: React.FC<Props> = ({
   handleChange,
   handleDate,
   handleSubmit,
-  handleBookingChange,
   booking,
   config,
   submitBtn,

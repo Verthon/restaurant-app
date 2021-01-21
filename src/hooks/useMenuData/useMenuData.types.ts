@@ -1,14 +1,9 @@
-export type MenuData = {
-  description: string
-  name: string
-  price: number
-}
+import { Product } from "../../pages/Menu/Menu.types"
 
-export type MenuCategory = {
-  id: string
-  data: {
-    data: Array<MenuData>
-  }
+export type MenuState = {
+  appetizers: Product[];
+  desserts: Product[];
+  mains: Product[];
+  salads: Product[];
+  drinks: Product[];
 }
-
-export type MenuState = Array<MenuCategory>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 import { Navbar } from '../../ui/Navbar/Navbar'
@@ -6,12 +6,13 @@ import Form from '../../components/Form'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
 import { DATEPICKER_CONFIG, pageTransitions } from '../../constants/config'
 
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
+
 import { Props } from './BookTable.types'
+import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData'
 
 export const BookTable = ({bookingData, onSubmit}: Props) => {
-  const company = useContext(CompanyDataContext)
-  const { hours, location, contact } = company.companyData
+  const { companyData } = useCompanyData()
+  const { hours, location, contact } = companyData
   const links = [
     { name: 'Menu', link: 'menu' },
     { name: 'Book Table', link: 'book-table' }

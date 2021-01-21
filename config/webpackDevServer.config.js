@@ -1,3 +1,4 @@
+// eslint-disable-next-line strict
 'use strict'
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
