@@ -21,6 +21,7 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 .env
+.env.local
 
 # Windows shortcuts
 *.lnk
