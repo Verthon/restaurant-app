@@ -10,13 +10,13 @@ import Form from '../../components/Form'
 import about from '../../assets/images/landing/brooke-lark-about.jpg'
 import { Button } from '../../ui/Button/Button'
 import { BookingDataContext } from '../../context/bookingData/BookingDataContext'
-import { CompanyDataContext } from '../../context/companyData/CompanyDataContext'
 import { Props } from './ReviewBooking.types'
+import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData'
 
-export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Props) => {
+export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, loading}: Props) => {
   const bookingData = useContext(BookingDataContext)
-  const company = useContext(CompanyDataContext)
-  const { location, contact } = company.companyData
+  const { companyData } = useCompanyData()
+  const { location, contact } = companyData
 
   const { address, code, city, province } = location
   const { name, guests, date, email } = bookingData?.booking || {}
@@ -59,7 +59,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Pro
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
             <form onSubmit={onSubmit}>
-              <Button className="btn--light" type="submit">
+              <Button className="btn--light" type="submit" loading={loading}>
                 Confirm Booking
               </Button>
             </form>
@@ -116,7 +116,7 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit}: Pro
               <Button className="btn--transparent" type="button" onClick={handleBookingEdit}>
                 Edit booking
               </Button>
-              <Button className="btn--light" type="submit">
+              <Button className="btn--light" type="submit" loading={loading}>
                 Confirm Booking
               </Button>
             </form>

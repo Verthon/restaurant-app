@@ -1,8 +1,13 @@
 import React from 'react'
-import { CompanyDataContext } from './CompanyDataContext'
+import { CompanyDataStateContext, CompanyDataDispatchContext } from './CompanyDataContext'
 import { useCompanyData } from '../../hooks/useCompanyData/useCompanyData'
+import { Props } from './CompanyDataContext.types'
 
-export const CompanyDataController = ({ children }: { children: React.ReactNode }) => {
+export const CompanyDataController = ({ children }: Props) => {
   const { companyData, setCompanyData } = useCompanyData()
-  return <CompanyDataContext.Provider value={{ companyData, setCompanyData }}>{children}</CompanyDataContext.Provider>
+  return (
+    <CompanyDataStateContext.Provider value={{ companyData }}>
+      <CompanyDataDispatchContext.Provider value={setCompanyData}>{children}</CompanyDataDispatchContext.Provider>
+    </CompanyDataStateContext.Provider>
+  )
 }

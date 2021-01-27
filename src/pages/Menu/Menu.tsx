@@ -6,31 +6,18 @@ import { Spinner } from '../../ui/Spinner/Spinner'
 import { pageTransitions } from '../../constants/config'
 import { Props } from './Menu.types'
 
-type MenuData = {
-  description: string
-  name: string
-  price: number
-}
-
-type MenuCategory = {
-  id: string
-  data: {
-    data: Array<MenuData>
-  }
-}
-
-export const Menu = ({ menu, isLoading }: Props) => {
+export const Menu = ({ appetizers, desserts, mains, salads, isLoading, refetch, error }: Props) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
 
   if (isLoading) {
     return (
       <>
-      <Navbar links={links} hashlink={false} />
-      <section id="menu" className="section menu container">
-        <h1 className="heading heading--center menu__heading">Menu</h1>
-        <Spinner />
-      </section>
-    </>
+        <Navbar links={links} hashlink={false} />
+        <section id="menu" className="section menu container">
+          <h1 className="heading heading--center menu__heading">Menu</h1>
+          <Spinner />
+        </section>
+      </>
     )
   }
 
@@ -39,17 +26,36 @@ export const Menu = ({ menu, isLoading }: Props) => {
       <Navbar links={links} hashlink={false} />
       <section id="menu" className="section menu container">
         <h1 className="heading heading--center menu__heading">Menu</h1>
+        {error ? (
+          <button className="btn" onClick={() => refetch()}>
+            Refetch menu
+          </button>
+        ) : null}
         <div className="row">
-          {menu.map((category: MenuCategory) => {
-            return (
-              <motion.div className="section__col" initial="exit" animate="enter" exit="exit" key={category.id}>
-                <motion.article className="menu__container" variants={pageTransitions}>
-                  <h2 className="menu__title">{category.id}</h2>
-                  <MenuList category={category}/>
-                </motion.article>
-              </motion.div>
-            )
-          })}
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Appetizers</h2>
+              <MenuList category={appetizers} />
+            </motion.article>
+          </motion.div>
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Desserts</h2>
+              <MenuList category={desserts} />
+            </motion.article>
+          </motion.div>
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Mains</h2>
+              <MenuList category={mains} />
+            </motion.article>
+          </motion.div>
+          <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
+            <motion.article className="menu__container" variants={pageTransitions}>
+              <h2 className="menu__title">Salads</h2>
+              <MenuList category={salads} />
+            </motion.article>
+          </motion.div>
         </div>
       </section>
     </>

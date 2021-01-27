@@ -47,3 +47,13 @@ picture {
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+#nprogress .bar {
+  background: hsl(45.9,64.6%,52.4%);
+  height: 6px;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: hsl(45.9,64.6%,52.4%);
+  border-left-color: hsl(45.9,64.6%,52.4%);
+}

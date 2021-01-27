@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "node_modules",
-    "types": ["cypress"],
+    "types": ["cypress", "jest"],
     "target": "es5",
     "module": "esnext",
     "lib": [
@@ -22,14 +22,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "rootDirs": ["src", "stories"]
+    "rootDirs": ["src", "stories"],
+    "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src/**/*",
-    "**/*.ts"
+    "**/*.ts",
+    "tests"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "config"
   ]
 }

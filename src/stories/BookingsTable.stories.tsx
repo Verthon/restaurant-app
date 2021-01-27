@@ -3,33 +3,31 @@ import React from 'react'
 import { BookingsTable } from '../ui/BookingsTable/BookingsTable'
 import '../scss/index.scss'
 
-export default {
+const Component = {
   title: 'BookingsTable',
   component: BookingsTable
 }
+
+export default Component
 
 const toggleOptions = () => console.log('test')
 
 const bookings = [
   {
-    id: 'gates',
-    data: {
-      confirmed: false,
-      name: 'Bill Gates',
-      email: 'gates@test.pl',
-      date: new Date(),
-      guests: 1
-    }
+    id: 1,
+    confirmed: false,
+    name: 'Bill Gates',
+    email: 'gates@test.pl',
+    date: new Date(),
+    guests: 1
   },
   {
-    id: 'trump',
-    data: {
-      confirmed: false,
-      name: 'Donald Trump',
-      email: 'trump@test.pl',
-      date: new Date(),
-      guests: 2
-    }
+    id: 2,
+    confirmed: false,
+    name: 'Donald Trump',
+    email: 'trump@test.pl',
+    date: new Date(),
+    guests: 2
   }
 ]
 

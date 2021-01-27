@@ -4,11 +4,9 @@ import { pageTransitions } from '../../constants/config'
 import bookTableImg from '../../assets/images/brooke-lark-book-table.jpg'
 import { Navbar } from '../../ui/Navbar/Navbar'
 import { Button } from '../../ui/Button/Button'
-import { Label } from '../../ui/Label/Label'
-import { Input } from '../../ui/Input/Input'
 import { Props } from './Login.types'
 
-export const Login = ({ onSubmit, handleChange, error }: Props) => {
+export const Login = ({ onSubmit }: Props) => {
   const links = [{ name: 'Menu', link: 'menu' }, { name: 'Book Table', link: 'book-table' }]
 
   return (
@@ -18,15 +16,15 @@ export const Login = ({ onSubmit, handleChange, error }: Props) => {
         <div className="section section__col login">
           <h1 className="heading">Login</h1>
           <form method="POST" className="login__form" onSubmit={onSubmit}>
-            <Label htmlFor="email" className="label login__label">
-              Email
-            </Label>
-            <Input type="email" name="email" required onChange={handleChange} />
-            <Label htmlFor="email" className="label login__label">
-              Password
-            </Label>
-            <Input type="password" name="password" required onChange={handleChange} />
-            <p className="login__error">{error ? 'Error occurred with login, please try again' : null}</p>
+            <div className="login__content">
+              <p className="login__desc">
+                Login process is simplified to redirect to <strong>Auth0</strong> where you will be asked to provide
+                email/password combination.
+              </p>
+              <p className="login__desc">
+                after the successfull login process you will be redirected automatically to the staff dashboard
+              </p>
+            </div>
             <Button data-testid="login-submit" type="submit" className="btn--dark">
               Login
             </Button>

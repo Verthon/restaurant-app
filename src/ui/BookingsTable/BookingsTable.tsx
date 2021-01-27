@@ -4,19 +4,17 @@ import { pageTransitions } from '../../constants/config'
 import { BookingItem } from '../BookingItem/BookingItem'
 
 type Booking = {
-  id: string,
-  data: {
-    confirmed: boolean
-    date: Date
-    email: string
-    guests: number
-    name: string
-  }
+  id: number
+  confirmed: boolean
+  date: Date
+  email: string
+  guests: number
+  name: string
 }
 
 type Props = {
   bookings: Booking[]
-  toggleOptions: (booking: any) => void
+  toggleOptions: (booking: Booking) => void
 }
 
 export const BookingsTable = ({ bookings, toggleOptions }: Props) => {
@@ -38,10 +36,10 @@ export const BookingsTable = ({ bookings, toggleOptions }: Props) => {
             return (
               <BookingItem
                 key={item.id}
-                name={item.data.name}
-                email={item.data.email}
-                guests={item.data.guests}
-                date={item.data.date}
+                name={item.name}
+                email={item.email}
+                guests={item.guests}
+                date={item.date}
                 toggleOptions={() => toggleOptions(item)}
               />
             )

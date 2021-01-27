@@ -50,7 +50,7 @@ export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookin
         <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
         <div className="admin__form-container">
           <Form
-            booking={bookingDetail.data}
+            booking={bookingDetail}
             config={DATEPICKER_CONFIG}
             handleChange={handleBookingChange}
             handleDate={handleDateChange}
@@ -62,16 +62,16 @@ export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookin
           />
         </div>
         <footer className="modal-book__footer">
-          <Button className="btn--transparent" type="button" onClick={handleBookingDelete}>
+          <Button className="btn--transparent" type="button" onClick={handleBookingDelete} loading={isLoading}>
             Delete
           </Button>
-          <Button className="btn--light" type="submit" onClick={handleBookingUpdate}>
+          <Button className="btn--light" type="submit" onClick={handleBookingUpdate} loading={isLoading}>
             Update
           </Button>
         </footer>
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
-        <Button className="btn--light" size="btn--small" onClick={handleSignOut}>
+        <Button className="btn--light" size="btn--small" onClick={handleSignOut} >
           Sign out
         </Button>
       </Navbar>

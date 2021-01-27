@@ -1,5 +1,3 @@
-import { Order } from "../../utils/database"
-
 export type Props = {
   isLoading: boolean
   handleSignOut: () => Promise<void>
@@ -16,10 +14,4 @@ export type Props = {
     showModal: boolean | undefined
     toggleModal: (() => void)
   }
-}
-
-export type Params = {
-  name: string
-  order: Order
-  limit: number
 }
