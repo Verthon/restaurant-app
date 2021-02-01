@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
 
@@ -21,8 +21,8 @@ export type Props = {
 export const Button: React.FC<Props> = ({ className, size, children, link, href, type, onClick, loading }) => {
   if (link) {
     return (
-      <Link className={`btn ${className ? className : ''} ${size ? size : ''}`} to={link}>
-        {children}
+      <Link href={link}>
+        <a className={`btn ${className ? className : ''} ${size ? size : ''}`}>{children}</a>
       </Link>
     )
   }

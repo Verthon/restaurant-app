@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ToastContainer } from 'react-toastify'
 import { motion } from 'framer-motion'
 
@@ -30,17 +30,17 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, load
           <p className="text modal-book__text">Thank you for booking reservation.</p>
           <p className="text modal-book__text">We will contact you shortly.</p>
           <footer className="modal-book__footer">
-            <Link className="btn btn--transparent" to="/">
-              Back to Home
+            <Link href="/">
+              <a className="btn btn--transparent">Back to Home</a>
             </Link>
-            <Link className="btn btn--light" to="/menu">
-              See Menu
+            <Link href="/menu">
+              <a className="btn btn--light">See Menu</a>
             </Link>
           </footer>
         </Modal>
         <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
-            <Link to="/">{contact.name}</Link>
+            <Link href="/"><a>{contact.name}</a></Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <h2 className="review-booking__title">Edit booking</h2>
@@ -76,18 +76,18 @@ export const ReviewBooking = ({onSubmit, editable, show, handleBookingEdit, load
         <p className="text modal-book__text">Thank you for booking reservation.</p>
         <p className="text modal-book__text">We will contact you shortly.</p>
         <footer className="modal-book__footer">
-          <Link className="btn btn--transparent" to="/">
-            Back to Home
+          <Link href="/">
+            <a className="btn btn--transparent">Back to Home</a>
           </Link>
-          <Link className="btn btn--light" to="/menu">
-            See Menu
+          <Link href="/menu">
+            <a className="btn btn--light">See Menu</a>
           </Link>
         </footer>
       </Modal>
       <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
         <motion.article className="review-booking__content" variants={pageTransitions}>
           <h1 className="heading review-booking__company">
-            <Link to="/">{contact.name}</Link>
+            <Link href="/"><a>{contact.name}</a></Link>
           </h1>
           <img className="review-booking__image" src={about} alt="" />
           <p className="review-booking__client">

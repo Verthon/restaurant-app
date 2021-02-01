@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import { gql, useMutation, useSubscription } from '@apollo/client'
 import NProgress from 'nprogress'
 
-import { Admin } from './Admin'
-import { notifyError, notifyInfo } from '../../utils/notification'
-import { DB_ERROR_MSG } from '../../constants/toastMessages'
-import { BookingModalContext } from '../../context/bookingModal/BookingModalContext'
+import { Admin } from './admin'
+import { notifyError, notifyInfo } from '../utils/notification'
+import { DB_ERROR_MSG } from '../constants/toastMessages'
+import { BookingModalContext } from '../context/bookingModal/BookingModalContext'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const UPDATE_BOOKING = gql`

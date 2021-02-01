@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": "node_modules",
-    "types": ["cypress", "jest"],
+    "types": [
+      "cypress",
+      "jest"
+    ],
     "target": "es5",
     "module": "esnext",
     "lib": [
@@ -21,9 +24,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "rootDirs": ["src", "stories"],
-    "noFallthroughCasesInSwitch": true,
+    "jsx": "preserve",
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*",

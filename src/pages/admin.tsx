@@ -2,15 +2,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
 
-import { Navbar } from '../../ui/Navbar/Navbar'
-import { BookingsTable } from '../../ui/BookingsTable/BookingsTable'
-import { Spinner } from '../../ui/Spinner/Spinner'
-import { Modal } from '../../ui/Modal/Modal'
-import Form from '../../components/Form'
-import { DATEPICKER_CONFIG } from '../../constants/config'
+import { Navbar } from '../ui/Navbar/Navbar'
+import { BookingsTable } from '../ui/BookingsTable/BookingsTable'
+import { Spinner } from '../ui/Spinner/Spinner'
+import { Modal } from '../ui/Modal/Modal'
+import Form from '../components/Form'
+import { DATEPICKER_CONFIG } from '../constants/config'
 import { ReactComponent as CloseIcon } from '../../assets/icons/close.svg'
-import { Button } from '../../ui/Button/Button'
-import { Props } from './Admin.types'
+import { Button } from '../ui/Button/Button'
+import { Props } from './admin/admin.types'
 
 export const Admin = ({isLoading, handleSignOut, bookingDetail, bookings, bookingHandlers, toggleOptions, bookingModal }: Props) => {
   const adminLinks = [{ name: 'Bookings', link: 'bookings' }, { name: 'Storage', link: 'storage' }]
