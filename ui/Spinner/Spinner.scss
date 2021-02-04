@@ -1,0 +1,20 @@
+// @keyframes bounce {
+//   0%   { transform: translateY(0); }
+//   50%  { transform: translateY(-50px); }
+//   100% { transform: translateY(0); } 
+// }
+
+// .animate__animated .animate__bounce {
+//   animation-name: bounce;
+//   animation-iteration-count: infinite;
+// }
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__logo {
+    max-width: 100px;
+    height: 50vh;
+  }
+}
