@@ -1,5 +1,5 @@
-@import '../../scss/mixins';
-@import '../../scss/variables';
+@import '../../styles/mixins';
+@import "../../styles/variables";
 
 .show {
   z-index: 1;
@@ -53,30 +53,6 @@
   @include mQ($ipadPro) {
     display: none;
   }
-}
-
-.list {
-  transform: translate(9999px);
-  opacity: 0;
-  display: none;
-  @include mQ($ipadPro) {
-    transform:translate(0);
-    opacity: 1;
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-    align-items: center;
-  }
-}
-
-.active {
-  transform:translate(0);
-  opacity: 1;
-  display: flex;
-  padding: 0;
-  justify-content: space-between;
-  align-items: center;
-  flex: 100%;
 }
 
 .item {

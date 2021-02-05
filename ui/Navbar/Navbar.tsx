@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { MenuButton } from '../MenuButton/MenuButton'
 import { NavList } from '../NavList/NavList'
 
-import './Navbar.scss'
+import styles from "./Navbar.module.scss"
 
 type Link = {
   name: string
@@ -29,25 +29,25 @@ export const Navbar: React.FC<Props> = ({ links, hashlink, withDashboard, admin,
 
   if (admin) {
     return (
-      <nav className="nav container" id="mainNav" aria-label="Main">
+      <nav className={styles.nav} id="mainNav" aria-label="Main">
         <Link href="/">
-          <a className="nav__link">
-            <h3 className="navbar__brand">Alkinoos Taverna</h3>
+          <a className={styles.link}>
+            <h3 className={styles.brand}>Alkinoos Taverna</h3>
           </a>
         </Link>
         <MenuButton toggleNavbar={handleNavbarToggle} />
         <NavList isNavActive={isNavActive} links={links} withDashboard={withDashboard} hashlink={hashlink}>
-          <li className="nav__item">{children}</li>
+          <li className={styles.link}>{children}</li>
         </NavList>
       </nav>
     )
   }
 
   return (
-    <nav className="nav container" id="mainNav" aria-label="Main">
+    <nav className={styles.nav} id="mainNav" aria-label="Main">
       <Link href="/">
-        <a className="nav__link">
-          <h3 className="navbar__brand">Alkinoos Taverna</h3>
+        <a className={styles.link}>
+          <h3 className={styles.brand}>Alkinoos Taverna</h3>
         </a>
       </Link>
       <MenuButton toggleNavbar={handleNavbarToggle} />

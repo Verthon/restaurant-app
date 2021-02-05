@@ -1,0 +1,26 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.list {
+  transform: translate(9999px);
+  opacity: 0;
+  display: none;
+  @include mQ($ipadPro) {
+    transform:translate(0);
+    opacity: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    align-items: center;
+  }
+}
+
+.active {
+  transform:translate(0);
+  opacity: 1;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  flex: 100%;
+}

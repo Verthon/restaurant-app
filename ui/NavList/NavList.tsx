@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 import { NavItem } from '../NavItem/NavItem'
+import styles from "./NavList.module.scss"
 
 type Link = {
   name: string
@@ -25,8 +26,8 @@ export const NavList = ({isNavActive, links, withDashboard, hashlink, children }
     <ul
       className={
         isNavActive.active && !isNavActive.firstRender
-          ? 'nav__list--active animate__animated animate__fadeInLeft'
-          : 'nav__list'
+          ? styles.active
+          : styles.list
       }
     >
       <li className="nav__item">
