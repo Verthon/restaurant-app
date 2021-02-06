@@ -1,0 +1,42 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  @include mQ($ipad) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.container {
+  @include mQ($ipadPro) {
+    max-width: 800px;
+    margin: auto;
+  }
+  @include mQ($desktopXs) {
+    max-width: 1000px;
+  }
+  @include mQ($desktopSm) {
+    max-width: 1200px;
+  }
+  @include mQ($desktopXl) {
+    max-width: 1600px;
+  }
+  @include mQ($desktopXXl) {
+    max-width: 1920px;
+  }
+}
+
+.col {
+  @include flexColumn;
+  flex: 1;
+
+  &--center {
+    @include flexColumn;
+    align-items: center;
+    justify-items: center;
+    @include mQ($mobile) {
+      flex-basis: 100%;
+      @include flexColumn;
+    }
+  }
+}

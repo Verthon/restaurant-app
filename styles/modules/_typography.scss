@@ -1,0 +1,50 @@
+.heading {
+  font-family: $font-secondary, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  color: $color-dark;
+
+  @include mQ($mobile) {
+    font-size: 1.75rem;
+  }
+
+  @include mQ($desktopXs) {
+    font-size: 2rem;
+  }
+
+  &__review-booking {
+    margin: 2rem 0;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--large {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    @include mQ($ipad) {
+      font-size: 3.25rem;
+      margin-bottom: 2rem;
+    }
+
+    @include mQ($mobile) {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  &--gold {
+    color: $color-primary;
+  }
+
+  &--white {
+    color: $color-white;
+  }
+}
+
+.text {
+  max-width: 30rem;
+  line-height: 1.5;
+}

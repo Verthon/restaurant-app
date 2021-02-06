@@ -1,0 +1,15 @@
+.toast-container {
+  background: $color-dark;
+}
+
+.toast {
+  color: $color-light-1;
+  background: $color-dark;
+  font-size: 1.1rem;
+  &__container{
+    display: block;
+  }
+  &__progress {
+    background: $color-primary;
+  }
+}

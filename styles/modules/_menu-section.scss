@@ -1,0 +1,89 @@
+.section__menu {
+  background-color: $color-light-1;
+  @include mQ($ipad) {
+    padding-bottom: 6rem;
+  }
+}
+
+.menu {
+  @include flexColumn();
+  align-items: center;
+  &__heading {
+    @include mQ($tablet) {
+      margin: 0 0 3rem 0;
+    }
+  }
+  &__container {
+    @include mQ($ipad) {
+      padding: 1rem 1rem 1rem 1rem;
+      @include flexColumn();
+    align-items: center;
+    }
+  }
+  &__title {
+    font-size: 1.75rem;
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+    font-family: $font-secondary;
+    color: $color-primary;
+    font-weight: 400;
+    //text-decoration: underline;
+
+    @include mQ($ipad) {
+      text-align: left;
+      margin: 1rem 0 1rem 0;
+    }
+  }
+  &__list {
+    -webkit-padding-start: 0;
+    @include flexColumn();
+    align-items: center;
+    padding: 0;
+  }
+  &__description {
+    line-height: 1.2;
+
+    @include mQ($ipad) {
+      line-height: 1.7;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    color: $color-dark;
+
+    @include mQ($desktopXs) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__item {
+    margin: 1rem 0;
+
+    @include mQ($mobile) {
+      margin: 1rem 0;
+    }
+
+    @include mQ($tablet) {
+      width: 90%;
+    }
+
+    @include mQ($desktopXs) {
+      width: 80%;
+    }
+
+    &__name {
+      font-size: 1.5rem;
+      font-family: $font-secondary;
+      margin: 0.5rem 0;
+      font-weight: 400;
+    }
+
+    &__price {
+      font-size: 1.35rem;
+    }
+  }
+}
