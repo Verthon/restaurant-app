@@ -1,0 +1,21 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.container {
+  @include mQ($ipadPro) {
+    max-width: 800px;
+    margin: auto;
+  }
+  @include mQ($desktopXs) {
+    max-width: 1000px;
+  }
+  @include mQ($desktopSm) {
+    max-width: 1200px;
+  }
+  @include mQ($desktopXl) {
+    max-width: 1600px;
+  }
+  @include mQ($desktopXXl) {
+    max-width: 1920px;
+  }
+}

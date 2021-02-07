@@ -3,13 +3,11 @@ import Link from 'next/link'
 
 import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
 
-import './Button.scss'
+import styles from './Button.module.scss'
 
 export type Props = {
-  variant?: 'dark' | 'light' | 'transparent'
-  sizeCorrect?: 'small' | 'default' | 'large'
-  className?: 'btn--dark' | 'btn--light' | 'btn--transparent'
-  size?: 'btn--large' | 'btn--small'
+  variant: 'dark' | 'light' | 'transparent'
+  size: 'regular' | 'large' | 'small'
   children: ReactNode
   link?: string
   href?: string
@@ -18,24 +16,29 @@ export type Props = {
   loading?: boolean
 } & React.Props<HTMLButtonElement | HTMLAnchorElement>
 
-export const Button: React.FC<Props> = ({ className, size, children, link, href, type, onClick, loading }) => {
+const generateClassName = (variant: Props["variant"], size: Props["size"]) => {
+  return [styles.btn, styles[size], styles[variant] ].join(' ')
+}
+
+export const Button: React.FC<Props> = ({ variant, size, children, link, href, type, onClick, loading }) => {
   if (link) {
     return (
       <Link href={link}>
-        <a className={`btn ${className ? className : ''} ${size ? size : ''}`}>{children}</a>
+        generateClassName()
+        <a className={generateClassName(variant, size)}>{children}</a>
       </Link>
     )
   }
   if (href) {
     return (
-      <a className={`btn ${className ? className : ''} ${size ? size : ''}`} href={href}>
+      <a className={generateClassName(variant, size)} href={href}>
         {children}
       </a>
     )
   }
   return (
     <button
-      className={`btn ${className ? className : ''} ${size ? size : ''}`}
+      className={generateClassName(variant, size)}
       type={type}
       onClick={onClick}
       disabled={loading}
