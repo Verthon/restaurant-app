@@ -24,7 +24,6 @@ export const Button: React.FC<Props> = ({ variant, size, children, link, href, t
   if (link) {
     return (
       <Link href={link}>
-        generateClassName()
         <a className={generateClassName(variant, size)}>{children}</a>
       </Link>
     )

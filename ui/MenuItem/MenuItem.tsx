@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 import { formatPrice } from '../../utils/helpers'
 import { pageTransitions } from '../../constants/config'
-import './MenuItem.scss'
+import styles from './MenuItem.module.scss'
 
 type Props = {
   menu: {
@@ -18,11 +18,11 @@ export const MenuItem: React.FC<Props> = ({ menu }) => {
 
   return (
     <>
-      <motion.li className="menu__item" variants={pageTransitions}>
-        <header className="menu__header">
-          <h3 className="menu__item__name">{name}</h3> <span className="menu__item__price">{formatPrice(price)}</span>
+      <motion.li className={styles.item} variants={pageTransitions}>
+        <header className={styles.header}>
+          <h3 className={styles.name}>{name}</h3> <span className={styles.price}>{formatPrice(price)}</span>
         </header>
-        <p className="text menu__description">{description}</p>
+        <p className={styles.description}>{description}</p>
       </motion.li>
     </>
   )

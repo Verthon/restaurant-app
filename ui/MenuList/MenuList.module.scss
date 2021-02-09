@@ -1,23 +1,9 @@
-.list {
-  transform: translate(9999px);
-  opacity: 0;
-  display: none;
-  @include mQ($ipadPro) {
-    transform:translate(0);
-    opacity: 1;
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-    align-items: center;
-  }
-}
+@import '../../styles/mixins';
+@import '../../styles/variables';
 
-.active {
-  transform:translate(0);
-  opacity: 1;
-  display: flex;
-  padding: 0;
-  justify-content: space-between;
+.list {
+  -webkit-padding-start: 0;
+  @include flexColumn();
   align-items: center;
-  flex: 100%;
+  padding: 0;
 }

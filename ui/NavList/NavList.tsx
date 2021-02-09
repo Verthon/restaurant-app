@@ -1,27 +1,35 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
-import { NavItem } from '../NavItem/NavItem'
-import styles from "./NavList.module.scss"
+import { NavItem } from "../NavItem/NavItem";
+import { Button } from "ui/Button/Button";
+
+import styles from "./NavList.module.scss";
 
 type Link = {
-  name: string
-  link: string
-}
+  name: string;
+  link: string;
+};
 
 type Props = {
-  links: Array<Link>
-  hashlink: boolean
-  withDashboard?: boolean
-  admin?: boolean,
+  links: Array<Link>;
+  hashlink: boolean;
+  withDashboard?: boolean;
+  admin?: boolean;
   isNavActive: {
     firstRender: boolean;
     active: boolean;
-  },
-  children?: React.ReactNode
-}
+  };
+  children?: React.ReactNode;
+};
 
-export const NavList = ({isNavActive, links, withDashboard, hashlink, children }: Props) => {
+export const NavList = ({
+  isNavActive,
+  links,
+  withDashboard,
+  hashlink,
+  children,
+}: Props) => {
   return (
     <ul
       className={
@@ -30,24 +38,19 @@ export const NavList = ({isNavActive, links, withDashboard, hashlink, children }
           : styles.list
       }
     >
-      <li className="nav__item">
-        <Link href="/">
-          <a className="nav__link">
-            Home
-          </a>
-        </Link>
-      </li>
+      <NavItem link="" name="Home" hashlink={false} />
       {links.map((link, index) => (
-        <NavItem key={index} name={link.name} link={link.link} hashlink={hashlink} />
+        <NavItem
+          key={index}
+          name={link.name}
+          link={link.link}
+          hashlink={hashlink}
+        />
       ))}
       {withDashboard ? (
-        <li className="nav__item">
-          <Link href="/admin">
-            <a className="nav__link btn btn--light btn--small">Dashboard</a>
-          </Link>
-        </li>
+        <Button link="/admin" variant="light" size="small">Dashboard</Button>
       ) : null}
       {children}
     </ul>
-  )
-}
+  );
+};
