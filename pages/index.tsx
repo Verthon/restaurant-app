@@ -1,18 +1,49 @@
 import Head from "next/head";
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "@brainhubeu/react-carousel/lib/style.css";
-import Carousel, { Dots } from '@brainhubeu/react-carousel'
+import Carousel, { Dots } from "@brainhubeu/react-carousel";
+import { gql } from "@apollo/client";
 
+import { client } from "lib/apollo/apolloClient"
+import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Button } from "ui/Button/Button";
 
-export default function Home() {
+import styles from "ui/Testimonial/Testimonial.module.scss";
+
+export const GET_TESTIMONIALS = gql`
+  query GetTestimonials {
+    testimonials {
+      id
+      author
+      text
+    }
+  }
+`;
+
+export async function getStaticProps() {
+  const { data } = await client.query({ query: GET_TESTIMONIALS });
+
+  return {
+    props: {
+      testimonials: data.testimonials,
+    },
+  };
+}
+
+export default function Home({ testimonials }) {
+  console.log("testimonials", testimonials);
+  const { companyData } = useCompanyData();
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Contact", link: "contact" },
   ];
+  const { hours, location, contact } = companyData;
+  const [dotValue, setDotValue] = useState(0);
+
   return (
     <>
       <Head>
@@ -31,16 +62,22 @@ export default function Home() {
         <div className="row container">
           <div className="section__col" data-aos="fade-down" data-delay="1500">
             <picture>
-              <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about.jpg" />
+              <source
+                media="(min-width: 475px)"
+                srcSet="assets/images/landing/brooke-lark-about.jpg"
+              />
               <img
                 className="img-fluid"
-                src="assets/images/landing/brooke-lark-menu-xs.jpg"
+                src="assets/images/landing/brooke-lark-about-xs.jpg"
                 alt="example dish from our restaurant"
                 loading="lazy"
               />
             </picture>
             <picture>
-              <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about1.jpg" />
+              <source
+                media="(min-width: 475px)"
+                srcSet="assets/images/landing/brooke-lark-about1.jpg"
+              />
               <img
                 className="img-fluid"
                 src="assets/images/landing/brooke-lark-about1-xs.jpg"
@@ -72,7 +109,11 @@ export default function Home() {
               If you’ve been in Alkinoos Taverna, you’ve seen - and tasted what
               keeps our customers coming back for more.
             </p>
-            <img className="section__about__chef" src="assets/images/landing/cook.jpg" alt="our chef" />
+            <img
+              className="section__about__chef"
+              src="assets/images/landing/cook.jpg"
+              alt="our chef"
+            />
           </article>
         </div>
       </article>
@@ -80,7 +121,10 @@ export default function Home() {
         <div className="row container">
           <div className="section__col">
             <picture>
-              <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-menu.jpg" />
+              <source
+                media="(min-width: 475px)"
+                srcSet="assets/images/landing/brooke-lark-menu.jpg"
+              />
               <img
                 className="img-fluid section__image"
                 src="assets/images/landing/brooke-lark-menu-xs.jpg"
@@ -113,7 +157,12 @@ export default function Home() {
               </p>
             </article>
             <div className="col-md-12 text-center">
-              <Button href="/menu" className="dark" data-aos="flip-up">
+              <Button
+                href="/menu"
+                variant="dark"
+                size="large"
+                data-aos="flip-up"
+              >
                 our menu
               </Button>
             </div>
@@ -124,25 +173,26 @@ export default function Home() {
       <article id="Reviews" className="section section__testimonials">
         <div className="container">
           <div className="testimonials">
-            <div className="testimonials__modal">
-              <h2 className="heading testimonials__modal__heading">
-                Guest reviews
-              </h2>
+            <div className={styles.modal}>
+              <h2 className={styles.heading}>Guest reviews</h2>
               {/* <Carousel
-          slidesPerPage={1}
-          centered
-          value={dotState.dotValue}
-          slides={slidesState.slides}
-          itemWidth={450}
-          onChange={value => dotState.setDotValue(value)}
-        />
-        <Dots value={dotState.dotValue} onChange={value => dotState.setDotValue(value)} number={slidesState.slides.length} /> */}
+                slidesPerPage={1}
+                centered
+                value={dotValue}
+                slides={testimonials}
+                itemWidth={450}
+                onChange={(value) => setDotValue(value)}
+              />
+              <Dots
+                value={dotValue}
+                onChange={(value) => setDotValue(value)}
+                number={testimonials?.length}
+              /> */}
             </div>
           </div>
         </div>
       </article>
-      {/* <Footer hours={hours} location={location} contact={contact} /> */}
+      <Footer hours={hours} location={location} contact={contact} />
     </>
   );
 }
-// import { Props } from './Home.types'

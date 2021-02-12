@@ -1,14 +1,17 @@
-import { ApolloProvider } from '@apollo/client'
-import { useApollo } from '../lib/apollo/apolloClient'
-
-import "../styles/index.scss"
+import { BookingModalController } from "context/bookingModal/BookingModalController";
+import { CompanyDataController } from "context/companyData/CompanyDataController";
+import { BookingDataController } from "context/bookingData/BookingDataController";
+import "../styles/index.scss";
 
 export default function App({ Component, pageProps }) {
-  const apolloClient = useApollo(pageProps)
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
-    </ApolloProvider>
-  )
+      <CompanyDataController>
+        <BookingDataController>
+          <BookingModalController>
+            <Component {...pageProps} />
+          </BookingModalController>
+        </BookingDataController>
+      </CompanyDataController>
+  );
 }
