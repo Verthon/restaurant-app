@@ -1,5 +1,5 @@
-@import '../../scss/mixins';
-@import '../../scss/variables';
+@import '../../styles/mixins';
+@import '../../styles/variables';
 
 .input {
   border: 0;
@@ -10,6 +10,8 @@
   width: 100%;
 
   &:focus {
+    border: 0;
+    outline: none;
     border-bottom: 2px solid $color-primary;
   }
 }
