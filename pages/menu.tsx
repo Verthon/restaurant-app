@@ -26,8 +26,6 @@ const GET_MENU = gql`
 `;
 
 export async function getStaticProps() {
-  console.log(process.env.NEXT_PUBLIC_HASURA_ENDPOINT);
-
   const { data } = await client.query({ query: GET_MENU });
 
   const menu = formatMenu(data?.products);

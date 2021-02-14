@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { INITIAL_BOOKING_STATE } from '../../constants/booking'
+import { CURRENT_BOOKING_STATE } from '../../constants/booking'
 
 export const useBooking = () => {
-  const [booking, setBooking] = useState(INITIAL_BOOKING_STATE)
+  const [booking, setBooking] = useState(CURRENT_BOOKING_STATE)
   const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'guests') {
       const value = parseInt(e.target.value)

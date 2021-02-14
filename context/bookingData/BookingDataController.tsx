@@ -1,21 +1,26 @@
-import React from 'react'
+import React from "react";
 
-import { BookingDataContext } from './BookingDataContext'
-import { useBooking } from '../../hooks/useBooking/useBooking'
+import { BookingDataState, BookingDataDispatch } from "./BookingDataContext";
+import { useBooking } from "hooks/useBooking/useBooking";
 
-export const BookingDataController = ({ children }: { children: React.ReactNode }) => {
-  const { booking, setBooking, handleDateChange, handleBookingChange } = useBooking()
+export const BookingDataController = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const { booking, handleDateChange, handleBookingChange } = useBooking();
 
   return (
-    <BookingDataContext.Provider
+    <BookingDataState.Provider
       value={{
         booking,
-        setBooking,
-        handleDateChange,
-        handleBookingChange
       }}
     >
-      {children}
-    </BookingDataContext.Provider>
-  )
-}
+      <BookingDataDispatch.Provider
+        value={{ handleDateChange, handleBookingChange }}
+      >
+        {children}
+      </BookingDataDispatch.Provider>
+    </BookingDataState.Provider>
+  );
+};

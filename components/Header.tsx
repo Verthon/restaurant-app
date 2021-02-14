@@ -20,10 +20,10 @@ const Header = () => (
         ingredients.
       </p>
       <div className="site-header__buttons">
-        <Button href="/book-table" className="dark" size="large">
+        <Button href="/book-table" variant="dark" size="large">
           book table
         </Button>
-        <Button href="/menu" className="light" size="large">
+        <Button href="/menu" variant="light" size="large">
           our menu
         </Button>
       </div>

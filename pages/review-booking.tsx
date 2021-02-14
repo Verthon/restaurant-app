@@ -1,8 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
+import { gql, useMutation } from '@apollo/client';
+import dayjs from 'dayjs';
+import emailjs from 'emailjs-com'
 
+import { client } from "lib/apollo/apolloClient";
+import { EMAIL_API_KEY } from "../envs"
 import {
   splitDate,
   splitTime,
@@ -14,23 +19,92 @@ import { DATEPICKER_CONFIG, pageTransitions } from "constants/config";
 import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
-import { BookingDataContext } from "context/bookingData/BookingDataContext";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
+import { useBookingDispatch } from "hooks/useBookingDispatch/useBookingDispatch";
+import { useBookingState } from "hooks/useBookingState/useBookingState" 
 import { HOME, MENU } from "constants/routes";
+import { BOOKING_DUPLICATED_EMAIL_MSG, EMAIL_SENDING_FAIL_MSG } from "constants/toastMessages";
+import { notifyError } from "utils/notification";
 
-export default function ReviewBooking({
-  onSubmit,
-  editable,
-  show,
-  handleBookingEdit,
-  loading,
-}) {
-  const bookingData = useContext(BookingDataContext);
+const ADD_BOOKING = gql`
+  mutation ($email: String!, $name: String!, $date: timestamptz!, $guests: smallint!) {
+    insert_bookings(objects: {email: $email, name: $name, date: $date, guests: $guests}) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`
+
+const UPDATE_BOOKING = gql`
+  mutation ($id: Int!) {
+    update_bookings(_set: {confirmed: true}, where: {id: {_eq: $id}}) {
+      affected_rows
+    }
+  }
+`
+
+export default function ReviewBooking() {
   const { companyData } = useCompanyData();
+  const { booking } = useBookingState();
+  const { handleBookingChange, handleDateChange } = useBookingDispatch();
   const { location, contact } = companyData;
+  const [editable, setEditable] = useState(false)
+  const [show, toggleModal] = useState(false)
+  const [loading, setLoading] = useState(false);
+
+  const handleBookingEdit = () => {
+    setEditable(true)
+  }
+
+  const addBooking = async ({ variables }) => {
+    return client.mutate({ mutation: ADD_BOOKING, variables })
+  }
+
+  const updateBooking = async ({variables}) => {
+    return client.mutate({ mutation: UPDATE_BOOKING, variables  })
+  }
+
+  const handleEmailSend = async (id: number) => {
+    const templateParams = {
+      name: booking.name,
+      email: booking.email,
+      guests: booking.guests,
+      date: dayjs(booking.date).format('DD-MMMM-YYYY HH:mm')
+    }
+    try {
+      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, EMAIL_API_KEY)
+      await updateBooking({ variables: {id: id} })
+      setLoading(false)
+      toggleModal(true)
+    } catch (error) {
+      setLoading(false)
+      notifyError(EMAIL_SENDING_FAIL_MSG)
+    }
+  }
+
+  const handleBookingSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
+  ) => {
+    try {
+      e.preventDefault()
+
+      if (booking) {
+        setLoading(true)
+        const submitBooking = { ...booking }
+        const result = await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
+        const id = result.data.insert_bookings.returning[0].id;
+        await handleEmailSend(id);
+      }
+    } catch(error) {
+      setLoading(false)
+      notifyError(BOOKING_DUPLICATED_EMAIL_MSG)
+    }
+  }
 
   const { address, code, city, province } = location;
-  const { name, guests, date, email } = bookingData?.booking || {};
+  const { name, guests, date, email } = booking || {};
 
   if (editable && email) {
     return (
@@ -73,11 +147,11 @@ export default function ReviewBooking({
           <h2 className="review-booking__title">Edit booking</h2>
           <div className="review-booking__form">
             <Form
-              booking={bookingData?.booking}
+              booking={booking}
               config={DATEPICKER_CONFIG}
-              handleChange={bookingData?.handleBookingChange}
-              handleDate={bookingData?.handleDateChange!}
-              handleSubmit={onSubmit}
+              handleChange={handleBookingChange}
+              handleDate={handleDateChange}
+              handleSubmit={handleBookingSubmit}
               submitBtn={false}
               cssClass="form--edit"
               action={getEmailActionUrl(email)}
@@ -85,7 +159,7 @@ export default function ReviewBooking({
             />
           </div>
           <footer className="review-booking__footer review-booking__footer--edit">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleBookingSubmit}>
               <Button
                 variant="light"
                 size="regular"
@@ -148,13 +222,13 @@ export default function ReviewBooking({
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitDate(formatDate(convertToDate(date!)))}
+                {splitDate(formatDate(convertToDate(date)))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitTime(formatDate(convertToDate(date!)))}
+                {splitTime(formatDate(convertToDate(date)))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>
@@ -164,7 +238,7 @@ export default function ReviewBooking({
             {city}, {province}, {code}{" "}
           </p>
           <footer className="review-booking__footer">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleBookingSubmit}>
               <Button
                 variant="transparent"
                 size="regular"
@@ -177,7 +251,7 @@ export default function ReviewBooking({
                 variant="light"
                 size="regular"
                 type="submit"
-                loading={loading}
+                loading={false}
               >
                 Confirm Booking
               </Button>

@@ -3,9 +3,10 @@ import dayjs from 'dayjs'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import { Label } from '../ui/Label/Label'
-import { Input } from '../ui/Input/Input'
-import { Button } from '../ui/Button/Button'
+import { Label } from 'ui/Label/Label'
+import { Input } from 'ui/Input/Input'
+import { Button } from 'ui/Button/Button'
+import styles from "ui/Input/Input.module.scss"
 
 type Props = {
   handleDate: (date: Date, e: React.SyntheticEvent<any, Event>) => void
@@ -18,9 +19,10 @@ type Props = {
   submitBtn: boolean
   action: string
   withBookingDesc: boolean
+  loading?: boolean
 }
 
-const Form: React.FC<Props> = ({
+const Form = ({
   handleChange,
   handleDate,
   handleSubmit,
@@ -29,8 +31,9 @@ const Form: React.FC<Props> = ({
   submitBtn,
   cssClass,
   action,
-  withBookingDesc
-}) => {
+  withBookingDesc,
+  loading = false
+}: Props) => {
   config.startDate = new Date(dayjs(config.startDate).toISOString())
   return (
     <form
@@ -63,7 +66,7 @@ const Form: React.FC<Props> = ({
       <Label htmlFor="Datepicker">Date</Label>
       <DatePicker
         name="Datepicker"
-        className="input"
+        className={styles.input}
         selected={booking.date}
         onChange={handleDate}
         showTimeSelect
@@ -94,7 +97,7 @@ const Form: React.FC<Props> = ({
         </p>
       ) : null}
       {submitBtn ? (
-        <Button className="btn--dark" type="submit">
+        <Button variant="dark" size="large" type="submit" loading={loading}>
           Next step
         </Button>
       ) : null}

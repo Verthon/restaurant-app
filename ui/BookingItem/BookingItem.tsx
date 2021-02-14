@@ -1,6 +1,6 @@
 import React from 'react'
 import dayjs from 'dayjs'
-import { ReactComponent as OptionsIcon } from '/assets/icons/option.svg'
+import Image from 'next/image'
 
 type Props = {
   name: string
@@ -8,7 +8,7 @@ type Props = {
   confirmed?: boolean
   date: Date
   guests: number
-  toggleOptions: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
+  toggleOptions: (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => void
 }
 
 const formatDate = (date: Date) => {
@@ -28,7 +28,7 @@ export const BookingItem: React.FC<Props> = ({ name, email, date, guests, toggle
       <td className="table__cell">{email}</td>
       <td className="table__cell table__cell--center">{guests}</td>
       <td className="table__cell table__cell--center">
-        <OptionsIcon className="table__cell__icon" onClick={toggleOptions} />
+        <Image src="/assets/icons/option.svg" onClick={toggleOptions} width="35px" height="35px"/>
       </td>
     </tr>
   )

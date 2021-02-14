@@ -8,7 +8,29 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+  }
 
+  .active {
+    display: block;
+    z-index: 1;
+  }
+
+  .disabled {
+    display: none;
+  }
+
+  .heading {
+    margin: 0 0 2rem 0;
+  }
+
+  .text {
+    margin: 0.25rem 0 0.25rem 0;
+    font-size: 1rem;
+  }
+
+  .footer {
+    margin: 2rem 0 0 0;
+  }
   .nav {
     display: flex;
     width: 100%;
@@ -49,26 +71,3 @@
       height: 30px;
     }
   }
-
-  .active {
-    display: block;
-    z-index: 1;
-  }
-
-  .disabled {
-    display: none;
-  }
-
-  .heading {
-    margin: 0 0 2rem 0;
-  }
-
-  .text {
-    margin: 0.25rem 0 0.25rem 0;
-    font-size: 1rem;
-  }
-
-  .footer {
-    margin: 2rem 0 0 0;
-  }
-}

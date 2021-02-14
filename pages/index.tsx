@@ -35,7 +35,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ testimonials }) {
-  console.log("testimonials", testimonials);
   const { companyData } = useCompanyData();
   const links = [
     { name: "Menu", link: "menu" },

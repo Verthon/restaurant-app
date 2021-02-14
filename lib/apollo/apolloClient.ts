@@ -12,8 +12,6 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 let apolloClient
 
-console.log(process.env.NEXT_PUBLIC_HASURA_ENDPOINT)
-
 const httpLink = new HttpLink({
   uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
   credentials: 'same-origin',
@@ -106,3 +104,12 @@ export function useApollo(pageProps) {
   const store = useMemo(() => initializeApollo(state), [state])
   return store
 }
+
+export const client = new ApolloClient({
+  uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
+  credentials: "same-origin",
+  headers: {
+    "X-hasura-admin-secret": HASURA_GRAPHQL_ADMIN_SECRET,
+  },
+  cache: new InMemoryCache(),
+});

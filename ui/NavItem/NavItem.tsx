@@ -5,7 +5,7 @@ import styles from "./NavItem.module.scss";
 
 type Props = { hashlink: boolean; name: string; link: string }
 
-export const NavItem: React.FC<Props> = ({ hashlink, name, link }) => (
+export const NavItem = ({ hashlink, name, link }: Props) => (
   <li className={styles.item}>
     {hashlink ? (
       <Link data-testid="navlink" href={`#${link}`}>
