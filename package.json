@@ -11,6 +11,7 @@
     "@apollo/client": "^3.3.7",
     "@auth0/nextjs-auth0": "^0.16.1",
     "@brainhubeu/react-carousel": "^1.19.26",
+    "@storybook/addon-actions": "^6.1.18",
     "aos": "^2.3.4",
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
