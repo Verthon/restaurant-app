@@ -1,146 +1,38 @@
 {
-  "name": "restaurant-site",
-  "version": "0.2.0",
+  "name": "restaurant-app",
+  "version": "1.1.0",
   "private": true,
-  "homepage": "https://alkinoos-taverna.netlify.com",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
     "@apollo/client": "^3.3.7",
-    "@auth0/auth0-react": "^1.2.0",
-    "@brainhubeu/react-carousel": "^1.16.2",
-    "@testing-library/dom": "^7.5.7",
-    "@testing-library/jest-dom": "^5.8.0",
-    "@testing-library/react-hooks": "^3.4.1",
-    "@types/aos": "^3.0.3",
-    "@types/brainhubeu__react-carousel": "^1.15.0",
-    "@types/jest": "^26.0.4",
-    "@types/node": "^14.0.23",
-    "@types/nprogress": "^0.2.0",
-    "@types/react": "^16.9.43",
-    "@types/react-datepicker": "^3.0.2",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5",
-    "@types/react-router-hash-link": "^1.2.1",
-    "@types/testing-library__jest-dom": "^5.9.5",
-    "animate.css": "^4.1.0",
-    "aos": "^3.0.0-beta.6",
-    "dayjs": "^1.8.26",
-    "dotenv": "6.0.0",
-    "dotenv-expand": "4.2.0",
-    "emailjs-com": "^2.4.1",
-    "framer-motion": "^1.11.0",
-    "graphql": "^15.4.0",
-    "mockdate": "^3.0.2",
+    "@auth0/nextjs-auth0": "^0.16.1",
+    "@brainhubeu/react-carousel": "^1.19.26",
+    "@storybook/addon-actions": "^6.1.18",
+    "aos": "^2.3.4",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.10.4",
+    "deepmerge": "^4.2.2",
+    "dotenv": "^8.2.0",
+    "emailjs-com": "^2.6.4",
+    "framer-motion": "^3.2.2-rc.1",
+    "graphql": "^15.5.0",
+    "next": "10.0.6",
     "nprogress": "^0.2.0",
-    "react": "^16.13.1",
-    "react-datepicker": "^3.3.0",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-router-hash-link": "^1.2.1",
-    "react-scripts": "4.0.0",
-    "react-toastify": "^5.5.0",
-    "subscriptions-transport-ws": "^0.9.18",
-    "typescript": "^3.9.6"
+    "react": "17.0.1",
+    "react-datepicker": "^3.4.1",
+    "react-dom": "17.0.1",
+    "react-toastify": "^7.0.3",
+    "sass": "^1.32.6",
+    "subscriptions-transport-ws": "^0.9.18"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && echo '/*    /index.html   200' > build/_redirects",
-    "test": "react-scripts test",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "deploy": "npm run build && netlify deploy",
-    "serve": "./node_modules/.bin/http-server ./build --port 1337",
-    "lint": "eslint .",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
-    "e2e": "cypress open;",
-    "e2e:run:firefox": "./node_modules/.bin/cypress run --browser firefox",
-    "e2e:run:chrome": "./node_modules/.bin/cypress run --browser chrome",
-    "e2e:wait-and-run:firefox": "./node_modules/.bin/wait-on http://localhost:1337/ && npm run e2e:run:firefox",
-    "e2e:wait-and-run:chrome": "./node_modules/.bin/wait-on http://localhost:1337/ && npm run e2e:run:chrome",
-    "e2e:ci:firefox": "npm-run-all -p -r serve e2e:wait-and-run:firefox",
-    "e2e:ci:chrome": "npm-run-all -p -r serve e2e:wait-and-run:chrome"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "standard": {
-    "ignore": [
-      "node_modules",
-      "build",
-      "public"
-    ]
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/preset-scss": "^1.0.2",
-    "@storybook/react": "^5.3.19",
-    "@testing-library/react": "^9.5.0",
-    "apollo": "^2.31.1",
-    "cypress": "^4.12.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "file-loader": "^6.2.0",
-    "http-server": "^0.12.3",
-    "node-sass": "^4.14.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "1.18.2",
-    "react-test-renderer": "^16.13.1",
-    "start-server-and-test": "^1.11.7",
-    "ts-jest": "^26.1.3",
-    "url-loader": "^4.1.0",
-    "wait-on": "^5.2.1",
-    "web-vitals": "^0.2.4",
-    "workbox-background-sync": "^5.1.4",
-    "workbox-broadcast-update": "^5.1.4",
-    "workbox-cacheable-response": "^5.1.4",
-    "workbox-core": "^5.1.4",
-    "workbox-expiration": "^5.1.4",
-    "workbox-google-analytics": "^5.1.4",
-    "workbox-navigation-preload": "^5.1.4",
-    "workbox-precaching": "^5.1.4",
-    "workbox-range-requests": "^5.1.4",
-    "workbox-routing": "^5.1.4",
-    "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!<rootDir>/node_modules/",
-      "!<rootDir>/path/to/dir/"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    },
-    "coverageReporters": [
-      "text"
-    ]
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/react-datepicker": "^3.1.3",
+    "typescript": "^4.1.3"
   }
 }

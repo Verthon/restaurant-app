@@ -1,0 +1,77 @@
+@import '../../styles/mixins';
+@import "../../styles/variables";
+
+.show {
+  z-index: 1;
+  background: $color-dark;
+  padding: 2rem;
+}
+
+.nav {
+  display: flex;
+  width: 100%;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  -moz-box-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 1.5rem;
+
+  @include mQ($tablet) {
+    padding: 0 2.5rem;
+  }
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  font-family: $font-semi-bold;
+  color: $color-dark;
+
+  @include mQ($mobile) {
+    font-size: 1.35rem;
+  }
+}
+
+.brand-decorative {
+  font-family: $font-secondary;
+}
+
+.btn {
+  padding: 0px;
+  width: 1.5em;
+  height: 1.1em;
+  border: 0px none;
+  display: flex;
+  flex-direction: column;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: transparent;
+
+  @include mQ($ipadPro) {
+    display: none;
+  }
+}
+
+.item {
+  @include mQ($ipadPro) {
+    margin: 1rem 0 1rem 1rem;
+  }
+}
+
+.link {
+  text-transform: capitalize;
+  &--active {
+    font-family: $font-semi-bold;
+  }
+}
+
+.line {
+  width: 20px;
+  border-radius: 2px;
+  display: flex;
+  height: 0.2rem;
+  background-color: $color-dark;
+}
