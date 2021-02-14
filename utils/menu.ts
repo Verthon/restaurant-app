@@ -1,4 +1,4 @@
-import { Menu } from '../pages/Menu/Menu.types'
+import { Menu } from "hooks/useMenuData/useMenuData.types"
 
 export const formatMenu = (products: Menu) => {
   const appetizers = products.filter(product => product.category.name === "appetizers")

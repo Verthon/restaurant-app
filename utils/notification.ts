@@ -1,8 +1,8 @@
-import { toast, PositionOptions } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 type ToastOptions = {
-  position: PositionOptions,
+  position: 'top-right' | 'top-left',
   autoClose: number | false,
   hideProgressBar: boolean,
   closeOnClick: boolean,
