@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import emailjs from 'emailjs-com'
 
 import { client } from "lib/apollo/apolloClient";
-import { EMAIL_API_KEY } from "../envs"
 import {
   splitDate,
   splitTime,
@@ -74,7 +73,7 @@ export default function ReviewBooking() {
       date: dayjs(booking.date).format('DD-MMMM-YYYY HH:mm')
     }
     try {
-      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, EMAIL_API_KEY)
+      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.EMAIL_API_KEY)
       await updateBooking({ variables: {id: id} })
       setLoading(false)
       toggleModal(true)

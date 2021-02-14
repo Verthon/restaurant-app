@@ -5,8 +5,6 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import merge from 'deepmerge'
 import isEqual from 'lodash/isEqual'
-
-import { HASURA_GRAPHQL_ADMIN_SECRET } from "../../envs";
  
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
@@ -16,7 +14,7 @@ const httpLink = new HttpLink({
   uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
   credentials: 'same-origin',
   headers: {
-    'X-hasura-admin-secret': HASURA_GRAPHQL_ADMIN_SECRET
+    'X-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET
   }
 })
 
@@ -24,7 +22,7 @@ const wsLink =  process.browser ? new WebSocketLink({
   uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT_WEB_SOCKET,
   options: {
     reconnect: true,
-    connectionParams: { headers: { 'X-hasura-admin-secret': HASURA_GRAPHQL_ADMIN_SECRET } }
+    connectionParams: { headers: { 'X-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET } }
   },
 }) : null;
 
@@ -46,7 +44,7 @@ function createApolloClient() {
     link: splitLink,
     uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
     headers: {
-      'X-hasura-admin-secret': HASURA_GRAPHQL_ADMIN_SECRET
+      'X-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET
     },
     cache: new InMemoryCache({
       typePolicies: {
@@ -109,7 +107,7 @@ export const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
   credentials: "same-origin",
   headers: {
-    "X-hasura-admin-secret": HASURA_GRAPHQL_ADMIN_SECRET,
+    "X-hasura-admin-secret": process.env.HASURA_GRAPHQL_ADMIN_SECRET,
   },
   cache: new InMemoryCache(),
 });
