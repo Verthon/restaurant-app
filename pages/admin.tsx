@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
-import Image from "next/image"
 import { gql } from '@apollo/client'
 
 import { client } from "lib/apollo/apolloClient";
@@ -116,7 +115,7 @@ export default function AdminPage({ user, bookings, isLoading }) {
       <Modal show={bookingModal.showModal ? bookingModal.showModal : false}>
         <div className="modal-book__nav">
           <button className="modal-book__close" onClick={() => bookingModal.toggleModal()}>
-            <Image src="/assets/icons/close-circle.svg" height="35px" width="35px" />
+            <img src="/assets/icons/close-circle.svg" height="35px" width="35px" />
           </button>
         </div>
         <h2 className="heading modal-book__heading">Booking action</h2>
