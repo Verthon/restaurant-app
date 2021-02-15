@@ -1,6 +1,5 @@
-import React from 'react'
-import dayjs from 'dayjs'
 import Image from "next/image"
+import dayjs from 'dayjs'
 
 type Props = {
   name: string

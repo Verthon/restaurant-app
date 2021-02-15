@@ -1,6 +1,5 @@
-import React from 'react'
 import dayjs from 'dayjs'
-import Image from 'next/image'
+import Image from "next/image"
 
 type Props = {
   name: string
@@ -17,7 +16,7 @@ const formatDate = (date: Date) => {
   .format('HH:mm')
 }
 
-export const BookingItem: React.FC<Props> = ({ name, email, date, guests, toggleOptions }) => {
+export const BookingItem = ({ name, email, date, guests, toggleOptions }: Props) => {
   return (
     <tr className="table__row animate__animated animate__fadeInDown">
       <td className="table__cell">{name}</td>

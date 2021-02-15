@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
-import Image from "next/image"
 import { gql } from '@apollo/client'
+import Image from "next/image"
 
 import { client } from "lib/apollo/apolloClient";
 import { Navbar } from 'ui/Navbar/Navbar'
