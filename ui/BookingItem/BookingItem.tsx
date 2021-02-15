@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import Image from "next/image"
 
 type Props = {
   name: string
@@ -26,7 +27,7 @@ export const BookingItem = ({ name, email, date, guests, toggleOptions }: Props)
       <td className="table__cell">{email}</td>
       <td className="table__cell table__cell--center">{guests}</td>
       <td className="table__cell table__cell--center">
-        <img src="/assets/icons/option.svg" onClick={toggleOptions} width="35px" height="35px"/>
+        <Image src="/assets/icons/option.svg" onClick={toggleOptions} width="35px" height="35px"/>
       </td>
     </tr>
   )
