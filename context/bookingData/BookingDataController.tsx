@@ -1,23 +1,23 @@
 import React from "react";
 
-import { BookingDataState, BookingDataDispatch } from "./BookingDataContext";
-import { useBooking } from "hooks/useBooking/useBooking";
+import {
+  BookingDataState,
+  BookingDataDispatch,
+} from "./BookingDataContext";
+import { Props } from "./BookingDataContext.types"
+import { reducer } from "./BookingDataContext"
+import { INITIAL_BOOKING_STATE } from "constants/booking";
 
-export const BookingDataController = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const { booking, handleDateChange, handleBookingChange } = useBooking();
+export const BookingDataController = ({ children }: Props) => {
+  const booking = { ...INITIAL_BOOKING_STATE }
+  const [state, dispatch] = React.useReducer(reducer, booking)
 
   return (
     <BookingDataState.Provider
-      value={{
-        booking,
-      }}
+      value={state}
     >
       <BookingDataDispatch.Provider
-        value={{ handleDateChange, handleBookingChange }}
+        value={dispatch}
       >
         {children}
       </BookingDataDispatch.Provider>

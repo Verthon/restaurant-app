@@ -12,7 +12,7 @@ export const useBooking = () => {
     setBooking({ ...booking, [e.target.name]: e.target.value })
   }
 
-  const handleDateChange = (date: Date | null, e: React.SyntheticEvent<any, Event> | undefined) => {
+  const handleDateChange = (date: Date) => {
     if (date) {
       setBooking({ ...booking, date: date })
     }
