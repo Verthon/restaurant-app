@@ -9,7 +9,7 @@ export enum ActionType {
 export type Action = {
   type: ActionType.changeDate | ActionType.changeBooking,
   payload: {
-    date?: Date, 
+    date?: Date | [Date, Date], 
     e?: React.ChangeEvent<HTMLInputElement>
   }
 }

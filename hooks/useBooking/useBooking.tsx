@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
-import { CURRENT_BOOKING_STATE } from '../../constants/booking'
+import React from 'react'
 
-export const useBooking = () => {
-  const [booking, setBooking] = useState(CURRENT_BOOKING_STATE)
-  const handleBookingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === 'guests') {
-      const value = parseInt(e.target.value)
-      setBooking({ ...booking, [e.target.name]: value })
-      return
-    }
-    setBooking({ ...booking, [e.target.name]: e.target.value })
+import { BookingStateContext } from "context/booking/BookingDataContext"
+import { BookingDispatchContext } from "context/booking/BookingDataContext"
+
+export const useBookingDispatch = () => {
+  const context = React.useContext(BookingDispatchContext)
+
+  if (context === undefined) {
+
+    throw new Error('useBookingDispatch must be used within a BookingProvider')
+
   }
 
-  const handleDateChange = (date: Date) => {
-    if (date) {
-      setBooking({ ...booking, date: date })
-    }
+  return context
+}
+
+export const useBookingState = () => {
+  const context = React.useContext(BookingStateContext)
+
+  if (context === undefined) {
+
+    throw new Error('useBookingState must be used within a BookingProvider')
+
   }
 
-  return {
-    booking,
-    setBooking,
-    handleDateChange,
-    handleBookingChange
-  }
+  return context
 }

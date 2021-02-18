@@ -18,7 +18,7 @@ import {
   useBookingModalState,
 } from "hooks/useBookingModal/useBookingModal";
 import { ActionType } from "context/bookingModal/BookingModalContext.types";
-import { useBooking } from "hooks/useBooking/useBooking";
+import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking";
 import { notifyError, notifyInfo } from "utils/notification";
 import { DB_ERROR_MSG } from "constants/toastMessages";
 

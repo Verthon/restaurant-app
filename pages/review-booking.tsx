@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
-import { gql, useMutation } from '@apollo/client';
+import { gql } from '@apollo/client';
 import dayjs from 'dayjs';
 import emailjs from 'emailjs-com'
 
@@ -19,11 +19,18 @@ import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingDispatch } from "hooks/useBookingDispatch/useBookingDispatch";
-import { useBookingState } from "hooks/useBookingState/useBookingState" 
+import { useBookingDataState, useBookingDataDispatch } from "hooks/useBooking/useBooking"
 import { HOME, MENU } from "constants/routes";
 import { BOOKING_DUPLICATED_EMAIL_MSG, EMAIL_SENDING_FAIL_MSG } from "constants/toastMessages";
 import { notifyError } from "utils/notification";
+
+export async function getStaticProps() {
+  return {
+    props: {
+      client,
+    },
+  }
+}
 
 const ADD_BOOKING = gql`
   mutation ($email: String!, $name: String!, $date: timestamptz!, $guests: smallint!) {
@@ -44,10 +51,10 @@ const UPDATE_BOOKING = gql`
   }
 `
 
-export default function ReviewBooking() {
+export default function ReviewBooking({ client }) {
   const { companyData } = useCompanyData();
-  const { booking } = useBookingState();
-  const { handleBookingChange, handleDateChange } = useBookingDispatch();
+  const booking = useBookingDataState();
+  const dispatch = useBookingDataDispatch();
   const { location, contact } = companyData;
   const [editable, setEditable] = useState(false)
   const [show, toggleModal] = useState(false)
@@ -70,7 +77,7 @@ export default function ReviewBooking() {
       name: booking.name,
       email: booking.email,
       guests: booking.guests,
-      date: dayjs(booking.date).format('DD-MMMM-YYYY HH:mm')
+      date: dayjs(booking.date as Date).format('DD-MMMM-YYYY HH:mm')
     }
     try {
       await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.EMAIL_API_KEY)
@@ -148,8 +155,7 @@ export default function ReviewBooking() {
             <Form
               booking={booking}
               config={DATEPICKER_CONFIG}
-              handleChange={handleBookingChange}
-              handleDate={handleDateChange}
+              dispatch={dispatch}
               handleSubmit={handleBookingSubmit}
               submitBtn={false}
               cssClass="form--edit"
@@ -221,13 +227,13 @@ export default function ReviewBooking() {
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitDate(formatDate(convertToDate(date)))}
+                {splitDate(formatDate(convertToDate(date as Date)))}
               </p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="section__col section__col--flexible">
               <p className="review-booking__value">
-                {splitTime(formatDate(convertToDate(date)))}
+                {splitTime(formatDate(convertToDate(date as Date)))}
               </p>
               <p className="review-booking__description">Time</p>
             </div>

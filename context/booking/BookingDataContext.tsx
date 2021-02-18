@@ -4,7 +4,7 @@ import {
   Dispatch,
   Action,
   ActionType,
-} from "./BookingDataContext.types";
+} from "./BookingContext.types";
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
@@ -24,7 +24,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 };
 
-export const BookingDataState = createContext<State | undefined>(undefined);
-export const BookingDataDispatch = createContext<Dispatch | undefined>(
+export const BookingStateContext = createContext<State | undefined>(undefined);
+export const BookingDispatchContext = createContext<Dispatch | undefined>(
   undefined
 );

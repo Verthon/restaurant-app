@@ -13,5 +13,12 @@ export const CURRENT_BOOKING_STATE = {
   ...INITIAL_BOOKING_STATE
 }
 
-export type INITIAL_BOOKING_STATE_TYPE = typeof INITIAL_BOOKING_STATE
+export type INITIAL_BOOKING_STATE_TYPE = {
+  date: Date | [Date, Date];
+  guests: number;
+  name: string;
+  email: string;
+  confirmed: boolean;
+  id?: number;
+}
 export type CURRENT_BOOKING_STATE = typeof CURRENT_BOOKING_STATE
