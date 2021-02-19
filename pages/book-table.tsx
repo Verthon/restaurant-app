@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import Form from "components/Form";
 import { DATEPICKER_CONFIG, pageTransitions } from "constants/config";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingDataState, useBookingDataDispatch } from "hooks/useBooking/useBooking"
+import { useBookingState, useBookingDispatch } from "hooks/useBooking/useBooking"
 import { Container } from "ui/Container/Container";
 import { Navbar } from "ui/Navbar/Navbar";
 import { REVIEW_BOOKING } from "constants/routes";
@@ -14,8 +14,8 @@ import { REVIEW_BOOKING } from "constants/routes";
 export default function BookTable() {
   const router = useRouter()
   const { companyData } = useCompanyData();
-  const booking = useBookingDataState();
-  const dispatch = useBookingDataDispatch();
+  const booking = useBookingState();
+  const dispatch = useBookingDispatch();
   const { hours, location, contact } = companyData;
   const links = [
     { name: "Menu", link: "menu" },

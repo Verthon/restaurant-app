@@ -7,7 +7,6 @@ import Image from "next/image";
 import { client } from "lib/apollo/apolloClient";
 import { Navbar } from "ui/Navbar/Navbar";
 import { BookingsTable } from "ui/BookingsTable/BookingsTable";
-import { Spinner } from "ui/Spinner/Spinner";
 import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { DATEPICKER_CONFIG } from "constants/config";
@@ -18,6 +17,7 @@ import {
   useBookingModalState,
 } from "hooks/useBookingModal/useBookingModal";
 import { ActionType } from "context/bookingModal/BookingModalContext.types";
+import { ActionType as BookingActionType } from "context/booking/BookingContext.types"
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking";
 import { notifyError, notifyInfo } from "utils/notification";
 import { DB_ERROR_MSG } from "constants/toastMessages";
@@ -88,14 +88,10 @@ export default function AdminPage({ user, bookings, isLoading }) {
     { name: "Bookings", link: "bookings" },
     { name: "Storage", link: "storage" },
   ];
-  const dispatch = useBookingModalDispatch();
+  const dispatchModal = useBookingModalDispatch();
   const { showModal } = useBookingModalState();
-  const {
-    booking,
-    setBooking,
-    handleDateChange,
-    handleBookingChange,
-  } = useBooking();
+  const booking = useBookingState();
+  const dispatch = useBookingDispatch();
   const [loading, setLoading] = React.useState(!!isLoading);
 
   const deleteBooking = () => {
@@ -118,22 +114,20 @@ export default function AdminPage({ user, bookings, isLoading }) {
       | React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    const submitBooking: any = { ...booking };
-    console.log("submitBooking", submitBooking);
     try {
       setLoading(true);
       await client.mutate({
         mutation: UPDATE_BOOKING,
         variables: {
           id: booking.id,
-          email: submitBooking.email,
-          name: submitBooking.name,
-          date: submitBooking.date,
-          guests: submitBooking.guests,
+          email: booking.email,
+          name: booking.name,
+          date: booking.date,
+          guests: booking.guests,
           confirmed: true,
         },
       });
-      dispatch({ type: ActionType.hide });
+      dispatchModal({ type: ActionType.hide });
       notifyInfo("Booking updated successfully.");
       setLoading(false);
     } catch (error) {
@@ -143,8 +137,8 @@ export default function AdminPage({ user, bookings, isLoading }) {
   };
 
   const toggleOptions = (booking: any) => {
-    setBooking(booking);
-    dispatch({ type: ActionType.show });
+    dispatch({ type: BookingActionType.setBooking, payload: {booking} });
+    dispatchModal({ type: ActionType.show });
   };
 
   return (
@@ -158,7 +152,7 @@ export default function AdminPage({ user, bookings, isLoading }) {
         <div className="modal-book__nav">
           <button
             className="modal-book__close"
-            onClick={() => dispatch({ type: ActionType.hide })}
+            onClick={() => dispatchModal({ type: ActionType.hide })}
           >
             <img
               src="/assets/icons/close-circle.svg"
@@ -178,8 +172,7 @@ export default function AdminPage({ user, bookings, isLoading }) {
           <Form
             booking={booking}
             config={DATEPICKER_CONFIG}
-            handleChange={handleBookingChange}
-            handleDate={handleDateChange}
+            dispatch={dispatch}
             handleSubmit={updateBooking}
             submitBtn={false}
             cssClass="form--edit"

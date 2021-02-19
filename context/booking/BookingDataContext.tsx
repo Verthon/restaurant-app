@@ -18,6 +18,9 @@ export const reducer = (state: State, action: Action): State => {
       }
       return { ...state, [e.target.name]: e.target.value };
     }
+    case ActionType.setBooking: {
+      return { ...action.payload.booking }
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

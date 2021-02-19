@@ -42,6 +42,14 @@ const Form = ({
     dispatch({ type: ActionType.changeDate, payload: { date: date } })
   }
 
+  const parseDate = (date: Date | [Date, Date]) => {
+    if(date instanceof Date) {
+      return date;
+    }
+
+    return new Date(String(date));
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -74,7 +82,7 @@ const Form = ({
       <DatePicker
         name="Datepicker"
         className={styles.input}
-        selected={booking.date as Date}
+        selected={parseDate(booking.date)}
         onChange={handleDate}
         showTimeSelect
         minDate={config.startDate}

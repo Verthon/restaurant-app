@@ -19,18 +19,10 @@ import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingDataState, useBookingDataDispatch } from "hooks/useBooking/useBooking"
+import { useBookingState, useBookingDispatch } from "hooks/useBooking/useBooking"
 import { HOME, MENU } from "constants/routes";
 import { BOOKING_DUPLICATED_EMAIL_MSG, EMAIL_SENDING_FAIL_MSG } from "constants/toastMessages";
 import { notifyError } from "utils/notification";
-
-export async function getStaticProps() {
-  return {
-    props: {
-      client,
-    },
-  }
-}
 
 const ADD_BOOKING = gql`
   mutation ($email: String!, $name: String!, $date: timestamptz!, $guests: smallint!) {
@@ -53,8 +45,8 @@ const UPDATE_BOOKING = gql`
 
 export default function ReviewBooking({ client }) {
   const { companyData } = useCompanyData();
-  const booking = useBookingDataState();
-  const dispatch = useBookingDataDispatch();
+  const booking = useBookingState();
+  const dispatch = useBookingDispatch();
   const { location, contact } = companyData;
   const [editable, setEditable] = useState(false)
   const [show, toggleModal] = useState(false)
