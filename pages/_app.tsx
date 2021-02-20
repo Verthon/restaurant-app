@@ -1,17 +1,17 @@
 import { BookingModalController } from "context/bookingModal/BookingModalController";
 import { CompanyDataController } from "context/companyData/CompanyDataController";
-import { BookingDataController } from "context/bookingData/BookingDataController";
+import { BookingController } from "context/booking/BookingController";
 
 import "../styles/index.scss";
 
 export default function App({ Component, pageProps }) {
   return (
     <CompanyDataController>
-      <BookingDataController>
+      <BookingController>
         <BookingModalController>
           <Component {...pageProps} />
         </BookingModalController>
-      </BookingDataController>
+      </BookingController>
     </CompanyDataController>
   );
 }

@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import React from "react"
 
-export const useBookingModal = () => {
-  const [showModal, setShowModal] = useState(false)
+import { BookingModalStateContext } from "context/bookingModal/BookingModalContext"
+import { BookingModalDispatchContext } from "context/bookingModal/BookingModalContext"
 
-  const toggleModal = () => {
-    setShowModal(!showModal)
+export const useBookingModalDispatch = () => {
+  const context = React.useContext(BookingModalDispatchContext)
+
+  if (context === undefined) {
+
+    throw new Error('useCountState must be used within a CountProvider')
+
   }
 
-  return {
-    showModal,
-    toggleModal
+  return context
+}
+
+export const useBookingModalState = () => {
+  const context = React.useContext(BookingModalStateContext)
+
+  if (context === undefined) {
+
+    throw new Error('useCountState must be used within a CountProvider')
+
   }
+
+  return context
 }

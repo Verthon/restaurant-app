@@ -1,19 +1,18 @@
 import React from 'react'
 
-import { BookingModalContext } from './BookingModalContext'
-import { useBookingModal } from '../../hooks/useBookingModal/useBookingModal'
+import { Props } from "./BookingModalContext.types"
+import { BookingModalStateContext, BookingModalDispatchContext, reducer } from './BookingModalContext'
 
-export const BookingModalController = ({ children }: { children: React.ReactNode }) => {
-  const { showModal, toggleModal } = useBookingModal()
-
+export const BookingModalController = ({ children }: Props) => {
+  const [state, dispatch] = React.useReducer(reducer, {showModal: false})
   return (
-    <BookingModalContext.Provider
-      value={{
-        showModal,
-        toggleModal
-      }}
+    <BookingModalStateContext.Provider
+      value={state}
     >
+    <BookingModalDispatchContext.Provider value={dispatch}>
       {children}
-    </BookingModalContext.Provider>
+    </BookingModalDispatchContext.Provider>  
+      
+    </BookingModalStateContext.Provider>
   )
 }

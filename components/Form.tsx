@@ -7,13 +7,12 @@ import { Label } from 'ui/Label/Label'
 import { Input } from 'ui/Input/Input'
 import { Button } from 'ui/Button/Button'
 import styles from "ui/Input/Input.module.scss"
+import { ActionType, Dispatch, State } from 'context/booking/BookingContext.types'
 
 type Props = {
-  handleDate: (date: Date, e: React.SyntheticEvent<any, Event>) => void
-  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => void
-  handleBookingChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  booking: any
+  dispatch: Dispatch
+  booking: State
   config: any
   cssClass?: string
   submitBtn: boolean
@@ -23,8 +22,6 @@ type Props = {
 }
 
 const Form = ({
-  handleChange,
-  handleDate,
   handleSubmit,
   booking,
   config,
@@ -32,9 +29,27 @@ const Form = ({
   cssClass,
   action,
   withBookingDesc,
-  loading = false
+  loading = false,
+  dispatch
 }: Props) => {
   config.startDate = new Date(dayjs(config.startDate).toISOString())
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: ActionType.changeBooking, payload: { e } })
+  }
+
+  const handleDate = (date: Date | [Date, Date]) => {
+    dispatch({ type: ActionType.changeDate, payload: { date: date } })
+  }
+
+  const parseDate = (date: Date | [Date, Date]) => {
+    if(date instanceof Date) {
+      return date;
+    }
+
+    return new Date(String(date));
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -67,7 +82,7 @@ const Form = ({
       <DatePicker
         name="Datepicker"
         className={styles.input}
-        selected={booking.date}
+        selected={parseDate(booking.date)}
         onChange={handleDate}
         showTimeSelect
         minDate={config.startDate}
