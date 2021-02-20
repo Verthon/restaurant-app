@@ -13,8 +13,8 @@ export const CURRENT_BOOKING_STATE = {
   ...INITIAL_BOOKING_STATE
 }
 
-export type INITIAL_BOOKING_STATE_TYPE = {
-  date: Date | [Date, Date];
+export type Booking = {
+  date: Date;
   guests: number;
   name: string;
   email: string;

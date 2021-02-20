@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
-import { gql } from '@apollo/client';
-import dayjs from 'dayjs';
-import emailjs from 'emailjs-com'
+import { gql } from "@apollo/client";
+import dayjs from "dayjs";
+import emailjs from "emailjs-com";
 
 import { client } from "lib/apollo/apolloClient";
 import {
@@ -14,92 +14,127 @@ import {
   convertToDate,
   getEmailActionUrl,
 } from "utils/helpers";
-import { DATEPICKER_CONFIG, pageTransitions } from "constants/config";
+import { pageTransitions } from "constants/config";
 import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingState, useBookingDispatch } from "hooks/useBooking/useBooking"
+import { useBookingState } from "hooks/useBooking/useBooking";
 import { HOME, MENU } from "constants/routes";
-import { BOOKING_DUPLICATED_EMAIL_MSG, EMAIL_SENDING_FAIL_MSG } from "constants/toastMessages";
+import {
+  BOOKING_DUPLICATED_EMAIL_MSG,
+  EMAIL_SENDING_FAIL_MSG,
+} from "constants/toastMessages";
 import { notifyError } from "utils/notification";
 
+export type BookingVariables = {
+  id?: number;
+  email?: string;
+  name?: string;
+  date?: Date;
+  guests?: number;
+};
+
 const ADD_BOOKING = gql`
-  mutation ($email: String!, $name: String!, $date: timestamptz!, $guests: smallint!) {
-    insert_bookings(objects: {email: $email, name: $name, date: $date, guests: $guests}) {
+  mutation(
+    $email: String!
+    $name: String!
+    $date: timestamptz!
+    $guests: smallint!
+  ) {
+    insert_bookings(
+      objects: { email: $email, name: $name, date: $date, guests: $guests }
+    ) {
       affected_rows
       returning {
         id
       }
     }
   }
-`
+`;
 
 const UPDATE_BOOKING = gql`
-  mutation ($id: Int!) {
-    update_bookings(_set: {confirmed: true}, where: {id: {_eq: $id}}) {
+  mutation($id: Int!) {
+    update_bookings(_set: { confirmed: true }, where: { id: { _eq: $id } }) {
       affected_rows
     }
   }
-`
+`;
 
-export default function ReviewBooking({ client }) {
+export default function ReviewBooking() {
   const { companyData } = useCompanyData();
   const booking = useBookingState();
-  const dispatch = useBookingDispatch();
   const { location, contact } = companyData;
-  const [editable, setEditable] = useState(false)
-  const [show, toggleModal] = useState(false)
+  const [editable, setEditable] = useState(false);
+  const [show, toggleModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleBookingEdit = () => {
-    setEditable(true)
-  }
+    setEditable(true);
+  };
 
-  const addBooking = async ({ variables }) => {
-    return client.mutate({ mutation: ADD_BOOKING, variables })
-  }
+  const addBooking = async ({ variables }: { variables: BookingVariables }) => {
+    return client.mutate({ mutation: ADD_BOOKING, variables });
+  };
 
-  const updateBooking = async ({variables}) => {
-    return client.mutate({ mutation: UPDATE_BOOKING, variables  })
-  }
+  const updateBooking = async ({
+    variables,
+  }: {
+    variables: BookingVariables;
+  }) => {
+    return client.mutate({ mutation: UPDATE_BOOKING, variables });
+  };
 
   const handleEmailSend = async (id: number) => {
     const templateParams = {
       name: booking.name,
       email: booking.email,
       guests: booking.guests,
-      date: dayjs(booking.date as Date).format('DD-MMMM-YYYY HH:mm')
-    }
+      date: dayjs(booking.date as Date).format("DD-MMMM-YYYY HH:mm"),
+    };
     try {
-      await emailjs.send('gmail-alkinoos', 'reservation', templateParams, process.env.EMAIL_API_KEY)
-      await updateBooking({ variables: {id: id} })
-      setLoading(false)
-      toggleModal(true)
+      await emailjs.send(
+        "gmail-alkinoos",
+        "reservation",
+        templateParams,
+        process.env.EMAIL_API_KEY
+      );
+      await updateBooking({ variables: { id: id } });
+      setLoading(false);
+      toggleModal(true);
     } catch (error) {
-      setLoading(false)
-      notifyError(EMAIL_SENDING_FAIL_MSG)
+      setLoading(false);
+      notifyError(EMAIL_SENDING_FAIL_MSG);
     }
-  }
+  };
 
   const handleBookingSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.FormEvent<HTMLFormElement>
   ) => {
     try {
-      e.preventDefault()
+      e.preventDefault();
 
       if (booking) {
-        setLoading(true)
-        const submitBooking = { ...booking }
-        const result = await addBooking({ variables: {email: submitBooking.email, name: submitBooking.name, date: submitBooking.date, guests: submitBooking.guests} })
+        setLoading(true);
+        const submitBooking = { ...booking };
+        const result = await addBooking({
+          variables: {
+            email: submitBooking.email,
+            name: submitBooking.name,
+            date: submitBooking.date,
+            guests: submitBooking.guests,
+          },
+        });
         const id = result.data.insert_bookings.returning[0].id;
         await handleEmailSend(id);
       }
-    } catch(error) {
-      setLoading(false)
-      notifyError(BOOKING_DUPLICATED_EMAIL_MSG)
+    } catch (error) {
+      setLoading(false);
+      notifyError(BOOKING_DUPLICATED_EMAIL_MSG);
     }
-  }
+  };
 
   const { address, code, city, province } = location;
   const { name, guests, date, email } = booking || {};
@@ -146,8 +181,6 @@ export default function ReviewBooking({ client }) {
           <div className="review-booking__form">
             <Form
               booking={booking}
-              config={DATEPICKER_CONFIG}
-              dispatch={dispatch}
               handleSubmit={handleBookingSubmit}
               submitBtn={false}
               cssClass="form--edit"

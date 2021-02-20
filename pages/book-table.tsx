@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { useRouter } from 'next/router'
 
 import Form from "components/Form";
-import { DATEPICKER_CONFIG, pageTransitions } from "constants/config";
+import { pageTransitions } from "constants/config";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingState, useBookingDispatch } from "hooks/useBooking/useBooking"
+import { useBookingState } from "hooks/useBooking/useBooking"
 import { Container } from "ui/Container/Container";
 import { Navbar } from "ui/Navbar/Navbar";
 import { REVIEW_BOOKING } from "constants/routes";
@@ -15,7 +15,6 @@ export default function BookTable() {
   const router = useRouter()
   const { companyData } = useCompanyData();
   const booking = useBookingState();
-  const dispatch = useBookingDispatch();
   const { hours, location, contact } = companyData;
   const links = [
     { name: "Menu", link: "menu" },
@@ -50,9 +49,7 @@ export default function BookTable() {
               <h2 className="table-booking__subtitle">Make a reservation</h2>
               <Form
                 handleSubmit={handleBookingSubmit}
-                dispatch={dispatch}
                 booking={booking}
-                config={DATEPICKER_CONFIG}
                 withBookingDesc={true}
                 submitBtn
                 action=""

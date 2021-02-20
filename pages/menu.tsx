@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { GetStaticProps } from 'next'
 
 import { MenuList } from "ui/MenuList/MenuList";
 import { Navbar } from "ui/Navbar/Navbar";
@@ -8,6 +9,7 @@ import { pageTransitions } from "constants/config";
 import { formatMenu } from "utils/menu";
 import { gql } from "@apollo/client";
 import { client } from "lib/apollo/apolloClient";
+import { MenuState } from "hooks/useMenuData/useMenuData.types";
 
 const GET_MENU = gql`
   query getMenu {
@@ -25,7 +27,7 @@ const GET_MENU = gql`
   }
 `;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({ query: GET_MENU });
 
   const menu = formatMenu(data?.products);
@@ -37,7 +39,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Menu({ menu }) {
+export default function Menu({ menu }: { menu: MenuState }) {
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Book Table", link: "book-table" },
