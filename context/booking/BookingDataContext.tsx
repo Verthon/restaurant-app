@@ -1,33 +1,37 @@
-import { createContext } from "react";
+import React from "react";
 import {
   State,
   Dispatch,
   Action,
-  ActionType,
 } from "./BookingContext.types";
+
+export const CHANGE_DATE = 'booking/CHANGE_DATE'
+export const CHANGE_BOOKING = 'booking/CHANGE_BOOKING'
+export const SET_BOOKING = 'booking/SET_BOOKING'
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case ActionType.changeDate: {
-      return { ...state, date: action.payload.date };
+    case CHANGE_DATE: {
+      return { ...state, date: action.payload };
     }
-    case ActionType.changeBooking: {
-      const { e } = action.payload;
-      if (e.target.name === "guests") {
-        return { ...state, guests: parseInt(e.target.value) };
+    case CHANGE_BOOKING: {
+      const {name, value} = action.payload;
+      if ( name === "guests") {
+        return { ...state, guests: parseInt(value) };
       }
-      return { ...state, [e.target.name]: e.target.value };
+
+      return { ...state, [name]: value };
     }
-    case ActionType.setBooking: {
-      return { ...action.payload.booking }
+    case SET_BOOKING: {
+      return {...action.payload}
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error('Unhandled action type');
     }
   }
 };
 
-export const BookingStateContext = createContext<State | undefined>(undefined);
-export const BookingDispatchContext = createContext<Dispatch | undefined>(
+export const BookingStateContext = React.createContext<State | undefined>(undefined);
+export const BookingDispatchContext = React.createContext<Dispatch | undefined>(
   undefined
 );

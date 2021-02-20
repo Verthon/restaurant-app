@@ -9,7 +9,6 @@ import { Navbar } from "ui/Navbar/Navbar";
 import { BookingsTable } from "ui/BookingsTable/BookingsTable";
 import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
-import { DATEPICKER_CONFIG } from "constants/config";
 import { Button } from "ui/Button/Button";
 import auth0 from "./api/utils/auth0";
 import {
@@ -17,10 +16,19 @@ import {
   useBookingModalState,
 } from "hooks/useBookingModal/useBookingModal";
 import { ActionType } from "context/bookingModal/BookingModalContext.types";
-import { ActionType as BookingActionType } from "context/booking/BookingContext.types"
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking";
 import { notifyError, notifyInfo } from "utils/notification";
 import { DB_ERROR_MSG } from "constants/toastMessages";
+import { Booking } from "constants/booking";
+import { IClaims } from "@auth0/nextjs-auth0/dist/session/session";
+import { NextApiRequest } from "next";
+import { setBooking } from "context/booking/BookingActionCreator";
+
+type Props = {
+  user?: IClaims
+  isLoading: boolean
+  bookings: Booking[]
+}
 
 const UPDATE_BOOKING = gql`
   mutation(
@@ -70,7 +78,7 @@ const SUBSCRIBE_BOOKINGS = gql`
   }
 `;
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const session = await auth0.getSession(req);
   const { data, loading } = await client.query({ query: SUBSCRIBE_BOOKINGS });
 
@@ -83,7 +91,7 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function AdminPage({ user, bookings, isLoading }) {
+export default function AdminPage({ user, bookings, isLoading }: Props) {
   const adminLinks = [
     { name: "Bookings", link: "bookings" },
     { name: "Storage", link: "storage" },
@@ -136,8 +144,8 @@ export default function AdminPage({ user, bookings, isLoading }) {
     }
   };
 
-  const toggleOptions = (booking: any) => {
-    dispatch({ type: BookingActionType.setBooking, payload: {booking} });
+  const toggleOptions = (booking: Booking) => {
+    dispatch(setBooking(booking))
     dispatchModal({ type: ActionType.show });
   };
 
@@ -171,8 +179,6 @@ export default function AdminPage({ user, bookings, isLoading }) {
         <div className="admin__form-container">
           <Form
             booking={booking}
-            config={DATEPICKER_CONFIG}
-            dispatch={dispatch}
             handleSubmit={updateBooking}
             submitBtn={false}
             cssClass="form--edit"
@@ -217,7 +223,7 @@ export default function AdminPage({ user, bookings, isLoading }) {
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
-          <BookingsTable bookings={bookings} toggleOptions={toggleOptions} />
+          <BookingsTable bookings={bookings as any} toggleOptions={toggleOptions} />
         )}
         <h2 className="admin__title" id="storage">
           Storage

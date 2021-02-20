@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import "@brainhubeu/react-carousel/lib/style.css";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
+import '@brainhubeu/react-carousel/lib/style.css'
+import Carousel, { Dots, slidesToShowPlugin } from '@brainhubeu/react-carousel'
 import { gql } from "@apollo/client";
 
 import { client } from "lib/apollo/apolloClient"
@@ -11,8 +11,20 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Button } from "ui/Button/Button";
+import { Testimonial } from 'ui/Testimonial/Testimonial'
 
 import styles from "ui/Testimonial/Testimonial.module.scss";
+import React from "react";
+
+type Testimonial = {
+  id: number,
+  author: string,
+  text: string
+}
+
+type Props = {
+  testimonials: Testimonial[]
+}
 
 export const GET_TESTIMONIALS = gql`
   query GetTestimonials {
@@ -34,7 +46,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ testimonials }) {
+export default function Home({ testimonials }: Props) {
   const { companyData } = useCompanyData();
   const links = [
     { name: "Menu", link: "menu" },
@@ -42,6 +54,16 @@ export default function Home({ testimonials }) {
   ];
   const { hours, location, contact } = companyData;
   const [dotValue, setDotValue] = useState(0);
+  const [slides, setSlides] = useState<JSX.Element[]>([])
+
+  React.useEffect(() => {
+    if (testimonials) {
+      const allTestimonials = testimonials.map((testimonial) => {
+        return <Testimonial key={testimonial.id} author={testimonial.author} text={testimonial.text} />
+      })
+      setSlides(allTestimonials)
+    }
+  }, [testimonials])
 
   return (
     <>
@@ -174,11 +196,18 @@ export default function Home({ testimonials }) {
           <div className="testimonials">
             <div className={styles.modal}>
               <h2 className={styles.heading}>Guest reviews</h2>
-              {/* <Carousel
-                slidesPerPage={1}
-                centered
+              <Carousel
+                plugins={[
+                  'centered',
+                  {
+                    resolve: slidesToShowPlugin,
+                    options: {
+                    numberOfSlides: 1
+                    }
+                  },
+                ]}
                 value={dotValue}
-                slides={testimonials}
+                slides={slides}
                 itemWidth={450}
                 onChange={(value) => setDotValue(value)}
               />
@@ -186,7 +215,7 @@ export default function Home({ testimonials }) {
                 value={dotValue}
                 onChange={(value) => setDotValue(value)}
                 number={testimonials?.length}
-              /> */}
+              />
             </div>
           </div>
         </div>

@@ -5,8 +5,9 @@ import { pageTransitions } from "constants/config";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Button } from "ui/Button/Button";
 import auth0 from './api/utils/auth0'
+import { NextApiRequest } from "next";
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }: {req: NextApiRequest}) {
   const session = await auth0.getSession(req)
 
   return {

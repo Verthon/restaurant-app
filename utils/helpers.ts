@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 import dayjs from 'dayjs'
 
-import { INITIAL_BOOKING_STATE_TYPE } from '../constants/booking';
+import { Booking } from '../constants/booking';
 
 export const formatPrice = (cents: number) => {
   const options = {
@@ -49,7 +49,7 @@ export const loadLocalStorageState = (name: string) => {
   }
 }
 
-export const saveLocalStorageState = (state: { booking: INITIAL_BOOKING_STATE_TYPE | undefined }) => {
+export const saveLocalStorageState = (state: { booking: Booking | undefined }) => {
   try {
     const serializedState = JSON.stringify(state)
     window.localStorage.setItem('booking', serializedState)
@@ -71,7 +71,7 @@ export const convertToDate = (date: string | number | Date ) => {
   return new Date()
 }
 
-export const transformLocalStorageData = (data: { date: string; guests: string } | any) => {
+export const transformLocalStorageData = (data: { date: string; guests: string }) => {
   const booking = {
     ...data,
     date: convertToDate(data.date),
@@ -86,14 +86,8 @@ export const isDateCurrent = (date: string | number | dayjs.Dayjs | Date | undef
 
 export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
-export const formatBookings = (booking: any[]) => {
-  return booking.map((booking: { data: { date: { toDate: () => any } } }) => {
-    booking.data.date = booking.data.date.toDate()
-    return booking
-  })
-}
-
 export const formatMenu = (data: string | any) => {
+  console.log(data)
   if (data && data.length > 0) {
     const menu = [...data]
     return menu

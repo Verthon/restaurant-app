@@ -1,10 +1,11 @@
+import { Product } from 'hooks/useMenuData/useMenuData.types'
 import React from 'react'
 
 import { MenuItem } from '../MenuItem/MenuItem'
 import styles from "./MenuList.module.scss"
 
 type Props = {
-  category: any[]
+  category: Product[]
 }
 
 export const MenuList = ({category}: Props) => {
