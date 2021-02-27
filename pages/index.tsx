@@ -15,6 +15,7 @@ import { Testimonial } from 'ui/Testimonial/Testimonial'
 
 import styles from "ui/Testimonial/Testimonial.module.scss";
 import React from "react";
+import { GetStaticProps } from "next";
 
 type Testimonial = {
   id: number,
@@ -36,12 +37,14 @@ export const GET_TESTIMONIALS = gql`
   }
 `;
 
-export async function getStaticProps() {
-  const { data } = await client.query({ query: GET_TESTIMONIALS });
+export const getStaticProps :GetStaticProps = async (context) => {
+  const response = await client.query({ query: GET_TESTIMONIALS })!;
+
+  console.log(context, response.data);
 
   return {
     props: {
-      testimonials: data.testimonials,
+      testimonials: []
     },
   };
 }

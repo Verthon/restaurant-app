@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from "next";
 
 import { MenuList } from "ui/MenuList/MenuList";
 import { Navbar } from "ui/Navbar/Navbar";
@@ -28,16 +28,16 @@ const GET_MENU = gql`
 `;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await client.query({ query: GET_MENU });
+  const response = await client.query({ query: GET_MENU });
 
-  const menu = formatMenu(data?.products);
+  const menu = formatMenu(response.data.products);
 
   return {
     props: {
       menu,
     },
   };
-}
+};
 
 export default function Menu({ menu }: { menu: MenuState }) {
   const links = [
