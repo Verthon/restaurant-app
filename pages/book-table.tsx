@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { useRouter } from 'next/router'
 
 import Form from "components/Form";
-import { pageTransitions } from "constants/config";
+import { TRANSITIONS } from "constants/config";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import { useBookingState } from "hooks/useBooking/useBooking"
 import { Container } from "ui/Container/Container";
 import { Navbar } from "ui/Navbar/Navbar";
-import { REVIEW_BOOKING } from "constants/routes";
+import { ROUTES } from "constants/routes";
 
 export default function BookTable() {
   const router = useRouter()
@@ -27,7 +27,7 @@ export default function BookTable() {
       | React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    router.push(REVIEW_BOOKING);
+    router.push(ROUTES.review);
   };
 
   return (
@@ -42,7 +42,7 @@ export default function BookTable() {
       >
         <Container>
           <motion.div
-            variants={pageTransitions}
+            variants={TRANSITIONS}
             className="table-booking__wrapper"
           >
             <div className="section section__col section__col--flexible">

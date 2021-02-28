@@ -17,8 +17,7 @@ import {
 } from "hooks/useBookingModal/useBookingModal";
 import { ActionType } from "context/bookingModal/BookingModalContext.types";
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking";
-import { notifyError, notifyInfo } from "utils/notification";
-import { DB_ERROR_MSG } from "constants/toastMessages";
+import { showErrorNotification, showNotification } from "utils/notification";
 import { Booking } from "constants/booking";
 import { IClaims } from "@auth0/nextjs-auth0/dist/session/session";
 import { NextApiRequest } from "next";
@@ -112,7 +111,7 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      notifyError(DB_ERROR_MSG);
+      showErrorNotification();
     }
   };
 
@@ -136,11 +135,11 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
         },
       });
       dispatchModal({ type: ActionType.hide });
-      notifyInfo("Booking updated successfully.");
+      showNotification("Booking updated successfully.");
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      notifyError(DB_ERROR_MSG);
+      showErrorNotification();
     }
   };
 

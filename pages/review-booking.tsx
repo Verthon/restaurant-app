@@ -14,18 +14,15 @@ import {
   convertToDate,
   getEmailActionUrl,
 } from "utils/helpers";
-import { pageTransitions } from "constants/config";
+import { TRANSITIONS } from "constants/config";
 import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import { useBookingState } from "hooks/useBooking/useBooking";
-import { HOME, MENU } from "constants/routes";
-import {
-  BOOKING_DUPLICATED_EMAIL_MSG,
-  EMAIL_SENDING_FAIL_MSG,
-} from "constants/toastMessages";
-import { notifyError } from "utils/notification";
+import { ROUTES } from "constants/routes";
+import { ERROR_MSG } from "constants/messages";
+import { showErrorNotification } from "utils/notification";
 
 export type BookingVariables = {
   id?: number;
@@ -104,7 +101,7 @@ export default function ReviewBooking() {
       toggleModal(true);
     } catch (error) {
       setLoading(false);
-      notifyError(EMAIL_SENDING_FAIL_MSG);
+      showErrorNotification(ERROR_MSG.emailSendFail);
     }
   };
 
@@ -132,7 +129,7 @@ export default function ReviewBooking() {
       }
     } catch (error) {
       setLoading(false);
-      notifyError(BOOKING_DUPLICATED_EMAIL_MSG);
+      showErrorNotification(ERROR_MSG.emailDuplicated);
     }
   };
 
@@ -155,20 +152,20 @@ export default function ReviewBooking() {
           </p>
           <p className="text modal-book__text">We will contact you shortly.</p>
           <footer className="modal-book__footer">
-            <Button variant="transparent" size="regular" link={HOME}>
+            <Button variant="transparent" size="regular" link={ROUTES.home}>
               Back to Home
             </Button>
-            <Button variant="light" size="regular" link={MENU}>
+            <Button variant="light" size="regular" link={ROUTES.menu}>
               See Menu
             </Button>
           </footer>
         </Modal>
         <motion.article
           className="review-booking__content"
-          variants={pageTransitions}
+          variants={TRANSITIONS}
         >
           <h1 className="heading review-booking__company">
-            <Link href={HOME}>
+            <Link href={ROUTES.home}>
               <a>{contact.name}</a>
             </Link>
           </h1>
@@ -214,10 +211,10 @@ export default function ReviewBooking() {
         </p>
         <p className="text modal-book__text">We will contact you shortly.</p>
         <footer className="modal-book__footer">
-          <Button variant="transparent" size="regular" link={HOME}>
+          <Button variant="transparent" size="regular" link={ROUTES.home}>
             Back to Home
           </Button>
-          <Button variant="light" size="regular" link={MENU}>
+          <Button variant="light" size="regular" link={ROUTES.menu}>
             See Menu
           </Button>
         </footer>
@@ -230,10 +227,10 @@ export default function ReviewBooking() {
       >
         <motion.article
           className="review-booking__content"
-          variants={pageTransitions}
+          variants={TRANSITIONS}
         >
           <h1 className="heading review-booking__company">
-            <Link href={HOME}>
+            <Link href={ROUTES.home}>
               <a>{contact.name}</a>
             </Link>
           </h1>

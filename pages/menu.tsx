@@ -1,15 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
+import { ApolloError, gql } from "@apollo/client";
+import { client } from "lib/apollo/apolloClient";
 
 import { MenuList } from "ui/MenuList/MenuList";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Container } from "ui/Container/Container";
-import { pageTransitions } from "constants/config";
+import { TRANSITIONS } from "constants/config";
 import { formatMenu } from "utils/menu";
-import { gql } from "@apollo/client";
-import { client } from "lib/apollo/apolloClient";
 import { MenuState } from "hooks/useMenuData/useMenuData.types";
+
+type Props = {
+  menu: MenuState,
+  loading: boolean,
+  error: ApolloError | null
+}
 
 const GET_MENU = gql`
   query getMenu {
@@ -28,18 +34,20 @@ const GET_MENU = gql`
 `;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await client.query({ query: GET_MENU });
+  const { data, loading, error } = await client.query({ query: GET_MENU });
 
-  const menu = formatMenu(response.data.products);
+  const menu = formatMenu(data.products);
 
   return {
     props: {
       menu,
+      loading,
+      error: error || null,
     },
   };
 };
 
-export default function Menu({ menu }: { menu: MenuState }) {
+export default function Menu({ menu, loading, error }: Props) {
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Book Table", link: "book-table" },
@@ -60,7 +68,7 @@ export default function Menu({ menu }: { menu: MenuState }) {
             >
               <motion.article
                 className="menu__container"
-                variants={pageTransitions}
+                variants={TRANSITIONS}
               >
                 <h2 className="menu__title">Appetizers</h2>
                 <MenuList category={menu.appetizers} />
@@ -74,7 +82,7 @@ export default function Menu({ menu }: { menu: MenuState }) {
             >
               <motion.article
                 className="menu__container"
-                variants={pageTransitions}
+                variants={TRANSITIONS}
               >
                 <h2 className="menu__title">Desserts</h2>
                 <MenuList category={menu.desserts} />
@@ -88,7 +96,7 @@ export default function Menu({ menu }: { menu: MenuState }) {
             >
               <motion.article
                 className="menu__container"
-                variants={pageTransitions}
+                variants={TRANSITIONS}
               >
                 <h2 className="menu__title">Mains</h2>
                 <MenuList category={menu.mains} />
@@ -102,7 +110,7 @@ export default function Menu({ menu }: { menu: MenuState }) {
             >
               <motion.article
                 className="menu__container"
-                variants={pageTransitions}
+                variants={TRANSITIONS}
               >
                 <h2 className="menu__title">Salads</h2>
                 <MenuList category={menu.salads} />

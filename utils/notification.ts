@@ -1,3 +1,4 @@
+import { ERROR_MSG } from 'constants/messages'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -21,10 +22,10 @@ const TOAST_DEFAULT_OPTIONS: ToastOptions = {
   progress: undefined
 }
 
-export const notifyInfo = (message: string = 'Your action has been completed.', options: ToastOptions = TOAST_DEFAULT_OPTIONS) => {
+export const showNotification = (message: string = 'Your action has been completed.', options: ToastOptions = TOAST_DEFAULT_OPTIONS) => {
   return toast.info(message, options)
 }
 
-export const notifyError = (message: string, options = TOAST_DEFAULT_OPTIONS) => {
+export const showErrorNotification = (message = ERROR_MSG.default, options = TOAST_DEFAULT_OPTIONS) => {
   return toast.error(message, options)
 }

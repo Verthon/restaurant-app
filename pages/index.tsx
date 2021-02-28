@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import '@brainhubeu/react-carousel/lib/style.css'
 import Carousel, { Dots, slidesToShowPlugin } from '@brainhubeu/react-carousel'
-import { gql } from "@apollo/client";
+import { ApolloError, gql } from "@apollo/client";
 
 import { client } from "lib/apollo/apolloClient"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
@@ -16,6 +16,7 @@ import { Testimonial } from 'ui/Testimonial/Testimonial'
 import styles from "ui/Testimonial/Testimonial.module.scss";
 import React from "react";
 import { GetStaticProps } from "next";
+import { ROUTES } from "constants/routes";
 
 type Testimonial = {
   id: number,
@@ -24,7 +25,9 @@ type Testimonial = {
 }
 
 type Props = {
-  testimonials: Testimonial[]
+  testimonials: Testimonial[],
+  loading: boolean,
+  error: ApolloError | null
 }
 
 export const GET_TESTIMONIALS = gql`
@@ -37,19 +40,19 @@ export const GET_TESTIMONIALS = gql`
   }
 `;
 
-export const getStaticProps :GetStaticProps = async (context) => {
-  const response = await client.query({ query: GET_TESTIMONIALS })!;
-
-  console.log(context, response.data);
+export const getStaticProps :GetStaticProps = async () => {
+  const { data, loading, error } = await client.query({ query: GET_TESTIMONIALS });
 
   return {
     props: {
-      testimonials: []
+      testimonials: data.testimonials,
+      loading: loading,
+      error: error || null
     },
   };
 }
 
-export default function Home({ testimonials }: Props) {
+export default function Home({ testimonials, loading, error }: Props) {
   const { companyData } = useCompanyData();
   const links = [
     { name: "Menu", link: "menu" },
@@ -60,7 +63,7 @@ export default function Home({ testimonials }: Props) {
   const [slides, setSlides] = useState<JSX.Element[]>([])
 
   React.useEffect(() => {
-    if (testimonials) {
+    if (testimonials && !loading && !error) {
       const allTestimonials = testimonials.map((testimonial) => {
         return <Testimonial key={testimonial.id} author={testimonial.author} text={testimonial.text} />
       })
@@ -182,7 +185,7 @@ export default function Home({ testimonials }: Props) {
             </article>
             <div className="col-md-12 text-center">
               <Button
-                href="/menu"
+                href={ROUTES.menu}
                 variant="dark"
                 size="large"
                 data-aos="flip-up"

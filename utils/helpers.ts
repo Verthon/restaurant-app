@@ -87,7 +87,6 @@ export const isDateCurrent = (date: string | number | dayjs.Dayjs | Date | undef
 export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
 export const formatMenu = (data: string | any) => {
-  console.log(data)
   if (data && data.length > 0) {
     const menu = [...data]
     return menu
