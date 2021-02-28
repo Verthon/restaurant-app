@@ -1,4 +1,4 @@
-export const errorMsg = {
-  email: 'Please enter a valid email',
-  name: 'Please enter valid name'
+export const ERRORS = {
+  emailInput: 'Please enter a valid email',
+  nameInput: 'Please enter valid name'
 }

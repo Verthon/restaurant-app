@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { pageTransitions } from "constants/config";
+import { TRANSITIONS } from "constants/config";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Button } from "ui/Button/Button";
 import auth0 from './api/utils/auth0'
@@ -30,7 +30,7 @@ export default function LoginPage() {
         initial="exit"
         animate="enter"
         exit="exit"
-        variants={pageTransitions}
+        variants={TRANSITIONS}
         className="container row"
       >
         <div className="section section__col login">

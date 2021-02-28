@@ -1,3 +1,4 @@
+import { ROUTES } from 'constants/routes'
 import React from 'react'
 
 import { Button } from 'ui/Button/Button'
@@ -20,10 +21,10 @@ const Header = () => (
         ingredients.
       </p>
       <div className="site-header__buttons">
-        <Button href="/book-table" variant="dark" size="large">
+        <Button href={ROUTES.bookTable} variant="dark" size="large">
           book table
         </Button>
-        <Button href="/menu" variant="light" size="large">
+        <Button href={ROUTES.menu} variant="light" size="large">
           our menu
         </Button>
       </div>

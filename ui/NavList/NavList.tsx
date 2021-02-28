@@ -5,6 +5,7 @@ import { NavItem } from "../NavItem/NavItem";
 import { Button } from "ui/Button/Button";
 
 import styles from "./NavList.module.scss";
+import { ROUTES } from "constants/routes";
 
 type Link = {
   name: string;
@@ -48,7 +49,7 @@ export const NavList = ({
         />
       ))}
       {withDashboard ? (
-        <Button link="/admin" variant="light" size="small">Dashboard</Button>
+        <Button link={ROUTES.admin} variant="light" size="small">Dashboard</Button>
       ) : null}
       {children}
     </ul>

@@ -1,4 +1,4 @@
-import { errorMsg } from 'constants/errors'
+import { ERRORS } from 'constants/errors'
 
 export const validateEmail = (email: string) => {
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -9,9 +9,9 @@ type Form = { name: string; email: string }
 
 export const validate = (form: Form) => {
   if (form.name.length === 0) {
-    return { inputName: 'name', message: errorMsg.name }
+    return { inputName: 'name', message: ERRORS.nameInput }
   } else if (!validateEmail(form.email)) {
-    return { inputName: 'email', message: errorMsg.email }
+    return { inputName: 'email', message: ERRORS.emailInput }
   }
   return false
 }
