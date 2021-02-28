@@ -15,10 +15,10 @@
   -moz-box-align: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 0 1.5rem;
+  padding: 1rem 1.5rem;
 
   @include mQ($tablet) {
-    padding: 0 2.5rem;
+    padding: 0.75rem 2.5rem;
   }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import cx from "classnames"
 
 import { NavItem } from "../NavItem/NavItem";
 import { Button } from "ui/Button/Button";
@@ -34,22 +35,23 @@ export const NavList = ({
   return (
     <ul
       className={
-        isNavActive.active && !isNavActive.firstRender
+        cx(isNavActive.active && !isNavActive.firstRender
           ? styles.active
-          : styles.list
+          : styles.list, styles.animated)
       }
     >
-      <NavItem link="" name="Home" hashlink={false} />
+      <NavItem>Home</NavItem>
       {links.map((link, index) => (
         <NavItem
           key={index}
-          name={link.name}
-          link={link.link}
+          path={link.link}
           hashlink={hashlink}
-        />
+        >
+          {link.name}
+        </NavItem>
       ))}
       {withDashboard ? (
-        <Button link={ROUTES.admin} variant="light" size="small">Dashboard</Button>
+        <NavItem path={ROUTES.admin}><Button variant="light" size="small">Dashboard</Button></NavItem>
       ) : null}
       {children}
     </ul>

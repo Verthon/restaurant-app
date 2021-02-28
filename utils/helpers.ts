@@ -93,3 +93,11 @@ export const formatMenu = (data: string | any) => {
   }
   return []
 }
+
+export const generateLink = ({ path, isHashLink }: { path: string, isHashLink: boolean }) => {
+  if(isHashLink) {
+    return `#${path}`
+  }
+
+  return `/${path}`
+}
