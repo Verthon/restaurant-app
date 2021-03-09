@@ -96,7 +96,7 @@ export default function ReviewBooking() {
         templateParams,
         process.env.EMAIL_API_KEY
       );
-      await updateBooking({ variables: { id: id } });
+      await updateBooking({ variables: { id } });
       setLoading(false);
       toggleModal(true);
     } catch (error) {
