@@ -15,9 +15,9 @@ import {
   getEmailActionUrl,
 } from "utils/helpers";
 import { TRANSITIONS } from "constants/config";
-import { Modal } from "ui/Modal/Modal";
 import Form from "components/Form";
 import { Button } from "ui/Button/Button";
+import { Modal } from "ui/Modal/Modal";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import { useBookingState } from "hooks/useBooking/useBooking";
 import { ROUTES } from "constants/routes";

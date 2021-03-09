@@ -1,8 +1,6 @@
 import Head from "next/head";
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import '@brainhubeu/react-carousel/lib/style.css'
-import Carousel, { Dots, slidesToShowPlugin } from '@brainhubeu/react-carousel'
 import { ApolloError, gql } from "@apollo/client";
 
 import { client } from "lib/apollo/apolloClient"
@@ -11,14 +9,13 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import { Navbar } from "ui/Navbar/Navbar";
 import { Button } from "ui/Button/Button";
-import { Testimonial } from 'ui/Testimonial/Testimonial'
+import { Carousel } from "components/Carousel/Carousel"
 
-import styles from "ui/Testimonial/Testimonial.module.scss";
 import React from "react";
 import { GetStaticProps } from "next";
 import { ROUTES } from "constants/routes";
 
-type Testimonial = {
+export type Testimonial = {
   id: number,
   author: string,
   text: string
@@ -59,17 +56,6 @@ export default function Home({ testimonials, loading, error }: Props) {
     { name: "Contact", link: "contact" },
   ];
   const { hours, location, contact } = companyData;
-  const [dotValue, setDotValue] = useState(0);
-  const [slides, setSlides] = useState<JSX.Element[]>([])
-
-  React.useEffect(() => {
-    if (testimonials && !loading && !error) {
-      const allTestimonials = testimonials.map((testimonial) => {
-        return <Testimonial key={testimonial.id} author={testimonial.author} text={testimonial.text} />
-      })
-      setSlides(allTestimonials)
-    }
-  }, [testimonials])
 
   return (
     <>
@@ -199,31 +185,7 @@ export default function Home({ testimonials, loading, error }: Props) {
 
       <article id="Reviews" className="section section__testimonials">
         <div className="container">
-          <div className="testimonials">
-            <div className={styles.modal}>
-              <h2 className={styles.heading}>Guest reviews</h2>
-              <Carousel
-                plugins={[
-                  'centered',
-                  {
-                    resolve: slidesToShowPlugin,
-                    options: {
-                    numberOfSlides: 1
-                    }
-                  },
-                ]}
-                value={dotValue}
-                slides={slides}
-                itemWidth={450}
-                onChange={(value) => setDotValue(value)}
-              />
-              <Dots
-                value={dotValue}
-                onChange={(value) => setDotValue(value)}
-                number={testimonials?.length}
-              />
-            </div>
-          </div>
+          <Carousel loading={loading} error={error} testimonials={testimonials} />
         </div>
       </article>
       <Footer hours={hours} location={location} contact={contact} />
