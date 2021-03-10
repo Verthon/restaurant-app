@@ -11,10 +11,6 @@ import { BookingForm } from "components/BookingForm/BookingForm";
 export default function BookTable() {
   const { companyData } = useCompanyData();
   const { hours, location, contact } = companyData;
-  const links = [
-    { name: "Menu", link: "menu" },
-    { name: "Book Table", link: "book-table" },
-  ];
 
   return (
     <>
