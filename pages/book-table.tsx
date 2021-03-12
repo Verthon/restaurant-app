@@ -1,39 +1,21 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
-import { useRouter } from 'next/router'
 
-import Form from "components/Form";
 import { TRANSITIONS } from "constants/config";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { useBookingState } from "hooks/useBooking/useBooking"
 import { Container } from "ui/Container/Container";
 import { Navbar } from "ui/Navbar/Navbar";
-import { ROUTES } from "constants/routes";
+import { BookingForm } from "components/BookingForm/BookingForm";
 
 export default function BookTable() {
-  const router = useRouter()
   const { companyData } = useCompanyData();
-  const booking = useBookingState();
   const { hours, location, contact } = companyData;
-  const links = [
-    { name: "Menu", link: "menu" },
-    { name: "Book Table", link: "book-table" },
-  ];
-
-  const handleBookingSubmit = (
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-    router.push(ROUTES.review);
-  };
 
   return (
     <>
       <ToastContainer />
-      <Navbar links={links} hashlink={false} />
+      <Navbar />
       <motion.div
         initial="exit"
         animate="enter"
@@ -47,13 +29,7 @@ export default function BookTable() {
           >
             <div className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
-              <Form
-                handleSubmit={handleBookingSubmit}
-                booking={booking}
-                withBookingDesc={true}
-                submitBtn
-                action=""
-              />
+              <BookingForm />
             </div>
             <article className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Located in London</h2>

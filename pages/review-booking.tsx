@@ -2,61 +2,15 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
-import { gql } from "@apollo/client";
-import dayjs from "dayjs";
-import emailjs from "emailjs-com";
 
-import { client } from "lib/apollo/apolloClient";
-import {
-  splitDate,
-  splitTime,
-  formatDate,
-  convertToDate,
-  getEmailActionUrl,
-} from "utils/helpers";
+import { splitDate, splitTime, formatDate, convertToDate } from "utils/helpers";
 import { TRANSITIONS } from "constants/config";
-import { Modal } from "ui/Modal/Modal";
-import Form from "components/Form";
+import { ReviewBookingForm } from "components/ReviewBookingForm/ReviewBookingForm";
 import { Button } from "ui/Button/Button";
+import { Modal } from "ui/Modal/Modal";
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import { useBookingState } from "hooks/useBooking/useBooking";
 import { ROUTES } from "constants/routes";
-import { ERROR_MSG } from "constants/messages";
-import { showErrorNotification } from "utils/notification";
-
-export type BookingVariables = {
-  id?: number;
-  email?: string;
-  name?: string;
-  date?: Date;
-  guests?: number;
-};
-
-const ADD_BOOKING = gql`
-  mutation(
-    $email: String!
-    $name: String!
-    $date: timestamptz!
-    $guests: smallint!
-  ) {
-    insert_bookings(
-      objects: { email: $email, name: $name, date: $date, guests: $guests }
-    ) {
-      affected_rows
-      returning {
-        id
-      }
-    }
-  }
-`;
-
-const UPDATE_BOOKING = gql`
-  mutation($id: Int!) {
-    update_bookings(_set: { confirmed: true }, where: { id: { _eq: $id } }) {
-      affected_rows
-    }
-  }
-`;
 
 export default function ReviewBooking() {
   const { companyData } = useCompanyData();
@@ -64,79 +18,15 @@ export default function ReviewBooking() {
   const { location, contact } = companyData;
   const [editable, setEditable] = useState(false);
   const [show, toggleModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleBookingEdit = () => {
     setEditable(true);
   };
 
-  const addBooking = async ({ variables }: { variables: BookingVariables }) => {
-    return client.mutate({ mutation: ADD_BOOKING, variables });
-  };
-
-  const updateBooking = async ({
-    variables,
-  }: {
-    variables: BookingVariables;
-  }) => {
-    return client.mutate({ mutation: UPDATE_BOOKING, variables });
-  };
-
-  const handleEmailSend = async (id: number) => {
-    const templateParams = {
-      name: booking.name,
-      email: booking.email,
-      guests: booking.guests,
-      date: dayjs(booking.date as Date).format("DD-MMMM-YYYY HH:mm"),
-    };
-    try {
-      await emailjs.send(
-        "gmail-alkinoos",
-        "reservation",
-        templateParams,
-        process.env.EMAIL_API_KEY
-      );
-      await updateBooking({ variables: { id: id } });
-      setLoading(false);
-      toggleModal(true);
-    } catch (error) {
-      setLoading(false);
-      showErrorNotification(ERROR_MSG.emailSendFail);
-    }
-  };
-
-  const handleBookingSubmit = async (
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.FormEvent<HTMLFormElement>
-  ) => {
-    try {
-      e.preventDefault();
-
-      if (booking) {
-        setLoading(true);
-        const submitBooking = { ...booking };
-        const result = await addBooking({
-          variables: {
-            email: submitBooking.email,
-            name: submitBooking.name,
-            date: submitBooking.date,
-            guests: submitBooking.guests,
-          },
-        });
-        const id = result.data.insert_bookings.returning[0].id;
-        await handleEmailSend(id);
-      }
-    } catch (error) {
-      setLoading(false);
-      showErrorNotification(ERROR_MSG.emailDuplicated);
-    }
-  };
-
   const { address, code, city, province } = location;
-  const { name, guests, date, email } = booking || {};
+  const { name, guests, date } = booking;
 
-  if (editable && email) {
+  if (editable) {
     return (
       <motion.div
         className="review-booking"
@@ -175,28 +65,11 @@ export default function ReviewBooking() {
             alt=""
           />
           <h2 className="review-booking__title">Edit booking</h2>
-          <div className="review-booking__form">
-            <Form
-              booking={booking}
-              handleSubmit={handleBookingSubmit}
-              submitBtn={false}
-              cssClass="form--edit"
-              action={getEmailActionUrl(email)}
-              withBookingDesc={true}
-            />
-          </div>
-          <footer className="review-booking__footer review-booking__footer--edit">
-            <form onSubmit={handleBookingSubmit}>
-              <Button
-                variant="light"
-                size="regular"
-                type="submit"
-                loading={loading}
-              >
-                Confirm Booking
-              </Button>
-            </form>
-          </footer>
+          <ReviewBookingForm
+            handleEdit={handleBookingEdit}
+            toggleModal={toggleModal}
+            editable={editable}
+          />
         </motion.article>
       </motion.div>
     );
@@ -265,24 +138,10 @@ export default function ReviewBooking() {
             {city}, {province}, {code}{" "}
           </p>
           <footer className="review-booking__footer">
-            <form onSubmit={handleBookingSubmit}>
-              <Button
-                variant="transparent"
-                size="regular"
-                type="button"
-                onClick={handleBookingEdit}
-              >
-                Edit booking
-              </Button>
-              <Button
-                variant="light"
-                size="regular"
-                type="submit"
-                loading={false}
-              >
-                Confirm Booking
-              </Button>
-            </form>
+            <ReviewBookingForm
+              handleEdit={handleBookingEdit}
+              toggleModal={toggleModal}
+            />
           </footer>
         </motion.article>
       </motion.div>

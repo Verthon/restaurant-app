@@ -6,3 +6,8 @@ export const ROUTES = Object.freeze({
   login: "/login",
   admin: "/admin" 
 })
+
+export const DEFAULT_LINKS = [
+  { name: "Menu", link: "menu" },
+  { name: "Book Table", link: "book-table" },
+];

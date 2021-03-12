@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 import { Container } from "ui/Container/Container";
+import { DEFAULT_LINKS } from "constants/routes"
 import { MenuButton } from "../MenuButton/MenuButton";
 import { NavList } from "../NavList/NavList";
 
@@ -13,15 +14,15 @@ type Link = {
 };
 
 type Props = {
-  links: Array<Link>;
-  hashlink: boolean;
+  links?: Array<Link>;
+  hashlink?: boolean;
   withDashboard?: boolean;
   admin?: boolean;
 };
 
 export const Navbar: React.FC<Props> = ({
-  links,
-  hashlink,
+  links = DEFAULT_LINKS,
+  hashlink = false,
   withDashboard,
   admin,
   children,
