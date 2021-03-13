@@ -1,23 +1,23 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
+import React, { ReactNode } from "react"
+import Link from "next/link"
 
-import { LoadingIndicator } from '../LoadingIndicator/LoadingIndicator'
+import { LoadingIndicator } from "../LoadingIndicator/LoadingIndicator"
 
-import styles from './Button.module.scss'
+import styles from "./Button.module.scss"
 
 export type Props = {
-  variant: 'dark' | 'light' | 'transparent'
-  size: 'regular' | 'large' | 'small'
+  variant: "dark" | "light" | "transparent"
+  size: "regular" | "large" | "small"
   children: ReactNode
   link?: string
   href?: string
   onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined
-  type?: 'submit' | 'button'
+  type?: "submit" | "button"
   loading?: boolean
 } & React.Props<HTMLButtonElement | HTMLAnchorElement>
 
 const generateClassName = (variant: Props["variant"], size: Props["size"]) => {
-  return [styles.btn, styles[size], styles[variant] ].join(' ')
+  return [styles.btn, styles[size], styles[variant]].join(" ")
 }
 
 export const Button: React.FC<Props> = ({ variant, size, children, link, href, type, onClick, loading }) => {
@@ -36,12 +36,7 @@ export const Button: React.FC<Props> = ({ variant, size, children, link, href, t
     )
   }
   return (
-    <button
-      className={generateClassName(variant, size)}
-      type={type}
-      onClick={onClick}
-      disabled={loading}
-    >
+    <button className={generateClassName(variant, size)} type={type} onClick={onClick} disabled={loading}>
       {children} {loading ? <LoadingIndicator /> : null}
     </button>
   )

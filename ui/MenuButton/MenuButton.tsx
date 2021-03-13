@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-import styles from './MenuButton.module.scss'
+import styles from "./MenuButton.module.scss"
 
 type Props = {
   toggleNavbar: () => void

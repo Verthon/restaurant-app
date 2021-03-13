@@ -1,38 +1,37 @@
-/* eslint-disable prefer-destructuring */
-import dayjs from 'dayjs'
+import dayjs from "dayjs"
 
-import { Booking } from '../constants/booking';
+import { Booking } from "../constants/booking"
 
 export const formatPrice = (cents: number) => {
   const options = {
-    style: 'currency',
-    currency: 'USD'
+    style: "currency",
+    currency: "USD",
   }
-  return (cents / 100).toLocaleString('en-US', options)
+  return (cents / 100).toLocaleString("en-US", options)
 }
 
 export const formatDate = (date: Date) => {
   const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   }
-  return date.toLocaleDateString('en-US', options)
+  return date.toLocaleDateString("en-US", options)
 }
 
 export const splitDate = (date: string) => {
-  let formatedDate = ''
-  const temp = date.split(',')
+  let formatedDate = ""
+  const temp = date.split(",")
   formatedDate = temp[1]
   return formatedDate
 }
 
 export const splitTime = (date: string) => {
-  let formatedTime = ''
-  const temp = date.split(',')
+  let formatedTime = ""
+  const temp = date.split(",")
   formatedTime = temp[3]
   return formatedTime
 }
@@ -52,20 +51,19 @@ export const loadLocalStorageState = (name: string) => {
 export const saveLocalStorageState = (state: { booking: Booking | undefined }) => {
   try {
     const serializedState = JSON.stringify(state)
-    window.localStorage.setItem('booking', serializedState)
-  } catch (err) { }
+    window.localStorage.setItem("booking", serializedState)
+  } catch (err) {
+    return
+  }
 }
 
 export const getTomorrowsDate = () => {
-  const tomorrow = dayjs()
-    .add(1, 'day')
-    .set('hour', 12)
-    .set('minute', 0)
+  const tomorrow = dayjs().add(1, "day").set("hour", 12).set("minute", 0)
   return tomorrow.toDate()
 }
 
-export const convertToDate = (date: string | number | Date ) => {
-  if(date) {
+export const convertToDate = (date: string | number | Date) => {
+  if (date) {
     return new Date(date)
   }
   return new Date()
@@ -75,14 +73,13 @@ export const transformLocalStorageData = (data: { date: string; guests: string }
   const booking = {
     ...data,
     date: convertToDate(data.date),
-    guests: parseInt(data.guests)
+    guests: parseInt(data.guests),
   }
   return booking
 }
 
 export const isDateCurrent = (date: string | number | dayjs.Dayjs | Date | undefined) =>
-  dayjs(getTomorrowsDate()).isBefore(dayjs(date)) ||
-  dayjs(date).isSame(dayjs(getTomorrowsDate()), 'day')
+  dayjs(getTomorrowsDate()).isBefore(dayjs(date)) || dayjs(date).isSame(dayjs(getTomorrowsDate()), "day")
 
 export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
@@ -94,8 +91,8 @@ export const formatMenu = (data: string | any) => {
   return []
 }
 
-export const generateLink = ({ path, isHashLink }: { path: string, isHashLink: boolean }) => {
-  if(isHashLink) {
+export const generateLink = ({ path, isHashLink }: { path: string; isHashLink: boolean }) => {
+  if (isHashLink) {
     return `#${path}`
   }
 

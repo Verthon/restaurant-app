@@ -1,17 +1,16 @@
-import React from 'react'
-import dayjs from 'dayjs'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import React from "react"
+import dayjs from "dayjs"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
-import { Label } from 'ui/Label/Label'
-import { Input } from 'ui/Input/Input'
-import { Button } from 'ui/Button/Button'
+import { Label } from "ui/Label/Label"
+import { Input } from "ui/Input/Input"
+import { Button } from "ui/Button/Button"
 import styles from "ui/Input/Input.module.scss"
-import { State } from 'context/booking/BookingContext.types'
+import { State } from "context/booking/BookingContext.types"
 import { changeDate, changeBooking } from "context/booking/BookingActionCreator"
 import { useBookingDispatch } from "hooks/useBooking/useBooking"
-import { DATEPICKER_CONFIG } from "constants/config";
-
+import { DATEPICKER_CONFIG } from "constants/config"
 
 type Props = {
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => void
@@ -23,24 +22,16 @@ type Props = {
   loading?: boolean
 }
 
-const Form = ({
-  handleSubmit,
-  booking,
-  submitBtn,
-  cssClass,
-  action,
-  withBookingDesc,
-  loading = false,
-}: Props) => {
-  let config = DATEPICKER_CONFIG;
+const Form = ({ handleSubmit, booking, submitBtn, cssClass, action, withBookingDesc, loading = false }: Props) => {
+  const config = DATEPICKER_CONFIG
   config.startDate = new Date(dayjs(config.startDate).toISOString())
 
   const dispatch = useBookingDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    const payload = {name, value}
-    dispatch(changeBooking(payload));
+    const payload = { name, value }
+    dispatch(changeBooking(payload))
   }
 
   const handleDate = (date: Date) => {
@@ -48,17 +39,17 @@ const Form = ({
   }
 
   const parseDate = (date: Date | [Date, Date]) => {
-    if(date instanceof Date) {
-      return date;
+    if (date instanceof Date) {
+      return date
     }
 
-    return new Date(String(date));
+    return new Date(String(date))
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={cssClass ? `form ${cssClass}` : 'form'}
+      className={cssClass ? `form ${cssClass}` : "form"}
       action={action}
       aria-label="Add a booking"
     >
@@ -93,8 +84,8 @@ const Form = ({
         minDate={config.startDate}
         timeFormat="HH"
         timeIntervals={60}
-        minTime={dayjs(config.startDate).set('hour', config.minTime).toDate()}
-        maxTime={dayjs(config.startDate).set('hour', config.maxTime).toDate()}
+        minTime={dayjs(config.startDate).set("hour", config.minTime).toDate()}
+        maxTime={dayjs(config.startDate).set("hour", config.maxTime).toDate()}
         dateFormat="MMMM dd, yyyy h aa"
         timeCaption="Time"
         placeholderText="Click and choose the date"

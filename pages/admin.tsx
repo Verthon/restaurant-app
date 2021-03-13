@@ -1,26 +1,25 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ToastContainer } from "react-toastify";
-import { gql, useMutation } from "@apollo/client";
-import Image from "next/image";
+import React from "react"
+import { motion } from "framer-motion"
+import { ToastContainer } from "react-toastify"
+import { gql, useMutation } from "@apollo/client"
+import { IClaims } from "@auth0/nextjs-auth0/dist/session/session"
+import { NextApiRequest } from "next"
 
-import { Navbar } from "ui/Navbar/Navbar";
-import { BookingsTable } from "ui/BookingsTable/BookingsTable";
-import { Modal } from "ui/Modal/Modal";
-import Form from "components/Form";
-import { Button } from "ui/Button/Button";
-import auth0 from "./api/utils/auth0";
-import {
-  useBookingModalDispatch,
-  useBookingModalState,
-} from "hooks/useBookingModal/useBookingModal";
-import { ActionType } from "context/bookingModal/BookingModalContext.types";
-import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking";
-import { showErrorNotification, showNotification } from "utils/notification";
-import { Booking } from "constants/booking";
-import { IClaims } from "@auth0/nextjs-auth0/dist/session/session";
-import { NextApiRequest } from "next";
-import { setBooking } from "context/booking/BookingActionCreator";
+import Form from "components/Form"
+import { Button } from "ui/Button/Button"
+import { Navbar } from "ui/Navbar/Navbar"
+import { BookingsTable } from "ui/BookingsTable/BookingsTable"
+import { Modal } from "ui/Modal/Modal"
+
+import { useBookingModalDispatch, useBookingModalState } from "hooks/useBookingModal/useBookingModal"
+import { ActionType } from "context/bookingModal/BookingModalContext.types"
+import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking"
+import { showErrorNotification, showNotification } from "utils/notification"
+import { initializeApollo } from "lib/apollo/apolloClient"
+import { Booking } from "constants/booking"
+
+import { setBooking } from "context/booking/BookingActionCreator"
+import auth0 from "./api/utils/auth0"
 
 type Props = {
   user?: IClaims
@@ -29,28 +28,15 @@ type Props = {
 }
 
 const UPDATE_BOOKING = gql`
-  mutation(
-    $id: Int!
-    $confirmed: Boolean!
-    $name: String!
-    $email: String!
-    $date: timestamptz!
-    $guests: smallint!
-  ) {
+  mutation($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: timestamptz!, $guests: smallint!) {
     update_bookings(
-      _set: {
-        confirmed: $confirmed
-        name: $name
-        email: $email
-        date: $date
-        guests: $guests
-      }
+      _set: { confirmed: $confirmed, name: $name, email: $email, date: $date, guests: $guests }
       where: { id: { _eq: $id } }
     ) {
       affected_rows
     }
   }
-`;
+`
 
 const DELETE_BOOKING = gql`
   mutation($bookingId: Int) {
@@ -61,7 +47,7 @@ const DELETE_BOOKING = gql`
       }
     }
   }
-`;
+`
 
 const SUBSCRIBE_BOOKINGS = gql`
   query SubscribeBookings {
@@ -74,11 +60,12 @@ const SUBSCRIBE_BOOKINGS = gql`
       confirmed
     }
   }
-`;
+`
 
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const session = await auth0.getSession(req);
-  const { data, loading } = await client.query({ query: SUBSCRIBE_BOOKINGS });
+  const client = initializeApollo()
+  const session = await auth0.getSession(req)
+  const { data, loading } = await client.query({ query: SUBSCRIBE_BOOKINGS })
 
   return {
     props: {
@@ -86,37 +73,35 @@ export async function getServerSideProps({ req }: { req: NextApiRequest }) {
       isLoading: loading,
       bookings: data.bookings,
     },
-  };
+  }
 }
 
-export default function AdminPage({ user, bookings, isLoading }: Props) {
+export default function AdminPage({ bookings }: Props) {
   const adminLinks = [
     { name: "Bookings", link: "bookings" },
     { name: "Storage", link: "storage" },
-  ];
-  const [update, {data, loading, error }] = useMutation(UPDATE_BOOKING)
-  const [deleteBookingMutation, {data: deleteData, loading: deleteLoading, error: deleteError}] = useMutation(DELETE_BOOKING)
-  const dispatchModal = useBookingModalDispatch();
-  const { showModal } = useBookingModalState();
-  const booking = useBookingState();
-  const dispatch = useBookingDispatch();
+  ]
+  const [update, { loading }] = useMutation(UPDATE_BOOKING)
+  const [deleteBookingMutation] = useMutation(DELETE_BOOKING)
+  const dispatchModal = useBookingModalDispatch()
+  const { showModal } = useBookingModalState()
+  const booking = useBookingState()
+  const dispatch = useBookingDispatch()
 
   const deleteBooking = () => {
     try {
       deleteBookingMutation({
         variables: { bookingId: booking.id },
-      });
+      })
     } catch (error) {
-      showErrorNotification(error);
+      showErrorNotification(error)
     }
-  };
+  }
 
   const updateBooking = async (
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.FormEvent<HTMLFormElement>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       await update({
         variables: {
@@ -127,46 +112,33 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
           guests: booking.guests,
           confirmed: true,
         },
-      });
-      dispatchModal({ type: ActionType.hide });
-      showNotification("Booking updated successfully.");
+      })
+      dispatchModal({ type: ActionType.hide })
+      showNotification("Booking updated successfully.")
     } catch (error) {
-      showErrorNotification();
+      showErrorNotification()
     }
-  };
+  }
 
   const toggleOptions = (booking: Booking) => {
     dispatch(setBooking(booking))
-    dispatchModal({ type: ActionType.show });
-  };
+    dispatchModal({ type: ActionType.show })
+  }
 
   return (
     <>
-      <ToastContainer
-        className="toast__container"
-        toastClassName="toast"
-        progressClassName="toast__progress"
-      />
+      <ToastContainer className="toast__container" toastClassName="toast" progressClassName="toast__progress" />
       <Modal show={showModal}>
         <div className="modal-book__nav">
-          <button
-            className="modal-book__close"
-            onClick={() => dispatchModal({ type: ActionType.hide })}
-          >
-            <img
-              src="/assets/icons/close-circle.svg"
-              height="35px"
-              width="35px"
-            />
+          <button className="modal-book__close" onClick={() => dispatchModal({ type: ActionType.hide })}>
+            <img src="/assets/icons/close-circle.svg" height="35px" width="35px" />
           </button>
         </div>
         <h2 className="heading modal-book__heading">Booking action</h2>
         <p className="text modal-book__text">
           Choose an action for <strong>{booking.name}</strong> booking.
         </p>
-        <p className="text modal-book__text">
-          Both edit or delete process cannot be undone.
-        </p>
+        <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
         <div className="admin__form-container">
           <Form
             booking={booking}
@@ -178,21 +150,10 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
           />
         </div>
         <footer className="modal-book__footer">
-          <Button
-            variant="transparent"
-            size="regular"
-            onClick={deleteBooking}
-            loading={loading}
-          >
+          <Button variant="transparent" size="regular" onClick={deleteBooking} loading={loading}>
             Delete
           </Button>
-          <Button
-            variant="light"
-            size="regular"
-            type="submit"
-            onClick={updateBooking}
-            loading={loading}
-          >
+          <Button variant="light" size="regular" type="submit" onClick={updateBooking} loading={loading}>
             Update
           </Button>
         </footer>
@@ -202,12 +163,7 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
           Sign out
         </Button> */}
       </Navbar>
-      <motion.main
-        className="container admin__container"
-        initial="exit"
-        animate="enter"
-        exit="exit"
-      >
+      <motion.main className="container admin__container" initial="exit" animate="enter" exit="exit">
         <h2 className="admin__title" id="bookings">
           Bookings
         </h2>
@@ -221,5 +177,5 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
         </h2>
       </motion.main>
     </>
-  );
+  )
 }

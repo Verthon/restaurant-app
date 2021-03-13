@@ -1,7 +1,7 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { TRANSITIONS } from '../../constants/config'
-import { BookingItem } from '../BookingItem/BookingItem'
+import React from "react"
+import { motion } from "framer-motion"
+import { TRANSITIONS } from "../../constants/config"
+import { BookingItem } from "../BookingItem/BookingItem"
 
 type Booking = {
   id: number

@@ -13,7 +13,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
   }
 
   &__form-container {
@@ -21,7 +21,6 @@
     margin: 1rem 0 0 0;
   }
 }
-
 
 .table {
   display: block;
@@ -42,7 +41,7 @@
       background: $color-table;
     }
   }
-  &__cell{
+  &__cell {
     padding: 2rem;
 
     &--center {

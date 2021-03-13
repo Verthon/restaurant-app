@@ -1,33 +1,27 @@
-import React from "react";
-import dayjs from "dayjs";
-import emailjs from "emailjs-com";
-import { gql, useMutation } from "@apollo/client";
+import React from "react"
+import dayjs from "dayjs"
+import emailjs from "emailjs-com"
+import { gql, useMutation } from "@apollo/client"
 
-import { ERROR_MSG } from "constants/messages";
-import { Button } from "ui/Button/Button";
-import { useBookingState } from "hooks/useBooking/useBooking";
-import { Props } from "./ReviewBookingForm.types";
-import Form from "components/Form";
-import { getEmailActionUrl } from "utils/helpers";
-import { showErrorNotification } from "utils/notification";
+import { ERROR_MSG } from "constants/messages"
+import { Button } from "ui/Button/Button"
+import { useBookingState } from "hooks/useBooking/useBooking"
+import { Props } from "./ReviewBookingForm.types"
+import Form from "components/Form"
+import { getEmailActionUrl } from "utils/helpers"
+import { showErrorNotification } from "utils/notification"
+import { FORMAT } from "constants/dates"
 
 const ADD_BOOKING = gql`
-  mutation(
-    $email: String!
-    $name: String!
-    $date: timestamptz!
-    $guests: smallint!
-  ) {
-    insert_bookings(
-      objects: { email: $email, name: $name, date: $date, guests: $guests }
-    ) {
+  mutation($email: String!, $name: String!, $date: timestamptz!, $guests: smallint!) {
+    insert_bookings(objects: { email: $email, name: $name, date: $date, guests: $guests }) {
       affected_rows
       returning {
         id
       }
     }
   }
-`;
+`
 
 const UPDATE_BOOKING = gql`
   mutation($id: Int!) {
@@ -35,50 +29,37 @@ const UPDATE_BOOKING = gql`
       affected_rows
     }
   }
-`;
+`
 
-export const ReviewBookingForm = ({
-  handleEdit,
-  toggleModal,
-  editable = false,
-}: Props) => {
-
-  const [addBooking, { data, loading, error }] = useMutation(ADD_BOOKING);
-  const [updateBooking, {data: updateData, loading: updateLoading, error: updateError }] = useMutation(UPDATE_BOOKING)
-  const booking = useBookingState();
+export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }: Props) => {
+  const [addBooking, { data, loading }] = useMutation(ADD_BOOKING)
+  const [updateBooking, { loading: updateLoading }] = useMutation(UPDATE_BOOKING)
+  const booking = useBookingState()
 
   const handleEmailSend = async (id: number) => {
     const templateParams = {
       name: booking.name,
       email: booking.email,
       guests: booking.guests,
-      date: dayjs(booking.date as Date).format("DD-MMMM-YYYY HH:mm"),
-    };
-    try {
-      console.log("process.env.NEXT_PUBLIC_EMAIL_API_KEY", process.env.NEXT_PUBLIC_EMAIL_API_KEY);
-      await emailjs.send(
-        "gmail-alkinoos",
-        "reservation",
-        templateParams,
-        process.env.NEXT_PUBLIC_EMAIL_API_KEY
-      );
-      await updateBooking({ variables: { id } });
-      toggleModal(true);
-    } catch (error) {
-      showErrorNotification(ERROR_MSG.emailSendFail);
+      date: dayjs(booking.date as Date).format(FORMAT),
     }
-  };
+    try {
+      await emailjs.send("gmail-alkinoos", "reservation", templateParams, process.env.NEXT_PUBLIC_EMAIL_API_KEY)
+      await updateBooking({ variables: { id } })
+      toggleModal(true)
+    } catch (error) {
+      showErrorNotification(ERROR_MSG.emailSendFail)
+    }
+  }
 
   const handleBookingSubmit = async (
-    e:
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>
-      | React.FormEvent<HTMLFormElement>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
 
       if (booking) {
-        const submitBooking = { ...booking };
+        const submitBooking = { ...booking }
         await addBooking({
           variables: {
             email: submitBooking.email,
@@ -86,16 +67,14 @@ export const ReviewBookingForm = ({
             date: submitBooking.date,
             guests: submitBooking.guests,
           },
-        });
-        console.log("add booking error", error, data);
-        const id = data.insert_bookings.returning[0].id;
-        await handleEmailSend(id);
+        })
+        const id = data.insert_bookings.returning[0].id
+        await handleEmailSend(id)
       }
     } catch (error) {
-      console.log(error)
-      showErrorNotification(error || ERROR_MSG.emailDuplicated);
+      showErrorNotification(error || ERROR_MSG.emailDuplicated)
     }
-  };
+  }
 
   if (editable) {
     return (
@@ -112,33 +91,23 @@ export const ReviewBookingForm = ({
         </div>
         <footer className="review-booking__footer review-booking__footer--edit">
           <form onSubmit={handleBookingSubmit}>
-            <Button
-              variant="light"
-              size="regular"
-              type="submit"
-              loading={loading || updateLoading}
-            >
+            <Button variant="light" size="regular" type="submit" loading={loading || updateLoading}>
               Confirm Booking
             </Button>
           </form>
         </footer>
       </>
-    );
+    )
   }
 
   return (
     <form onSubmit={handleBookingSubmit}>
-      <Button
-        variant="transparent"
-        size="regular"
-        type="button"
-        onClick={handleEdit}
-      >
+      <Button variant="transparent" size="regular" type="button" onClick={handleEdit}>
         Edit booking
       </Button>
       <Button variant="light" size="regular" type="submit" loading={loading || updateLoading}>
         Confirm Booking
       </Button>
     </form>
-  );
-};
+  )
+}

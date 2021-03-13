@@ -1,32 +1,24 @@
-import React from "react";
-import { ToastContainer } from "react-toastify";
-import { motion } from "framer-motion";
+import React from "react"
+import { ToastContainer } from "react-toastify"
+import { motion } from "framer-motion"
 
-import { TRANSITIONS } from "constants/config";
-import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
-import { Container } from "ui/Container/Container";
-import { Navbar } from "ui/Navbar/Navbar";
-import { BookingForm } from "components/BookingForm/BookingForm";
+import { TRANSITIONS } from "constants/config"
+import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
+import { Container } from "ui/Container/Container"
+import { Navbar } from "ui/Navbar/Navbar"
+import { BookingForm } from "components/BookingForm/BookingForm"
 
 export default function BookTable() {
-  const { companyData } = useCompanyData();
-  const { hours, location, contact } = companyData;
+  const { companyData } = useCompanyData()
+  const { hours, location, contact } = companyData
 
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <motion.div
-        initial="exit"
-        animate="enter"
-        exit="exit"
-        className="table-booking"
-      >
+      <motion.div initial="exit" animate="enter" exit="exit" className="table-booking">
         <Container>
-          <motion.div
-            variants={TRANSITIONS}
-            className="table-booking__wrapper"
-          >
+          <motion.div variants={TRANSITIONS} className="table-booking__wrapper">
             <div className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
               <BookingForm />
@@ -62,5 +54,5 @@ export default function BookTable() {
         <footer className="table-booking__footer" />
       </motion.div>
     </>
-  );
+  )
 }

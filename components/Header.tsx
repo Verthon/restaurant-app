@@ -1,7 +1,7 @@
-import { ROUTES } from 'constants/routes'
-import React from 'react'
+import { ROUTES } from "constants/routes"
+import React from "react"
 
-import { Button } from 'ui/Button/Button'
+import { Button } from "ui/Button/Button"
 
 const Header = () => (
   <header className="site-header container">

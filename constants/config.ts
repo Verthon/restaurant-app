@@ -1,9 +1,9 @@
-import { getTomorrowsDate } from '../utils/helpers'
+import { getTomorrowsDate } from "../utils/helpers"
 
 export const DATEPICKER_CONFIG = {
   startDate: getTomorrowsDate(),
   minTime: 12,
-  maxTime: 22
+  maxTime: 22,
 }
 
 const easing = [0.175, 0.85, 0.42, 0.96]
@@ -16,15 +16,15 @@ export const TRANSITIONS = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: easing
-    }
+      ease: easing,
+    },
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: easing
-    }
-  }
+      ease: easing,
+    },
+  },
 }
