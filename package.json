@@ -12,6 +12,12 @@
     "test": "jest",
     "test-all": "npm run lint && npm type-check && npm test"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check"
+    }
+  },
   "lint-staged": {
     "*.@(ts|tsx)": [
       "npm run lint",
@@ -23,6 +29,7 @@
     "@auth0/nextjs-auth0": "^0.16.1",
     "@brainhubeu/react-carousel": "^1.19.26",
     "@storybook/addon-actions": "^6.1.18",
+    "@testing-library/react-hooks": "^5.1.0",
     "@types/lodash.isequal": "^4.5.5",
     "aos": "^2.3.4",
     "classnames": "^2.2.6",
