@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react"
 
-import { State, Dispatch, Action, ActionType } from './BookingModalContext.types';
+import { State, Dispatch, Action, ActionType } from "./BookingModalContext.types"
 
 export const reducer = (state: State, action: Action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ActionType.show: {
-      return { showModal: true }
+      return { ...state, showModal: true }
     }
     case ActionType.hide: {
-      return { showModal: false }
+      return { ...state, showModal: false }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)

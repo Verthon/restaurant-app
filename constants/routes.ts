@@ -4,10 +4,10 @@ export const ROUTES = Object.freeze({
   bookTable: "/book-table",
   review: "/review-booking",
   login: "/login",
-  admin: "/admin" 
+  admin: "/admin",
 })
 
 export const DEFAULT_LINKS = [
   { name: "Menu", link: "menu" },
   { name: "Book Table", link: "book-table" },
-];
+]

@@ -21,7 +21,7 @@ export const COMPANY_DATA = {
     country: "Canada",
     fulladdress: "23 Main Avenue, Montréal, ZZ2-C6Z",
     province: "Quebec",
-  }
+  },
 }
 
 export type COMPANY_DATA_TYPE = typeof COMPANY_DATA

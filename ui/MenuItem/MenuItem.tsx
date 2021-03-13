@@ -1,9 +1,9 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from "react"
+import { motion } from "framer-motion"
 
-import { formatPrice } from 'utils/helpers'
-import { TRANSITIONS } from 'constants/config'
-import styles from './MenuItem.module.scss'
+import { formatPrice } from "utils/helpers"
+import { TRANSITIONS } from "constants/config"
+import styles from "./MenuItem.module.scss"
 
 type Props = {
   menu: {

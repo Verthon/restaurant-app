@@ -1,15 +1,15 @@
 @font-face {
-  font-family: 'Ibarra Nova';
+  font-family: "Ibarra Nova";
   font-display: optional;
   font-weight: bold;
-  src: url('/assets/fonts/IbarraRealNova.ttf');
+  src: url("/assets/fonts/IbarraRealNova.ttf");
 }
 
 @font-face {
-  font-family: 'Arimo';
+  font-family: "Arimo";
   font-display: optional;
   font-weight: 300, 400, 500;
-  src: url('/assets/fonts/Arimo.ttf');
+  src: url("/assets/fonts/Arimo.ttf");
 }
 
 // main theme
@@ -52,11 +52,11 @@ $desktopLg: 1920px;
 $desktopXl: 2560px;
 $desktopXXl: 4096px;
 
-$font: 'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-  'Helvetica Neue', sans-serif;
-$font-light: 'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-  'Helvetica Neue', sans-serif;
-$font-semi-bold: 'Arimo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
-  Cantarell, 'Helvetica Neue', sans-serif;
-$font-secondary: 'Ibarra Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-  'Helvetica Neue', sans-serif;
+$font: "Arimo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+  sans-serif;
+$font-light: "Arimo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+  "Helvetica Neue", sans-serif;
+$font-semi-bold: "Arimo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+  "Helvetica Neue", sans-serif;
+$font-secondary: "Ibarra Nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+  "Helvetica Neue", sans-serif;

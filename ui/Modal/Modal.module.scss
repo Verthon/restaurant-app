@@ -1,5 +1,5 @@
-@import '../../styles/mixins';
-@import '../../styles/variables';
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 .modal {
   padding: 0;
@@ -8,66 +8,66 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+}
+
+.active {
+  display: block;
+  z-index: 1;
+}
+
+.disabled {
+  display: none;
+}
+
+.heading {
+  margin: 0 0 2rem 0;
+}
+
+.text {
+  margin: 0.25rem 0 0.25rem 0;
+  font-size: 1rem;
+}
+
+.footer {
+  margin: 2rem 0 0 0;
+}
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.content {
+  @include flexColumn();
+  width: 90%;
+  padding: 1rem 1.5rem;
+  background: $color-white;
+  position: fixed;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+
+  @include mQ($tablet) {
+    padding: 2rem 2.5rem;
   }
 
-  .active {
-    display: block;
-    z-index: 1;
+  @include mQ($ipad) {
+    width: 60%;
   }
-
-  .disabled {
-    display: none;
+  @include mQ($desktopXs) {
+    width: auto;
   }
+}
 
-  .heading {
-    margin: 0 0 2rem 0;
+.close {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  svg {
+    width: 30px;
+    height: 30px;
   }
-
-  .text {
-    margin: 0.25rem 0 0.25rem 0;
-    font-size: 1rem;
-  }
-
-  .footer {
-    margin: 2rem 0 0 0;
-  }
-  .nav {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    align-items: flex-start;
-  }
-
-  .content {
-    @include flexColumn();
-    width: 90%;
-    padding: 1rem 1.5rem;
-    background: $color-white;
-    position: fixed;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    align-items: center;
-
-    @include mQ($tablet) {
-      padding: 2rem 2.5rem;
-    }
-
-    @include mQ($ipad) {
-      width: 60%;
-    }
-    @include mQ($desktopXs) {
-      width: auto;
-    }
-  }
-
-  .close {
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-    svg {
-      width: 30px;
-      height: 30px;
-    }
-  }
+}

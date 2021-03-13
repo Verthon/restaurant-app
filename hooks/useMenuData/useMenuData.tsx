@@ -1,7 +1,7 @@
-import { gql, useQuery } from '@apollo/client'
-import { useState, useEffect } from 'react'
-import { formatMenu } from '../../utils/menu'
-import { MenuState } from './useMenuData.types'
+import { gql, useQuery } from "@apollo/client"
+import { useState, useEffect } from "react"
+import { formatMenu } from "../../utils/menu"
+import { MenuState } from "./useMenuData.types"
 
 export const GET_MENU = gql`
   query getMenu {
@@ -26,11 +26,11 @@ export const useMenuData = () => {
     desserts: [],
     mains: [],
     salads: [],
-    drinks: []
+    drinks: [],
   }
   const [menu, setMenu] = useState<MenuState>(INITIAL_STATE)
   useEffect(() => {
-    if(data?.products) {
+    if (data?.products) {
       const formattedMenu = formatMenu(data?.products)
       setMenu(formattedMenu)
     }
@@ -39,6 +39,6 @@ export const useMenuData = () => {
     menu,
     loading,
     error,
-    refetch
+    refetch,
   }
 }

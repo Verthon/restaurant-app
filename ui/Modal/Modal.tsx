@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-import styles from './Modal.module.scss';
+import styles from "./Modal.module.scss"
 
 type Props = {
   show: boolean

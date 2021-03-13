@@ -1,5 +1,5 @@
-@import '../../styles/mixins';
-@import '../../styles/variables';
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 @include keyframe(fadeInLeft) {
   0% {
@@ -17,7 +17,7 @@
   opacity: 0;
   display: none;
   @include mQ($ipadPro) {
-    transform:translate(0);
+    transform: translate(0);
     opacity: 1;
     display: flex;
     justify-content: flex-end;
@@ -27,7 +27,7 @@
 }
 
 .active {
-  transform:translate(0);
+  transform: translate(0);
   opacity: 1;
   display: flex;
   padding: 0;

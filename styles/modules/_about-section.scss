@@ -1,12 +1,12 @@
-.section__about{
+.section__about {
   background-color: $color-light;
 
-  @include mQ($ipad){
+  @include mQ($ipad) {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
-  
-  &__chef{
+
+  &__chef {
     margin: 2rem 0 0 0;
     display: block;
     max-width: 150px;

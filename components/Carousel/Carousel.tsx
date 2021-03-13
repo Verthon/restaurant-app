@@ -1,10 +1,10 @@
-import { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
-import BrainHubCarousel from "@brainhubeu/react-carousel";
-import React from "react";
+import { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel"
+import BrainHubCarousel from "@brainhubeu/react-carousel"
+import React from "react"
 
-import styles from "ui/Testimonial/Testimonial.module.scss";
-import { Testimonial } from "ui/Testimonial/Testimonial";
-import { Props } from "./Carousel.types";
+import styles from "ui/Testimonial/Testimonial.module.scss"
+import { Testimonial } from "ui/Testimonial/Testimonial"
+import { Props } from "./Carousel.types"
 
 const CONFIG = {
   numberOfSlides: 1,
@@ -12,23 +12,17 @@ const CONFIG = {
 }
 
 export const Carousel = ({ testimonials, loading, error }: Props) => {
-  const [dotValue, setDotValue] = React.useState(0);
-  const [slides, setSlides] = React.useState<JSX.Element[]>([]);
+  const [dotValue, setDotValue] = React.useState(0)
+  const [slides, setSlides] = React.useState<JSX.Element[]>([])
 
   React.useEffect(() => {
     if (testimonials && !loading && !error) {
       const allTestimonials = testimonials.map((testimonial) => {
-        return (
-          <Testimonial
-            key={testimonial.id}
-            author={testimonial.author}
-            text={testimonial.text}
-          />
-        );
-      });
-      setSlides(allTestimonials);
+        return <Testimonial key={testimonial.id} author={testimonial.author} text={testimonial.text} />
+      })
+      setSlides(allTestimonials)
     }
-  }, [testimonials]);
+  }, [testimonials])
 
   return (
     <div className="container">
@@ -49,12 +43,8 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
           itemWidth={CONFIG.itemWidth}
           onChange={(value) => setDotValue(value)}
         />
-        <Dots
-          value={dotValue}
-          onChange={(value) => setDotValue(value)}
-          number={testimonials?.length}
-        />
+        <Dots value={dotValue} onChange={(value) => setDotValue(value)} number={testimonials?.length} />
       </div>
     </div>
-  );
-};
+  )
+}

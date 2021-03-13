@@ -1,7 +1,7 @@
 export type Props = { children: React.ReactNode }
 export enum ActionType {
   show = "show",
-  hide = "hide"
+  hide = "hide",
 }
 
 export type Action = {
@@ -9,7 +9,7 @@ export type Action = {
 }
 
 export type State = {
-  showModal: boolean;
+  showModal: boolean
 }
 
 export type Dispatch = (action: Action) => void

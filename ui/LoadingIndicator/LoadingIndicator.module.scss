@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 @keyframes lds-ring {
   0% {
@@ -8,7 +8,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 .loader {
   display: block;
@@ -40,5 +39,4 @@
   div:nth-child(3) {
     animation-delay: -0.15s;
   }
-
 }

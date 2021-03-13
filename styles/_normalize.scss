@@ -8,10 +8,10 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
- html {
+html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
-  transition: all .2s cubic;
+  transition: all 0.2s cubic;
 }
 
 /* Sections
@@ -169,16 +169,16 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
 /** Remove Firefox ugly box-shadows on required input fields**/
 
 input:required {
-  box-shadow:none;
+  box-shadow: none;
 }
-
 
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
@@ -186,7 +186,8 @@ input:required {
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 

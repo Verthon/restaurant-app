@@ -5,9 +5,9 @@ export type Props = {
 }
 
 export type BookingVariables = {
-  id?: number;
-  email?: string;
-  name?: string;
-  date?: Date;
-  guests?: number;
-};
+  id?: number
+  email?: string
+  name?: string
+  date?: Date
+  guests?: number
+}
