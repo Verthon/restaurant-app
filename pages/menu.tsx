@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
 import { ApolloError, gql } from "@apollo/client";
-import { client } from "lib/apollo/apolloClient";
+import { initializeApollo } from "lib/apollo/apolloClient";
 
 import { MenuList } from "ui/MenuList/MenuList";
 import { Navbar } from "ui/Navbar/Navbar";
@@ -34,6 +34,7 @@ const GET_MENU = gql`
 `;
 
 export const getStaticProps: GetStaticProps = async () => {
+  const client = initializeApollo();
   const { data, loading, error } = await client.query({ query: GET_MENU });
 
   const menu = formatMenu(data.products);

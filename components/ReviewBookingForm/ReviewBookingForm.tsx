@@ -1,13 +1,12 @@
 import React from "react";
 import dayjs from "dayjs";
 import emailjs from "emailjs-com";
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 import { ERROR_MSG } from "constants/messages";
-import { client } from "lib/apollo/apolloClient";
 import { Button } from "ui/Button/Button";
 import { useBookingState } from "hooks/useBooking/useBooking";
-import { BookingVariables, Props } from "./ReviewBookingForm.types";
+import { Props } from "./ReviewBookingForm.types";
 import Form from "components/Form";
 import { getEmailActionUrl } from "utils/helpers";
 import { showErrorNotification } from "utils/notification";
@@ -38,21 +37,15 @@ const UPDATE_BOOKING = gql`
   }
 `;
 
-export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }: Props) => {
+export const ReviewBookingForm = ({
+  handleEdit,
+  toggleModal,
+  editable = false,
+}: Props) => {
+
+  const [addBooking, { data, loading, error }] = useMutation(ADD_BOOKING);
+  const [updateBooking, {data: updateData, loading: updateLoading, error: updateError }] = useMutation(UPDATE_BOOKING)
   const booking = useBookingState();
-  const [loading, setLoading] = React.useState(false);
-
-  const addBooking = async ({ variables }: { variables: BookingVariables }) => {
-    return client.mutate({ mutation: ADD_BOOKING, variables });
-  };
-
-  const updateBooking = async ({
-    variables,
-  }: {
-    variables: BookingVariables;
-  }) => {
-    return client.mutate({ mutation: UPDATE_BOOKING, variables });
-  };
 
   const handleEmailSend = async (id: number) => {
     const templateParams = {
@@ -62,17 +55,16 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
       date: dayjs(booking.date as Date).format("DD-MMMM-YYYY HH:mm"),
     };
     try {
+      console.log("process.env.NEXT_PUBLIC_EMAIL_API_KEY", process.env.NEXT_PUBLIC_EMAIL_API_KEY);
       await emailjs.send(
         "gmail-alkinoos",
         "reservation",
         templateParams,
-        process.env.EMAIL_API_KEY
+        process.env.NEXT_PUBLIC_EMAIL_API_KEY
       );
       await updateBooking({ variables: { id } });
-      setLoading(false);
       toggleModal(true);
     } catch (error) {
-      setLoading(false);
       showErrorNotification(ERROR_MSG.emailSendFail);
     }
   };
@@ -86,9 +78,8 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
       e.preventDefault();
 
       if (booking) {
-        setLoading(true);
         const submitBooking = { ...booking };
-        const result = await addBooking({
+        await addBooking({
           variables: {
             email: submitBooking.email,
             name: submitBooking.name,
@@ -96,42 +87,43 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
             guests: submitBooking.guests,
           },
         });
-        const id = result.data.insert_bookings.returning[0].id;
+        console.log("add booking error", error, data);
+        const id = data.insert_bookings.returning[0].id;
         await handleEmailSend(id);
       }
     } catch (error) {
-      setLoading(false);
-      showErrorNotification(ERROR_MSG.emailDuplicated);
+      console.log(error)
+      showErrorNotification(error || ERROR_MSG.emailDuplicated);
     }
   };
 
   if (editable) {
-    return ( <>
-      <div className="review-booking__form">
-            <Form
-              booking={booking}
-              handleSubmit={handleBookingSubmit}
-              submitBtn={false}
-              cssClass="form--edit"
-              action={getEmailActionUrl(booking.email)}
-              withBookingDesc={true}
-            />
-          </div>
-          <footer className="review-booking__footer review-booking__footer--edit">
-            <form onSubmit={handleBookingSubmit}>
-              <Button
-                variant="light"
-                size="regular"
-                type="submit"
-                loading={loading}
-              >
-                Confirm Booking
-              </Button>
-            </form>
-          </footer>
-    </>
-
-    )
+    return (
+      <>
+        <div className="review-booking__form">
+          <Form
+            booking={booking}
+            handleSubmit={handleBookingSubmit}
+            submitBtn={false}
+            cssClass="form--edit"
+            action={getEmailActionUrl(booking.email)}
+            withBookingDesc={true}
+          />
+        </div>
+        <footer className="review-booking__footer review-booking__footer--edit">
+          <form onSubmit={handleBookingSubmit}>
+            <Button
+              variant="light"
+              size="regular"
+              type="submit"
+              loading={loading || updateLoading}
+            >
+              Confirm Booking
+            </Button>
+          </form>
+        </footer>
+      </>
+    );
   }
 
   return (
@@ -144,7 +136,7 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
       >
         Edit booking
       </Button>
-      <Button variant="light" size="regular" type="submit" loading={loading}>
+      <Button variant="light" size="regular" type="submit" loading={loading || updateLoading}>
         Confirm Booking
       </Button>
     </form>

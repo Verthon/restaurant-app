@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import '@brainhubeu/react-carousel/lib/style.css'
 import { ApolloError, gql } from "@apollo/client";
 
-import { client } from "lib/apollo/apolloClient"
+import { initializeApollo, addApolloState } from "lib/apollo/apolloClient"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData";
 import Header from "components/Header";
 import Footer from "components/Footer";
@@ -38,15 +38,24 @@ export const GET_TESTIMONIALS = gql`
 `;
 
 export const getStaticProps :GetStaticProps = async () => {
+  const client = initializeApollo();
   const { data, loading, error } = await client.query({ query: GET_TESTIMONIALS });
 
-  return {
+  return addApolloState(client, {
     props: {
       testimonials: data.testimonials,
-      loading: loading,
+      loading,
       error: error || null
     },
-  };
+  })
+
+  // return {
+  //   props: {
+  //     testimonials: data.testimonials,
+  //     loading: loading,
+  //     error: error || null
+  //   },
+  // };
 }
 
 export default function Home({ testimonials, loading, error }: Props) {

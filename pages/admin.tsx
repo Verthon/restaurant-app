@@ -1,10 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
-import { gql } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import Image from "next/image";
 
-import { client } from "lib/apollo/apolloClient";
 import { Navbar } from "ui/Navbar/Navbar";
 import { BookingsTable } from "ui/BookingsTable/BookingsTable";
 import { Modal } from "ui/Modal/Modal";
@@ -95,23 +94,20 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
     { name: "Bookings", link: "bookings" },
     { name: "Storage", link: "storage" },
   ];
+  const [update, {data, loading, error }] = useMutation(UPDATE_BOOKING)
+  const [deleteBookingMutation, {data: deleteData, loading: deleteLoading, error: deleteError}] = useMutation(DELETE_BOOKING)
   const dispatchModal = useBookingModalDispatch();
   const { showModal } = useBookingModalState();
   const booking = useBookingState();
   const dispatch = useBookingDispatch();
-  const [loading, setLoading] = React.useState(!!isLoading);
 
   const deleteBooking = () => {
     try {
-      setLoading(true);
-      client.mutate({
-        mutation: DELETE_BOOKING,
+      deleteBookingMutation({
         variables: { bookingId: booking.id },
       });
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
-      showErrorNotification();
+      showErrorNotification(error);
     }
   };
 
@@ -122,9 +118,7 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
   ) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      await client.mutate({
-        mutation: UPDATE_BOOKING,
+      await update({
         variables: {
           id: booking.id,
           email: booking.email,
@@ -136,9 +130,7 @@ export default function AdminPage({ user, bookings, isLoading }: Props) {
       });
       dispatchModal({ type: ActionType.hide });
       showNotification("Booking updated successfully.");
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       showErrorNotification();
     }
   };
