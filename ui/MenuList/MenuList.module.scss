@@ -1,0 +1,9 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.list {
+  -webkit-padding-start: 0;
+  @include flexColumn();
+  align-items: center;
+  padding: 0;
+}

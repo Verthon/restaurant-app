@@ -1,0 +1,44 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+@include keyframe(fadeInLeft) {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.list {
+  transform: translate(9999px);
+  opacity: 0;
+  display: none;
+  @include mQ($ipadPro) {
+    transform: translate(0);
+    opacity: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    align-items: center;
+  }
+}
+
+.active {
+  transform: translate(0);
+  opacity: 1;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  flex: 100%;
+}
+
+.animated {
+  @include animation(0, 1s, fadeInLeft, ease);
+  @include mQ($ipadPro) {
+    animation: none;
+  }
+}

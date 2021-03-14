@@ -1,0 +1,47 @@
+.site-footer {
+  background: $color-white;
+  color: $color-dark;
+  padding: 1.5rem;
+
+  @include mQ($mobile) {
+    padding: 2rem;
+  }
+
+  @include mQ($tablet) {
+    padding: 2.5rem;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    @include mQ($ipad) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__column {
+    @include flexColumn();
+    flex: 100%;
+    margin: 1rem 0;
+
+    @include mQ($ipad) {
+      text-align: center;
+    }
+  }
+
+  &__title {
+    color: $color-dark;
+    font-family: $font-secondary;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+
+    @include mQ($mobile) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__description {
+    margin: 0.5rem 0;
+  }
+}

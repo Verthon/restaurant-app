@@ -1,38 +1,27 @@
 {
   "compilerOptions": {
-    "baseUrl": "node_modules",
-    "types": ["cypress", "jest"],
+    "baseUrl": "./",
     "target": "es5",
-    "module": "esnext",
-    "lib": [
-      "es2015",
-      "dom"
-    ],
-    "strict": true,
-    "declaration": true,
-    "outDir": "dist",
-    "sourceMap": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-    "rootDirs": ["src", "stories"],
+    "jsx": "preserve",
+    "alwaysStrict": true,
+    "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": [
-    "src/**/*",
-    "**/*.ts",
-    "tests"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "config"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],
+  "exclude": ["node_modules"]
 }

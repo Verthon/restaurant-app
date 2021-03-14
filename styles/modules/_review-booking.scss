@@ -1,0 +1,145 @@
+.review-booking {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0;
+
+  @include mQ($ipad) {
+    background: linear-gradient(hsla(0, 0%, 100%, 0.21), hsla(0, 0%, 100%, 0.31)),
+      url("/assets/images/review-booking-bg.jpg");
+    background-repeat: no-repeat;
+    align-items: center;
+    @include mQ($desktopLg) {
+      background-position: center center;
+    }
+  }
+
+  .react-datepicker-wrapper {
+    display: block;
+    width: 100%;
+  }
+  .react-datepicker__input-container {
+    display: block;
+    width: 100%;
+  }
+
+  &__content {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    background-color: $color-white;
+
+    @include mQ($ipad) {
+      min-width: 500px;
+      box-shadow: $default-shadow;
+    }
+  }
+
+  &__image {
+    @include mQ($ipad) {
+      display: none;
+    }
+  }
+
+  &__company {
+    margin: 1rem 0;
+  }
+
+  &__form {
+    padding: 1rem;
+    @include mQ($ipad) {
+      padding: 2rem;
+    }
+  }
+
+  &__title {
+    margin: 1rem 0;
+    text-align: center;
+    font-family: $font-semi-bold;
+    font-weight: 500;
+    color: $color-dark-1;
+    font-size: 1.5rem;
+  }
+
+  &__title,
+  &__title:hover {
+    text-decoration: none;
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+  }
+
+  &__address {
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0.15rem;
+  }
+
+  &__client {
+    font-size: 1.5rem;
+    color: $color-dark-3;
+    margin: 2.5rem 0;
+  }
+  &__name {
+    margin: 0 0.25rem 0 0;
+    color: $color-dark;
+  }
+
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    @include mQ($tablet) {
+      width: 70%;
+    }
+  }
+
+  &__value {
+    margin: 0;
+    text-align: center;
+    color: $color-dark;
+    font-family: $font-semi-bold;
+  }
+
+  &__description {
+    text-align: center;
+    color: $color-dark-3;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-right: 1px solid $color-gray-2;
+  }
+
+  &__description:last-child {
+    border: 0;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 0 0;
+    width: 100%;
+    background-color: $color-light;
+    padding: 1.25rem 0;
+    @include mQ($tablet) {
+      margin: 3rem 0 0 0;
+    }
+
+    &--edit {
+      margin: 0 0 0 0;
+      @include mQ($ipad) {
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
+}

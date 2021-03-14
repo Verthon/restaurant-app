@@ -1,0 +1,59 @@
+@import "_variables";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: $color-dark-3;
+  font-family: $font, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: $color-dark;
+  text-decoration: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+picture {
+  margin: 0;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+#nprogress .bar {
+  background: hsl(45.9, 64.6%, 52.4%);
+  height: 6px;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: hsl(45.9, 64.6%, 52.4%);
+  border-left-color: hsl(45.9, 64.6%, 52.4%);
+}

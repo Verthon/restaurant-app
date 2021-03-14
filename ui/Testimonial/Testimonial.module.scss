@@ -1,0 +1,57 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.testimonials {
+  margin: auto;
+}
+
+.modal {
+  padding: 1.5rem 0;
+  background: $color-dark-1;
+  color: $color-white;
+  margin: auto;
+  max-width: 350px;
+  @include mQ($tablet) {
+    max-width: 450px;
+  }
+  @include mQ($ipad) {
+    max-width: 500px;
+    margin: auto;
+  }
+}
+
+.heading {
+  font-family: $font-secondary;
+  color: $color-white;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  @include mQ($ipad) {
+    margin: 0;
+  }
+}
+
+.quote {
+  margin: 0;
+  padding: 0 1.5rem 1rem 1.5rem;
+  @include mQ($tablet) {
+    padding: 0 1rem 1rem 2.5rem;
+  }
+  @include mQ($ipad) {
+    padding: 0 2rem 2rem 3rem;
+  }
+}
+
+.text {
+  max-width: 20rem;
+  line-height: 1.5;
+  @include mQ($ipad) {
+    max-width: 25rem;
+  }
+}
+
+.writer {
+  color: $color-primary;
+  font-family: $font-semi-bold;
+  font-style: normal;
+  margin: 2rem auto 0 auto;
+}

@@ -1,0 +1,86 @@
+.site-header {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 0 1.5rem 3rem 1.5rem;
+  //transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  height: 100%;
+
+  @include mQ($tablet) {
+    padding: 0 2.5rem 3rem 2.5rem;
+  }
+
+  @include mQ($ipad) {
+    grid-template-columns: 50% 50%;
+  }
+
+  &__content {
+    @include mQ($ipad) {
+      @include flexColumn();
+      justify-content: center;
+      align-items: flex-start;
+      order: 1;
+      flex: 50%;
+    }
+  }
+
+  &__image {
+    @include mQ($ipad) {
+      order: 2;
+      flex: 50%;
+    }
+    img {
+      min-height: 200px;
+
+      @include mQ($tablet) {
+        min-height: 250px;
+      }
+      @include mQ($ipad) {
+        min-height: 516px;
+      }
+      @include mQ($desktopXs) {
+        min-height: 690px;
+      }
+      @include mQ($desktopSm) {
+        min-height: 840px;
+      }
+    }
+  }
+
+  &__headline {
+    font-family: $font-secondary;
+    color: $color-dark;
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 1rem 0 1rem auto;
+    @include mQ($ipad) {
+      display: inline;
+      margin: 0;
+      font-size: 2rem;
+    }
+    @include mQ($desktopXs) {
+      font-size: 2.875rem;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    margin: 1rem 0 2rem 0;
+    line-height: 1.5;
+    max-width: 25rem;
+    @include mQ($mobile) {
+      font-size: 1rem;
+    }
+    @include mQ($tablet) {
+      margin: 1rem 0 3rem 0;
+      max-width: 20rem;
+    }
+    @include mQ($desktopXs) {
+      font-size: 1.1rem;
+      max-width: 25rem;
+    }
+  }
+
+  &__btn {
+    padding: 0.75rem 2rem;
+  }
+}
