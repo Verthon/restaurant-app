@@ -2,15 +2,9 @@ import React from "react"
 
 import styles from "./Input.module.scss"
 
-export const Input: React.FC<React.HTMLProps<HTMLInputElement>> = ({
-  type,
-  name,
-  required,
-  min,
-  max,
-  defaultValue,
-  onChange,
-}) => {
+type Props = React.HTMLProps<HTMLInputElement>
+
+export const Input = ({ type, name, required, min, max, defaultValue, onChange }: Props) => {
   return (
     <input
       type={type}

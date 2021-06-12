@@ -18,15 +18,10 @@ type Props = {
   hashlink?: boolean
   withDashboard?: boolean
   admin?: boolean
+  children?: React.ReactNode
 }
 
-export const Navbar: React.FC<Props> = ({
-  links = DEFAULT_LINKS,
-  hashlink = false,
-  withDashboard,
-  admin,
-  children,
-}) => {
+export const Navbar = ({ links = DEFAULT_LINKS, hashlink = false, withDashboard, admin, children }: Props) => {
   const [isNavActive, setIsNavActive] = useState({
     firstRender: true,
     active: false,

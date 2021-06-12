@@ -20,7 +20,7 @@ const generateClassName = (variant: Props["variant"], size: Props["size"]) => {
   return [styles.btn, styles[size], styles[variant]].join(" ")
 }
 
-export const Button: React.FC<Props> = ({ variant, size, children, link, href, type, onClick, loading }) => {
+export const Button = ({ variant, size, children, link, href, type, onClick, loading }: Props) => {
   if (link) {
     return (
       <Link href={link}>

@@ -11,6 +11,6 @@ module.exports = {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js",
   },
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
+  setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
   testTimeout: 10000,
 }
