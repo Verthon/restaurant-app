@@ -1,6 +1,6 @@
 {
   "name": "restaurant-app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "npm run lint && npm type-check && npm test"
+    "test-all": "npm run lint && npm type-check && npm test",
+    "coverage": "npm run test -- --coverage"
   },
   "husky": {
     "hooks": {
