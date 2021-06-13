@@ -13,7 +13,7 @@ type Props = {
   }
 }
 
-export const MenuItem: React.FC<Props> = ({ menu }) => {
+export const MenuItem = ({ menu }: Props) => {
   const { name, price, description } = menu
 
   return (

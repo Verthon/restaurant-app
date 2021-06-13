@@ -27,7 +27,7 @@ interface Props {
   contact: ContactInfo | null
 }
 
-const Footer: React.FC<Props> = ({ hours, location, contact }) => {
+const Footer = ({ hours, location, contact }: Props) => {
   if (hours && location && contact) {
     const { weekdays, weekend } = hours
     const { address, code, city, province, country } = location
