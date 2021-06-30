@@ -93,6 +93,8 @@ export default function AdminPage({ bookings }: Props) {
       deleteBookingMutation({
         variables: { bookingId: booking.id },
       })
+      dispatchModal({ type: ActionType.hide })
+      showNotification("Booking deleted successfully.")
     } catch (error) {
       showErrorNotification(error)
     }
