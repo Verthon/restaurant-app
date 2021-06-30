@@ -13,12 +13,7 @@ module.exports = {
     "^/(.*)$": "<rootDir>/src/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
-  collectCoverageFrom: [
-    "hooks/**/*.tsx",
-    "components/**/*.tsx",
-    "context/**/*.tsx",
-    "utils/**/*.ts",
-  ],
+  collectCoverageFrom: ["hooks/**/*.tsx", "components/**/*.tsx", "context/**/*.tsx", "utils/**/*.ts"],
   testTimeout: 10000,
   resetMocks: true,
 }
