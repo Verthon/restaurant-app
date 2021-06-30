@@ -12,12 +12,6 @@ module.exports = {
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js",
   },
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
-  collectCoverageFrom: [
-    "hooks/**/*.tsx",
-    "components/**/*.tsx",
-    "context/**/*.tsx",
-    "ui/**/*.tsx",
-    "utils/**/*.ts",
-  ],
+  collectCoverageFrom: ["hooks/**/*.tsx", "components/**/*.tsx", "context/**/*.tsx", "ui/**/*.tsx", "utils/**/*.ts"],
   testTimeout: 10000,
 }

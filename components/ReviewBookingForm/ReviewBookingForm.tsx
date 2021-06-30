@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react"
 import dayjs from "dayjs"
 import emailjs from "emailjs-com"
@@ -32,7 +33,7 @@ const UPDATE_BOOKING = gql`
 `
 
 export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }: Props) => {
-  const [addBooking, { data, loading }] = useMutation(ADD_BOOKING)
+  const [addBooking, { loading }] = useMutation(ADD_BOOKING)
   const [updateBooking, { loading: updateLoading }] = useMutation(UPDATE_BOOKING)
   const booking = useBookingState()
 
@@ -60,7 +61,7 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
 
       if (booking) {
         const submitBooking = { ...booking }
-        await addBooking({
+        const { data } = await addBooking({
           variables: {
             email: submitBooking.email,
             name: submitBooking.name,
@@ -68,6 +69,7 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
             guests: submitBooking.guests,
           },
         })
+
         const id = data.insert_bookings.returning[0].id
         await handleEmailSend(id)
       }

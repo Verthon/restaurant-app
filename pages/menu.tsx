@@ -34,7 +34,7 @@ const GET_MENU = gql`
 `
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo()
+  const client = initializeApollo(null)
   const { data, loading, error } = await client.query({ query: GET_MENU })
 
   const menu = formatMenu(data.products)

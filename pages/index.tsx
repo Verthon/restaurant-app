@@ -38,7 +38,7 @@ export const GET_TESTIMONIALS = gql`
 `
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo()
+  const client = initializeApollo({})
   const { data, loading, error } = await client.query({
     query: GET_TESTIMONIALS,
   })
@@ -50,14 +50,6 @@ export const getStaticProps: GetStaticProps = async () => {
       error: error || null,
     },
   })
-
-  // return {
-  //   props: {
-  //     testimonials: data.testimonials,
-  //     loading: loading,
-  //     error: error || null
-  //   },
-  // };
 }
 
 export default function Home({ testimonials, loading, error }: Props) {
