@@ -14,6 +14,7 @@ import { Carousel } from "components/Carousel/Carousel"
 import React from "react"
 import { GetStaticProps } from "next"
 import { ROUTES } from "constants/routes"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 export type Testimonial = {
   id: number
@@ -38,7 +39,7 @@ export const GET_TESTIMONIALS = gql`
 `
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo()
+  const client = initializeApollo({})
   const { data, loading, error } = await client.query({
     query: GET_TESTIMONIALS,
   })
@@ -50,14 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
       error: error || null,
     },
   })
-
-  // return {
-  //   props: {
-  //     testimonials: data.testimonials,
-  //     loading: loading,
-  //     error: error || null
-  //   },
-  // };
 }
 
 export default function Home({ testimonials, loading, error }: Props) {
@@ -69,7 +62,7 @@ export default function Home({ testimonials, loading, error }: Props) {
   const { hours, location, contact } = companyData
 
   return (
-    <>
+    <PageTransition>
       <Head>
         <title>Alkinoos Taverna</title>
         <link rel="icon" href="/favicon.ico" />
@@ -84,7 +77,7 @@ export default function Home({ testimonials, loading, error }: Props) {
       <Header />
       <article id="about" className="section section__about">
         <div className="row container">
-          <div className="section__col" data-aos="fade-down" data-delay="1500">
+          <div className="section__col">
             <picture>
               <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about.jpg" />
               <img
@@ -104,11 +97,7 @@ export default function Home({ testimonials, loading, error }: Props) {
               />
             </picture>
           </div>
-          <article
-            className="section__col section__col--white section__col__description"
-            data-aos="fade-up"
-            data-delay="700"
-          >
+          <article className="section__col section__col--white section__col__description">
             <h2 className="section__about__title heading">Just the right food</h2>
             <p className="text section__description">
               Alkinoos Taverna is cosy, family owned, traditional Greek food restaurant. Outdoor Greek tavernas
@@ -141,7 +130,7 @@ export default function Home({ testimonials, loading, error }: Props) {
             </picture>
           </div>
           <div className="section__col section__col--white section__col__description">
-            <article className="section__menu-landing" data-aos="fade-up" data-delay="700">
+            <article className="section__menu-landing">
               <h2 className="heading">Discover our menu!</h2>
               <p className="text section__description">
                 Taste our famous traditional, authentic Greek dishes and do not miss our famous local wine list along
@@ -158,7 +147,7 @@ export default function Home({ testimonials, loading, error }: Props) {
               </p>
             </article>
             <div className="col-md-12 text-center">
-              <Button href={ROUTES.menu} variant="dark" size="large" data-aos="flip-up">
+              <Button href={ROUTES.menu} variant="dark" size="large">
                 our menu
               </Button>
             </div>
@@ -172,6 +161,6 @@ export default function Home({ testimonials, loading, error }: Props) {
         </div>
       </article>
       <Footer hours={hours} location={location} contact={contact} />
-    </>
+    </PageTransition>
   )
 }

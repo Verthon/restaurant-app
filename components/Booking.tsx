@@ -1,5 +1,5 @@
 import Image from "next/image"
-import dayjs from "dayjs"
+import formatFns from "date-fns/format"
 
 type Props = {
   name: string
@@ -11,11 +11,14 @@ type Props = {
 }
 
 const Booking = ({ name, email, date, guests, toggleOptions }: Props) => {
+  const formatDate = (date: Date, format: string): string => {
+    return formatFns(new Date(date), format)
+  }
   return (
     <tr className="table__row animate__animated animate__fadeInDown">
       <td className="table__cell">{name}</td>
-      <td className="table__cell">{dayjs(date).format("DD/MM/YYYY")}</td>
-      <td className="table__cell">{dayjs(date).set("minute", 0).format("HH:mm")}</td>
+      <td className="table__cell">{formatDate(date, "dd/MM/yyyy")}</td>
+      <td className="table__cell">{formatDate(date, "HH:mm")}</td>
       <td className="table__cell">{email}</td>
       <td className="table__cell table__cell--center">{guests}</td>
       <td className="table__cell table__cell--center">

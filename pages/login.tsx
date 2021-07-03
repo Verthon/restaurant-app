@@ -1,11 +1,10 @@
 import React from "react"
-import { motion } from "framer-motion"
 import { NextApiRequest } from "next"
 
-import { TRANSITIONS } from "constants/config"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Button } from "ui/Button/Button"
 import auth0 from "./api/utils/auth0"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const session = await auth0.getSession(req)
@@ -24,9 +23,9 @@ export default function LoginPage() {
   ]
 
   return (
-    <>
+    <PageTransition>
       <Navbar links={links} hashlink={false} />
-      <motion.div initial="exit" animate="enter" exit="exit" variants={TRANSITIONS} className="container row">
+      <div className="container row">
         <div className="section section__col login">
           <h1 className="heading">Login</h1>
           <div className="login__content">
@@ -47,7 +46,7 @@ export default function LoginPage() {
             <img src="/assets/images/brooke-lark-book-table.jpg" alt="" className="table-booking__image" />
           </picture>
         </div>
-      </motion.div>
-    </>
+      </div>
+    </PageTransition>
   )
 }

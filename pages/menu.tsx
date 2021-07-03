@@ -7,9 +7,10 @@ import { initializeApollo } from "lib/apollo/apolloClient"
 import { MenuList } from "ui/MenuList/MenuList"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Container } from "ui/Container/Container"
-import { TRANSITIONS } from "constants/config"
+import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 type Props = {
   menu: MenuState
@@ -34,7 +35,7 @@ const GET_MENU = gql`
 `
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo()
+  const client = initializeApollo(null)
   const { data, loading, error } = await client.query({ query: GET_MENU })
 
   const menu = formatMenu(data.products)
@@ -55,32 +56,32 @@ export default function Menu({ menu }: Props) {
   ]
 
   return (
-    <>
+    <PageTransition>
       <Navbar links={links} hashlink={false} />
       <Container>
         <section id="menu" className="section menu">
           <h1 className="heading heading--center menu__heading">Menu</h1>
           <div className="row">
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={TRANSITIONS}>
+              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
                 <h2 className="menu__title">Appetizers</h2>
                 <MenuList category={menu.appetizers} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={TRANSITIONS}>
+              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
                 <h2 className="menu__title">Desserts</h2>
                 <MenuList category={menu.desserts} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={TRANSITIONS}>
+              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
                 <h2 className="menu__title">Mains</h2>
                 <MenuList category={menu.mains} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={TRANSITIONS}>
+              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
                 <h2 className="menu__title">Salads</h2>
                 <MenuList category={menu.salads} />
               </motion.article>
@@ -88,6 +89,6 @@ export default function Menu({ menu }: Props) {
           </div>
         </section>
       </Container>
-    </>
+    </PageTransition>
   )
 }
