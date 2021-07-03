@@ -6,7 +6,7 @@
 
 Fully responsive restaurant web app using Next.js, where user can easily create a booking. There is also administrating panel for restaurant staff in /admin. I have used photos by [Brooke Lark](http://brookelark.com/) available on [Unsplash](https://unsplash.com/@brookelark)
 
-## Live 
+## Live
 
 [alkinoos-taverna](https://alkinoos-taverna.vercel.app/)
 
@@ -29,7 +29,7 @@ Fully responsive restaurant web app using Next.js, where user can easily create 
 ## Setup
 
 - You need to have node 12 LTS installed to run this project
-- If you run into issues with node-sass, try `npm rebuild node-sass` command 
+- If you run into issues with node-sass, try `npm rebuild node-sass` command
 
 ```bash
   git clone https://github.com/Verthon/restaurant-app.git
@@ -40,4 +40,3 @@ Fully responsive restaurant web app using Next.js, where user can easily create 
   npm install
   npm start
 ```
-

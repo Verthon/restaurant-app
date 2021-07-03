@@ -1,16 +1,13 @@
 import React from "react"
-import dayjs from "dayjs"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
+import { DatePicker } from "components/DatePicker/DatePicker"
 import { Label } from "ui/Label/Label"
 import { Input } from "ui/Input/Input"
 import { Button } from "ui/Button/Button"
-import styles from "ui/Input/Input.module.scss"
 import { State } from "context/booking/BookingContext.types"
 import { changeDate, changeBooking } from "context/booking/BookingActionCreator"
 import { useBookingDispatch } from "hooks/useBooking/useBooking"
-import { DATEPICKER_CONFIG } from "constants/config"
 
 type Props = {
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => void
@@ -23,9 +20,6 @@ type Props = {
 }
 
 const Form = ({ handleSubmit, booking, submitBtn, cssClass, action, withBookingDesc, loading = false }: Props) => {
-  const config = DATEPICKER_CONFIG
-  config.startDate = new Date(dayjs(config.startDate).toISOString())
-
   const dispatch = useBookingDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,21 +69,7 @@ const Form = ({ handleSubmit, booking, submitBtn, cssClass, action, withBookingD
         defaultValue={booking.email}
       />
       <Label htmlFor="Datepicker">Date</Label>
-      <DatePicker
-        name="Datepicker"
-        className={styles.input}
-        selected={parseDate(booking.date)}
-        onChange={handleDate}
-        showTimeSelect
-        minDate={config.startDate}
-        timeFormat="HH"
-        timeIntervals={60}
-        minTime={dayjs(config.startDate).set("hour", config.minTime).toDate()}
-        maxTime={dayjs(config.startDate).set("hour", config.maxTime).toDate()}
-        dateFormat="MMMM dd, yyyy h aa"
-        timeCaption="Time"
-        placeholderText="Click and choose the date"
-      />
+      <DatePicker selected={parseDate(booking.date)} onChange={handleDate} minTimeVal={12} maxTimeVal={22} />
       <Label htmlFor="guests">Number of guests</Label>
       <Input
         name="guests"
