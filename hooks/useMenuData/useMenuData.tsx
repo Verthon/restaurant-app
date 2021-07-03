@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { formatMenu } from "../../utils/menu"
 import { MenuState } from "./useMenuData.types"
 
-export const GET_MENU = gql`
+export const FETCH_MENU = gql`
   query getMenu {
     products {
       price
@@ -20,7 +20,7 @@ export const GET_MENU = gql`
 `
 
 export const useMenuData = () => {
-  const { data, loading, error, refetch } = useQuery(GET_MENU)
+  const { data, loading, error, refetch } = useQuery(FETCH_MENU)
   const INITIAL_STATE = {
     appetizers: [],
     desserts: [],

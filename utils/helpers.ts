@@ -1,4 +1,4 @@
-import dayjs from "dayjs"
+import add from "date-fns/add"
 
 import { Booking } from "../constants/booking"
 
@@ -11,7 +11,7 @@ export const formatPrice = (cents: number) => {
 }
 
 export const formatDate = (date: Date) => {
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -57,9 +57,8 @@ export const saveLocalStorageState = (state: { booking: Booking | undefined }) =
   }
 }
 
-export const getTomorrowsDate = () => {
-  const tomorrow = dayjs().add(1, "day").set("hour", 12).set("minute", 0)
-  return tomorrow.toDate()
+export const getTomorrowsDate = (): Date => {
+  return add(new Date(), { days: 1 })
 }
 
 export const convertToDate = (date: string | number | Date) => {
@@ -77,9 +76,6 @@ export const transformLocalStorageData = (data: { date: string; guests: string }
   }
   return booking
 }
-
-export const isDateCurrent = (date: string | number | dayjs.Dayjs | Date | undefined) =>
-  dayjs(getTomorrowsDate()).isBefore(dayjs(date)) || dayjs(date).isSame(dayjs(getTomorrowsDate()), "day")
 
 export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
