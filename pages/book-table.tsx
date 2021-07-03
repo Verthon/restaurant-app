@@ -1,24 +1,23 @@
 import React from "react"
 import { ToastContainer } from "react-toastify"
-import { motion } from "framer-motion"
 
-import { TRANSITIONS } from "constants/config"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
 import { Container } from "ui/Container/Container"
 import { Navbar } from "ui/Navbar/Navbar"
 import { BookingForm } from "components/BookingForm/BookingForm"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 export default function BookTable() {
   const { companyData } = useCompanyData()
   const { hours, location, contact } = companyData
 
   return (
-    <>
+    <PageTransition>
       <ToastContainer />
       <Navbar />
-      <motion.div initial="exit" animate="enter" exit="exit" className="table-booking">
+      <div className="table-booking">
         <Container>
-          <motion.div variants={TRANSITIONS} className="table-booking__wrapper">
+          <div className="table-booking__wrapper">
             <div className="section section__col section__col--flexible">
               <h2 className="table-booking__subtitle">Make a reservation</h2>
               <BookingForm />
@@ -49,10 +48,10 @@ export default function BookTable() {
                 />
               </picture>
             </div>
-          </motion.div>
+          </div>
         </Container>
         <footer className="table-booking__footer" />
-      </motion.div>
-    </>
+      </div>
+    </PageTransition>
   )
 }

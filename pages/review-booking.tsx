@@ -4,13 +4,14 @@ import { ToastContainer } from "react-toastify"
 import { motion } from "framer-motion"
 
 import { splitDate, splitTime, formatDate, convertToDate } from "utils/helpers"
-import { TRANSITIONS } from "constants/config"
+import { PAGE_VARIANTS } from "constants/config"
 import { ReviewBookingForm } from "components/ReviewBookingForm/ReviewBookingForm"
 import { Button } from "ui/Button/Button"
 import { Modal } from "ui/Modal/Modal"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
 import { useBookingState } from "hooks/useBooking/useBooking"
 import { ROUTES } from "constants/routes"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 export default function ReviewBooking() {
   const { companyData } = useCompanyData()
@@ -43,7 +44,7 @@ export default function ReviewBooking() {
             </Button>
           </footer>
         </Modal>
-        <motion.article className="review-booking__content" variants={TRANSITIONS}>
+        <motion.article className="review-booking__content" variants={PAGE_VARIANTS}>
           <h1 className="heading review-booking__company">
             <Link href={ROUTES.home}>
               <a>{contact.name}</a>
@@ -58,7 +59,7 @@ export default function ReviewBooking() {
   }
 
   return (
-    <>
+    <PageTransition>
       <Modal show={show}>
         <h2 className="heading modal-book__heading">Thank you</h2>
         <p className="text modal-book__text">Thank you for booking reservation.</p>
@@ -73,7 +74,7 @@ export default function ReviewBooking() {
         </footer>
       </Modal>
       <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
-        <motion.article className="review-booking__content" variants={TRANSITIONS}>
+        <motion.article className="review-booking__content" variants={PAGE_VARIANTS}>
           <h1 className="heading review-booking__company">
             <Link href={ROUTES.home}>
               <a>{contact.name}</a>
@@ -106,6 +107,6 @@ export default function ReviewBooking() {
           </footer>
         </motion.article>
       </motion.div>
-    </>
+    </PageTransition>
   )
 }

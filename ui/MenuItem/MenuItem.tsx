@@ -2,7 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 
 import { formatPrice } from "utils/helpers"
-import { TRANSITIONS } from "constants/config"
+import { PAGE_VARIANTS } from "constants/config"
 import styles from "./MenuItem.module.scss"
 
 type Props = {
@@ -18,7 +18,7 @@ export const MenuItem = ({ menu }: Props) => {
 
   return (
     <>
-      <motion.li className={styles.item} variants={TRANSITIONS}>
+      <motion.li className={styles.item} variants={PAGE_VARIANTS}>
         <header className={styles.header}>
           <h3 className={styles.name}>{name}</h3> <span className={styles.price}>{formatPrice(price)}</span>
         </header>

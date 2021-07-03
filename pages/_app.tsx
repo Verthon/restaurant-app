@@ -1,5 +1,6 @@
 import { AppProps } from "next/app"
 import { ApolloProvider } from "@apollo/client"
+import { AnimatePresence } from "framer-motion"
 
 import { useApollo } from "lib/apollo/apolloClient"
 import { BookingModalController } from "context/bookingModal/BookingModalController"
@@ -15,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <CompanyDataController>
         <BookingController>
           <BookingModalController>
-            <Component {...pageProps} />
+            <AnimatePresence exitBeforeEnter>
+              <Component {...pageProps} />
+            </AnimatePresence>
           </BookingModalController>
         </BookingController>
       </CompanyDataController>

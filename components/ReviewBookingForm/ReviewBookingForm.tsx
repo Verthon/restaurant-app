@@ -9,7 +9,7 @@ import { useBookingState } from "hooks/useBooking/useBooking"
 import Form from "components/Form"
 import { getEmailActionUrl } from "utils/helpers"
 import { showErrorNotification } from "utils/notification"
-import { FORMAT } from "constants/dates"
+import { DATE_HOUR_FORMAT } from "constants/dates"
 
 import { Props } from "./ReviewBookingForm.types"
 
@@ -42,7 +42,7 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
       name: booking.name,
       email: booking.email,
       guests: booking.guests,
-      date: format(booking.date, FORMAT),
+      date: format(booking.date, DATE_HOUR_FORMAT),
     }
     try {
       await emailjs.send("gmail-alkinoos", "reservation", templateParams, process.env.NEXT_PUBLIC_EMAIL_API_KEY)

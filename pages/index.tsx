@@ -14,6 +14,7 @@ import { Carousel } from "components/Carousel/Carousel"
 import React from "react"
 import { GetStaticProps } from "next"
 import { ROUTES } from "constants/routes"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 export type Testimonial = {
   id: number
@@ -61,7 +62,7 @@ export default function Home({ testimonials, loading, error }: Props) {
   const { hours, location, contact } = companyData
 
   return (
-    <>
+    <PageTransition>
       <Head>
         <title>Alkinoos Taverna</title>
         <link rel="icon" href="/favicon.ico" />
@@ -164,6 +165,6 @@ export default function Home({ testimonials, loading, error }: Props) {
         </div>
       </article>
       <Footer hours={hours} location={location} contact={contact} />
-    </>
+    </PageTransition>
   )
 }
