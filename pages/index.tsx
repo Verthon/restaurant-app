@@ -77,7 +77,7 @@ export default function Home({ testimonials, loading, error }: Props) {
       <Header />
       <article id="about" className="section section__about">
         <div className="row container">
-          <div className="section__col" data-aos="fade-down" data-delay="1500">
+          <div className="section__col">
             <picture>
               <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about.jpg" />
               <img
@@ -97,11 +97,7 @@ export default function Home({ testimonials, loading, error }: Props) {
               />
             </picture>
           </div>
-          <article
-            className="section__col section__col--white section__col__description"
-            data-aos="fade-up"
-            data-delay="700"
-          >
+          <article className="section__col section__col--white section__col__description">
             <h2 className="section__about__title heading">Just the right food</h2>
             <p className="text section__description">
               Alkinoos Taverna is cosy, family owned, traditional Greek food restaurant. Outdoor Greek tavernas
@@ -134,7 +130,7 @@ export default function Home({ testimonials, loading, error }: Props) {
             </picture>
           </div>
           <div className="section__col section__col--white section__col__description">
-            <article className="section__menu-landing" data-aos="fade-up" data-delay="700">
+            <article className="section__menu-landing">
               <h2 className="heading">Discover our menu!</h2>
               <p className="text section__description">
                 Taste our famous traditional, authentic Greek dishes and do not miss our famous local wine list along
@@ -151,7 +147,7 @@ export default function Home({ testimonials, loading, error }: Props) {
               </p>
             </article>
             <div className="col-md-12 text-center">
-              <Button href={ROUTES.menu} variant="dark" size="large" data-aos="flip-up">
+              <Button href={ROUTES.menu} variant="dark" size="large">
                 our menu
               </Button>
             </div>

@@ -13,10 +13,8 @@ const Header = () => (
       </picture>
     </div>
     <div className="site-header__content">
-      <h1 className="site-header__headline" data-aos="fade">
-        Alkinoos Taverna
-      </h1>
-      <p className="site-header__text" data-aos="fade-up" data-delay="500">
+      <h1 className="site-header__headline">Alkinoos Taverna</h1>
+      <p className="site-header__text">
         The right ingredients for the right food. Family owned Mediterranean Cuisine with the finest farm-to-table
         ingredients.
       </p>
