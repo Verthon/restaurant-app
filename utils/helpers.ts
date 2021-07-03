@@ -47,8 +47,10 @@ export const loadLocalStorageState = (name: string) => {
     return undefined
   }
 }
-
-export const saveLocalStorageState = (state: { booking: Booking | undefined }) => {
+type BookingState = {
+  state: { booking?: Booking }
+}
+export const saveLocalStorageState = (state: BookingState) => {
   try {
     const serializedState = JSON.stringify(state)
     window.localStorage.setItem("booking", serializedState)
@@ -61,33 +63,35 @@ export const getTomorrowsDate = (): Date => {
   return add(new Date(), { days: 1 })
 }
 
-export const convertToDate = (date: string | number | Date) => {
+export const convertToDate = (date?: string | Date) => {
   if (date) {
     return new Date(date)
   }
   return new Date()
 }
 
-export const transformLocalStorageData = (data: { date: string; guests: string }) => {
+type SerializedBooking = { [K in keyof Booking]: string }
+export const transformLocalStorageData = (data: SerializedBooking): Booking => {
+  const guests = Number(data.guests)
+  const confirmed = JSON.parse(data.confirmed)
   const booking = {
     ...data,
     date: convertToDate(data.date),
-    guests: parseInt(data.guests),
+    guests,
+    confirmed,
+    id: undefined,
   }
   return booking
 }
 
 export const getEmailActionUrl = (email: string) => `https://formspree.io/${email}`
 
-export const formatMenu = (data: string | any) => {
-  if (data && data.length > 0) {
-    const menu = [...data]
-    return menu
-  }
-  return []
+type Link = {
+  path: string
+  isHashLink: boolean
 }
 
-export const generateLink = ({ path, isHashLink }: { path: string; isHashLink: boolean }) => {
+export const generateLink = ({ path, isHashLink }: Link) => {
   if (isHashLink) {
     return `#${path}`
   }
