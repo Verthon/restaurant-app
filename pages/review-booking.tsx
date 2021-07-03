@@ -90,11 +90,11 @@ export default function ReviewBooking() {
               <p className="review-booking__description">Guests</p>
             </div>
             <div className="section__col section__col--flexible">
-              <p className="review-booking__value">{splitDate(formatDate(convertToDate(date as Date)))}</p>
+              <p className="review-booking__value">{splitDate(formatDate(convertToDate(date)))}</p>
               <p className="review-booking__description">Date</p>
             </div>
             <div className="section__col section__col--flexible">
-              <p className="review-booking__value">{splitTime(formatDate(convertToDate(date as Date)))}</p>
+              <p className="review-booking__value">{splitTime(formatDate(convertToDate(date)))}</p>
               <p className="review-booking__description">Time</p>
             </div>
           </div>
