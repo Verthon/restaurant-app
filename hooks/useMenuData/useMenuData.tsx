@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client"
 import { useState, useEffect } from "react"
-import { formatMenu } from "../../utils/menu"
+
+import { formatMenu } from "utils/menu"
 import { MenuState } from "./useMenuData.types"
 
 export const FETCH_MENU = gql`
