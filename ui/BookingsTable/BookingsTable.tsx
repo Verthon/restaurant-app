@@ -1,6 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { TRANSITIONS } from "../../constants/config"
+import { PAGE_VARIANTS } from "constants/config"
 import { BookingItem } from "../BookingItem/BookingItem"
 
 type Booking = {
@@ -19,7 +19,7 @@ type Props = {
 
 export const BookingsTable = ({ bookings, toggleOptions }: Props) => {
   return (
-    <motion.table className="table" variants={TRANSITIONS}>
+    <motion.table className="table" variants={PAGE_VARIANTS}>
       <thead className="table__header">
         <tr className="table__row">
           <th className="table__heading">Name</th>

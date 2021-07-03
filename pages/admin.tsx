@@ -10,6 +10,7 @@ import { Button } from "ui/Button/Button"
 import { Navbar } from "ui/Navbar/Navbar"
 import { BookingsTable } from "ui/BookingsTable/BookingsTable"
 import { Modal } from "ui/Modal/Modal"
+import { PageTransition } from "ui/PageTransition/PageTransition"
 
 import { useBookingModalDispatch, useBookingModalState } from "hooks/useBookingModal/useBookingModal"
 import { ActionType } from "context/bookingModal/BookingModalContext.types"
@@ -128,7 +129,7 @@ export default function AdminPage({ bookings }: Props) {
   }
 
   return (
-    <>
+    <PageTransition>
       <ToastContainer className="toast__container" toastClassName="toast" progressClassName="toast__progress" />
       <Modal show={showModal}>
         <div className="modal-book__nav">
@@ -178,6 +179,6 @@ export default function AdminPage({ bookings }: Props) {
           Storage
         </h2>
       </motion.main>
-    </>
+    </PageTransition>
   )
 }
