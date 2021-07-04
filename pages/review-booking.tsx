@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import Link from "next/link"
-import { ToastContainer } from "react-toastify"
 import { motion } from "framer-motion"
 
 import { splitDate, splitTime, formatDate, convertToDate } from "utils/helpers"
@@ -11,7 +10,7 @@ import { Modal } from "ui/Modal/Modal"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
 import { useBookingState } from "hooks/useBooking/useBooking"
 import { ROUTES } from "constants/routes"
-import { PageTransition } from "ui/PageTransition/PageTransition"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
 
 export default function ReviewBooking() {
   const { companyData } = useCompanyData()
@@ -29,37 +28,38 @@ export default function ReviewBooking() {
 
   if (editable) {
     return (
-      <motion.div className="review-booking" initial="exit" animate="enter" exit="exit">
-        <ToastContainer />
-        <Modal show={show}>
-          <h2 className="heading modal-book__heading">Thank you</h2>
-          <p className="text modal-book__text">Thank you for booking reservation.</p>
-          <p className="text modal-book__text">We will contact you shortly.</p>
-          <footer className="modal-book__footer">
-            <Button variant="transparent" size="regular" link={ROUTES.home}>
-              Back to Home
-            </Button>
-            <Button variant="light" size="regular" link={ROUTES.menu}>
-              See Menu
-            </Button>
-          </footer>
-        </Modal>
-        <motion.article className="review-booking__content" variants={PAGE_VARIANTS}>
-          <h1 className="heading review-booking__company">
-            <Link href={ROUTES.home}>
-              <a>{contact.name}</a>
-            </Link>
-          </h1>
-          <img className="review-booking__image" src="/assets/images/landing/brooke-lark-about.jpg" alt="" />
-          <h2 className="review-booking__title">Edit booking</h2>
-          <ReviewBookingForm handleEdit={handleBookingEdit} toggleModal={toggleModal} editable={editable} />
-        </motion.article>
-      </motion.div>
+      <PageLayout>
+        <div className="review-booking">
+          <Modal show={show}>
+            <h2 className="heading modal-book__heading">Thank you</h2>
+            <p className="text modal-book__text">Thank you for booking reservation.</p>
+            <p className="text modal-book__text">We will contact you shortly.</p>
+            <footer className="modal-book__footer">
+              <Button variant="transparent" size="regular" link={ROUTES.home}>
+                Back to Home
+              </Button>
+              <Button variant="light" size="regular" link={ROUTES.menu}>
+                See Menu
+              </Button>
+            </footer>
+          </Modal>
+          <motion.article className="review-booking__content" variants={PAGE_VARIANTS}>
+            <h1 className="heading review-booking__company">
+              <Link href={ROUTES.home}>
+                <a>{contact.name}</a>
+              </Link>
+            </h1>
+            <img className="review-booking__image" src="/assets/images/landing/brooke-lark-about.jpg" alt="" />
+            <h2 className="review-booking__title">Edit booking</h2>
+            <ReviewBookingForm handleEdit={handleBookingEdit} toggleModal={toggleModal} editable={editable} />
+          </motion.article>
+        </div>
+      </PageLayout>
     )
   }
 
   return (
-    <PageTransition>
+    <PageLayout>
       <Modal show={show}>
         <h2 className="heading modal-book__heading">Thank you</h2>
         <p className="text modal-book__text">Thank you for booking reservation.</p>
@@ -107,6 +107,6 @@ export default function ReviewBooking() {
           </footer>
         </motion.article>
       </motion.div>
-    </PageTransition>
+    </PageLayout>
   )
 }

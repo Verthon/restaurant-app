@@ -1,6 +1,5 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { ToastContainer } from "react-toastify"
 import { gql, useMutation } from "@apollo/client"
 import { IClaims } from "@auth0/nextjs-auth0/dist/session/session"
 import { NextApiRequest } from "next"
@@ -15,12 +14,12 @@ import { PageTransition } from "ui/PageTransition/PageTransition"
 import { useBookingModalDispatch, useBookingModalState } from "hooks/useBookingModal/useBookingModal"
 import { ActionType } from "context/bookingModal/BookingModalContext.types"
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking"
-import { showErrorNotification, showNotification } from "utils/notification"
 import { initializeApollo } from "lib/apollo/apolloClient"
 import { Booking } from "constants/booking"
 
 import { setBooking } from "context/booking/BookingActionCreator"
 import auth0 from "./api/utils/auth0"
+import { useNotification } from "hooks/useNotification/useNotification"
 
 type Props = {
   user?: IClaims
@@ -88,6 +87,7 @@ export default function AdminPage({ bookings }: Props) {
   const { showModal } = useBookingModalState()
   const booking = useBookingState()
   const dispatch = useBookingDispatch()
+  const showNotification = useNotification()
 
   const deleteBooking = () => {
     try {
@@ -95,9 +95,9 @@ export default function AdminPage({ bookings }: Props) {
         variables: { bookingId: booking.id },
       })
       dispatchModal({ type: ActionType.hide })
-      showNotification("Booking deleted successfully.")
+      showNotification({ type: "success", message: "Booking deleted successfully." })
     } catch (error) {
-      showErrorNotification(error)
+      showNotification({ type: "error", message: "Failed to delete booking, please try again later." })
     }
   }
 
@@ -117,9 +117,9 @@ export default function AdminPage({ bookings }: Props) {
         },
       })
       dispatchModal({ type: ActionType.hide })
-      showNotification("Booking updated successfully.")
+      showNotification({ type: "success", message: "Booking was updated successfully." })
     } catch (error) {
-      showErrorNotification()
+      showNotification({ type: "error", message: "Failed to update booking, please try again later" })
     }
   }
 
@@ -130,7 +130,6 @@ export default function AdminPage({ bookings }: Props) {
 
   return (
     <PageTransition>
-      <ToastContainer className="toast__container" toastClassName="toast" progressClassName="toast__progress" />
       <Modal show={showModal}>
         <div className="modal-book__nav">
           <button className="modal-book__close" onClick={() => dispatchModal({ type: ActionType.hide })}>
