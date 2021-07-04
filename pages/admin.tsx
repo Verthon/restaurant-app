@@ -1,6 +1,5 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { ToastContainer } from "react-toastify"
 import { gql, useMutation } from "@apollo/client"
 import { IClaims } from "@auth0/nextjs-auth0/dist/session/session"
 import { NextApiRequest } from "next"
@@ -131,7 +130,6 @@ export default function AdminPage({ bookings }: Props) {
 
   return (
     <PageTransition>
-      <ToastContainer className="toast__container" toastClassName="toast" progressClassName="toast__progress" />
       <Modal show={showModal}>
         <div className="modal-book__nav">
           <button className="modal-book__close" onClick={() => dispatchModal({ type: ActionType.hide })}>

@@ -1,6 +1,7 @@
+import * as React from "react"
 import { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel"
 import BrainHubCarousel from "@brainhubeu/react-carousel"
-import React from "react"
+import "@brainhubeu/react-carousel/lib/style.css"
 
 import styles from "ui/Testimonial/Testimonial.module.scss"
 import { Testimonial } from "ui/Testimonial/Testimonial"

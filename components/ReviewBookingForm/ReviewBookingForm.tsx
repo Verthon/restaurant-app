@@ -6,9 +6,9 @@ import { gql, useMutation } from "@apollo/client"
 import { ERROR_MSG } from "constants/messages"
 import { Button } from "ui/Button/Button"
 import { useBookingState } from "hooks/useBooking/useBooking"
+import { useNotification } from "hooks/useNotification/useNotification"
 import Form from "components/Form"
 import { getEmailActionUrl } from "utils/helpers"
-import { showErrorNotification } from "utils/notification"
 import { DATE_HOUR_FORMAT } from "constants/dates"
 
 import { Props } from "./ReviewBookingForm.types"
@@ -36,6 +36,7 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
   const [addBooking, { loading }] = useMutation(ADD_BOOKING)
   const [updateBooking, { loading: updateLoading }] = useMutation(UPDATE_BOOKING)
   const booking = useBookingState()
+  const showNotification = useNotification()
 
   const sendEmail = async (id: number) => {
     const templateParams = {
@@ -48,8 +49,8 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
       await emailjs.send("gmail-alkinoos", "reservation", templateParams, process.env.NEXT_PUBLIC_EMAIL_API_KEY)
       await updateBooking({ variables: { id } })
       toggleModal(true)
-    } catch (error) {
-      showErrorNotification(ERROR_MSG.emailSendFail)
+    } catch (_error) {
+      showNotification({ type: "error", message: ERROR_MSG.emailSendFail })
     }
   }
 
@@ -73,8 +74,8 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
         const id = data.insert_bookings.returning[0].id
         await sendEmail(id)
       }
-    } catch (error) {
-      showErrorNotification(error || ERROR_MSG.emailDuplicated)
+    } catch (_error) {
+      showNotification({ type: "error", message: ERROR_MSG.emailDuplicated })
     }
   }
 

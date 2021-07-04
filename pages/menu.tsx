@@ -10,7 +10,7 @@ import { Container } from "ui/Container/Container"
 import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
-import { PageTransition } from "ui/PageTransition/PageTransition"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
 
 type Props = {
   menu: MenuState
@@ -56,7 +56,7 @@ export default function Menu({ menu }: Props) {
   ]
 
   return (
-    <PageTransition>
+    <PageLayout>
       <Navbar links={links} hashlink={false} />
       <Container>
         <section id="menu" className="section menu">
@@ -89,6 +89,6 @@ export default function Menu({ menu }: Props) {
           </div>
         </section>
       </Container>
-    </PageTransition>
+    </PageLayout>
   )
 }

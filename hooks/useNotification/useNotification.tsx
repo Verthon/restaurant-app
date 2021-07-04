@@ -7,8 +7,8 @@ const DURATION = 4000
 
 export const useNotification = () => {
   const showNotification = ({ type, message }: Options) => {
-    toast[type]({
-      message,
+    toast[type](message, {
+      draggable: false,
       autoClose: DURATION,
       hideProgressBar: true,
     })

@@ -1,6 +1,4 @@
 import Head from "next/head"
-import { ToastContainer } from "react-toastify"
-import "@brainhubeu/react-carousel/lib/style.css"
 import { ApolloError, gql } from "@apollo/client"
 
 import { initializeApollo, addApolloState } from "lib/apollo/apolloClient"
@@ -14,7 +12,8 @@ import { Carousel } from "components/Carousel/Carousel"
 import React from "react"
 import { GetStaticProps } from "next"
 import { ROUTES } from "constants/routes"
-import { PageTransition } from "ui/PageTransition/PageTransition"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
+import "react-toastify/dist/ReactToastify.minimal.css"
 
 export type Testimonial = {
   id: number
@@ -62,17 +61,11 @@ export default function Home({ testimonials, loading, error }: Props) {
   const { hours, location, contact } = companyData
 
   return (
-    <PageTransition>
+    <PageLayout>
       <Head>
         <title>Alkinoos Taverna</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ToastContainer
-        className="toast__container"
-        toastClassName="toast"
-        progressClassName="toast__progress"
-        autoClose={4000}
-      />
       <Navbar links={links} hashlink withDashboard />
       <Header />
       <article id="about" className="section section__about">
@@ -161,6 +154,6 @@ export default function Home({ testimonials, loading, error }: Props) {
         </div>
       </article>
       <Footer hours={hours} location={location} contact={contact} />
-    </PageTransition>
+    </PageLayout>
   )
 }
