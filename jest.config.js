@@ -10,8 +10,10 @@ module.exports = {
   moduleNameMapper: {
     "\\.(css|less|sass|scss)$": "identity-obj-proxy",
     "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js",
+    "^/(.*)$": "<rootDir>/src/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
-  collectCoverageFrom: ["hooks/**/*.tsx", "components/**/*.tsx", "context/**/*.tsx", "ui/**/*.tsx", "utils/**/*.ts"],
+  collectCoverageFrom: ["hooks/**/*.tsx", "components/**/*.tsx", "context/**/*.tsx", "utils/**/*.ts"],
   testTimeout: 10000,
+  resetMocks: true,
 }

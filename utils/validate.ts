@@ -1,5 +1,8 @@
-import { ERRORS } from "constants/errors"
-import { Form, Validate, ValidateEmail } from "./validate.types"
+import { ERRORS } from "../constants/errors"
+
+type Form = { name: string; email: string }
+type ValidateEmail = (email: string) => boolean
+type Validate = (form: Form) => boolean | { inputName: string; message: string }
 
 export const validateEmail: ValidateEmail = (email: string) => {
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

@@ -1,19 +1,17 @@
 import React from "react"
-import { ToastContainer } from "react-toastify"
 
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
 import { Container } from "ui/Container/Container"
 import { Navbar } from "ui/Navbar/Navbar"
 import { BookingForm } from "components/BookingForm/BookingForm"
-import { PageTransition } from "ui/PageTransition/PageTransition"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
 
 export default function BookTable() {
   const { companyData } = useCompanyData()
   const { hours, location, contact } = companyData
 
   return (
-    <PageTransition>
-      <ToastContainer />
+    <PageLayout>
       <Navbar />
       <div className="table-booking">
         <Container>
@@ -52,6 +50,6 @@ export default function BookTable() {
         </Container>
         <footer className="table-booking__footer" />
       </div>
-    </PageTransition>
+    </PageLayout>
   )
 }

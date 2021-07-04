@@ -4,7 +4,7 @@ import { NextApiRequest } from "next"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Button } from "ui/Button/Button"
 import auth0 from "./api/utils/auth0"
-import { PageTransition } from "ui/PageTransition/PageTransition"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
 
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const session = await auth0.getSession(req)
@@ -23,7 +23,7 @@ export default function LoginPage() {
   ]
 
   return (
-    <PageTransition>
+    <PageLayout>
       <Navbar links={links} hashlink={false} />
       <div className="container row">
         <div className="section section__col login">
@@ -47,6 +47,6 @@ export default function LoginPage() {
           </picture>
         </div>
       </div>
-    </PageTransition>
+    </PageLayout>
   )
 }
