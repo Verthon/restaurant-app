@@ -3,8 +3,8 @@ import { ApolloError, gql } from "@apollo/client"
 
 import { initializeApollo, addApolloState } from "lib/apollo/apolloClient"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
-import Header from "components/Header"
-import Footer from "components/Footer"
+import { Header } from "components/Header/Header"
+import { Footer } from "components/Footer/Footer"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Button } from "ui/Button/Button"
 import { Carousel } from "components/Carousel/Carousel"
@@ -14,6 +14,7 @@ import { GetStaticProps } from "next"
 import { ROUTES } from "constants/routes"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import "react-toastify/dist/ReactToastify.minimal.css"
+import { Container } from "ui/Container/Container"
 
 export type Testimonial = {
   id: number
@@ -69,45 +70,47 @@ export default function Home({ testimonials, loading, error }: Props) {
       <Navbar links={links} hashlink withDashboard />
       <Header />
       <article id="about" className="section section__about">
-        <div className="row container">
-          <div className="section__col">
-            <picture>
-              <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about.jpg" />
-              <img
-                className="img-fluid"
-                src="assets/images/landing/brooke-lark-about-xs.jpg"
-                alt="example dish from our restaurant"
-                loading="lazy"
-              />
-            </picture>
-            <picture>
-              <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about1.jpg" />
-              <img
-                className="img-fluid"
-                src="assets/images/landing/brooke-lark-about1-xs.jpg"
-                alt="example dish from our restaurant"
-                loading="lazy"
-              />
-            </picture>
+        <Container>
+          <div className="row">
+            <div className="section__col">
+              <picture>
+                <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about.jpg" />
+                <img
+                  className="img-fluid"
+                  src="assets/images/landing/brooke-lark-about-xs.jpg"
+                  alt="example dish from our restaurant"
+                  loading="lazy"
+                />
+              </picture>
+              <picture>
+                <source media="(min-width: 475px)" srcSet="assets/images/landing/brooke-lark-about1.jpg" />
+                <img
+                  className="img-fluid"
+                  src="assets/images/landing/brooke-lark-about1-xs.jpg"
+                  alt="example dish from our restaurant"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+            <article className="section__col section__col--white section__col__description">
+              <h2 className="section__about__title heading">Just the right food</h2>
+              <p className="text section__description">
+                Alkinoos Taverna is cosy, family owned, traditional Greek food restaurant. Outdoor Greek tavernas
+                traditionally combine sunshine and nature, discover rich Mediterranean flavours.
+              </p>
+              <p className="text section__description">
+                For Greeks, food is so much more than nourishment - it’s about culture, comfort, family and life itself.
+                We believe that connection of traditional Greek recipes with addition of local, fresh materials, creates
+                perfect balance for our meals.
+              </p>
+              <p className="text section__description">
+                If you’ve been in Alkinoos Taverna, you’ve seen - and tasted what keeps our customers coming back for
+                more.
+              </p>
+              <img className="section__about__chef" src="assets/images/landing/cook.jpg" alt="our chef" />
+            </article>
           </div>
-          <article className="section__col section__col--white section__col__description">
-            <h2 className="section__about__title heading">Just the right food</h2>
-            <p className="text section__description">
-              Alkinoos Taverna is cosy, family owned, traditional Greek food restaurant. Outdoor Greek tavernas
-              traditionally combine sunshine and nature, discover rich Mediterranean flavours.
-            </p>
-            <p className="text section__description">
-              For Greeks, food is so much more than nourishment - it’s about culture, comfort, family and life itself.
-              We believe that connection of traditional Greek recipes with addition of local, fresh materials, creates
-              perfect balance for our meals.
-            </p>
-            <p className="text section__description">
-              If you’ve been in Alkinoos Taverna, you’ve seen - and tasted what keeps our customers coming back for
-              more.
-            </p>
-            <img className="section__about__chef" src="assets/images/landing/cook.jpg" alt="our chef" />
-          </article>
-        </div>
+        </Container>
       </article>
       <div id="menu" className="section section__menu">
         <div className="row container">
