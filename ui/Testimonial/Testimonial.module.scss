@@ -11,6 +11,10 @@
   color: $color-white;
   margin: auto;
   max-width: 350px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   @include mQ($tablet) {
     max-width: 450px;
   }

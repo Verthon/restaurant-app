@@ -3,6 +3,7 @@ import React from "react"
 
 import { Button } from "ui/Button/Button"
 import { Container } from "ui/Container/Container"
+import { Heading } from "ui/Heading/Heading"
 import styles from "./Header.module.scss"
 
 export const Header = () => (
@@ -16,7 +17,9 @@ export const Header = () => (
         </picture>
       </div>
       <div className={styles.content}>
-        <h1 className={styles.headline}>Alkinoos Taverna</h1>
+        <Heading level="h1" size="lg">
+          Alkinoos Taverna
+        </Heading>
         <p className={styles.text}>
           The right ingredients for the right food. Family owned Mediterranean Cuisine with the finest farm-to-table
           ingredients.

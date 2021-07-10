@@ -1,20 +1,19 @@
 import Head from "next/head"
 import { ApolloError, gql } from "@apollo/client"
+import * as React from "react"
+import { GetStaticProps } from "next"
 
 import { initializeApollo, addApolloState } from "lib/apollo/apolloClient"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
+import { PageLayout } from "layouts/PageLayout/PageLayout"
+import { Carousel } from "components/Carousel/Carousel"
 import { Header } from "components/Header/Header"
 import { Footer } from "components/Footer/Footer"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Button } from "ui/Button/Button"
-import { Carousel } from "components/Carousel/Carousel"
-
-import React from "react"
-import { GetStaticProps } from "next"
-import { ROUTES } from "constants/routes"
-import { PageLayout } from "layouts/PageLayout/PageLayout"
-import "react-toastify/dist/ReactToastify.minimal.css"
 import { Container } from "ui/Container/Container"
+import { Heading } from "ui/Heading/Heading"
+import { ROUTES } from "constants/routes"
 
 export type Testimonial = {
   id: number
@@ -93,7 +92,7 @@ export default function Home({ testimonials, loading, error }: Props) {
               </picture>
             </div>
             <article className="section__col section__col--white section__col__description">
-              <h2 className="section__about__title heading">Just the right food</h2>
+              <Heading level="h2">Just the right food</Heading>
               <p className="text section__description">
                 Alkinoos Taverna is cosy, family owned, traditional Greek food restaurant. Outdoor Greek tavernas
                 traditionally combine sunshine and nature, discover rich Mediterranean flavours.
@@ -127,7 +126,7 @@ export default function Home({ testimonials, loading, error }: Props) {
           </div>
           <div className="section__col section__col--white section__col__description">
             <article className="section__menu-landing">
-              <h2 className="heading">Discover our menu!</h2>
+              <Heading level="h2">Discover our menu!</Heading>
               <p className="text section__description">
                 Taste our famous traditional, authentic Greek dishes and do not miss our famous local wine list along
                 with your meal.

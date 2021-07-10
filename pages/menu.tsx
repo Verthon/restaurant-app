@@ -11,6 +11,7 @@ import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
+import { Heading } from "ui/Heading/Heading"
 
 type Props = {
   menu: MenuState
@@ -60,29 +61,37 @@ export default function Menu({ menu }: Props) {
       <Navbar links={links} hashlink={false} />
       <Container>
         <section id="menu" className="section menu">
-          <h1 className="heading heading--center menu__heading">Menu</h1>
+          <Heading level="h1">Menu</Heading>
           <div className="row">
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
               <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Appetizers</h2>
+                <Heading level="h2" color="primary">
+                  Appetizers
+                </Heading>
                 <MenuList category={menu.appetizers} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
               <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Desserts</h2>
+                <Heading level="h2" color="primary">
+                  Desserts
+                </Heading>
                 <MenuList category={menu.desserts} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
               <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Mains</h2>
+                <Heading level="h2" color="primary">
+                  Mains
+                </Heading>
                 <MenuList category={menu.mains} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
               <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Salads</h2>
+                <Heading level="h2" color="primary">
+                  Salads
+                </Heading>
                 <MenuList category={menu.salads} />
               </motion.article>
             </motion.div>

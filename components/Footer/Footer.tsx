@@ -4,6 +4,7 @@ import cx from "classnames"
 import { Container } from "ui/Container/Container"
 import { Props } from "./Footer.types"
 import styles from "./Footer.module.scss"
+import { Heading } from "ui/Heading/Heading"
 
 export const Footer = ({ hours, location, contact }: Props) => {
   if (hours && location && contact) {
@@ -16,14 +17,18 @@ export const Footer = ({ hours, location, contact }: Props) => {
         <Container>
           <div className={styles.wrapper}>
             <div className={styles.column}>
-              <h2 className={styles.title}>Opening Hours</h2>
+              <Heading level="h3" size="sm">
+                Opening Hours
+              </Heading>
               <p className={styles.description}>{weekdays?.days}</p>
               <p className={styles.description}>{weekdays?.time}</p>
               <p className={styles.description}>{weekend?.days}</p>
               <p className={styles.description}>{weekend?.time}</p>
             </div>
             <div className={styles.column}>
-              <h2 className={styles.title}>Our Location</h2>
+              <Heading level="h3" size="sm">
+                Our Location
+              </Heading>
               <p className={styles.description}>{address}</p>
               <p className={styles.description}>
                 {code} {city}
@@ -33,7 +38,9 @@ export const Footer = ({ hours, location, contact }: Props) => {
               </p>
             </div>
             <div className={styles.column}>
-              <h2 className={styles.title}>Contact</h2>
+              <Heading level="h3" size="sm">
+                Contact
+              </Heading>
               <p className={styles.description}>{email}</p>
               <p className={styles.description}>{phone}</p>
             </div>
@@ -43,28 +50,5 @@ export const Footer = ({ hours, location, contact }: Props) => {
     )
   }
 
-  return (
-    <footer id="contact" className="site-footer section">
-      <div className="container site-footer__wrapper">
-        <div className={styles.column}>
-          <h2 className={styles.title}>Opening Hours</h2>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-        </div>
-        <div className={styles.column}>
-          <h2 className={styles.title}>Our Location</h2>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-        </div>
-        <div className={styles.column}>
-          <h2 className={styles.title}>Contact</h2>
-          <p className={styles.description}></p>
-          <p className={styles.description}></p>
-        </div>
-      </div>
-    </footer>
-  )
+  return null
 }

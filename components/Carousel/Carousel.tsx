@@ -5,6 +5,8 @@ import "@brainhubeu/react-carousel/lib/style.css"
 
 import styles from "ui/Testimonial/Testimonial.module.scss"
 import { Testimonial } from "ui/Testimonial/Testimonial"
+import { Heading } from "ui/Heading/Heading"
+import { Container } from "ui/Container/Container"
 import { Props } from "./Carousel.types"
 
 const CONFIG = {
@@ -26,9 +28,11 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
   }, [testimonials])
 
   return (
-    <div className="container">
+    <Container>
       <div className={styles.modal}>
-        <h2 className={styles.heading}>Guest reviews</h2>
+        <Heading level="h2" size="sm" color="secondary">
+          Guest reviews
+        </Heading>
         <BrainHubCarousel
           plugins={[
             "centered",
@@ -46,6 +50,6 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
         />
         <Dots value={dotValue} onChange={(value) => setDotValue(value)} number={testimonials?.length} />
       </div>
-    </div>
+    </Container>
   )
 }

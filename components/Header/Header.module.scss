@@ -49,32 +49,16 @@
   }
 }
 
-.headline {
-  font-family: $font-secondary;
-  color: $color-dark;
-  font-size: 1.75rem;
-  font-weight: 400;
-  margin: 1rem 0 1rem auto;
-  @include mQ($ipad) {
-    display: inline;
-    margin: 0;
-    font-size: 2rem;
-  }
-  @include mQ($desktopXs) {
-    font-size: 2.875rem;
-  }
-}
-
 .text {
   font-size: 1rem;
-  margin: 1rem 0 2rem 0;
+  margin: 0 0 2rem 0;
   line-height: 1.5;
   max-width: 25rem;
   @include mQ($mobile) {
     font-size: 1rem;
   }
   @include mQ($tablet) {
-    margin: 1rem 0 3rem 0;
+    margin: 0 0 3rem 0;
     max-width: 20rem;
   }
   @include mQ($desktopXs) {
