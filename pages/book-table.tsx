@@ -1,7 +1,7 @@
 import React from "react"
 
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 import { Navbar } from "ui/Navbar/Navbar"
 import { BookingForm } from "components/BookingForm/BookingForm"
 import { PageLayout } from "layouts/PageLayout/PageLayout"

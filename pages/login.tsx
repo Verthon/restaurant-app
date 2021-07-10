@@ -6,6 +6,7 @@ import { Button } from "ui/Button/Button"
 import auth0 from "./api/utils/auth0"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import { Heading } from "ui/Heading/Heading"
+import { Text } from "ui/Text/Text"
 
 export async function getServerSideProps({ req }: { req: NextApiRequest }) {
   const session = await auth0.getSession(req)
@@ -30,13 +31,13 @@ export default function LoginPage() {
         <div className="section section__col login">
           <Heading level="h1">Login</Heading>
           <div className="login__content">
-            <p className="login__desc">
+            <Text className="login__desc">
               Login process is simplified to redirect to <strong>Auth0</strong> where you will be asked to provide
               email/password combination.
-            </p>
-            <p className="login__desc">
+            </Text>
+            <Text className="login__desc">
               after the successfull login process you will be redirected automatically to the staff dashboard
-            </p>
+            </Text>
           </div>
           <Button data-testid="login-submit" href="/api/login" variant="dark" size="large">
             Login

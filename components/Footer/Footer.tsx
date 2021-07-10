@@ -1,7 +1,7 @@
 import * as React from "react"
 import cx from "classnames"
 
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 import { Props } from "./Footer.types"
 import styles from "./Footer.module.scss"
 import { Heading } from "ui/Heading/Heading"
@@ -17,7 +17,7 @@ export const Footer = ({ hours, location, contact }: Props) => {
         <Container>
           <div className={styles.wrapper}>
             <div className={styles.column}>
-              <Heading level="h3" size="sm">
+              <Heading level="h3" variant="sm">
                 Opening Hours
               </Heading>
               <p className={styles.description}>{weekdays?.days}</p>
@@ -26,7 +26,7 @@ export const Footer = ({ hours, location, contact }: Props) => {
               <p className={styles.description}>{weekend?.time}</p>
             </div>
             <div className={styles.column}>
-              <Heading level="h3" size="sm">
+              <Heading level="h3" variant="sm">
                 Our Location
               </Heading>
               <p className={styles.description}>{address}</p>
@@ -38,7 +38,7 @@ export const Footer = ({ hours, location, contact }: Props) => {
               </p>
             </div>
             <div className={styles.column}>
-              <Heading level="h3" size="sm">
+              <Heading level="h3" variant="sm">
                 Contact
               </Heading>
               <p className={styles.description}>{email}</p>

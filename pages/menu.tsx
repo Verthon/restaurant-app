@@ -6,7 +6,7 @@ import { initializeApollo } from "lib/apollo/apolloClient"
 
 import { MenuList } from "ui/MenuList/MenuList"
 import { Navbar } from "ui/Navbar/Navbar"
-import { Container } from "ui/Container/Container"
+import { Container, Row } from "ui/Grid/Grid"
 import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
@@ -62,7 +62,7 @@ export default function Menu({ menu }: Props) {
       <Container>
         <section id="menu" className="section menu">
           <Heading level="h1">Menu</Heading>
-          <div className="row">
+          <Row>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
               <motion.article className="menu__container" variants={PAGE_VARIANTS}>
                 <Heading level="h2" color="primary">
@@ -95,7 +95,7 @@ export default function Menu({ menu }: Props) {
                 <MenuList category={menu.salads} />
               </motion.article>
             </motion.div>
-          </div>
+          </Row>
         </section>
       </Container>
     </PageLayout>

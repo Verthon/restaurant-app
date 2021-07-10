@@ -2,7 +2,7 @@ import { ROUTES } from "constants/routes"
 import React from "react"
 
 import { Button } from "ui/Button/Button"
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 import { Heading } from "ui/Heading/Heading"
 import styles from "./Header.module.scss"
 
@@ -17,7 +17,7 @@ export const Header = () => (
         </picture>
       </div>
       <div className={styles.content}>
-        <Heading level="h1" size="lg">
+        <Heading level="h1" variant="lg">
           Alkinoos Taverna
         </Heading>
         <p className={styles.text}>
