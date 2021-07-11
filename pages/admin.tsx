@@ -20,6 +20,8 @@ import { Booking } from "constants/booking"
 import { setBooking } from "context/booking/BookingActionCreator"
 import auth0 from "./api/utils/auth0"
 import { useNotification } from "hooks/useNotification/useNotification"
+import { Heading } from "ui/Heading/Heading"
+import { Text } from "ui/Text/Text"
 
 type Props = {
   user?: IClaims
@@ -136,10 +138,10 @@ export default function AdminPage({ bookings }: Props) {
             <img src="/assets/icons/close-circle.svg" height="35px" width="35px" />
           </button>
         </div>
-        <h2 className="heading modal-book__heading">Booking action</h2>
-        <p className="text modal-book__text">
+        <Heading level="h2">Booking action</Heading>
+        <Text className="modal-book__text">
           Choose an action for <strong>{booking.name}</strong> booking.
-        </p>
+        </Text>
         <p className="text modal-book__text">Both edit or delete process cannot be undone.</p>
         <div className="admin__form-container">
           <Form
@@ -161,22 +163,22 @@ export default function AdminPage({ bookings }: Props) {
         </footer>
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
-        {/* <Button variant="light" size="small" onClick={handleSignOut} >
+        <Button variant="light" size="small" href="/api/logout">
           Sign out
-        </Button> */}
+        </Button>
       </Navbar>
       <motion.main className="container admin__container" initial="exit" animate="enter" exit="exit">
-        <h2 className="admin__title" id="bookings">
+        <Heading level="h2" id="bookings">
           Bookings
-        </h2>
+        </Heading>
         {bookings.length === 0 ? (
           <p>No bookings yet</p>
         ) : (
           <BookingsTable bookings={bookings as any} toggleOptions={toggleOptions} />
         )}
-        <h2 className="admin__title" id="storage">
+        <Heading level="h2" id="storage">
           Storage
-        </h2>
+        </Heading>
       </motion.main>
     </PageTransition>
   )

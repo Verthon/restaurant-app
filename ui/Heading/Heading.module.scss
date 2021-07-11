@@ -1,0 +1,54 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.heading {
+  font-family: $font-secondary, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  margin: 0 0 1rem 0;
+
+  @include mQ($mobile) {
+    font-size: 1.75rem;
+  }
+
+  @include mQ($desktopXs) {
+    font-size: 2rem;
+  }
+}
+
+.lg {
+  font-size: 2.25rem;
+
+  @include mQ($desktopXs) {
+    font-size: 2.875rem;
+  }
+}
+
+.sm {
+  font-size: 1.5rem;
+}
+
+.default {
+  color: $color-dark;
+}
+
+.primary {
+  color: $color-primary;
+}
+
+.secondary {
+  color: $color-white;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
