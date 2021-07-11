@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 import { DEFAULT_LINKS } from "constants/routes"
 import { MenuButton } from "../MenuButton/MenuButton"
 import { NavList } from "../NavList/NavList"

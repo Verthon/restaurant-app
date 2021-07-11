@@ -6,11 +6,13 @@ import { initializeApollo } from "lib/apollo/apolloClient"
 
 import { MenuList } from "ui/MenuList/MenuList"
 import { Navbar } from "ui/Navbar/Navbar"
-import { Container } from "ui/Container/Container"
+import { Container, Row, Section } from "ui/Grid/Grid"
 import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
+import { Heading } from "ui/Heading/Heading"
+import styles from "styles/modules/Menu.module.scss"
 
 type Props = {
   menu: MenuState
@@ -59,35 +61,42 @@ export default function Menu({ menu }: Props) {
     <PageLayout>
       <Navbar links={links} hashlink={false} />
       <Container>
-        <section id="menu" className="section menu">
-          <h1 className="heading heading--center menu__heading">Menu</h1>
-          <div className="row">
+        <Section>
+          <Row>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Appetizers</h2>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
+                <Heading level="h2" color="primary">
+                  Appetizers
+                </Heading>
                 <MenuList category={menu.appetizers} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Desserts</h2>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
+                <Heading level="h2" color="primary">
+                  Desserts
+                </Heading>
                 <MenuList category={menu.desserts} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Mains</h2>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
+                <Heading level="h2" color="primary">
+                  Mains
+                </Heading>
                 <MenuList category={menu.mains} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
-                <h2 className="menu__title">Salads</h2>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
+                <Heading level="h2" color="primary">
+                  Salads
+                </Heading>
                 <MenuList category={menu.salads} />
               </motion.article>
             </motion.div>
-          </div>
-        </section>
+          </Row>
+        </Section>
       </Container>
     </PageLayout>
   )

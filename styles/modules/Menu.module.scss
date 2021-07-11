@@ -1,0 +1,16 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.menu {
+  @include flexColumn();
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+  @include mQ($ipad) {
+    padding: 1rem 1rem 1rem 1rem;
+    @include flexColumn();
+    align-items: center;
+  }
+}

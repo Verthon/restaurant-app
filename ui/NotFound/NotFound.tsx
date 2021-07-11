@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 
 import styles from "./NotFound.module.scss"
 

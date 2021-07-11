@@ -1,0 +1,68 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.header {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 0 1.5rem 3rem 1.5rem;
+  height: 100%;
+
+  @include mQ($tablet) {
+    padding: 0 2.5rem 3rem 2.5rem;
+  }
+
+  @include mQ($ipad) {
+    grid-template-columns: 50% 50%;
+  }
+}
+
+.content {
+  @include mQ($ipad) {
+    @include flexColumn();
+    justify-content: center;
+    align-items: flex-start;
+    order: 1;
+    flex: 50%;
+  }
+}
+
+.image {
+  @include mQ($ipad) {
+    order: 2;
+    flex: 50%;
+  }
+  img {
+    min-height: 200px;
+
+    @include mQ($tablet) {
+      min-height: 250px;
+    }
+    @include mQ($ipad) {
+      min-height: 516px;
+    }
+    @include mQ($desktopXs) {
+      min-height: 690px;
+    }
+    @include mQ($desktopSm) {
+      min-height: 840px;
+    }
+  }
+}
+
+.text {
+  font-size: 1rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+  max-width: 25rem;
+  @include mQ($mobile) {
+    font-size: 1rem;
+  }
+  @include mQ($tablet) {
+    margin: 0 0 3rem 0;
+    max-width: 20rem;
+  }
+  @include mQ($desktopXs) {
+    font-size: 1.1rem;
+    max-width: 25rem;
+  }
+}
