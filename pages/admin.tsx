@@ -163,9 +163,9 @@ export default function AdminPage({ bookings }: Props) {
         </footer>
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
-        {/* <Button variant="light" size="small" onClick={handleSignOut} >
+        <Button variant="light" size="small" href="/api/logout">
           Sign out
-        </Button> */}
+        </Button>
       </Navbar>
       <motion.main className="container admin__container" initial="exit" animate="enter" exit="exit">
         <Heading level="h2" id="bookings">

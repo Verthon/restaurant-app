@@ -6,12 +6,13 @@ import { initializeApollo } from "lib/apollo/apolloClient"
 
 import { MenuList } from "ui/MenuList/MenuList"
 import { Navbar } from "ui/Navbar/Navbar"
-import { Container, Row } from "ui/Grid/Grid"
+import { Container, Row, Section } from "ui/Grid/Grid"
 import { PAGE_VARIANTS } from "constants/config"
 import { formatMenu } from "utils/menu"
 import { MenuState } from "hooks/useMenuData/useMenuData.types"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import { Heading } from "ui/Heading/Heading"
+import styles from "styles/modules/Menu.module.scss"
 
 type Props = {
   menu: MenuState
@@ -60,11 +61,10 @@ export default function Menu({ menu }: Props) {
     <PageLayout>
       <Navbar links={links} hashlink={false} />
       <Container>
-        <section id="menu" className="section menu">
-          <Heading level="h1">Menu</Heading>
+        <Section>
           <Row>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
                 <Heading level="h2" color="primary">
                   Appetizers
                 </Heading>
@@ -72,7 +72,7 @@ export default function Menu({ menu }: Props) {
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
                 <Heading level="h2" color="primary">
                   Desserts
                 </Heading>
@@ -80,7 +80,7 @@ export default function Menu({ menu }: Props) {
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
                 <Heading level="h2" color="primary">
                   Mains
                 </Heading>
@@ -88,7 +88,7 @@ export default function Menu({ menu }: Props) {
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
-              <motion.article className="menu__container" variants={PAGE_VARIANTS}>
+              <motion.article className={styles.container} variants={PAGE_VARIANTS}>
                 <Heading level="h2" color="primary">
                   Salads
                 </Heading>
@@ -96,7 +96,7 @@ export default function Menu({ menu }: Props) {
               </motion.article>
             </motion.div>
           </Row>
-        </section>
+        </Section>
       </Container>
     </PageLayout>
   )

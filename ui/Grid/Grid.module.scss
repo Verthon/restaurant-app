@@ -43,3 +43,83 @@
     @include flexColumn;
   }
 }
+
+.section {
+  padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+
+  @include mQ($desktopXs) {
+    padding: 3rem 1.5rem 3rem 1.5rem;
+  }
+
+  .menu {
+    @include flexColumn();
+    align-items: center;
+    &__container {
+      @include mQ($ipad) {
+        padding: 1rem 1rem 1rem 1rem;
+        @include flexColumn();
+        align-items: center;
+      }
+    }
+  }
+}
+
+.description {
+  margin: 2rem 0 0 0;
+  padding: 2rem 1rem 2rem 1rem;
+
+  @include mQ($tablet) {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+
+  @include mQ($ipad) {
+    margin: 0;
+  }
+
+  @include mQ($ipadPro) {
+    @include flexColumn();
+    justify-content: center;
+  }
+}
+
+.sectionCol {
+  flex: 1;
+  background-color: $color-white;
+
+  @include mQ($ipad) {
+    flex: 50%;
+  }
+}
+
+.colFlexible {
+  flex: 100%;
+  @include mQ($ipad) {
+    flex: 1;
+  }
+}
+
+.about {
+  background-color: $color-light;
+}
+
+.menu {
+  background-color: $color-light-1;
+}
+
+.testimonials {
+  background: url("/assets/images/landing/ingredients-bg-xs.jpg");
+  background-repeat: no-repeat;
+  background-position: left;
+  @include mQ($ipadPro) {
+    background: url("/assets/images/landing/ingredients-bg.jpg");
+    background-position: 20%;
+  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  @include mQ($ipad) {
+    flex-direction: column;
+    min-height: 700px;
+    background-size: cover;
+  }
+}

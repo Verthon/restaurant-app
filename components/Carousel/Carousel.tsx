@@ -6,7 +6,7 @@ import "@brainhubeu/react-carousel/lib/style.css"
 import styles from "ui/Testimonial/Testimonial.module.scss"
 import { Testimonial } from "ui/Testimonial/Testimonial"
 import { Heading } from "ui/Heading/Heading"
-import { Container } from "ui/Container/Container"
+import { Container } from "ui/Grid/Grid"
 import { Props } from "./Carousel.types"
 
 const CONFIG = {
@@ -30,7 +30,7 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
   return (
     <Container>
       <div className={styles.modal}>
-        <Heading level="h2" size="sm" color="secondary">
+        <Heading level="h2" variant="sm" color="secondary">
           Guest reviews
         </Heading>
         <BrainHubCarousel
