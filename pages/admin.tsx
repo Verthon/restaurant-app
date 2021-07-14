@@ -1,8 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { gql, useMutation } from "@apollo/client"
-import { IClaims } from "@auth0/nextjs-auth0/dist/session/session"
-import { NextApiRequest } from "next"
 
 import Form from "components/Form"
 import { Button } from "ui/Button/Button"
@@ -18,13 +16,11 @@ import { initializeApollo } from "lib/apollo/apolloClient"
 import { Booking } from "constants/booking"
 
 import { setBooking } from "context/booking/BookingActionCreator"
-import auth0 from "./api/utils/auth0"
 import { useNotification } from "hooks/useNotification/useNotification"
 import { Heading } from "ui/Heading/Heading"
 import { Text } from "ui/Text/Text"
 
 type Props = {
-  user?: IClaims
   isLoading: boolean
   bookings: Booking[]
 }
@@ -64,14 +60,12 @@ const SUBSCRIBE_BOOKINGS = gql`
   }
 `
 
-export async function getServerSideProps({ req }: { req: NextApiRequest }) {
+export async function getServerSideProps() {
   const client = initializeApollo()
-  const session = await auth0.getSession(req)
   const { data, loading } = await client.query({ query: SUBSCRIBE_BOOKINGS })
 
   return {
     props: {
-      user: session?.user || null,
       isLoading: loading,
       bookings: data.bookings,
     },

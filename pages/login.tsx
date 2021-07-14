@@ -1,22 +1,21 @@
 import React from "react"
-import { NextApiRequest } from "next"
+//import { NextApiRequest } from "next"
 
 import { Navbar } from "ui/Navbar/Navbar"
 import { Button } from "ui/Button/Button"
-import auth0 from "./api/utils/auth0"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import { Heading } from "ui/Heading/Heading"
 import { Text } from "ui/Text/Text"
 
-export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const session = await auth0.getSession(req)
+// export async function getServerSideProps({ req }: { req: NextApiRequest }) {
+//   const session = await auth0.getSession(req)
 
-  return {
-    props: {
-      user: session?.user || null,
-    },
-  }
-}
+//   return {
+//     props: {
+//       user: session?.user || null,
+//     },
+//   }
+// }
 
 export default function LoginPage() {
   const links = [
