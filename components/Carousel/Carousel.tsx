@@ -21,11 +21,15 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
   React.useEffect(() => {
     if (testimonials && !loading && !error) {
       const allTestimonials = testimonials.map((testimonial) => {
-        return <Testimonial key={testimonial.id} author={testimonial.author} text={testimonial.text} />
+        return <Testimonial key={testimonial?.id} author={testimonial.author} text={testimonial.text} />
       })
       setSlides(allTestimonials)
     }
   }, [testimonials])
+
+  if (error) {
+    return <p>Something went wrong</p>
+  }
 
   return (
     <Container>

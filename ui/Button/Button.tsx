@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { ButtonHTMLAttributes, ReactNode } from "react"
 import Link from "next/link"
 
 import { LoadingIndicator } from "../LoadingIndicator/LoadingIndicator"
@@ -14,7 +14,7 @@ export type Props = {
   onClick?: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined
   type?: "submit" | "button"
   loading?: boolean
-} & React.Props<HTMLButtonElement | HTMLAnchorElement>
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
 const generateClassName = (variant: Props["variant"], size: Props["size"]) => {
   return [styles.btn, styles[size], styles[variant]].join(" ")

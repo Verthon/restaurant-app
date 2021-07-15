@@ -70,9 +70,8 @@ export const ReviewBookingForm = ({ handleEdit, toggleModal, editable = false }:
             guests: submitBooking.guests,
           },
         })
-
         const id = data.insert_bookings.returning[0].id
-        await sendEmail(id)
+        sendEmail(id)
       }
     } catch (_error) {
       showNotification({ type: "error", message: ERROR_MSG.emailDuplicated })

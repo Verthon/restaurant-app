@@ -8,20 +8,23 @@ import { CompanyDataController } from "context/companyData/CompanyDataController
 import { BookingController } from "context/booking/BookingController"
 
 import "../styles/index.scss"
+import { FirebaseContextController } from "lib/firebase-admin/auth"
 
 export default function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps)
   return (
     <ApolloProvider client={apolloClient}>
-      <CompanyDataController>
-        <BookingController>
-          <BookingModalController>
-            <AnimatePresence exitBeforeEnter>
-              <Component {...pageProps} />
-            </AnimatePresence>
-          </BookingModalController>
-        </BookingController>
-      </CompanyDataController>
+      <FirebaseContextController>
+        <CompanyDataController>
+          <BookingController>
+            <BookingModalController>
+              <AnimatePresence exitBeforeEnter>
+                <Component {...pageProps} />
+              </AnimatePresence>
+            </BookingModalController>
+          </BookingController>
+        </CompanyDataController>
+      </FirebaseContextController>
     </ApolloProvider>
   )
 }
