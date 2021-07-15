@@ -14,9 +14,6 @@ function createApolloClient() {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_HASURA_ENDPOINT,
       credentials: "same-origin",
-      headers: {
-        "X-hasura-admin-secret": "D5zF2czG7",
-      },
     }),
     cache: new InMemoryCache({
       typePolicies: {

@@ -1,8 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { gql, useMutation } from "@apollo/client"
-import { IClaims } from "@auth0/nextjs-auth0/dist/session/session"
-import { NextApiRequest } from "next"
 
 import Form from "components/Form"
 import { Button } from "ui/Button/Button"
@@ -14,17 +12,17 @@ import { PageTransition } from "ui/PageTransition/PageTransition"
 import { useBookingModalDispatch, useBookingModalState } from "hooks/useBookingModal/useBookingModal"
 import { ActionType } from "context/bookingModal/BookingModalContext.types"
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking"
-import { initializeApollo } from "lib/apollo/apolloClient"
-import { Booking } from "constants/booking"
+import { useAuth } from "lib/firebase-admin/auth"
 
 import { setBooking } from "context/booking/BookingActionCreator"
-import auth0 from "./api/utils/auth0"
 import { useNotification } from "hooks/useNotification/useNotification"
 import { Heading } from "ui/Heading/Heading"
 import { Text } from "ui/Text/Text"
+import { Booking } from "constants/booking"
+import { useRouter } from "next/router"
+import { ROUTES } from "constants/routes"
 
 type Props = {
-  user?: IClaims
   isLoading: boolean
   bookings: Booking[]
 }
@@ -51,29 +49,11 @@ const DELETE_BOOKING = gql`
   }
 `
 
-const SUBSCRIBE_BOOKINGS = gql`
-  query SubscribeBookings {
-    bookings(limit: 20, order_by: { date: desc }) {
-      id
-      name
-      guests
-      email
-      date
-      confirmed
-    }
-  }
-`
-
-export async function getServerSideProps({ req }: { req: NextApiRequest }) {
-  const client = initializeApollo()
-  const session = await auth0.getSession(req)
-  const { data, loading } = await client.query({ query: SUBSCRIBE_BOOKINGS })
-
+export async function getServerSideProps() {
   return {
-    props: {
-      user: session?.user || null,
-      isLoading: loading,
-      bookings: data.bookings,
+    redirect: {
+      permanent: false,
+      destination: ROUTES.login,
     },
   }
 }
@@ -90,6 +70,8 @@ export default function AdminPage({ bookings }: Props) {
   const booking = useBookingState()
   const dispatch = useBookingDispatch()
   const showNotification = useNotification()
+  const router = useRouter()
+  const { logout } = useAuth()
 
   const deleteBooking = () => {
     try {
@@ -130,6 +112,15 @@ export default function AdminPage({ bookings }: Props) {
     dispatchModal({ type: ActionType.show })
   }
 
+  const handleRedirect = () => {
+    router.push(ROUTES.home)
+  }
+
+  const handleLogout = async () => {
+    await logout()
+    handleRedirect()
+  }
+
   return (
     <PageTransition>
       <Modal show={showModal}>
@@ -163,7 +154,7 @@ export default function AdminPage({ bookings }: Props) {
         </footer>
       </Modal>
       <Navbar admin hashlink links={adminLinks}>
-        <Button variant="light" size="small" href="/api/logout">
+        <Button variant="light" size="small" onClick={handleLogout}>
           Sign out
         </Button>
       </Navbar>
