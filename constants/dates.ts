@@ -1,1 +1,1 @@
-export const DATE_HOUR_FORMAT = "DD-MMMM-YYYY HH:mm"
+export const DATE_HOUR_FORMAT = "dd-MMMM-yyyy HH:mm"

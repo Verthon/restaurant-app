@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.login {
+  justify-content: center;
+}
+
+.content {
+  margin: 0 0 2rem 0;
+}
+
+.desc {
+  white-space: pre-wrap;
+  line-height: 1.5;
+  margin: 0.25rem 0;
+}
+
+.form {
+  margin: 2rem 0;
+}
+
+.error {
+  color: $color-error;
+}
