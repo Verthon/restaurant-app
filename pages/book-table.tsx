@@ -40,7 +40,7 @@ export default function BookTable() {
                 </p>
               </SectionCol>
             </Section>
-            <Section>
+            {/* <Section>
               <SectionCol>
                 <picture>
                   <img
@@ -51,7 +51,7 @@ export default function BookTable() {
                   />
                 </picture>
               </SectionCol>
-            </Section>
+            </Section> */}
           </div>
         </Container>
       </div>
