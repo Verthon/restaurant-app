@@ -1,20 +1,19 @@
-import { AppProps } from "next/app"
-import { ApolloProvider } from "@apollo/client"
+import * as React from "react"
 import { AnimatePresence } from "framer-motion"
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query"
+import type { AppProps } from "next/app"
 
-import { useApollo } from "lib/apollo/apolloClient"
 import { BookingModalController } from "context/bookingModal/BookingModalController"
 import { CompanyDataController } from "context/companyData/CompanyDataController"
 import { BookingController } from "context/booking/BookingController"
 
 import "../styles/index.scss"
-import { FirebaseContextController } from "lib/firebase-admin/auth"
 
 export default function App({ Component, pageProps }: AppProps) {
-  const apolloClient = useApollo(pageProps)
+  const [queryClient] = React.useState(() => new QueryClient())
   return (
-    <ApolloProvider client={apolloClient}>
-      <FirebaseContextController>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
         <CompanyDataController>
           <BookingController>
             <BookingModalController>
@@ -24,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </BookingModalController>
           </BookingController>
         </CompanyDataController>
-      </FirebaseContextController>
-    </ApolloProvider>
+      </Hydrate>
+    </QueryClientProvider>
   )
 }

@@ -28,6 +28,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@brainhubeu/react-carousel": "^1.19.26",
+    "@supabase/supabase-js": "^1.28.5",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
     "date-fns": "^2.22.1",
@@ -43,6 +44,7 @@
     "react": "17.0.1",
     "react-datepicker": "^3.8.0",
     "react-dom": "17.0.1",
+    "react-query": "^3.34.0",
     "react-toastify": "^7.0.3",
     "sass": "^1.32.6",
     "subscriptions-transport-ws": "^0.9.18"
