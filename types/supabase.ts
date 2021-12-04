@@ -472,8 +472,8 @@ export interface definitions {
      */
     id: number
     created_at?: string
-    author?: string
-    description?: string
+    author: string
+    description: string
   }
 }
 
