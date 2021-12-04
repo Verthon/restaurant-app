@@ -28,10 +28,7 @@ Fully responsive restaurant web app using Next.js, where user can easily create 
 
 ## Setup
 
-Vercel still has no support for Node 16 so fo now sticking with 14 LTS
-https://github.com/vercel/vercel/discussions/7003
-
-- You need to have node 14 LTS installed to run this project
+- You need to have node 12 LTS installed to run this project
 - If you run into issues with node-sass, try `npm rebuild node-sass` command
 
 ```bash
