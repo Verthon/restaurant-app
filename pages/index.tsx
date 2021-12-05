@@ -16,12 +16,6 @@ import { Text } from "ui/Text/Text"
 import { ROUTES } from "constants/routes"
 import { getTestimonials } from "lib/supabase/supabaseClient"
 
-// type Props = {
-//   testimonials: Testimonial[]
-//   loading: boolean
-//   error: ApolloError | null
-// }
-
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery("testimonials", getTestimonials)
@@ -35,7 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home() {
   const { companyData } = useCompanyData()
-  const { isError, data, isLoading } = useQuery("posts", getTestimonials)
+  const { isError, data, isLoading } = useQuery("testimonials", getTestimonials)
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Contact", link: "contact" },

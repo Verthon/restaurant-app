@@ -23,6 +23,7 @@ export interface paths {
           date?: parameters["rowFilter.bookings.date"]
           time?: parameters["rowFilter.bookings.time"]
           message?: parameters["rowFilter.bookings.message"]
+          guests?: parameters["rowFilter.bookings.guests"]
           /** Filtering Columns */
           select?: parameters["select"]
           /** Ordering */
@@ -80,6 +81,7 @@ export interface paths {
           date?: parameters["rowFilter.bookings.date"]
           time?: parameters["rowFilter.bookings.time"]
           message?: parameters["rowFilter.bookings.message"]
+          guests?: parameters["rowFilter.bookings.guests"]
         }
         header: {
           /** Preference */
@@ -101,6 +103,7 @@ export interface paths {
           date?: parameters["rowFilter.bookings.date"]
           time?: parameters["rowFilter.bookings.time"]
           message?: parameters["rowFilter.bookings.message"]
+          guests?: parameters["rowFilter.bookings.guests"]
         }
         body: {
           /** bookings */
@@ -226,6 +229,7 @@ export interface paths {
           in_stock?: parameters["rowFilter.products.in_stock"]
           sale?: parameters["rowFilter.products.sale"]
           category_id?: parameters["rowFilter.products.category_id"]
+          category_name?: parameters["rowFilter.products.category_name"]
           /** Filtering Columns */
           select?: parameters["select"]
           /** Ordering */
@@ -285,6 +289,7 @@ export interface paths {
           in_stock?: parameters["rowFilter.products.in_stock"]
           sale?: parameters["rowFilter.products.sale"]
           category_id?: parameters["rowFilter.products.category_id"]
+          category_name?: parameters["rowFilter.products.category_name"]
         }
         header: {
           /** Preference */
@@ -308,6 +313,7 @@ export interface paths {
           in_stock?: parameters["rowFilter.products.in_stock"]
           sale?: parameters["rowFilter.products.sale"]
           category_id?: parameters["rowFilter.products.category_id"]
+          category_name?: parameters["rowFilter.products.category_name"]
         }
         body: {
           /** products */
@@ -430,12 +436,13 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: number
-    created_at: string
+    created_at?: string
     name: string
     email: string
     date: string
     time: string
     message?: string
+    guests: number
   }
   /** Products categories */
   categories: {
@@ -463,6 +470,7 @@ export interface definitions {
     in_stock: boolean
     sale: boolean
     category_id: number
+    category_name: string
   }
   /** clients testimonials */
   testimonials: {
@@ -507,6 +515,7 @@ export interface parameters {
   "rowFilter.bookings.date": string
   "rowFilter.bookings.time": string
   "rowFilter.bookings.message": string
+  "rowFilter.bookings.guests": string
   /** categories */
   "body.categories": definitions["categories"]
   "rowFilter.categories.id": string
@@ -524,6 +533,7 @@ export interface parameters {
   "rowFilter.products.in_stock": string
   "rowFilter.products.sale": string
   "rowFilter.products.category_id": string
+  "rowFilter.products.category_name": string
   /** testimonials */
   "body.testimonials": definitions["testimonials"]
   "rowFilter.testimonials.id": string

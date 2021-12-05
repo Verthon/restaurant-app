@@ -26,28 +26,20 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.3.7",
     "@brainhubeu/react-carousel": "^1.19.26",
     "@supabase/supabase-js": "^1.28.5",
     "classnames": "^2.2.6",
-    "cors": "^2.8.5",
     "date-fns": "^2.22.1",
-    "deepmerge": "^4.2.2",
     "emailjs-com": "^2.6.4",
     "eslint-plugin-import": "^2.22.1",
-    "firebase": "^8.7.1",
-    "firebase-admin": "^9.10.0",
-    "firebase-functions": "^3.14.1",
     "framer-motion": "^3.10.6",
-    "graphql": "^15.5.0",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-datepicker": "^3.8.0",
     "react-dom": "17.0.1",
     "react-query": "^3.34.0",
     "react-toastify": "^7.0.3",
-    "sass": "^1.32.6",
-    "subscriptions-transport-ws": "^0.9.18"
+    "sass": "^1.32.6"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.31.2",
