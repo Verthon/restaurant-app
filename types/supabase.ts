@@ -541,3 +541,7 @@ export interface parameters {
   "rowFilter.testimonials.author": string
   "rowFilter.testimonials.description": string
 }
+
+export interface operations {}
+
+export interface external {}
