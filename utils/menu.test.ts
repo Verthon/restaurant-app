@@ -1,8 +1,12 @@
-import { formatMenu } from "./menu"
-import { fullProducts, fullProductsSorted } from "./mocks"
+import { filterCategory } from "./menu"
+import { fullProducts, appetizersMock, saladsMock } from "./mocks"
 
-describe("formatMenu", () => {
-  it("should return formatted object of menu, even when source is empty", () => {
-    expect(formatMenu(fullProducts)).toEqual(fullProductsSorted)
+describe("filterCategory", () => {
+  it("should return formatted appetizers list", () => {
+    expect(filterCategory(fullProducts, 2)).toEqual(appetizersMock)
+  })
+
+  it("should return formatted salads list", () => {
+    expect(filterCategory(fullProducts, 5)).toEqual(saladsMock)
   })
 })

@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useRouter } from "next/router"
 
-import { useAuth } from "lib/firebase-admin/auth"
 import { useNotification } from "hooks/useNotification/useNotification"
 import { Button } from "ui/Button/Button"
 import { Input } from "ui/Input/Input"
@@ -14,11 +13,12 @@ import { LoginState } from "./LoginForm.types"
 export const LoginForm = () => {
   const router = useRouter()
   const showNotification = useNotification()
-  const { status, login } = useAuth()
   const [form, setForm] = React.useState<LoginState>({
     email: "",
     password: "",
   })
+
+  const [status, setStatus] = React.useState<"idle" | "authenticated" | "failure" | "loading">("idle")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -36,9 +36,11 @@ export const LoginForm = () => {
   }
 
   const handleLogin = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>) => {
+    setStatus("loading")
     e.preventDefault()
-    await login({ email: form.email, password: form.password })
+    // await login({ email: form.email, password: form.password })
     handleRedirect()
+    setStatus("authenticated")
   }
 
   return (

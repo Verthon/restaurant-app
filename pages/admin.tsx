@@ -1,6 +1,5 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { gql, useMutation } from "@apollo/client"
 
 import Form from "components/Form"
 import { Button } from "ui/Button/Button"
@@ -12,7 +11,6 @@ import { PageTransition } from "ui/PageTransition/PageTransition"
 import { useBookingModalDispatch, useBookingModalState } from "hooks/useBookingModal/useBookingModal"
 import { ActionType } from "context/bookingModal/BookingModalContext.types"
 import { useBookingDispatch, useBookingState } from "hooks/useBooking/useBooking"
-import { useAuth } from "lib/firebase-admin/auth"
 
 import { setBooking } from "context/booking/BookingActionCreator"
 import { useNotification } from "hooks/useNotification/useNotification"
@@ -26,28 +24,6 @@ type Props = {
   isLoading: boolean
   bookings: Booking[]
 }
-
-const UPDATE_BOOKING = gql`
-  mutation($id: Int!, $confirmed: Boolean!, $name: String!, $email: String!, $date: timestamptz!, $guests: smallint!) {
-    update_bookings(
-      _set: { confirmed: $confirmed, name: $name, email: $email, date: $date, guests: $guests }
-      where: { id: { _eq: $id } }
-    ) {
-      affected_rows
-    }
-  }
-`
-
-const DELETE_BOOKING = gql`
-  mutation($bookingId: Int) {
-    delete_bookings(where: { id: { _eq: $bookingId } }) {
-      affected_rows
-      returning {
-        id
-      }
-    }
-  }
-`
 
 export async function getServerSideProps() {
   return {
@@ -63,21 +39,15 @@ export default function AdminPage({ bookings }: Props) {
     { name: "Bookings", link: "bookings" },
     { name: "Storage", link: "storage" },
   ]
-  const [update, { loading }] = useMutation(UPDATE_BOOKING)
-  const [deleteBookingMutation] = useMutation(DELETE_BOOKING)
   const dispatchModal = useBookingModalDispatch()
   const { showModal } = useBookingModalState()
   const booking = useBookingState()
   const dispatch = useBookingDispatch()
   const showNotification = useNotification()
   const router = useRouter()
-  const { logout } = useAuth()
 
   const deleteBooking = () => {
     try {
-      deleteBookingMutation({
-        variables: { bookingId: booking.id },
-      })
       dispatchModal({ type: ActionType.hide })
       showNotification({ type: "success", message: "Booking deleted successfully." })
     } catch (error) {
@@ -85,21 +55,15 @@ export default function AdminPage({ bookings }: Props) {
     }
   }
 
+  const logout = async () => {
+    return 2
+  }
+
   const updateBooking = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault()
     try {
-      await update({
-        variables: {
-          id: booking.id,
-          email: booking.email,
-          name: booking.name,
-          date: booking.date,
-          guests: booking.guests,
-          confirmed: true,
-        },
-      })
       dispatchModal({ type: ActionType.hide })
       showNotification({ type: "success", message: "Booking was updated successfully." })
     } catch (error) {
@@ -145,10 +109,10 @@ export default function AdminPage({ bookings }: Props) {
           />
         </div>
         <footer className="modal-book__footer">
-          <Button variant="transparent" size="regular" onClick={deleteBooking} loading={loading}>
+          <Button variant="transparent" size="regular" onClick={deleteBooking}>
             Delete
           </Button>
-          <Button variant="light" size="regular" type="submit" onClick={updateBooking} loading={loading}>
+          <Button variant="light" size="regular" type="submit" onClick={updateBooking}>
             Update
           </Button>
         </footer>

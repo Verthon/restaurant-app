@@ -1,13 +1,7 @@
-import { ApolloError } from "@apollo/client"
-
-export type Testimonial = {
-  id: number
-  author: string
-  text: string
-}
+import { Testimonial } from "types/testimonials"
 
 export type Props = {
-  testimonials: Testimonial[]
   loading: boolean
-  error: ApolloError | null
+  error: boolean
+  testimonials?: Testimonial[] | null
 }

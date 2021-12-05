@@ -1,57 +1,31 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { GetStaticProps } from "next"
-import { ApolloError, gql } from "@apollo/client"
-import { initializeApollo } from "lib/apollo/apolloClient"
+import { dehydrate, QueryClient, useQuery } from "react-query"
 
 import { MenuList } from "ui/MenuList/MenuList"
 import { Navbar } from "ui/Navbar/Navbar"
 import { Container, Row, Section } from "ui/Grid/Grid"
 import { PAGE_VARIANTS } from "constants/config"
-import { formatMenu } from "utils/menu"
-import { MenuState } from "hooks/useMenuData/useMenuData.types"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import { Heading } from "ui/Heading/Heading"
 import styles from "styles/modules/Menu.module.scss"
-
-type Props = {
-  menu: MenuState
-  loading: boolean
-  error: ApolloError | null
-}
-
-const GET_MENU = gql`
-  query getMenu {
-    products {
-      price
-      name
-      id
-      description
-      category_id
-      category {
-        id
-        name
-      }
-    }
-  }
-`
+import { getProducts } from "lib/supabase/supabaseClient"
+import { Category } from "utils/menu"
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo(null)
-  const { data, loading, error } = await client.query({ query: GET_MENU })
-
-  const menu = formatMenu(data.products)
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery("testimonials", getProducts)
 
   return {
     props: {
-      menu,
-      loading,
-      error: error || null,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }
 
-export default function Menu({ menu }: Props) {
+export default function Menu() {
+  const { isError, data, isLoading } = useQuery("posts", getProducts)
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Book Table", link: "book-table" },
@@ -68,7 +42,7 @@ export default function Menu({ menu }: Props) {
                 <Heading level="h2" color="primary">
                   Appetizers
                 </Heading>
-                <MenuList category={menu.appetizers} />
+                <MenuList products={data} category={Category.Appetizers} isLoading={isLoading} isError={isError} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
@@ -76,7 +50,7 @@ export default function Menu({ menu }: Props) {
                 <Heading level="h2" color="primary">
                   Desserts
                 </Heading>
-                <MenuList category={menu.desserts} />
+                <MenuList products={data} category={Category.Desserts} isLoading={isLoading} isError={isError} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
@@ -84,7 +58,7 @@ export default function Menu({ menu }: Props) {
                 <Heading level="h2" color="primary">
                   Mains
                 </Heading>
-                <MenuList category={menu.mains} />
+                <MenuList products={data} category={Category.Mains} isLoading={isLoading} isError={isError} />
               </motion.article>
             </motion.div>
             <motion.div className="section__col" initial="exit" animate="enter" exit="exit">
@@ -92,7 +66,7 @@ export default function Menu({ menu }: Props) {
                 <Heading level="h2" color="primary">
                   Salads
                 </Heading>
-                <MenuList category={menu.salads} />
+                <MenuList products={data} category={Category.Salads} isLoading={isLoading} isError={isError} />
               </motion.article>
             </motion.div>
           </Row>
