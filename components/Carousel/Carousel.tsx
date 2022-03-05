@@ -7,7 +7,8 @@ import styles from "ui/Testimonial/Testimonial.module.scss"
 import { Testimonial } from "ui/Testimonial/Testimonial"
 import { Heading } from "ui/Heading/Heading"
 import { Container } from "ui/Grid/Grid"
-import { Props } from "./Carousel.types"
+
+import type { Props } from "./Carousel.types"
 
 const CONFIG = {
   numberOfSlides: 1,
@@ -21,7 +22,7 @@ export const Carousel = ({ testimonials, loading, error }: Props) => {
   React.useEffect(() => {
     if (testimonials && !loading && !error) {
       const allTestimonials = testimonials.map((testimonial) => {
-        return <Testimonial key={testimonial?.id} author={testimonial.author} text={testimonial.text} />
+        return <Testimonial key={testimonial?.id} author={testimonial.author} text={testimonial.description} />
       })
       setSlides(allTestimonials)
     }

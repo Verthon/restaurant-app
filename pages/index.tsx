@@ -1,9 +1,8 @@
 import Head from "next/head"
-import { ApolloError, gql } from "@apollo/client"
+import { dehydrate, QueryClient, useQuery } from "react-query"
 import * as React from "react"
 import { GetStaticProps } from "next"
 
-import { initializeApollo, addApolloState } from "lib/apollo/apolloClient"
 import { useCompanyData } from "hooks/useCompanyData/useCompanyData"
 import { PageLayout } from "layouts/PageLayout/PageLayout"
 import { Carousel } from "components/Carousel/Carousel"
@@ -15,46 +14,22 @@ import { Container, Row, Section, SectionCol } from "ui/Grid/Grid"
 import { Heading } from "ui/Heading/Heading"
 import { Text } from "ui/Text/Text"
 import { ROUTES } from "constants/routes"
-
-export type Testimonial = {
-  id: number
-  author: string
-  text: string
-}
-
-type Props = {
-  testimonials: Testimonial[]
-  loading: boolean
-  error: ApolloError | null
-}
-
-export const GET_TESTIMONIALS = gql`
-  query GetTestimonials {
-    testimonials {
-      id
-      author
-      text
-    }
-  }
-`
+import { getTestimonials } from "lib/supabase/supabaseClient"
 
 export const getStaticProps: GetStaticProps = async () => {
-  const client = initializeApollo()
-  const { data, loading, error } = await client.query({
-    query: GET_TESTIMONIALS,
-  })
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery("testimonials", getTestimonials)
 
-  return addApolloState(client, {
+  return {
     props: {
-      testimonials: data.testimonials,
-      loading,
-      error: error || null,
+      dehydratedState: dehydrate(queryClient),
     },
-  })
+  }
 }
 
-export default function Home({ testimonials, loading, error }: Props) {
+export default function Home() {
   const { companyData } = useCompanyData()
+  const { isError, data, isLoading } = useQuery("testimonials", getTestimonials)
   const links = [
     { name: "Menu", link: "menu" },
     { name: "Contact", link: "contact" },
@@ -153,7 +128,7 @@ export default function Home({ testimonials, loading, error }: Props) {
 
       <Section id="Reviews" section="testimonials">
         <Container>
-          <Carousel loading={loading} error={error} testimonials={testimonials} />
+          <Carousel loading={isLoading} error={isError} testimonials={data} />
         </Container>
       </Section>
       <Footer hours={hours} location={location} contact={contact} />

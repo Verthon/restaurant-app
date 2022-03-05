@@ -5,7 +5,7 @@ export const ROUTES = Object.freeze({
   review: "/review-booking",
   login: "/login",
   admin: "/admin",
-})
+} as const)
 
 export const DEFAULT_LINKS = [
   { name: "Menu", link: "menu" },
