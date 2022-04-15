@@ -37,7 +37,8 @@ https://github.com/vercel/vercel/discussions/7003
   clone repo
   create account Supabase
   create account on Emailjs
-  follow the env setup listed in env.example
+  setup envs
+  cp .env.example .env.local
   npm install
   npm start
 ```
