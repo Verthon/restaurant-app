@@ -19,9 +19,8 @@ Fully responsive restaurant web app using Next.js, where user can easily create 
 
 - Next.js
 - Scss
-- Hasura
 - Typescript
-- GraqphQL and Apollo
+- Supabase
 - Continuous Deployment with Vercel
 - React Testing Library and Jest
 - Git hooks powered by husky (pre-commit and pre-push)
@@ -32,11 +31,11 @@ Fully responsive restaurant web app using Next.js, where user can easily create 
 - If you run into issues with node-sass, try `npm rebuild node-sass` command
 
 ```bash
-  git clone https://github.com/Verthon/restaurant-app.git
-  create a Hasura database https://hasura.io/
-  create account on Auth0
+  clone repo
+  create account Supabase
   create account on Emailjs
-  follow the env setup listed in env.example
+  setup envs
+  cp .env.example .env.local
   npm install
   npm start
 ```
