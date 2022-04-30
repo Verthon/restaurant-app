@@ -3,12 +3,10 @@
   "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript"
-    // Uncomment the following lines to enable eslint-config-prettier
-    // Is not enabled right now to avoid issues with the Next.js repo
-    // "prettier",
+    "plugin:import/typescript",
+    "plugin:react-hooks/recommended",
+    "next/core-web-vitals"
   ],
   "env": {
     "es6": true,
