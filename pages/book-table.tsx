@@ -47,7 +47,7 @@ export default function BookTable() {
                     src="/assets/images/brooke-lark-book-table.jpg"
                     alt=""
                     className="table-booking__image"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </picture>
               </SectionCol>

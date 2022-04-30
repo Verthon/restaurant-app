@@ -13,7 +13,7 @@ export const Header = () => (
         <picture>
           <source media="(min-width: 767px)" srcSet="assets/images/header.jpg" />
           <source media="(min-width: 475px)" srcSet="assets/images/header-sm.jpg" />
-          <img src="assets/images/header-xs.jpg" alt="" loading="lazy" />
+          <img src="assets/images/header-xs.jpg" alt="" loading="eager" />
         </picture>
       </div>
       <div className={styles.content}>

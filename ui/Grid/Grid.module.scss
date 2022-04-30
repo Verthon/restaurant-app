@@ -107,9 +107,7 @@
 }
 
 .testimonials {
-  background: url("/assets/images/landing/ingredients-bg-xs.jpg");
-  background-repeat: no-repeat;
-  background-position: left;
+  background: none;
   @include mQ($ipadPro) {
     background: url("/assets/images/landing/ingredients-bg.jpg");
     background-position: 20%;

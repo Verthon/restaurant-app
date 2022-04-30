@@ -90,7 +90,7 @@ export default function AdminPage({ bookings }: Props) {
       <Modal show={showModal}>
         <div className="modal-book__nav">
           <button className="modal-book__close" onClick={() => dispatchModal({ type: ActionType.hide })}>
-            <img src="/assets/icons/close-circle.svg" height="35px" width="35px" />
+            <img src="/assets/icons/close-circle.svg" height="35px" width="35px" loading="lazy" />
           </button>
         </div>
         <Heading level="h2">Booking action</Heading>
