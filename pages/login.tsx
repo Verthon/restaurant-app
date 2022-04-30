@@ -31,7 +31,12 @@ export default function LoginPage() {
           </Section>
           <Section>
             <picture>
-              <img src="/assets/images/brooke-lark-book-table.jpg" alt="" className="table-booking__image" />
+              <img
+                src="/assets/images/brooke-lark-book-table.jpg"
+                alt=""
+                className="table-booking__image"
+                loading="eager"
+              />
             </picture>
           </Section>
         </Row>

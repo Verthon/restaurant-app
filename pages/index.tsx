@@ -82,12 +82,12 @@ export default function Home() {
                 If you’ve been in Alkinoos Taverna, you’ve seen - and tasted what keeps our customers coming back for
                 more.
               </Text>
-              <img width={150} src="assets/images/landing/cook.jpg" alt="our chef" />
+              <img width={150} src="assets/images/landing/cook.jpg" alt="our chef" loading="lazy" />
             </SectionCol>
           </Row>
         </Container>
       </Section>
-      <Section id="menu" section="menu">
+      <Section id="Menu" section="menu">
         <Container>
           <Row>
             <SectionCol>

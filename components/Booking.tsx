@@ -22,7 +22,7 @@ const Booking = ({ name, email, date, guests, toggleOptions }: Props) => {
       <td className="table__cell">{email}</td>
       <td className="table__cell table__cell--center">{guests}</td>
       <td className="table__cell table__cell--center">
-        <Image src="/assets/icons/option.svg" onClick={toggleOptions} width="35px" height="35px" />
+        <Image src="/assets/icons/option.svg" onClick={toggleOptions} width="35px" height="35px" alt="" />
       </td>
     </tr>
   )
